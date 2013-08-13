@@ -1,12 +1,24 @@
 ---
 layout: post
-title:  "Cascalog"
+title:  "Cascalog Stack Exchange Queries"
 date:   2013-08-11 20:11:46
 categories: jekyll update draft
 ---
 
-DRAFT!
 
+
+
+Cascalog is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing "Big Data" on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading.
+
+
+
+```
+$ lein repl
+```
+
+```
+user=> (use 'cascalog_stack_exchange.queries)
+```
 
 
 ``` clojure
