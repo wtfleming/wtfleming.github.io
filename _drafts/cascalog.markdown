@@ -1,25 +1,52 @@
 ---
 layout: post
-title:  "Cascalog Stack Exchange Queries"
+title:  "Querying Stack Exchange data dumps with Cascalog"
 date:   2013-08-11 20:11:46
-categories: jekyll update draft
+categories: cascalog hadoop
 ---
 
 
+> "[Cascalog] (https://github.com/nathanmarz/cascalog) is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing "Big Data" on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading."
+
+> "[Stack Exchange](http://stackexchange.com) is a fast-growing network of 105 question and answer sites on diverse topics from software programming to cooking to photography and gaming. We build libraries of high-quality questions and answers, focused on the most important topics in each area of expertise. From our core of Q&A, to community blogs and real-time chat, we provide experts with the tools they need to make The Internet a better place."
+
+Every 3 months Stack Exchange [provides a anonymized data dump](http://clearbits.net/creators/146-stack-exchange-data-dump) of all creative commons questions and answers from their websites (the largest of which being [Stack Overflow](http://stackoverflow.com).
+
+In this post we will get started using Cascalog to query the [Arqade](http://gaming.stackexchange.com) data dump, the site dedicated to video game questions and answers.
 
 
-Cascalog is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing "Big Data" on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading.
+## Getting Started
+
+The code and data for this post is available [here](https://github.com/wtfleming/wtfleming.github.io/tree/master/code/cascalog-stack-exchange).
 
 
+If you are going to follow along, run the commands that begin with:
 
 ```
-$ lein repl
+user=>
 ```
+
+Now fire up a [leiningen](https://github.com/technomancy/leiningen) REPL in the project's directory and switch to the demonstration namespace:
 
 ```
 user=> (use 'cascalog_stack_exchange.queries)
 ```
 
+At the start of the *queries.clj* file we have pulled in the following:
+
+``` clojure
+(ns cascalog_stack_exchange.queries
+  (:use cascalog.api)
+  (:require [cascalog.ops :as ops]
+            [clojure.data.xml :as xml]
+            [clojure.string :as str]))
+```
+
+This provides everything we will need to run the queries.
+
+# Parsing the XML
+
+In *queries.clj* we have defined a function that will parse a line of XML representing a user, and extract the user id, display name, and reputation.
 
 ``` clojure
 {% raw %}
@@ -32,6 +59,23 @@ user=> (use 'cascalog_stack_exchange.queries)
     (catch Exception _ [nil nil nil])))
 {% endraw %}
 ```
+
+
+It takes input that looks like this
+
+``` xml
+<row Id="3" Reputation="3272" CreationDate="2010-07-07T16:10:54.360"
+DisplayName="David Fullerton" LastAccessDate="2013-06-02T00:58:32.237"
+WebsiteUrl="http://careers.stackoverflow.com/dfullerton" Location="New York, NY"
+AboutMe="&lt;p&gt;Stack Exchange &lt;a href=&quot;http://meta.stackoverflow.com/
+a/121542/146719&quot;&gt;VP of Engineering&lt;/a&gt;.&lt;/p&gt;&#xA;&#xA;&lt;p&gt;"
+Views="106" UpVotes="2163" DownVotes="18" Age="28"
+EmailHash="7ec7e363b18de72c5ac1f3931b9d56ba" />
+```
+
+and returns ["3" "David Fullerton" 3272].
+
+## Querying Users
 
 ``` clojure
 (defn user-query
@@ -47,7 +91,7 @@ user=> (use 'cascalog_stack_exchange.queries)
 
 
 ```
-(user-query)
+user=> (user-query)
 RESULTS
 -----------------------
 3       3272    David Fullerton
@@ -72,7 +116,7 @@ RESULTS
 
 
 ```
-(user-minimum-reputation-query)
+user=> (user-minimum-reputation-query)
 RESULTS
 -----------------------
 David Fullerton 3272
@@ -96,7 +140,7 @@ Jin     238
 ```
 
 ```
-(user-minimum-reputation-count-query)
+user=> (user-minimum-reputation-count-query)
 RESULTS
 -----------------------
 2
@@ -129,7 +173,7 @@ RESULTS
 ```
 
 ```
-(post-query)
+user=> (post-query)
 RESULTS
 -----------------------
 4       1       <team-fortress-2>
@@ -161,7 +205,7 @@ RESULTS
 ```
 
 ```
-(post-aggregate-query)
+user=> (post-aggregate-query)
 RESULTS
 -----------------------
 3       <steam><hosting><source-engine><monkey-island><steam>
@@ -194,7 +238,7 @@ RESULTS
 
 
 ```
-(user-tags-join-query)
+user=> (user-tags-join-query)
 RESULTS
 -----------------------
 David Fullerton <steam><hosting><source-engine><monkey-island><steam>
