@@ -1,38 +1,40 @@
 ---
 layout: post
-title:  "Querying Stack Exchange data dumps with Cascalog"
+title:  "Using Cascalog to query Stack Exchange database dumps"
 date:   2013-08-11 20:11:46
 categories: cascalog hadoop
 ---
 
+---
 
 > "[Cascalog] (https://github.com/nathanmarz/cascalog) is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing "Big Data" on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading."
 
-> "[Stack Exchange](http://stackexchange.com) is a fast-growing network of 105 question and answer sites on diverse topics from software programming to cooking to photography and gaming. We build libraries of high-quality questions and answers, focused on the most important topics in each area of expertise. From our core of Q&A, to community blogs and real-time chat, we provide experts with the tools they need to make The Internet a better place."
+---
 
-Every 3 months Stack Exchange [provides a anonymized data dump](http://clearbits.net/creators/146-stack-exchange-data-dump) of all creative commons questions and answers from their websites (the largest of which being [Stack Overflow](http://stackoverflow.com).
+In this post we will use Cascalog to run some basic queries on the [Arqade](http://gaming.stackexchange.com) Stack Exchange site database dump. Arqade is a website dedicated to video game questions and answers.
 
-In this post we will get started using Cascalog to query the [Arqade](http://gaming.stackexchange.com) data dump, the site dedicated to video game questions and answers.
+
+Every 3 months the team at [Stack Exchange](http://stackexchange.com) provides an [anonymized data dump](http://clearbits.net/creators/146-stack-exchange-data-dump) of all creative commons licensed questions and answers from network of websites (the largest of which being [Stack Overflow](http://stackoverflow.com).
 
 
 ## Getting Started
 
-The code and data for this post is available [here](https://github.com/wtfleming/wtfleming.github.io/tree/master/code/cascalog-stack-exchange).
+The code and data for this post is available [here](https://github.com/wtfleming/wtfleming.github.io/tree/master/code/cascalog-stack-exchange). The relevant file is *queries.clj*.
 
 
-If you are going to follow along, run the commands that begin with:
+I encourage you to follow along in a REPL. Run the commands that begin with:
 
 ```
 user=>
 ```
 
-Now fire up a [leiningen](https://github.com/technomancy/leiningen) REPL in the project's directory and switch to the demonstration namespace:
+Fire up a [leiningen](https://github.com/technomancy/leiningen) REPL in the project's directory and switch to the demo namespace:
 
 ```
 user=> (use 'cascalog_stack_exchange.queries)
 ```
 
-At the start of the *queries.clj* file we have pulled in the following:
+At the start of the *queries.clj* we have pulled in the following:
 
 ``` clojure
 (ns cascalog_stack_exchange.queries
@@ -73,9 +75,15 @@ Views="106" UpVotes="2163" DownVotes="18" Age="28"
 EmailHash="7ec7e363b18de72c5ac1f3931b9d56ba" />
 ```
 
-and returns ["3" "David Fullerton" 3272].
+and return
+
+``` clojure
+["3" "David Fullerton" 3272]
+```
 
 ## Querying Users
+
+Our first query will iterate over all lines in the file storing user information. Extract their id, reputation score. And finally output the results to standard out.
 
 ``` clojure
 (defn user-query
@@ -89,6 +97,38 @@ and returns ["3" "David Fullerton" 3272].
       (user-xml-parser ?line :> ?id ?display-name ?reputation))))
 ```
 
+1) Indicate that this is a Cascalog query which will run immediately.
+
+```
+?<-
+```
+
+2) Specify that the results will written to standard out. It is possible to store the output in any format and wherever you want (HDFS, a relational database, Amazon S3, etc.). But for simplicity we will just be using stdout in these examples.
+
+```
+(stdout)
+```
+
+3) Tell Cascalog that we want to output the *?id* *?reputation?* and *?display-name* variables.
+
+```
+[?id ?reputation ?display-name]
+```
+
+
+4) We earlier defined *file-tap* as a generator for each line of text in the file *data/users.xml*. We put each of them in *?line* variable. 
+
+```
+(file-tap ?line)
+```
+
+5) Parse each line and use the :> keyword to bind them to the variables *?id*, *?display-name*, and *?reputation*.
+
+```
+(user-xml-parser ?line :> ?id ?display-name ?reputation)
+```
+
+Now lets run the query, and look at the output:
 
 ```
 user=> (user-query)
@@ -100,6 +140,9 @@ RESULTS
 -----------------------
 ```
 
+## Query with a filter
+
+We will now run a similar query, but this time we want to only include users with more than 200 reputation.
 
 ``` clojure
 (defn user-minimum-reputation-query
@@ -114,6 +157,7 @@ RESULTS
       (> ?reputation 200))))
 ```
 
+Running gives us:
 
 ```
 user=> (user-minimum-reputation-query)
@@ -122,8 +166,11 @@ RESULTS
 David Fullerton 3272
 Jin     238
 -----------------------
-```
+``` 
 
+## Counting with built in operations
+
+Cascalog provides a number of [built in operations](https://github.com/nathanmarz/cascalog/wiki/Built-in-operations). Here we want to know the total number of users with a reputation greater than 200.
 
 ``` clojure
 (defn user-minimum-reputation-count-query
@@ -139,6 +186,8 @@ Jin     238
       (ops/count :> ?count))))
 ```
 
+Everything looks good:
+
 ```
 user=> (user-minimum-reputation-count-query)
 RESULTS
@@ -147,6 +196,10 @@ RESULTS
 -----------------------
 ```
 
+
+## Querying Posts
+
+Once again we need to define a function to parse XML, this time for a post (a question or answer).
 
 ``` clojure
 {% raw %}
