@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Using Cascalog to query Stack Exchange database dumps"
+title:  "Querying Stack Exchange database dumps with Cascalog"
 date:   2013-08-11 20:11:46
-categories: cascalog hadoop
+tags: cascalog
 ---
 
 ---
@@ -11,7 +11,7 @@ categories: cascalog hadoop
 
 ---
 
-In this post we will use Cascalog to run some basic queries on the [Arqade](http://gaming.stackexchange.com) Stack Exchange site database dump. Arqade is a website dedicated to video game questions and answers.
+We will use Cascalog to run some basic queries on the [Arqade](http://gaming.stackexchange.com) Stack Exchange site database dump. Arqade is a website dedicated to video game questions and answers.
 
 
 Every 3 months the team at [Stack Exchange](http://stackexchange.com) provides an [anonymized data dump](http://clearbits.net/creators/146-stack-exchange-data-dump) of all creative commons licensed questions and answers from network of websites (the largest of which being [Stack Overflow](http://stackoverflow.com).
@@ -75,7 +75,7 @@ Views="106" UpVotes="2163" DownVotes="18" Age="28"
 EmailHash="7ec7e363b18de72c5ac1f3931b9d56ba" />
 ```
 
-and return
+and returns
 
 ``` clojure
 ["3" "David Fullerton" 3272]
@@ -213,6 +213,11 @@ Once again we need to define a function to parse XML, this time for a post (a qu
 {% endraw %}
 ```
 
+The following query is very similar to the user-query above. But note that in this case we are using *!tags* rather than *?tags*. Variables beginning with a ? are non-nullable, Cascalog will filter out any records in which a non-nullable is bound to null.
+
+Variables beginning with ! are nullable and will not be filtered out. Here we are demonstrating that posts with a post-type-id are answers, and do not contain tags. If you wanted to know which tags are associated with the answer it is possible to join on the answer's parent id.
+
+
 ``` clojure
 (defn post-query
   "Run a query that outputs post owner-id, type-id, and tags"
@@ -224,6 +229,8 @@ Once again we need to define a function to parse XML, this time for a post (a qu
      (file-tap ?line)
      (post-xml-parser ?line :> ?owner-user-id ?post-type-id !tags))))
 ```
+
+Running the query this is what we should see:
 
 ```
 user=> (post-query)
@@ -237,6 +244,9 @@ RESULTS
 4       2       null
 -----------------------
 ```
+### Aggregating Tags
+
+If we wanted to see all the tags used by each user we can run a query like this.  
 
 ``` clojure
 (defbufferop aggregate-tags
@@ -257,6 +267,8 @@ RESULTS
      (aggregate-tags ?tags1 :> ?tags))))
 ```
 
+Which will output:
+
 ```
 user=> (post-aggregate-query)
 RESULTS
@@ -266,6 +278,11 @@ RESULTS
 5       <world-of-warcraft>
 -----------------------
 ```
+
+### Joining users and posts
+
+We will now combine what we have learnt to create a query that will output the display name and list of tags used by users with more than 200 reputation.
+
 
 ``` clojure
 (defn user-tags-join-query
@@ -289,6 +306,16 @@ RESULTS
 
 ```
 
+Since display name is stored in users.xml and the questions are in posts.xml, we will need to join on user id, since that is in both files.
+
+In the following code posts-line and users-line are from two different sources of data. Since they are both binding to a variable *?user-id*, behind the scenes Cascalog will using a join to resolve the query.
+
+``` clojure
+    (post-xml-parser ?posts-line :> ?user-id _ ?raw-tags)
+    (user-xml-parser ?users-line :> ?user-id ?display-name ?reputation)
+```
+
+We can now run the query, and everything looks good:
 
 ```
 user=> (user-tags-join-query)
@@ -298,4 +325,5 @@ David Fullerton <steam><hosting><source-engine><monkey-island><steam>
 Jin     <world-of-warcraft>
 -----------------------
 ```
+
 
