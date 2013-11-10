@@ -1,4 +1,4 @@
-#include <msp430g2453.h>
+#include <msp430g2553.h>
 
 int main(void) {
   WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
