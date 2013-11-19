@@ -17,7 +17,7 @@ I have a wire connected to P1.0, another connected to GND, a 180 ohm resistor, a
 blink.c
 
 ``` c
-#include <msp430g2453.h>
+#include <msp430g2553.h>
 
 int main(void) {
   WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
