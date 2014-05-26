@@ -5,7 +5,7 @@ date:   2014-05-24 14:11:46
 categories: beaglebone clojure
 ---
 
-The BeagleBone is a low cost ($55) ARM linux board capable of running Linux.
+The [BeagleBone][beaglebone] is a low cost ($55) ARM linux board capable of running Linux.
 
 ![BeagleBone Black]({{ site.url }}/images/beagleboneblack.jpg)
 
@@ -78,7 +78,7 @@ $ make
 $ make install
 ```
 
-
+[beaglebone]: http://beagleboard.org/Products/BeagleBone+Black
 [leiningen]: https://github.com/technomancy/leiningen
 [beaglebone-firmware]: http://beagleboard.org/latest-images
 [beaglebone-java]: http://beagleboard.org/project/java/
