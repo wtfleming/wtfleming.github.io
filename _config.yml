@@ -1,3 +1,4 @@
 name: wtf blog
 markdown: redcarpet
 pygments: true
+permalink: /:title/

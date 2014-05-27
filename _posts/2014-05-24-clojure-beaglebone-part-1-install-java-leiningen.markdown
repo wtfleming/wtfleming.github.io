@@ -2,7 +2,7 @@
 layout: post
 title:  "Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24"
 date:   2014-05-24 14:11:46
-categories: beaglebone clojure
+tags: beaglebone clojure
 ---
 
 # Intro

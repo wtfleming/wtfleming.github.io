@@ -2,7 +2,7 @@
 layout: post
 title:  "Clojure on the BeagleBone part 2 - Blinking an LED with Clojure"
 date:   2014-05-25 14:11:46
-categories: beaglebone clojure
+tags: beaglebone clojure
 ---
 
 # Intro
