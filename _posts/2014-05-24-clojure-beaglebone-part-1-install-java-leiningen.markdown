@@ -1,11 +1,16 @@
 ---
 layout: post
-title:  "Clojure and ClojureScript on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24"
+title:  "Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24"
 date:   2014-05-24 14:11:46
 categories: beaglebone clojure
 ---
 
-The [BeagleBone][beaglebone] is a low cost ($55) ARM linux board capable of running Linux.
+# Intro
+- In part 1 of this series we see how to install Java and [Leiningen][leiningen] on a [BeagleBone][beaglebone].
+- In [part 2][part-2] we use the BeagleBone to blink a LED on a breadboard using Clojure.
+
+
+The [BeagleBone][beaglebone] is a small and low cost ($55) 1Ghz ARM board with 512Mb of RAM capable of running Linux.
 
 ![BeagleBone Black]({{ site.url }}/images/beagleboneblack.jpg)
 
@@ -60,7 +65,6 @@ Hello BeagleBone
 nil
 ```
 
-You should now be able to use Leiningen.
 
 # Emacs 24.3
 
@@ -78,8 +82,12 @@ $ make
 $ make install
 ```
 
-[beaglebone]: http://beagleboard.org/Products/BeagleBone+Black
+
+[part-2]: {% post_url 2014-05-25-clojure-beaglebone-part-2-blink-led-clojure %}
 [leiningen]: https://github.com/technomancy/leiningen
+[clojure]: http://clojure.org/
+[clojurescript]: https://github.com/clojure/clojurescript
+[beaglebone]: http://beagleboard.org/Products/BeagleBone+Black
 [beaglebone-firmware]: http://beagleboard.org/latest-images
 [beaglebone-java]: http://beagleboard.org/project/java/
 [jdk-7-arm-downloads]: http://www.oracle.com/technetwork/java/javase/downloads/jdk7-arm-downloads-2187468.html
