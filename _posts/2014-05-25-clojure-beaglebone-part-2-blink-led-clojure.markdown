@@ -7,7 +7,7 @@ categories: beaglebone clojure
 
 # Intro
 - In [part 1][part-1] of this series we see how to install Java and [Leiningen][leiningen] on a [BeagleBone][beaglebone].
-- In part 2 we use the BeagleBone to blink a LED on a breadboard using [Clojure][clojure].
+- In part 2 we use the BeagleBone to blink an LED on a breadboard using [Clojure][clojure].
 
 
 This is inspired by an example from the excellent book [Getting Started With BeagleBone][beaglebone-book] by [Matt Richardson][matt-richardson].

@@ -7,7 +7,7 @@ categories: beaglebone clojure
 
 # Intro
 - In part 1 of this series we see how to install Java and [Leiningen][leiningen] on a [BeagleBone][beaglebone].
-- In [part 2][part-2] we use the BeagleBone to blink a LED on a breadboard using Clojure.
+- In [part 2][part-2] we use the BeagleBone to blink an LED on a breadboard using [Clojure][clojure].
 
 
 The [BeagleBone][beaglebone] is a small and low cost ($55) 1Ghz ARM board with 512Mb of RAM capable of running Linux.
