@@ -14,7 +14,7 @@ The [BeagleBone][beaglebone] is a small and low cost ($55) 1Ghz ARM board with 5
 
 ![BeagleBone Black]({{ site.url }}/images/beagleboneblack.jpg)
 
-These instructions assume that you are using Debian 2014-05-14 and running off a SD card as the root user. You can obtain the latest versions of Debian and Angstrom [here][beaglebone-firmware].
+These instructions assume that you are using Debian 2014-05-14 as the root user. You can obtain the latest versions of Debian and Angstrom [here][beaglebone-firmware].
 
 If you are using a different operating system or version you may need to make some changes.
 
