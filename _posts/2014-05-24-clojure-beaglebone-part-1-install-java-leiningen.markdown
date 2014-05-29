@@ -82,6 +82,8 @@ $ make
 $ make install
 ```
 
+# Next steps
+
 Continue on to [part 2 - Blinking an LED with Clojure][part-2]
 
 
