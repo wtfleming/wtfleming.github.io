@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Blinking a LED with the MSP430"
+title:  "Blinking an LED with the MSP430"
 date:   2013-11-10 12:12:46
 tags: msp430
 ---
