@@ -81,7 +81,7 @@ $ ./configure --with-xpm=no --with-gif=no
 $ make
 $ make install
 ```
-# Next
+
 Continue on to [part 2 - Blinking an LED with Clojure][part-2]
 
 
