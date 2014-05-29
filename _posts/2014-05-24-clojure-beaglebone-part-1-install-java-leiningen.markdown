@@ -81,6 +81,8 @@ $ ./configure --with-xpm=no --with-gif=no
 $ make
 $ make install
 ```
+# Next
+Continue on to [part 2 - Blinking an LED with Clojure][part-2]
 
 
 [part-2]: {% post_url 2014-05-25-clojure-beaglebone-part-2-blink-led-clojure %}
