@@ -12,7 +12,7 @@ tags: beaglebone clojure
 
 The [BeagleBone][beaglebone] is a small and low cost ($55) 1Ghz ARM board with 512Mb of RAM capable of running Linux.
 
-![BeagleBone Black]({{ site.url }}/images/beagleboneblack.jpg)
+![BeagleBone Black]({{ site.url }}images/beagleboneblack.jpg)
 
 These instructions assume that you are using Debian 2014-05-14 as the root user. You can obtain the latest versions of Debian and Angstrom [here][beaglebone-firmware].
 

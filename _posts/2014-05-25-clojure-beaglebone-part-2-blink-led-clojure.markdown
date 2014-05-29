@@ -12,7 +12,7 @@ tags: beaglebone clojure
 
 This is inspired by an example from the excellent book [Getting Started With BeagleBone][beaglebone-book] by [Matt Richardson][matt-richardson].
 
-![schematic]({{ site.url }}/images/beaglebone-clojure-blink-led-fritzing.png)
+![schematic]({{ site.url }}images/beaglebone-clojure-blink-led-fritzing.png)
 
 Schematic above was generated using the open source [Fritzing][fritzing].
 

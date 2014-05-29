@@ -90,7 +90,7 @@ Our first query will iterate over all lines in the file storing user information
   "Run a query that outputs user id, reputation, and display name."
   []
   (let [file-tap (hfs-textline "data/users.xml")]
-    (?<- 
+    (?<-
       (stdout)
       [?id ?reputation ?display-name]
       (file-tap ?line)

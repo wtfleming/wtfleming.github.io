@@ -9,7 +9,7 @@ tags: msp430
 I recently bought a [MSP430 Launchpad] (http://processors.wiki.ti.com/index.php/MSP430_LaunchPad) from Texas Instruments. The [MSP430] (http://en.wikipedia.org/wiki/TI_MSP430) is a family of low power, low cost microcontrollers. To make sure my development environment was setup correctly I wanted to start with one of the simplest things to do, blink a LED.
 
 
-![MSP430]({{ site.url }}/images/msp430-leb-blink.jpg)
+![MSP430]({{ site.url }}images/msp430-leb-blink.jpg)
 
 I have a wire connected to P1.0, another connected to GND, a 180 ohm resistor, and an LED 180 Ohm resistor. The code is compiled with GCC.
 
