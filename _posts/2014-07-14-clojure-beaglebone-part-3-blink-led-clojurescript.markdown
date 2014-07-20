@@ -38,7 +38,7 @@ SSH into your BeagleBone and create a file named *project.clj* with the followin
 And create a file name *src/cljs\_helloworld/core.cljs* with these contents:
 
 ```clojure
-ns cljs-helloworld.core
+(ns cljs-helloworld.core
   (:require [cljs.nodejs :as nodejs]))
 
 (defn -main [& args]
