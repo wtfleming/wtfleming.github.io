@@ -5,7 +5,7 @@ date:   2014-10-24 18:13:46
 tags: elasticsearch
 ---
 
-Recently I was investigating the geospatial capabilities of [elasticsearch][elasticsearch-home] for a project (in this case I am using version 1.3.4). While I ultimately ended up not using it for this project I thought I would write up an examples using the command line.
+Recently I was investigating the geospatial capabilities of [elasticsearch][elasticsearch-home] for a project (in this case I am using version 1.3.4). While I ultimately ended up not using it for this project I thought I would write up an example using the command line.
 
 ---
 
