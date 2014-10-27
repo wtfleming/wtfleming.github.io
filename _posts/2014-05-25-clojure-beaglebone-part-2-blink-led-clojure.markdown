@@ -9,6 +9,7 @@ tags: beaglebone clojure
 - In [part 1][part-1] of this series we see how to install Java and [Leiningen][leiningen] on a [BeagleBone][beaglebone].
 - In part 2 we use the BeagleBone to blink an LED on a breadboard using [Clojure][clojure].
 - In [part 3][part-3] we will blink an LED using [ClojureScript][clojurescript].
+- In [part 4][part-4] we will read digital inputs via polling and interrupts.
 
 This is inspired by an example from the excellent book [Getting Started With BeagleBone][beaglebone-book] by [Matt Richardson][matt-richardson].
 
@@ -93,6 +94,7 @@ In the [next part][part-3] of this series we will see how to blink a LED using n
 
 [part-1]: {% post_url 2014-05-24-clojure-beaglebone-part-1-install-java-leiningen %}
 [part-3]: {% post_url 2014-07-14-clojure-beaglebone-part-3-blink-led-clojurescript %}
+[part-4]: {% post_url 2014-10-26-clojure-beaglebone-part-4-digital-input-clojurescript %}
 [leiningen]: https://github.com/technomancy/leiningen
 [clojure]: http://clojure.org/
 [clojurescript]: https://github.com/clojure/clojurescript
