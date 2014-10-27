@@ -9,9 +9,9 @@ tags: beaglebone clojure
 - In [part 1][part-1] of this series we saw how to install Java and [Leiningen][leiningen] on a [BeagleBone][beaglebone].
 - In [part 2][part-2] we used the BeagleBone to blink an LED on a breadboard using [Clojure][clojure].
 - In [part 3][part-3] we blinked an LED using [ClojureScript][clojurescript].
-- In part 4 we read digital inputs via polling and interrupts using ClojureScript.
+- In part 4 we read digital inputs via polling and interrupts.
 
-The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. The Debian image ships with node.js and a javascript library in [Bonescript][bonescript] for interacting with the hardware. Clojurescript provides a compiler for Clojure that targets Javascript, here we will use it to blink an LED on a breadboard using the BeagleBone GPIO.
+The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. The Debian image ships with node.js and a javascript library in [Bonescript][bonescript] for interacting with the hardware. Clojurescript provides a compiler for Clojure that targets Javascript, here we will use it to and two methods of reading digital input and light an LED on a breadboard using the BeagleBone GPIO.
 
 
 # Reading from digital input via polling
