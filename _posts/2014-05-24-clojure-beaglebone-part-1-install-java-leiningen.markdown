@@ -67,18 +67,18 @@ nil
 ```
 
 
-# Emacs 24.3
+# Emacs 24.4
 
-The latest version of Emacs in the Debian package list is 23, here is how to download and install 24.3. Note that generally you will be happier running Emacs on you laptop/desktop and using tramp-mode to edit files from there.
+The latest version of Emacs in the Debian package list is 23, here is how to download and install 24.4. Note that generally you will be happier running Emacs on you laptop/desktop and using tramp-mode to edit files from there.
 
 Run the following on your BeagleBone and go get a cup of coffee, it will take at least an hour.
 
 ```bash
 $ apt-get install build-essential libncurses5-dev
-$ wget http://ftp.gnu.org/gnu/emacs/emacs-24.3.tar.gz
-$ tar xzvf emacs-24.3.tar.gz
-$ cd emacs-24.3
-$ ./configure --with-xpm=no --with-gif=no
+$ wget http://ftp.gnu.org/gnu/emacs/emacs-24.4.tar.gz
+$ tar xzvf emacs-24.4.tar.gz
+$ cd emacs-24.4
+$ ./configure --with-xpm=no --with-gif=no --without-x
 $ make
 $ make install
 ```
