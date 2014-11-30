@@ -105,7 +105,7 @@ SSH into your BeagleBone and create a file named *project.clj* with the followin
   :dependencies [[org.clojure/clojurescript "0.0-2197"]])
 ```
 
-And create a file name *src/cljs\_blink\_led/core.cljs* with these contents:
+And create a file named *src/cljs\_blink\_led/core.cljs* with these contents:
 
 ```clojure
 (ns cljs-blink-led.core
