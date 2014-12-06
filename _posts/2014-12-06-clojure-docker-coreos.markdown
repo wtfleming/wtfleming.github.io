@@ -1,18 +1,24 @@
 ---
 layout: post
-title:  "Running a Dockerized Clojure Web App in CoreOS"
-date:   2014-11-30 20:03:46
-tags: clojure docker
+title:  "Running a Dockerized Clojure Web App on CoreOS"
+date:   2014-12-06 13:03:46
+tags: clojure docker coreos
 ---
 
 # Introduction
 
-In the [previous post][docker-post] we created a Clojure web app and ran it in a Docker container. Here we are going to deploy that container on a 3 node [CoreOS][] cluster running in [Vagrant][] on a single local development machine.
+In the [previous post][docker-post] we created a Clojure web service and ran it in a Docker container. Here we will deploy that container on a 3 node [CoreOS][] cluster running in [Vagrant][] on a local development machine.
 
 [docker-post]: {% post_url 2014-11-29-dockerize-clojure-compojure-http-kit-web-application %}
 [Vagrant]: https://www.vagrantup.com/
 
-CoreOS is a minimal version of Linux meant for large scale server deployments. It's web page describes it as:
+# CoreOS
+
+CoreOS is a minimal version of Linux meant for large scale server deployments.
+
+It has a very different model than a Debian/Red Hat/etc distribution. The OS runs on a read-only partition, and applications/services run in Docker containers on a read-write filesystem.
+
+It's web page describes it as:
 
 ```
 A new Linux distribution that has been rearchitected to provide features needed
@@ -27,8 +33,8 @@ The components to be aware of are:
 
 * **[CoreOS][]** - The underlying operating system.
 * **[Docker][]** - CoreOS applications run in containers. At this time only Docker is supported. However, the CoreOS team recently announced a new container runtime called [Rocket][] they will also be adding support for.
-* **[etcd][]** - A highly-available key value store for shared configuration and service discovery. You can think of this as a minimalistic ZooKeeper.
-* **[fleet][]** - Which ties together systemd and etcd into a distributed init system. Think of it as an extension of systemd that operates at the cluster level instead of the machine level.
+* **[etcd][]** - A highly-available key value store for shared configuration and service discovery. This fulfills a role similar to ZooKeeper.
+* **[fleet][]** - You will use this to start/stop containers, define a cluster topology, etc. It ties together systemd and etcd into a distributed init system. Think of it as an extension of systemd that operates at the cluster level instead of the machine level.
 
 ---
 
@@ -38,11 +44,11 @@ The components to be aware of are:
 [fleet]: https://github.com/coreos/fleet
 [CoreOS]: https://coreos.com/
 
-I won't be going into etcd in this post, but there are some interesting things you can do with it. For instance, you can configure a process to watch it for new web services coming online and automatically change an nginx configuration to proxy traffic to them (or auto remove it from the rotation when the service is stopped).
+We won't be really be going into etcd in this post, but there are some interesting things you can do with it. For instance, you could configure a trigger so that when a new web service comes online it can detect this and automatically change an nginx configuration to proxy traffic to it (or remove it from the rotation when the service is stopped).
 
 # Start Vagrant
 
-To follow along I am assuming you are on either a Linux or OS X machine, if you are on Windows you will likely need to make a few changes.
+I am assuming you are on either a Linux or OS X machine, if you are on Windows you will likely need to make a few changes.
 
 If you run into any problems there is also a guide to using Vagrant on the CoreOS [blog][] and [documentation][] which may help you troubleshoot.
 
@@ -50,9 +56,14 @@ If you run into any problems there is also a guide to using Vagrant on the CoreO
 [documentation]: https://coreos.com/docs/running-coreos/platforms/vagrant/
 
 
-Ensure you have installed Vagrant on you development machine, then use git to clone the [coreos-vagrant][] repo.
+Ensure you have installed Vagrant on you development machine, then use git to clone the [coreos-vagrant repo][coreos-vagrant].
 
 [coreos-vagrant]: https://github.com/coreos/coreos-vagrant
+
+```
+$ git clone git@github.com:coreos/coreos-vagrant.git
+$ cd coreos-vagrant
+```
 
 Rename the file *config.rb.sample* to *config.rb* and change the lines:
 
@@ -68,13 +79,15 @@ $num_instances=3
 $update_channel='stable'
 ```
 
-Next rename the file *user-data.sample* to *user-data* Then browse to https://discovery.etcd.io/new and copy the what was on the page and replace the line
+Next rename the file *user-data.sample* to *user-data* and then browse to [https://discovery.etcd.io/new][etcd-new-token] and copy the what was on the page then uncomment and insert it on the the line that looks like this:
+
+[etcd-new-token]: https://discovery.etcd.io/new
 
 ```
 #discovery: https://discovery.etcd.io/<token>
 ```
 
-with it. Every time you start a new cluster you will need a new token. You can also host etcd yourself and bypass using an external service for this. The CoreOS team provide the discovery.etcd.io service as a convienence to make it easier to bootstrap a cluster, you are not required to use it.
+Every time you start a new cluster you will need a new token. If you do not want to use the discovery service you can instead include the network addresses of the machines that will be running etcd yourself. The CoreOS team provide the discovery.etcd.io service as a convenience to make it easier to bootstrap a cluster, but you are not required to use it.
 
 Now run this command:
 
@@ -119,7 +132,7 @@ c3ddc4fd...     172.17.8.101    -
 d0f027da...     172.17.8.103    -
 ```
 
-You should see something like the above.
+You should see something like the above. We haven't defined any metadata, but you could do something like tag a machine backed by a SSD drive, and then when you launch a service like PostgreSQL tell fleet that it should only run on a machine with that metadata.
 
 # Create A Service File
 
@@ -148,7 +161,7 @@ Conflicts=clojure-http@*.service
 This file provides the instructions about how the service should run. There are a few things to note:
 
 * We are running a docker container and exposing port 5000.
-* The wtfleming/docker-compojure-hello-world container is publically hosted on Docker Hub, it will be automatically downloaded.
+* The wtfleming/docker-compojure-hello-world container is publicly hosted on Docker Hub, it will be automatically downloaded to the CoreOS cluster.
 * The %i refers to the string between the @ and the suffix when we start the service (which we will do shortly, and should make sense then).
 * The X-Fleet directive indicates that this service should only one instance of the service on a machine. Since we've bound to port 5000 if we start up a second copy of this service we don't want it here, fleet will launch it on another machine in the cluster.
 
@@ -227,7 +240,7 @@ clojure-http@1.service  c313e784.../172.17.8.102        failed  failed
 clojure-http@2.service  c3ddc4fd.../172.17.8.101        failed  failed
 ```
 
-We can could either restart them, or remove them like this
+We could restart them, but instead we will remove them like this:
 
 ```
 $ fleetctl destroy clojure-http@1.service
@@ -240,7 +253,7 @@ $ fleetctl list-units
 UNIT    MACHINE ACTIVE  SUB
 ```
 
-Now lets remove our service file and verify.
+Now lets remove our service file.
 
 ```
 $ fleetctl destroy clojure-http@.service
@@ -250,7 +263,7 @@ $ fleetctl list-unit-files
 UNIT    HASH    DSTATE  STATE   TARGET
 ```
 
-Now exit the cluster and shut it down
+Now exit the cluster, shut it down, and clean up Vagrant.
 
 ```
 $ exit
@@ -270,19 +283,16 @@ And we're done!
 
 So far we created a CoreOS cluster and ran a web server on it, but we have just barely scratched the surface of what is possible.
 
-Sidekick container ELB presence
-coreos/elb-presence
-https://github.com/coreos/elb-presence
-Example using it here https://github.com/coreos/unit-examples/blob/master/blog-fleet-intro/subgun-presence%40.service
+In a production environment you would want expose the web services to the world. If you are on EC2 you might want to register the services with an Elastic Load Balancer. One way to do that is with a ["sidekick" container][sidekick-container] for each web service.
+
+[sidekick-container]: https://coreos.com/docs/launching-containers/launching/launching-containers-fleet/#run-a-simple-sidekick
+
+The CoreOS team provides [code to create a container on github][elb-presence] that will register a service with an ELB, and [example of how to use it][elb-presence-example].
 
 
-or alternative is a proxy like nginx triggered to reload from changes in etcd
-http://marceldegraaf.net/2014/04/24/experimenting-with-coreos-confd-etcd-fleet-and-cloudformation.html
+[elb-presence]: https://github.com/coreos/elb-presence
+[elb-presence-example]: https://github.com/coreos/unit-examples/tree/master/blog-fleet-intro
 
+Marcel de Graaf has also [written about running on EC2 and using nginx to proxy][de-graaf]. If you want to know more, I highly recommend taking the time to read his post and the CoreOS documentation, they both go into much greater detail about what is possible and issues you should be aware of running a service in a production setting.
 
-more to learn - etcd
-
-
-add redis to the mix?
-
-add metadata, only launch the http app on one type, only redis on another?
+[de-graaf]: http://marceldegraaf.net/2014/04/24/experimenting-with-coreos-confd-etcd-fleet-and-cloudformation.html
