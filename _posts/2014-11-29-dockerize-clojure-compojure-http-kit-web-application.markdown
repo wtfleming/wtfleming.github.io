@@ -151,6 +151,8 @@ The VM's Host only interface IP address is: 192.168.59.103
 
 and browse to the ip provided by boot2docker like http://192.168.59.103:4000
 
+# Next Steps
 
+In the next post I will [demonstrate running the container on CoreOS][coreos-post].
 
-
+[coreos-post]: {% post_url 2014-12-06-run-dockerized-clojure-app-on-coreos %}
