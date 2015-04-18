@@ -118,7 +118,7 @@ Note that since this is not an unbuffered channel (and we are not writing more m
 
 We can also create a channel with a dropping-buffer. In this case writes will complete when the buffer is full, but the value will be dropped.
 
-We are also using the onto-chan function here, which will write the contents of a collection onto a channel. In this case we are writing the elements of the list (0 1 2 3 4 5 6 7 8 9) to the channel.
+We are also using the onto-chan function here, which will write the contents of a collection onto a channel. In this case we are writing the elements of the list (0 1 2 3 4 5 6 7 8 9) to the channel. Note that onto-chan will also close the channel.
 
 We are also using the specialized into function provided by core.async, which returns a channel containing a message consisting of the items in the channel conjoined to the collection passed in.
 
@@ -130,8 +130,7 @@ We are also using the specialized into function provided by core.async, which re
     (let [ch (chan (dropping-buffer 5))
           _ (onto-chan ch (range 0 10))
           msg (<! (async/into [] ch))]
-      (set! (.-innerHTML (dom/getElement "example-two-output")) msg)
-      (close! ch))))
+      (set-inner-html! "example-two-output" msg))))
 ```
 
 <section>
@@ -152,8 +151,7 @@ A sliding-buffer is similar to a dropping-buffer, except that when the buffer is
     (let [ch (chan (sliding-buffer 5))
           _ (onto-chan ch (range 0 10))
           msg (<! (async/into [] ch))]
-      (set! (.-innerHTML (dom/getElement "example-three-output")) msg)
-      (close! ch))))
+      (set-inner-html! "example-three-output" msg))))
 ```
 
 <section>
