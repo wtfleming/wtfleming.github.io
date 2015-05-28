@@ -1,0 +1,16 @@
+digraph{
+wunderground[label="Weather Underground API",shape=box];
+openweathermap[label="OpenWeatherMap API",shape=box];
+ourApp[label="Our App",shape=box];
+ourApp->wunderground;
+results[label="Wait for both APIs to respond"];
+ourApp->openweathermap;
+wunderground->results[style=dotted];
+openweathermap->results[style=dotted];
+results->ourApp[style=dotted];
+results->ourApp[style=dotted];
+
+subgraph{
+rank = same; wunderground; openweathermap;
+}
+}
