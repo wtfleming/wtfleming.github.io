@@ -9,6 +9,9 @@ tags: clojurescript clojure
 
 # Introduction
 
+- In part 1 of this series we will look at the basics of core.async via channels and messages.
+- In [part 2][part-2] we explore timeouts and working with multiple channels using examples of calling out to web APIs.
+
 [core.async][core-async] is a Clojure/ClojureScript library to facilitate asynchronous programming using channels.
 
 I wanted to show some simple examples with live demos in the browser using Clojurescript, but if you would like to read a more thorough overview there is a great [overview of core.async at the clojure.com blog][core-blog-post]. Code related to this post is also available at [GitHub][source-code].
@@ -166,6 +169,11 @@ A sliding-buffer is similar to a dropping-buffer, except that when the buffer is
 
 We've barely scratched the surface of core.async in this introductory post. In future posts we'll see more of what the library provides, show some practical examples (including some very neat things we can do with the state machine that go blocks provide).
 
+- In part 1 of this series we looked at the basics of core.async via channels and messages.
+- In [part 2][part-2] we will explore timeouts and working with multiple channels using examples of calling out to web APIs.
+
+
+[part-2]: {% post_url 2015-05-27-adventures-with-core-async-part-two-parking-timeouts-alt %}
 
 <script src="/js/core-async-examples.js"> </script>
 
