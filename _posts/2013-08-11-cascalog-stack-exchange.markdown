@@ -14,7 +14,7 @@ tags: cascalog
 We will use Cascalog to run some basic queries on the [Arqade](http://gaming.stackexchange.com) Stack Exchange site database dump. Arqade is a website dedicated to video game questions and answers.
 
 
-Every 3 months the team at [Stack Exchange](http://stackexchange.com) provides an [anonymized data dump](http://clearbits.net/creators/146-stack-exchange-data-dump) of all creative commons licensed questions and answers from network of websites (the largest of which being [Stack Overflow](http://stackoverflow.com).
+Every 3 months the team at [Stack Exchange](http://stackexchange.com) provides an [data dump]( https://archive.org/details/stackexchange) of all creative commons licensed questions and answers from network of websites (the largest of which being [Stack Overflow](http://stackoverflow.com).
 
 
 ## Getting Started
