@@ -1,18 +1,19 @@
 ---
 layout: post
-title:  "Elixir on the BeagleBone Black - Blinking an LED"
-date:   2015-12-09 14:03:46
+title:  "Elixir on the Raspberry Pi - Blinking an LED"
+date:   2015-12-10 11:03:46
 tags: erlang elxir
 ---
 
-In this post we will see how to run the "Hello, World" of embedded devices, blinking an LED on a breadboard. We will be using the Elixir programming language and a BeagleBone Black.
+In this post we will see how to run the "Hello, World" of embedded devices, blinking an LED on a breadboard. We will be using the Elixir programming language and a Raspberry Pi.
 
-I have also written up similar instructions for the [Raspberry Pi][raspberry-pi-post].
-[raspberry-pi-post]: {% post_url 2015-12-10-embedded-elixir-raspberry-pi %}
+I have also written up similar instructions for the [BeagleBone Black][beaglebone-post].
+[beaglebone-post]: {% post_url 2015-12-09-embedded-elixir-beaglebone %}
 
 The final result will look like this:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QR_su_rn74A" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/w6T2HXzHXRs" frameborder="0" allowfullscreen></iframe>
+
 
 
 # Elixir programming language
@@ -40,24 +41,18 @@ So far it has been an absolute joy to use.
 
 [otp]: https://en.wikipedia.org/wiki/Open_Telecom_Platform
 
-# BeagleBone Black
+# Raspberry Pi
 
-The [BeagleBone Black][beaglebone] is a small and relatively low cost 1Ghz ARM board with 512Mb of RAM capable of running Linux. It is similar to a Raspberry Pi (and most of the information here will be applicable to a Pi as well).
+The [Raspberry Pi][raspberry-pi] is a series of small (credit card sized) and relatively low cost computers capable of running Linux with a number of [general-purpose input/output (GPIO)][gpio] pins which can interface with the outside world.
 
-![BeagleBone Black]({{ site.url }}images/beagleboneblack.jpg)
+[raspberry-pi]: https://www.raspberrypi.org/
+[gpio]: https://en.wikipedia.org/wiki/General-purpose_input/output
+
+![Raspberry Pi]({{ site.url }}images/raspberry-pi.jpg)
+
+<sub>Image by Lucasbosch (Own work) [<a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>], <a href="https://commons.wikimedia.org/wiki/File%3ARaspberry_Pi_B%2B_top.jpg">via Wikimedia Commons</a></sub>
 
 
-These instructions assume that your BeagleBone is using Debian 2015-03-01 and running commands as the root user. You can obtain this version of the operating system [here][beaglebone-firmware].
-
-If unsure what version is running you can determine it by running this command on the board:
-
-```sh
-$ cat /etc/dogtag
-BeagleBoard.org Debian Image 2015-03-01
-```
-
-[beaglebone]: http://beagleboard.org/Products/BeagleBone+Black
-[beaglebone-firmware]: http://beagleboard.org/latest-images
 
 Now lets install the software dependencies.
 
@@ -67,7 +62,7 @@ Elixir currently requires Erlang 17.0 or later, the debian packages in the defau
 
 One possibility would be to use the [nerves project][nerves]. I recently watched the [ElixirConf 2015 - Embedded Elixir in Action by Garth Hitchens][embedded-elixir-video] presentation and am excited to see where it goes, but for this example it would probably be overkill.
 
-On a desktop PC another option is to use one of the [Erlang Solutions repos][erlang-solutions], but as far as I can tell they only provide recent versions of Erlang built for x86 architectures and the BeagleBone uses an ARM chip.
+On a desktop PC another option is to use one of the [Erlang Solutions repos][erlang-solutions], but as far as I can tell the debian packages are only built for x86 architectures and the ones for Raspbian have not been updated since Erlang 15.
 
 So it looks like we'll be installing from source.
 
@@ -76,7 +71,7 @@ So it looks like we'll be installing from source.
 [nerves]: http://nerves-project.org/
 
 ```sh
-# ssh in and run these commands on your BeagleBone Black
+# ssh in and run these commands on your Raspberry Pi
 # It should take you about an hour from start to finish
 
 # Download, compile, and install Erlang
@@ -98,7 +93,8 @@ $ unzip Precompiled.zip -d elixir
 # Add elixir to your path
 # You may want to add this to your .bashrc so you do not have to every time you
 # log on
-$ export PATH="$HOME/elixir/bin:$PATH"
+$ export PATH="/home/pi/elixir/bin:$PATH"
+
 
 # Ensure Elixir is working
 $ iex
@@ -110,22 +106,24 @@ iex(2)>
 # Press Ctrl+C twice to exit iex
 ```
 
-We're now ready to explore GPIO (general purpose I/O) on the BeagleBone.
+We're now ready to explore GPIO (general purpose I/O) on the Pi.
 
 # Wire up the LED
 
-![schematic]({{ site.url }}images/beaglebone-clojure-blink-led-fritzing.png)
+![schematic]({{ site.url }}images/raspberry-pi-led-fritzing.png)
 
 ---
-Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading the [BeagleBone System Reference Manual][beaglebone-manual] to make sure you do not damage your board.
+Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading all of the [Raspberry Pi documentation][raspberry-pi-docs] to make sure you do not damage your board.
+
+[raspberry-pi-docs]: https://www.raspberrypi.org/documentation/
 
 ---
 
-1. Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.
+1. Using a jumper wire connect GND (ground) on the Pi to the negative rail on the breadboard.
 2. Place an LED in the breadboard.
 3. Using a jumper wire connect the cathode (shorter) wire of the LED to the negative rail.
 4. Connect one end of a 100 ohm resistor to the anode (longer) wire of the LED.
-5. Using another jumper wire connect the other end of the resistor to Pin 13 on Header P8
+5. Using another jumper wire connect the other end of the resistor to GPIO 4.
 
 Once wired up we can proceed.
 
@@ -143,59 +141,71 @@ files are also used for their configuring.
 
 This allows us to treat the pins like a file, and while not the most efficient way to work with the GPIO pins, it is very convenient for some use cases.
 
-When you follow along with the example below on a BeagleBone it should make sense.
+When you follow along with the example below on a Pi it should make sense.
 
 [sysfs]: https://en.wikipedia.org/wiki/Sysfs
 
 
-
-
-
 ```sh
-# A few gpio pins already exist
-$ ls /sys/class/gpio
-export gpiochip0  gpiochip32  gpiochip64  gpiochip96  unexport
+# To make it easier in this example we run commands as root
+pi@raspberrypi ~ $ sudo -i
+
+# Add elixir to your root user's path
+# You may want to add this to your .bashrc so you do not have to every time you
+# log on
+root@raspberrypi:~# export PATH="/home/pi/elixir/bin:$PATH"
+
+
+# One gpio pin already exists
+root@raspberrypi:~# ls /sys/class/gpio
+export  gpiochip0  unexport
 
 # Export a new one
-$ echo 23 > /sys/class/gpio/export
+root@raspberrypi:~# echo 4 > /sys/class/gpio/export
 
-# Notice that gpio23 has now appeared
-$ ls /sys/class/gpio
-export gpio23  gpiochip0  gpiochip32  gpiochip64  gpiochip96  unexport
+# Notice that gpio4 has now appeared
+root@raspberrypi:~# ls /sys/class/gpio
+export  gpio4  gpiochip0  unexport
 
-# What we can do with gpio23
-$ ls /sys/class/gpio/gpio23
-active_low  direction  edge  power  subsystem  uevent  value
+# What we can do with gpio4
+root@raspberrypi:~# ls /sys/class/gpio/gpio4
+active_low  device  direction  edge  subsystem  uevent  value
 
 # Set the direction to out
-$ echo out > /sys/class/gpio/gpio23/direction
+root@raspberrypi:~# echo out > /sys/class/gpio/gpio4/direction
 
 # Turn on the LED
-$ echo 1 > /sys/class/gpio/gpio23/value
+root@raspberrypi:~# echo 1 > /sys/class/gpio/gpio4/value
 
 # Turn off the LED
-$ echo 1 > /sys/class/gpio/gpio23/value
+root@raspberrypi:~# echo 0 > /sys/class/gpio/gpio4/value
+
 
 
 # Now use Elixir to turn the LED on and then off
-$ iex
-iex(1)> :os.cmd('echo 1 > /sys/class/gpio/gpio23/value')
+root@raspberrypi:~# iex
+iex(1)> :os.cmd('echo 1 > /sys/class/gpio/gpio4/value')
 []
-iex(2)> :os.cmd('echo 0 > /sys/class/gpio/gpio23/value')
+iex(2)> :os.cmd('echo 0 > /sys/class/gpio/gpio4/value')
 []
 
+# Press Ctrl+C twice to exit iex
+
+# Clean up
+root@raspberrypi:~# echo 4 > /sys/class/gpio/unexport
 ```
+
 
 Now lets make a module.
 
 # Elixir Code
 
-On your BeagleBone create a file called blink-led.ex with the following contents:
+On your Raspberry Pi create a file called blink-led.ex with the following contents:
 
 ```elixir
 defmodule BlinkLED do
   @moduledoc """
-  Blink an LED on a BeagleBone Black
+  Blink an LED on a Raspberry Pi
 
   ## Examples
   
@@ -210,15 +220,15 @@ defmodule BlinkLED do
   Setup and start the process
   """
   def start_link() do
-    :os.cmd('echo 23 > /sys/class/gpio/export')
-    :os.cmd('echo out > /sys/class/gpio/gpio23/direction')
+    :os.cmd('echo 4 > /sys/class/gpio/export')
+    :os.cmd('echo out > /sys/class/gpio/gpio4/direction')
     {:ok, spawn_link(fn -> loop() end)}
   end
 
   defp loop() do
-    :os.cmd('echo 1 > /sys/class/gpio/gpio23/value')
+    :os.cmd('echo 1 > /sys/class/gpio/gpio4/value')
     :timer.sleep(1000)
-    :os.cmd('echo 0 > /sys/class/gpio/gpio23/value')
+    :os.cmd('echo 0 > /sys/class/gpio/gpio4/value')
     :timer.sleep(1000)
     loop()
   end
@@ -235,4 +245,3 @@ iex> {:ok, pid} = BlinkLED.start_link()
 The LED on the breadboard should now turn on for one second, turn off for a second, and repeat indefinitely.
 
 
-[beaglebone-manual]: https://github.com/CircuitCo/BeagleBone-Black/blob/master/BBB_SRM.pdf?raw=true
