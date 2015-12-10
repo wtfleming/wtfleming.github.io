@@ -93,6 +93,8 @@ $ wget https://github.com/elixir-lang/elixir/releases/download/v1.1.1/Precompile
 $ unzip Precompiled.zip -d elixir
 
 # Add elixir to your path
+# You may want to add this to your .bashrc so you do not have to every time you
+# log on
 $ export PATH="$HOME/elixir/bin:$PATH"
 
 # Ensure Elixir is working
