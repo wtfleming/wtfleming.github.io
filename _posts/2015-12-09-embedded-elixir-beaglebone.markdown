@@ -212,9 +212,6 @@ defmodule BlinkLED do
     {:ok, spawn_link(fn -> loop() end)}
   end
 
-  @doc """
-  Repeatedly blink an LED
-  """
   defp loop() do
     :os.cmd('echo 1 > /sys/class/gpio/gpio23/value')
     :timer.sleep(1000)
