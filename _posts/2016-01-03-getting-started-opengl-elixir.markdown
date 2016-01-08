@@ -5,8 +5,8 @@ date:   2016-01-06 14:05:46
 tags: erlang elxir
 ---
 
-I was curious about using OpenGL with Elixir and couldn't find much very information. Other than a kludge for working with constants defined in Erlang .hrl files it turned out to be not too difficult. The code is [available here][source-code].
-[source-code]: https://github.com/wtfleming/elixir-opengl
+I was curious about using OpenGL with Elixir and couldn't find much very information. Other than a kludge for working with constants defined in Erlang .hrl files it turned out to be not too difficult.
+
 
 The final result draws a triangle on the screen and looks like this:
 
