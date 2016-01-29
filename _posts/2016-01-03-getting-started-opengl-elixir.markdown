@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting started with OpenGL in Elixir"
 date:   2016-01-06 14:05:46
-tags: erlang elxir
+tags: erlang elixir
 ---
 
 I was curious about using OpenGL with Elixir and couldn't find much very information. Other than a kludge for working with constants defined in Erlang .hrl files it turned out to be not too difficult.
