@@ -1,6 +1,6 @@
 name: wtf blog
 markdown: redcarpet
-highlighter: pygments
+highlighter: rouge
 permalink: /:year/:month/:day/:title/
 name: wtf Blog
 description: Software engineering
