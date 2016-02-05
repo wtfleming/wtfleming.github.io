@@ -19,6 +19,8 @@ tags: erlang elixir postgis
     .scale(80)
     .translate([width / 2, height / 2]);
 
+  var mapLoaded = false;
+
   var svg = d3.select("#d3_map")
     .append("svg")
     .attr("width", width)
@@ -34,6 +36,7 @@ tags: erlang elixir postgis
       .append("path")
       .attr("d", geoPath)
       .attr("class", "countries");
+    mapLoaded = true;
   };
 
   function makeRequest(url) {
@@ -61,6 +64,11 @@ tags: erlang elixir postgis
 
   
   function drawCircle(shipDataCopy) {
+    if (mapLoaded == false) {
+      setTimeout(function() { drawCircle(shipData.slice(0))}, 50);
+      return;
+    }
+
     // if no data, erase the circles from the map and start over
     if (shipDataCopy.length == 0) {
       svg.selectAll("circle").remove();
