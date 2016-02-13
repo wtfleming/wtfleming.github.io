@@ -92,6 +92,7 @@ makeRequest("/js/phoenix-captain-cook/ship_data.json");
 
 </script>
 
+# Captain Cook's Journeys on the Endeavor
 
 I wanted to explore using [Elixir][elixir], the [Phoenix Web Framework][phoenix], the [D3][d3] javascript library, and [PostGIS][postgis].
 
