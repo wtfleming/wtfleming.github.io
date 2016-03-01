@@ -132,7 +132,7 @@ For simplicity in this example we'll be using [Docker][docker] and the [mdillon/
 [docker]: https://www.docker.com/
 [docker-postgis]: https://hub.docker.com/r/mdillon/postgis/
 
-```sh
+~~~sh
 # Create a persistent data volume
 $ sudo docker create -v /var/lib/postgresql/data \
     --name postgres-ocean-ships-data busybox
@@ -141,7 +141,7 @@ $ sudo docker create -v /var/lib/postgresql/data \
 $ sudo docker run --name postgres-ocean-ships -p 5432:5432 \
     -e POSTGRES_PASSWORD=postgres -d --volumes-from postgres-ocean-ships-data \
     mdillon/postgis:9.4
-```
+~~~
 
 You can double check everything is working by connecting to Postgres. When prompted, the password will be "postgres", but you should consider using a much better one.
 
@@ -149,61 +149,61 @@ If you have psql installed locally you can do it like so:
 
 ```sh
 $ psql -h localhost -p 5432 -U postgres
-```
+~~~
 
 Otherwise you can also use the one in the container and connect with these commands:
 
-```sh
+~~~sh
 $ sudo docker exec -i -t postgres-ocean-ships bash
 root@10499abd059e:/# psql -h localhost -p 5432 -U postgres
-```
+~~~
 
 
 Now that the containers are set up, in the future you can start and stop the PostGIS container like this:
 
-```sh
+~~~sh
 $ sudo docker start postgres-ocean-ships
 $ sudo docker stop postgres-ocean-ships
-```
+~~~
 
 # Phoenix
 
 Create the Phoenix app:
 
-```sh
+~~~sh
 $ mix phoenix.new ocean_ship_logbooks
 $ cd ocean_ship_logbooks/
 $ mix ecto.create
-```
+~~~
 
 Add these Elixir [CSV][csv-gh] and [Geo][geo-gh] libraries to your mix.exs dependencies.
 
 [csv-gh]: https://github.com/beatrichartz/csv
 [geo-gh]: https://github.com/bryanjos/geo
 
-```
+~~~
 {:csv, "~> 1.2.3"}
 {:geo, "~> 1.0"}
-```
+~~~
 
 Fetch them
 
-```sh
+~~~sh
 $ mix deps.get
-```
+~~~
 
 
 We are going to be using be using the CSV library to parse the data, and the Geo library to work with PostGIS (via [Ecto][ecto-gh]), so add to your config files (dev.exs, test.exs, and prod.secret.exs):
 
 [ecto-gh]: https://github.com/elixir-lang/ecto
 
-```elixir
+~~~elixir
   extensions: [{Geo.PostGIS.Extension, library: Geo}]
-```
+~~~
 
 For example, the database section of tour config/dev.exs should now look something like:
 
-```elixir
+~~~elixir
 # Configure your database
 config :ocean_ship_logbooks, OceanShipLogbooks.Repo,
   adapter: Ecto.Adapters.Postgres,
@@ -213,7 +213,7 @@ config :ocean_ship_logbooks, OceanShipLogbooks.Repo,
   hostname: "localhost",
   pool_size: 10,
   extensions: [{Geo.PostGIS.Extension, library: Geo}]
-```
+~~~
 
 
 # Create database migrations
@@ -221,15 +221,15 @@ config :ocean_ship_logbooks, OceanShipLogbooks.Repo,
 
 First we will want to enable the PostGIS extension in Postgres for our database. Lets generate a migration.
 
-```sh
+~~~sh
 $ mix ecto.gen.migration enable_postgis
 * creating priv/repo/migrations
 * creating priv/repo/migrations/20160128183445_enable_postgis.exs
-```
+~~~
 
 Edit 20160128183445\_enable\_postgis.exs so that the contents are this:
 
-```elixir
+~~~elixir
 defmodule OceanShipLogbooks.Repo.Migrations.EnablePostgis do
   use Ecto.Migration
 
@@ -242,7 +242,7 @@ defmodule OceanShipLogbooks.Repo.Migrations.EnablePostgis do
   end
 
 end
-```
+~~~
 
 Now lets create ship data table.
 
@@ -251,15 +251,15 @@ Since the ship data will be accessed via a JSON API, you normally might generate
 [mix-json]: http://hexdocs.pm/phoenix/Mix.Tasks.Phoenix.Gen.Json.html
 
 
-```sh
+~~~sh
 $ mix ecto.gen.migration create_ship_data
 * creating priv/repo/migrations
 * creating priv/repo/migrations/20160128223253_create_ship_data.exs
-```
+~~~
 
 We'll want to store the name of the ship, a timestamp, and a geometry object in the database, and we will be querying on the ship's name. Alter the file so that it has the following contents:
 
-```elixir
+~~~elixir
 defmodule OceanShipLogbooks.Repo.Migrations.CreateShipData do
   use Ecto.Migration
 
@@ -273,15 +273,15 @@ defmodule OceanShipLogbooks.Repo.Migrations.CreateShipData do
   end
 
 end
-```
+~~~
 
 
 
 Run the migrations:
 
-```sh
+~~~sh
 $ mix ecto.migrate
-```
+~~~
 
 
 
@@ -289,7 +289,7 @@ $ mix ecto.migrate
 
 Create a file at web/models/ship_data.ex with these contents:
 
-```elixir
+~~~elixir
 defmodule OceanShipLogbooks.ShipData do
   use OceanShipLogbooks.Web, :model
   schema "ship_data" do
@@ -298,14 +298,14 @@ defmodule OceanShipLogbooks.ShipData do
     field :geom, Geo.Point
   end
 end
-```
+~~~
 This is a pretty straightforward model. We are using the Geo library so we can use a geometry column type that is specific to PostGIS.
 
 # ShipData View
 
 Create a file web/views/ship_data_view.ex with these contents:
 
-```elixir
+~~~elixir
 defmodule OceanShipLogbooks.ShipDataView do
   use OceanShipLogbooks.Web, :view
 
@@ -323,20 +323,20 @@ defmodule OceanShipLogbooks.ShipDataView do
   end
 
 end
-```
+~~~
 
 
 # Router
 
 Look in web/router.ex for the api block. Uncomment it and change to look like this:
 
-```elixir
+~~~elixir
 # Other scopes may use custom stacks.
 scope "/api", OceanShipLogbooks do
   pipe_through :api
   resources "/ship_data", ShipDataController, only: [:index]
 end
-```
+~~~
 
 
 
@@ -344,7 +344,7 @@ end
 
 Create a file web/controllers/ship_data_controller.ex with these contents:
 
-```elixir
+~~~elixir
 defmodule OceanShipLogbooks.ShipDataController do
   use OceanShipLogbooks.Web, :controller
   alias OceanShipLogbooks.ShipData
@@ -382,7 +382,7 @@ defmodule OceanShipLogbooks.ShipDataController do
   end
 
 end
-```
+~~~
 
 
 
@@ -396,7 +396,7 @@ Unfortunately the Elixir CSV parser we are using [is not RFC 4180 compliant][csv
 
 [csv-bug]: https://github.com/beatrichartz/csv/issues/13
 
-```python
+~~~python
 import csv
 
 with open("CLIWOC15.csv", 'rU') as csvIN:
@@ -406,27 +406,27 @@ with open("CLIWOC15.csv", 'rU') as csvIN:
             line = [x.replace('\n', '') for x in line]
             writer.writerow(line)
 
-```
+~~~
 
 Run the script to remove extraneous newlines:
 
-```sh
+~~~sh
 $ python transform-csv.py
-```
+~~~
 
 # Load the data into PostGIS
 
 Run the app inside IEx (Interactive Elixir):
 
-```sh
+~~~sh
 $ iex -S mix phoenix.server
 iex(1)> OceanShipLogbooks.ShipDataController.import_from_csv
 # Exit iex
-```
+~~~
 
 Now verify the data is in PostGIS. Your session should look something like this:
 
-```sh
+~~~sh
 $ psql -h localhost -p 5432 -U postgres ocean_ship_logbooks_dev
 
 ocean_ship_logbooks_dev=# select count(*) from ship_data;
@@ -443,11 +443,11 @@ ocean_ship_logbooks_dev=# select * from ship_data where ship = 'Endeavour' limit
  41084 | Endeavour | 1768093011 | 0101000020E61000006666666666E62F40423EE8D9ACAA35C0
  41083 | Endeavour | 1768090513 | 0101000020E6100000545227A08988454000000000000024C0
  41082 | Endeavour | 1768090413 | 0101000020E6100000AE47E17A14CE4540D7A3703D0A5724C0
-```
+~~~
 
 You can also query the data via the phoenix app:
 
-```sh
+~~~sh
 $ iex -S mix phoenix.server
 
 iex(1)> import Ecto.Query, only: [from: 2]
@@ -468,7 +468,7 @@ iex(3)> ships = OceanShipLogbooks.Repo.all(query)
  %OceanShipLogbooks.ShipData{__meta__: #Ecto.Schema.Metadata<:loaded>,
   geom: %Geo.Point{coordinates: {43.61, -10.17}, srid: 4326}, id: 41082,
   ship: "Endeavour", utc: 1768090413}]
-```
+~~~
 
 Feel free to delete the CSV files to clear up a few hundred megs of disk space.
 
@@ -489,7 +489,7 @@ This will let us draw a map of the world in D3.
 
 Edit web/templates/page/index.html.eex to look like this:
 
-```html
+~~~html
 <div class="jumbotron">
   <h2>Captain Cook's travels</h2>
 </div>
@@ -568,13 +568,13 @@ Edit web/templates/page/index.html.eex to look like this:
 makeRequest("/api/ship_data");
 
 </script>
-```
+~~~
 
 Now start the server
 
-```sh
+~~~sh
 $ mix phoenix.server
-```
+~~~
 
 Open a web browser to [http://localhost:4000][localhost-link] to see an animation like at the top of this post and a page that should look something like this:
 
