@@ -1,5 +1,5 @@
 name: wtf blog
-markdown: redcarpet
+markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
 name: wtf Blog
