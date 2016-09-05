@@ -1,4 +1,5 @@
 name: wtf blog
+theme: minima
 markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
