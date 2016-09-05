@@ -8,6 +8,7 @@ tags: erlang elxir
 In this post we will see how to run the "Hello, World" of embedded devices, blinking an LED on a breadboard. We will be using the Elixir programming language and a BeagleBone Black.
 
 I have also written up similar instructions for the [Raspberry Pi][raspberry-pi-post].
+
 [raspberry-pi-post]: {% post_url 2015-12-10-embedded-elixir-raspberry-pi %}
 
 The final result will look like this:
