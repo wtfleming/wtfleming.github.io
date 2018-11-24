@@ -3,7 +3,7 @@ theme: minima
 markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
-name: wtf Blog
+name: wf Blog
 description: Software engineering
 url: http://wtfleming.github.io/
 redcarpet:
