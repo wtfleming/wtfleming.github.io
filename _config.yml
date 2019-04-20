@@ -1,10 +1,11 @@
-name: wf blog
-theme: minima
+name: Will Fleming's Software blog
+title: Will Fleming's Software blog
+theme: jekyll-theme-slate
 markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
-name: wf Blog
-description: Software engineering
 url: http://wtfleming.github.io/
 redcarpet:
   extensions: ["tables"]
+github_username: wtfleming
+google_analytics: UA-43114529-1
