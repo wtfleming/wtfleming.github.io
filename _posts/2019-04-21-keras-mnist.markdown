@@ -10,6 +10,8 @@ In this post we'll use Keras and implement the Hello, World of machine learning,
 
 Much of this is inspired by the book [Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python) by François Chollet. I highly recommend reading the book if you would like to dig deeper or learn more. 
 
+If you would like to follow along, the code is also available in a [jupyter notebook here](https://github.com/wtfleming/jupyter-notebooks-public/blob/master/mnist-keras.ipynb).
+
 
 ```python
 %matplotlib inline
