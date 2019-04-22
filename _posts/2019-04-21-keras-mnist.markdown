@@ -6,7 +6,7 @@ tags: keras deep-learning
 ---
 
 
-In this post we'll use Keras and implement the Hello, World of machine learning, classify a number in an image from the [MNIST](http://yann.lecun.com/exdb/mnist/index.html) database of handwritten digits, and we will achieve ~99% classification accuracy using a [convolutional neural network](https://en.wikipedia.org/wiki/Convolutional_neural_network).
+In this post we'll use Keras to build the hello world of machine learning, classify a number in an image from the [MNIST](http://yann.lecun.com/exdb/mnist/index.html) database of handwritten digits, and achieve ~99% classification accuracy using a [convolutional neural network](https://en.wikipedia.org/wiki/Convolutional_neural_network).
 
 Much of this is inspired by the book [Deep Learning with Python](https://www.manning.com/books/deep-learning-with-python) by François Chollet. I highly recommend reading the book if you would like to dig deeper or learn more. 
 
