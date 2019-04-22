@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "MNIST Image Classification with Deep Learning and Keras"
+title:  "MNIST Image Classification using Deep Learning and Keras"
 date:   2019-04-21 14:05:46
 tags: keras deep-learning
 ---
