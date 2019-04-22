@@ -14,8 +14,6 @@ If you would like to follow along, the code is also available in a [jupyter note
 
 
 ```python
-%matplotlib inline
-
 from keras import models, layers
 from keras.datasets import mnist
 from keras.utils import to_categorical
