@@ -115,7 +115,7 @@ Found 4500 images belonging to 2 classes.
 test acc: 0.8406666629844242
 ```
 
-On one hand this isn't horrible, a baseline where we pick dog every time would have 50% accuaracy. But on the other hand we can do much better.
+On one hand this isn't horrible, a baseline where we pick dog every time would have 50% accuracy. But on the other hand we can do much better.
 
 ### Add Dropout
 
@@ -237,7 +237,7 @@ Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 ```
 
-And then increase the steps per epoch 3x so that we are training on 48,000 images instead of 16,000. This takes awhile as in the example i'm running on a 5 year old GPU I had laying around the house, training should be much faster if you can use more recent hardware or rent time on a GPU in the cloud.
+And then increase the steps per epoch 3x so that we are training on 48,000 images instead of 16,000. This takes awhile as in the example I'm running on a 5 year old GPU I had laying around the house, training should be much faster if you can use more recent hardware or rent time on a GPU in the cloud.
 
 ```python
 history = model.fit_generator(
