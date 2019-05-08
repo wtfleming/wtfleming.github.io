@@ -7,7 +7,7 @@ tags: keras deep-learning
 
 In 2014 Kaggle ran a [competition](https://www.kaggle.com/c/dogs-vs-cats/overview) to determine if images contained a dog or a cat. In this series of posts we'll see how easy it is to use Keras to create a [2D convolutional neural network](https://en.wikipedia.org/wiki/Convolutional_neural_network) that potentially could have won the contest.
 
-We will start with a basic network that is 84% accurate at predicting whether an image contains a cat or dog. Then we'll add dropout and finally add data augmentation to get to 92.8% categorization accuracy.
+We will start with a basic neural network that is 84% accurate at predicting whether an image contains a cat or dog. Then we'll add dropout and finally add data augmentation to get to 92.8% categorization accuracy.
 
 In a future post we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry [scored 98.9%](https://www.kaggle.com/c/dogs-vs-cats/leaderboard)).
 
