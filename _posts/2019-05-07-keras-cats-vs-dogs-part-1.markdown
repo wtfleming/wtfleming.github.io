@@ -284,4 +284,4 @@ test acc: 0.928444442484114
 
 Yet another improvement, we've reached 92.8% on the test set, are seeing similar numbers on the validation data, and overfitting doesn't seem to be nearly as much of a problem.
 
-That's all for today, but in the next post we’ll see how we can take advantage of transfer learning to reach 98.6% accuracy.
+We could work to improve these results, but that's all for today. In the next post we’ll see how we can take advantage of transfer learning to reach 98.6% accuracy.
