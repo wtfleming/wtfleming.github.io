@@ -180,7 +180,7 @@ datagen = ImageDataGenerator(
     fill_mode='nearest')
 ```
 
-The above creates a data generator that will take in an image from the training set and return an image that has been slightly altered. Lets visualize what this looks like,
+The above creates a data generator that will take in an image from the training set and return an image that has been slightly altered. Lets visualize what this looks like.
 
 ```python
 from keras.preprocessing import image
