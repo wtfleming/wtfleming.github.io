@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cats vs Dogs Part 1 - Binary Image Classification with Keras"
+title:  "Cats vs Dogs - Binary Image Classification with Keras - Part 1"
 date:   2019-05-07 14:05:46
 tags: keras deep-learning
 ---
