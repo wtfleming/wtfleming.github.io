@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras with Transfer Learning "
+title:  "Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning "
 date:   2019-05-12 14:05:46
 tags: keras deep-learning
 ---
