@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Cats vs Dogs - Binary Image Classification with Keras - Part 1"
+title:  "Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning"
 date:   2019-05-07 14:05:46
 tags: keras deep-learning
 ---
@@ -9,7 +9,7 @@ In 2014 Kaggle ran a [competition](https://www.kaggle.com/c/dogs-vs-cats/overvie
 
 We will start with a basic neural network that is 84% accurate at predicting whether an image contains a cat or dog. Then we'll add dropout and finally add data augmentation to get to 92.8% categorization accuracy.
 
-In a future post we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry [scored 98.9%](https://www.kaggle.com/c/dogs-vs-cats/leaderboard)).
+In [part 2][part-2] we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry [scored 98.9%](https://www.kaggle.com/c/dogs-vs-cats/leaderboard)).
 
 The code is available in a [jupyter notebook here](https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-1.ipynb). You will need to download the data from the [Kaggle competition](https://www.kaggle.com/c/dogs-vs-cats/data). The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 
@@ -285,3 +285,5 @@ test acc: 0.928444442484114
 Yet another improvement, we've reached 92.8% on the test set, are seeing similar numbers on the validation data, and overfitting doesn't seem to be nearly as much of a problem.
 
 We could work to improve these results, but that's all for today. In the next post we’ll see how we can take advantage of transfer learning to reach 98.6% accuracy.
+
+[part-2]: {% post_url 2019-05-12-keras-cats-vs-dogs-part-2 %}
