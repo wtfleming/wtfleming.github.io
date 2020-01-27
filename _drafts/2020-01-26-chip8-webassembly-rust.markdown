@@ -58,7 +58,7 @@ The system's memory map looks like:
 * 0x050-0x0A0 - In emulators stores the 4x5 pixel font set (0-F).
 * 0x200-0xFFF - Program ROM and work RAM.
 
-One of the first things you will want to do is load the program into memory starting at position 0x200.
+One of the first things you will need to do is load the program into memory starting at position 0x200.
 
 
 #### Opcodes
