@@ -6,7 +6,7 @@ tags: msp430
 ---
 
 ---
-I recently bought a [MSP430 Launchpad] (http://processors.wiki.ti.com/index.php/MSP430_LaunchPad) from Texas Instruments. The [MSP430] (http://en.wikipedia.org/wiki/TI_MSP430) is a family of low power, low cost microcontrollers. To make sure my development environment was setup correctly I wanted to start with one of the simplest things to do, blink a LED.
+I recently bought a [MSP430 Launchpad](http://processors.wiki.ti.com/index.php/MSP430_LaunchPad) from Texas Instruments. The [MSP430](http://en.wikipedia.org/wiki/TI_MSP430) is a family of low power, low cost microcontrollers. To make sure my development environment was setup correctly I wanted to start with one of the simplest things to do, blink a LED.
 
 
 ![MSP430]({{ site.url }}images/msp430-leb-blink.jpg)
@@ -55,7 +55,7 @@ clean:
         rm -fr main.elf $(OBJS)
 ```
 
-We build, then use [mspdebug] (http://mspdebug.sourceforge.net/) to load the program onto the chip from the command line.
+We build, then use [mspdebug](http://mspdebug.sourceforge.net/) to load the program onto the chip from the command line.
 
 ```
 $ make
