@@ -5,18 +5,18 @@ date:   2020-01-26 10:05:46
 tags: rust webassembly
 ---
 
-Lately I have been working on an emulator for the [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) that can compile to WebAssembly using Rust. The source code is [available on GitHub](https://github.com/wtfleming/chip-8-rust-wasm). Below is a screenshot of the emulator playing pong.
+Lately I have been working on an emulator for the [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) that can compile to WebAssembly using Rust. The source code is [available on GitHub](https://github.com/wtfleming/chip-8-rust-wasm). And you can [play a game of pong here](/projects/chip8/).
 
 ![Screenshot]({{ "/images/rust-chip8/chip8.png" | absolute_url}})
 
 
 
-I have always wanted to write an emulator for an old system like the Nintendo Entertainment System or Game Boy Advance, but decided to start with a simpler project that could be finished over the course of a few nights. The CHIP-8 is a great starter emulation project, it has:
+I've always wanted to write an emulator for an older hardware like the Nintendo Entertainment System or Game Boy Advance, but decided to start with a simpler project that could be finished over the course of a few nights. The CHIP-8 is a great starter emulation project, it has:
 * A relatively small instruction set (35 instructions)
 * 16 general purpose registers
 * A 64x32 monochromatic display
 * A 16 character hex based keypad
-* Two timer registers that count down at 60 Hz
+* No interrupts, but it does have two timer registers that count down at 60 Hz
 
 
 
@@ -24,7 +24,7 @@ A few references I found useful to get started are this [post by Laurence Muller
 
 ### Implementation
 
-I represented the CPU in Rust like this:
+I won't go too deep into implementations details here, but if you want to know more the [source code is available](https://github.com/wtfleming/chip-8-rust-wasm). I represented the CPU in Rust like this:
 
 ```rust
 pub struct Cpu {
