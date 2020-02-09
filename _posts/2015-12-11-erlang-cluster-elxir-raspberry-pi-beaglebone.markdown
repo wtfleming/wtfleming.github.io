@@ -5,8 +5,8 @@ date:   2015-12-11 13:03:46
 tags: erlang elxir
 ---
 
-I have been looking at Elixir/Erlang clustering with credit card sized computers and using the [Phoenix web framework][phoenix] to communicate from the cluster to an Android tablet in realtime.
-[phoenix]: http://www.phoenixframework.org/
+I have been looking at Elixir/Erlang clustering with credit card sized computers and using the [Phoenix web framework](http://www.phoenixframework.org) to communicate from the cluster to an Android tablet in realtime.
+
 
 I am pleasantly surprised at how easy it has been and how little code I had to write for this demo.
 
@@ -14,18 +14,16 @@ I am pleasantly surprised at how easy it has been and how little code I had to w
 
 In the above video I am running an Erlang cluster consisting of a desktop x86 based PC on Ubuntu, a Raspberry Pi, a BeagleBone Black, and an Android tablet. Each of the nodes are running Erlang/OTP 18.1 and Elixir 1.1.1.
 
-A process written in Elixir on the PC periodically communicates with the Raspberry Pi and BeagleBone to turn on and off LEDs connected via a [GPIO pin][gpio] to a breadboard, and concurrently sends a message to the tablet over a WebSocket in realtime.
+A process written in Elixir on the PC periodically communicates with the Raspberry Pi and BeagleBone to turn on and off LEDs connected via a [GPIO pin](https://en.wikipedia.org/wiki/General-purpose_input/output) to a breadboard, and concurrently sends a message to the tablet over a WebSocket in realtime.
 
-[gpio]: https://en.wikipedia.org/wiki/General-purpose_input/output
 
 ![graph]({{ site.url }}images/embedded-elixir-cluster.dot.png)
 
 
 
 # Android code
-I simply took this [Android Phoenix Demo on GitHub][android-code], followed the instructions to update the host value, and installed in on a Nexus 7.
+I simply took this [Android Phoenix Demo on GitHub](https://github.com/bryanjos/AndroidPhoenixDemo), followed the instructions to update the host value, and installed in on a Nexus 7.
 
-[android-code]: https://github.com/bryanjos/AndroidPhoenixDemo
 
 
 # Raspberry Pi and BeagleBone Code
@@ -70,14 +68,11 @@ end
 
 This is a pretty straightforward GenServer. For simplicity I am not using any supervisors in this example, i'll leave that as an exercise for the reader.
 
-If you are curious about what is happening with the GPIO and want to learn more I have written up some information about getting started with Erlang/Elixir and GPIO on the [BeagleBone][beaglebone-post] and [Raspberry Pi][raspberry-pi-post].
-[raspberry-pi-post]: {% post_url 2015-12-10-embedded-elixir-raspberry-pi %}
-[beaglebone-post]: {% post_url 2015-12-09-embedded-elixir-beaglebone %}
+If you are curious about what is happening with the GPIO and want to learn more I have written up some information about getting started with Erlang/Elixir and GPIO on the [BeagleBone]({% post_url 2015-12-10-embedded-elixir-raspberry-pi %}) and [Raspberry Pi]({% post_url 2015-12-09-embedded-elixir-beaglebone %}).
 
 
 # Web server code
-I started with the [Phoenix chat example on GitHub][chat-github]. Clone the repo to your desktop or laptop.
-[chat-github]: https://github.com/chrismccord/phoenix_chat_example
+I started with the [Phoenix chat example on GitHub](https://github.com/chrismccord/phoenix_chat_example). Clone the repo to your desktop or laptop.
 
 Next create a file called phoenix\_chat\_example/lib/chat/led_controller.ex with the following contents:
 
@@ -116,13 +111,12 @@ end
 
 This is also straightforward.
 
-* Send a message to a [Phoenix Channel][channel-doc] (which in turn gets forwarded to the Android app via websocket).
-* Periodically make [rpc][rpc-doc] calls to the nodes on the Raspberry Pi and Beaglebone to turn on and off the LEDs
+* Send a message to a [Phoenix Channel](http://www.phoenixframework.org/docs/channels) (which in turn gets forwarded to the Android app via websocket).
+* Periodically make [rpc](http://www.erlang.org/doc/man/rpc.html) calls to the nodes on the Raspberry Pi and Beaglebone to turn on and off the LEDs
 * Sleep for a second
 * Repeat
 
-[rpc-doc]: http://www.erlang.org/doc/man/rpc.html
-[channel-doc]: http://www.phoenixframework.org/docs/channels
+
 
 Once started the code will recursively loop forever.
 
@@ -145,9 +139,8 @@ root@beaglebone:~# iex --name beagle@beaglebone.local --cookie peanut-butter
 iex(beagle@beaglebone.local)1> c("gpio-led.ex")
 ```
 
-On your desktop or laptop run the code as an [Elixir Task][elixir-task] :
+On your desktop or laptop run the code as an [Elixir Task](http://elixir-lang.org/docs/v1.1/elixir/Task.html) :
 
-[elixir-task]: http://elixir-lang.org/docs/v1.1/elixir/Task.html
 
 ```sh
 # Start the Phoenix app

@@ -34,21 +34,21 @@ the embedded software domain.
 Some of Elixir's selling points are:
 
 * Runs on the rock solid Erlang Virtual Machine.
-* Offers trivial interop with Erlang code, libraries, and frameworks including the [OTP][otp].
+* Offers trivial interop with Erlang code, libraries, and frameworks including the [OTP](https://en.wikipedia.org/wiki/Open_Telecom_Platform).
 * Code looks a fair bit like Ruby which many may find easier to grok than Erlang's Prolog inspired syntax.
 
 So far it has been an absolute joy to use.
 
-[otp]: https://en.wikipedia.org/wiki/Open_Telecom_Platform
+
 
 # BeagleBone Black
 
-The [BeagleBone Black][beaglebone] is a small and relatively low cost 1Ghz ARM board with 512Mb of RAM capable of running Linux. It is similar to a Raspberry Pi (and most of the information here will be applicable to a Pi as well).
+The [BeagleBone Black](http://beagleboard.org/Products/BeagleBone+Black) is a small and relatively low cost 1Ghz ARM board with 512Mb of RAM capable of running Linux. It is similar to a Raspberry Pi (and most of the information here will be applicable to a Pi as well).
 
 ![BeagleBone Black]({{ site.url }}images/beagleboneblack.jpg)
 
 
-These instructions assume that your BeagleBone is using Debian 2015-03-01 and running commands as the root user. You can obtain this version of the operating system [here][beaglebone-firmware].
+These instructions assume that your BeagleBone is using Debian 2015-03-01 and running commands as the root user. You can obtain this version of the operating system [here](http://beagleboard.org/latest-images).
 
 If unsure what version is running you can determine it by running this command on the board:
 
@@ -57,8 +57,6 @@ $ cat /etc/dogtag
 BeagleBoard.org Debian Image 2015-03-01
 ```
 
-[beaglebone]: http://beagleboard.org/Products/BeagleBone+Black
-[beaglebone-firmware]: http://beagleboard.org/latest-images
 
 Now lets install the software dependencies.
 
@@ -66,15 +64,11 @@ Now lets install the software dependencies.
 
 Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.
 
-One possibility would be to use the [nerves project][nerves]. I recently watched the [ElixirConf 2015 - Embedded Elixir in Action by Garth Hitchens][embedded-elixir-video] presentation and am excited to see where it goes, but for this example it would probably be overkill.
+One possibility would be to use the [nerves project](http://nerves-project.org/). I recently watched the [ElixirConf 2015 - Embedded Elixir in Action by Garth Hitchens](https://www.youtube.com/watch?v=kpzQrFC55q4) presentation and am excited to see where it goes, but for this example it would probably be overkill.
 
-On a desktop PC another option is to use one of the [Erlang Solutions repos][erlang-solutions], but as far as I can tell they only provide recent versions of Erlang built for x86 architectures and the BeagleBone uses an ARM chip.
+On a desktop PC another option is to use one of the [Erlang Solutions repos](https://packages.erlang-solutions.com/erlang/), but as far as I can tell they only provide recent versions of Erlang built for x86 architectures and the BeagleBone uses an ARM chip.
 
 So it looks like we'll be installing from source.
-
-[erlang-solutions]: https://packages.erlang-solutions.com/erlang/
-[embedded-elixir-video]: https://www.youtube.com/watch?v=kpzQrFC55q4
-[nerves]: http://nerves-project.org/
 
 ```sh
 # ssh in and run these commands on your BeagleBone Black
@@ -118,7 +112,7 @@ We're now ready to explore GPIO (general purpose I/O) on the BeagleBone.
 ![schematic]({{ site.url }}images/beaglebone-clojure-blink-led-fritzing.png)
 
 ---
-Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading the [BeagleBone System Reference Manual][beaglebone-manual] to make sure you do not damage your board.
+Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading the [BeagleBone System Reference Manual](https://github.com/CircuitCo/BeagleBone-Black/blob/master/BBB_SRM.pdf?raw=true) to make sure you do not damage your board.
 
 ---
 
@@ -132,7 +126,7 @@ Once wired up we can proceed.
 
 # Turn an LED on and off on the command line
 
-In this example we'll be using the built in [sysfs] to control the GPIO pins. Wikipedia describes it:
+In this example we'll be using the built in [sysfs](https://en.wikipedia.org/wiki/Sysfs) to control the GPIO pins. Wikipedia describes it:
 
 ```
 sysfs is a virtual file system provided by the Linux kernel that exports information
@@ -145,9 +139,6 @@ files are also used for their configuring.
 This allows us to treat the pins like a file, and while not the most efficient way to work with the GPIO pins, it is very convenient for some use cases.
 
 When you follow along with the example below on a BeagleBone it should make sense.
-
-[sysfs]: https://en.wikipedia.org/wiki/Sysfs
-
 
 
 
@@ -236,4 +227,3 @@ iex> {:ok, pid} = BlinkLED.start_link()
 The LED on the breadboard should now turn on for one second, turn off for a second, and repeat indefinitely.
 
 
-[beaglebone-manual]: https://github.com/CircuitCo/BeagleBone-Black/blob/master/BBB_SRM.pdf?raw=true
