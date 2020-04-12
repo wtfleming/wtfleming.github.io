@@ -11,6 +11,8 @@ We will start with a basic neural network that is 84% accurate at predicting whe
 
 In [part 2][part-2] we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry [scored 98.9%](https://www.kaggle.com/c/dogs-vs-cats/leaderboard)).
 
+In [part 3][part-3] we'll switch gears and use PyTorch instead of Keras to create an ensemble of models that provides more predictive power than any single model and reaches 99.1% accuracy.
+
 The code is available in a [jupyter notebook here](https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-1.ipynb). You will need to download the data from the [Kaggle competition](https://www.kaggle.com/c/dogs-vs-cats/data). The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 
 
@@ -287,3 +289,4 @@ Yet another improvement, we've reached 92.8% on the test set, are seeing similar
 We could work to improve these results, but that's all for today. In the next post we’ll see how we can take advantage of transfer learning to reach 98.6% accuracy.
 
 [part-2]: {% post_url 2019-05-12-keras-cats-vs-dogs-part-2 %}
+[part-3]: {% post_url 2020-04-12-pytorch-cats-vs-dogs-part-3 %}

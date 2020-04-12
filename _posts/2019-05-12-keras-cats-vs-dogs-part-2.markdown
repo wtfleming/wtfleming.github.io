@@ -7,7 +7,15 @@ tags: keras deep-learning
 
 In 2014 Kaggle ran a [competition](https://www.kaggle.com/c/dogs-vs-cats/overview) to determine if images contained a dog or a cat. In this series of posts we'll see how easy it is to use Keras to create a [2D convolutional neural network](https://en.wikipedia.org/wiki/Convolutional_neural_network) that potentially could have won the contest.
 
-In [part 1][part-1] we used Keras to define a neural network architecture from scratch and were able to get to 92.8% categorization accuracy. In this post we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry [scored 98.9%](https://www.kaggle.com/c/dogs-vs-cats/leaderboard)).
+----
+
+In this post we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry [scored 98.9%](https://www.kaggle.com/c/dogs-vs-cats/leaderboard)).
+
+In [part 1][part-1] we used Keras to define a neural network architecture from scratch and were able to get to 92.8% categorization accuracy.
+
+In [part 3][part-3] we'll switch gears a bit and use PyTorch instead of Keras to create an ensemble of models that provides more predictive power than any single model and reaches 99.1% accuracy.
+
+----
 
 The code is available in a [jupyter notebook here](https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-2.ipynb). You will need to download the data from the [Kaggle competition](https://www.kaggle.com/c/dogs-vs-cats/data). The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 
@@ -257,3 +265,4 @@ test acc: 0.9862222280767229
 
 
 [part-1]: {% post_url 2019-05-07-keras-cats-vs-dogs-part-1 %}
+[part-3]: {% post_url 2020-04-12-pytorch-cats-vs-dogs-part-3 %}
