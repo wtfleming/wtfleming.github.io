@@ -4,7 +4,7 @@ theme: jekyll-theme-slate
 markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
-url: http://wtfleming.github.io/
+url: https://wtfleming.github.io/
 redcarpet:
   extensions: ["tables"]
 github_username: wtfleming
