@@ -7,7 +7,7 @@ tags: cascalog
 
 ---
 
-> "[Cascalog] (https://github.com/nathanmarz/cascalog) is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing "Big Data" on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading."
+> "[Cascalog](https://github.com/nathanmarz/cascalog) is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing "Big Data" on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading."
 
 ---
 
