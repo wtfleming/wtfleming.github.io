@@ -12,3 +12,11 @@ just the JS, and a link to the blog post
 
 * TODO Setup https://www.getzola.org/documentation/templates/feeds/
 
+* Redirect links?
+https://wtfleming.github.io/2020/04/12/pytorch-cats-vs-dogs-part-3/
+https://wtfleming.github.io/2020/01/26/chip8-webassembly-rust/
+https://wtfleming.github.io/2020/01/17/raytracing-webassembly-rust/
+https://wtfleming.github.io/2019/05/12/keras-cats-vs-dogs-part-2/
+https://wtfleming.github.io/2019/05/07/keras-cats-vs-dogs-part-1/
+https://wtfleming.github.io/2016/01/28/geospatial-app-elixir-postgis-phoenix/
+https://wtfleming.github.io/2019/04/21/keras-mnist/
