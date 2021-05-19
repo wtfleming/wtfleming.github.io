@@ -1,16 +1,15 @@
-* TODO rust ray tracer not working?
-I think when it's deployed it'll be ok?
+
+* TODO Setup https://www.getzola.org/documentation/templates/feeds/
 
 * TODO Create and link to a projects page
-
-* TODO Projects page should be in markdown - and have links to the blog and whatnot
+** TODO Projects page should be in markdown - and have links to the blog and whatnot
 ** TODO Add an image of each project to the projects page
 
-* TODO Add a captain cook's js thing to the projects page
+** TODO Add a captain cook's js thing to the projects page
 just the JS, and a link to the blog post
 
  
-* TODO Setup https://www.getzola.org/documentation/templates/feeds/
+
 
 * Redirect links?
 https://wtfleming.github.io/2020/04/12/pytorch-cats-vs-dogs-part-3/
