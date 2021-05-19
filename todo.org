@@ -9,7 +9,7 @@ I think when it's deployed it'll be ok?
 * TODO Add a captain cook's js thing to the projects page
 just the JS, and a link to the blog post
 
-
+ 
 * TODO Setup https://www.getzola.org/documentation/templates/feeds/
 
 * Redirect links?
