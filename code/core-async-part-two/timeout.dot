@@ -1,7 +1,0 @@
-digraph{
-button[label="Button Click",shape=box];
-waitBox[label="Wait 1 Second",shape=box];
-results[label="Display Results",shape=box];
-button->waitBox;
-waitBox->results;
-}
