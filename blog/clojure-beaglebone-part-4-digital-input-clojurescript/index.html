@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;atom.xml">
+    
+
+    
+      <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;6dfeb9b0bd094d5a00.png" />
+      <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3959b3b31b7ae92700.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;e644b27af091684500.png" />
+      <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3344ee474c2d849c00.png" />
+      <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;d92103ca49c6bd5e00.png" />
+      <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;b8dd2689e662c9cd00.png" />
+      <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;c0d9496000275d3400.png" />
+    
+
+    
+
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+
+    
+
+    
+
+    
+      
+        <meta name="description" content="" />
+        <meta name="twitter:description" content="">
+      
+    
+
+    
+      <meta name="twitter:title" content="Clojure on the BeagleBone part 4 - Digital Input with ClojureScript">
+    
+
+    
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+    
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+    
+
+    <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" />
+
+    <title>
+      
+        
+          Clojure on the BeagleBone part 4 - Digital Input with ClojureScript
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-3-blink-led-clojurescript&#x2F;">
+  
+
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;elasticsearch-polygon&#x2F;">
+  
+
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;clojure&#x2F;">
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;beaglebone&#x2F;">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Clojure on the BeagleBone part 4 - Digital Input with ClojureScript",
+      "image": [],
+      "datePublished": "2014-10-23T00:00:00+00:00",
+      "dateModified": "2014-10-23T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Clojure on the BeagleBone part 4 - Digital Input with ClojureScript",
+          "item": "https://wtfleming.github.io/blog/clojure-beaglebone-part-4-digital-input-clojurescript/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+      <header>
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Clojure on the BeagleBone part 4 - Digital Input with ClojureScript</h1>
+    <small>
+      October 23, 2014
+      
+        - 
+        <span class="tags">
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;clojure&#x2F;">clojure</a>
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;beaglebone&#x2F;">beaglebone</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="intro">Intro</h1>
+<ul>
+<li>In <a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
+<li>In <a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we used the BeagleBone to blink an LED on a breadboard using Clojure.</li>
+<li>In <a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-3-blink-led-clojurescript/">part 3</a> we blinked an LED using ClojureScript.</li>
+<li>In part 4 we read digital inputs via polling and interrupts.</li>
+</ul>
+<p>The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. The Debian image ships with node.js and a javascript library in [Bonescript][bonescript] for interacting with the hardware. Clojurescript provides a compiler for Clojure that targets Javascript, here we will use it to and two methods of reading digital input and light an LED on a breadboard using the BeagleBone GPIO.</p>
+<h1 id="reading-from-digital-input-via-polling">Reading from digital input via polling</h1>
+<p><img src="/images/beaglebone-cljs-digital-input-fritzing.png" alt="schematic" /></p>
+<hr />
+<h1 id="wire-up-the-led-circuit">Wire up the LED circuit</h1>
+<ol>
+<li>Using a jumper wire connect Pin 1 on Header P9 (ground) on the BeagleBone to the ground rail on the breadboard.</li>
+<li>Place an LED in the breadboard.</li>
+<li>Using a jumper wire connect the cathode (shorter) wire of the LED to the negative rail.</li>
+<li>Connect one end of a 100 ohm resistor to the anode (longer) wire of the LED.</li>
+<li>Using another jumper wire connect the other end of the resistor to Pin 14 on Header P8</li>
+</ol>
+<hr />
+<h1 id="wire-up-the-push-button-circuit">Wire up the push button circuit</h1>
+<ol>
+<li>Using a jumper wire connect Pin 3 on Header P9 (3.3 volts) on the BeagleBone to the positive rail on the breadboard.</li>
+<li>Place a push button in the breadboard.</li>
+<li>Using a jumper wire connect one lead of the push button to the positive rail.</li>
+<li>Connect a 10K ohm pull down resistor to the negative rail and the button's other lead.</li>
+<li>Using a jumper wire connect Pin 18 on Header P9 to the same button lead we connected the 10k resistor in step four.</li>
+</ol>
+<hr />
+<p>Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading the system reference manual to make sure you do not damage your board.</p>
+<hr />
+<h1 id="clojurescript-code">ClojureScript code</h1>
+<p>SSH into your BeagleBone and create a file named <em>project.clj</em> with the following contents:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">cljs-beaglebone-digital-input </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">0.0.1</span><span style="color:#c0c5ce;">&quot;
+  </span><span style="color:#d08770;">:description </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Demonstrates reading digital inputs on a beaglebone</span><span style="color:#c0c5ce;">&quot;
+  </span><span style="color:#d08770;">:license </span><span style="color:#c0c5ce;">{</span><span style="color:#d08770;">:name </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span style="color:#c0c5ce;">&quot;
+            </span><span style="color:#d08770;">:url </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span style="color:#c0c5ce;">&quot;}
+  </span><span style="color:#d08770;">:plugins </span><span style="color:#c0c5ce;">[[lein-cljsbuild &quot;</span><span style="color:#a3be8c;">1.0.3</span><span style="color:#c0c5ce;">&quot;]]
+  </span><span style="color:#d08770;">:cljsbuild </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#d08770;">:builds </span><span style="color:#c0c5ce;">[{
+        </span><span style="color:#d08770;">:source-paths </span><span style="color:#c0c5ce;">[&quot;</span><span style="color:#a3be8c;">src</span><span style="color:#c0c5ce;">&quot;]
+        </span><span style="color:#d08770;">:compiler </span><span style="color:#c0c5ce;">{
+          </span><span style="color:#d08770;">:output-to </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">lib/digital-input.js</span><span style="color:#c0c5ce;">&quot;
+          </span><span style="color:#d08770;">:optimizations :simple
+          :target :nodejs
+          :pretty-print true</span><span style="color:#c0c5ce;">}}]}
+  </span><span style="color:#d08770;">:dependencies </span><span style="color:#c0c5ce;">[[org.clojure/clojurescript &quot;</span><span style="color:#a3be8c;">0.0-2197</span><span style="color:#c0c5ce;">&quot;]])
+</span></code></pre>
+<p>And create a file name <em>src/cljs_digital_input/core.cljs</em> with these contents:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">ns</span><span style="color:#c0c5ce;"> cljs-digital-input.core
+  (</span><span style="color:#d08770;">:require </span><span style="color:#c0c5ce;">[cljs.nodejs </span><span style="color:#d08770;">:as</span><span style="color:#c0c5ce;"> nodejs]))
+
+(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">bone </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">nodejs/require </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">bonescript</span><span style="color:#c0c5ce;">&quot;))
+
+</span><span style="color:#65737e;">; Bonescript identifiers related to pins
+(def OUTPUT (aget bone &quot;OUTPUT&quot;))
+(def INPUT (aget bone &quot;INPUT&quot;))
+
+; Pins
+(def led-pin &quot;P8_14&quot;)            ; GPIO pin 14 on header P8
+(def digital-input-pin &quot;P8_18&quot;)  ; GPIO pin 18 on header P8
+
+(defn setup-pins! []
+  (.pinMode bone led-pin OUTPUT)
+  (.pinMode bone digital-input-pin INPUT))
+
+(defn read-input []
+  &quot;Reads state of the digital input pin then turns the LED on or off&quot;
+  (let [input-pin-state (.digitalRead bone digital-input-pin)]
+    (.digitalWrite bone led-pin input-pin-state)))
+
+(defn -main [&amp; args]
+  (setup-pins!)
+  (js/setInterval read-input 1)) ; poll every millisecond
+
+(set! *main-cli-fn* -main)
+</span></code></pre>
+<p>Now compile the clojurescript to javascript and run it on your BeagleBone.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> lein cljsbuild once
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> node lib/digital-input.js
+</span></code></pre>
+<p>When you press the push button the LED should turn on, and when you release it will turn off.</p>
+<hr />
+<h1 id="reading-from-digital-input-via-interrupts">Reading from digital input via interrupts</h1>
+<p>In the previous example we polled a pin once a millisecond to determine whether or not the push button was being pushed, an alternative is to use interrupts. We will use the same circuit that we wired up in the previous example. We now can be notified and react to an event (a button being pressed in this case) rather than continually having to check to see if something has happened. We use the [attachInterupt()][attach-interrupt] function bonescript provides.</p>
+<p>On your BeagleBone and create a new directory and a file named <em>project.clj</em> with the following contents:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">cljs-beaglebone-digital-input-interrupts </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">0.0.1</span><span style="color:#c0c5ce;">&quot;
+  </span><span style="color:#d08770;">:description </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Demonstrates reading digital inputs on a beaglebone</span><span style="color:#c0c5ce;">&quot;
+  </span><span style="color:#d08770;">:license </span><span style="color:#c0c5ce;">{</span><span style="color:#d08770;">:name </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span style="color:#c0c5ce;">&quot;
+            </span><span style="color:#d08770;">:url </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span style="color:#c0c5ce;">&quot;}
+  </span><span style="color:#d08770;">:plugins </span><span style="color:#c0c5ce;">[[lein-cljsbuild &quot;</span><span style="color:#a3be8c;">1.0.3</span><span style="color:#c0c5ce;">&quot;]]
+  </span><span style="color:#d08770;">:cljsbuild </span><span style="color:#c0c5ce;">{
+    </span><span style="color:#d08770;">:builds </span><span style="color:#c0c5ce;">[{
+        </span><span style="color:#d08770;">:source-paths </span><span style="color:#c0c5ce;">[&quot;</span><span style="color:#a3be8c;">src</span><span style="color:#c0c5ce;">&quot;]
+        </span><span style="color:#d08770;">:compiler </span><span style="color:#c0c5ce;">{
+          </span><span style="color:#d08770;">:output-to </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">lib/digital-input-interrupts.js</span><span style="color:#c0c5ce;">&quot;
+          </span><span style="color:#d08770;">:optimizations :simple
+          :target :nodejs
+          :pretty-print true</span><span style="color:#c0c5ce;">}}]}
+  </span><span style="color:#d08770;">:dependencies </span><span style="color:#c0c5ce;">[[org.clojure/clojurescript &quot;</span><span style="color:#a3be8c;">0.0-2197</span><span style="color:#c0c5ce;">&quot;]])
+</span></code></pre>
+<p>And create a file name <em>src/cljs_digital_input_interrupts/core.cljs</em> with these contents:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">ns</span><span style="color:#c0c5ce;"> cljs-digital-input-interrupts.core
+  (</span><span style="color:#d08770;">:require </span><span style="color:#c0c5ce;">[cljs.nodejs </span><span style="color:#d08770;">:as</span><span style="color:#c0c5ce;"> nodejs]))
+
+(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">bone </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">nodejs/require </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">bonescript</span><span style="color:#c0c5ce;">&quot;))
+
+</span><span style="color:#65737e;">; Bonescript identifiers related to pins
+(def OUTPUT (aget bone &quot;OUTPUT&quot;))
+(def INPUT (aget bone &quot;INPUT&quot;))
+(def HIGH (aget bone &quot;HIGH&quot;))
+(def LOW (aget bone &quot;LOW&quot;))
+(def CHANGE (aget bone &quot;CHANGE&quot;))
+
+; Pins
+(def led-pin &quot;P8_14&quot;)            ; GPIO pin 14 on header P8
+(def digital-input-pin &quot;P8_18&quot;)  ; GPIO pin 18 on header P8
+
+
+(defn setup-pins! []
+  (.pinMode bone led-pin OUTPUT)
+  (.pinMode bone digital-input-pin INPUT))
+
+(defn button-callback [x]
+  (if (= (.-value x) HIGH)
+    (.digitalWrite bone led-pin HIGH)
+    (.digitalWrite bone led-pin LOW)))
+
+
+(defn do-nothing []
+  &quot;Does nothing&quot;
+  (do))
+
+
+(defn -main [&amp; args]
+  (setup-pins!)
+  (.attachInterrupt bone digital-input-pin true CHANGE button-callback)
+
+  ; Endlessly loop doing nothing but prevents node.js from exiting
+  (js/setInterval do-nothing 1000))
+
+(set! *main-cli-fn* -main)
+</span></code></pre>
+<p>Now compile the clojurescript to javascript and run it on your BeagleBone.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> lein cljsbuild once
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> node lib/digital-input-interrupts.js
+</span></code></pre>
+<p>Once again, when you press the push button the LED should turn on, and when you release it will turn off.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+      <div class="link">
+        Previous <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-3-blink-led-clojurescript&#x2F;">Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript</a>
+      </div>
+    
+
+    
+      <div class="link">
+        Next <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;elasticsearch-polygon&#x2F;">Geospatial queries with elasticsearch</a>
+      </div>
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

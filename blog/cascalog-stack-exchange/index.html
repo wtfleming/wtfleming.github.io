@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;atom.xml">
+    
+
+    
+      <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;6dfeb9b0bd094d5a00.png" />
+      <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3959b3b31b7ae92700.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;e644b27af091684500.png" />
+      <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3344ee474c2d849c00.png" />
+      <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;d92103ca49c6bd5e00.png" />
+      <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;b8dd2689e662c9cd00.png" />
+      <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;c0d9496000275d3400.png" />
+    
+
+    
+
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+
+    
+
+    
+
+    
+      
+        <meta name="description" content="" />
+        <meta name="twitter:description" content="">
+      
+    
+
+    
+      <meta name="twitter:title" content="Querying Stack Exchange database dumps with Cascalog">
+    
+
+    
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+    
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+    
+
+    <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" />
+
+    <title>
+      
+        
+          Querying Stack Exchange database dumps with Cascalog
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;msp430-blink&#x2F;">
+  
+
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;cascalog&#x2F;">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Querying Stack Exchange database dumps with Cascalog",
+      "image": [],
+      "datePublished": "2013-08-11T00:00:00+00:00",
+      "dateModified": "2013-08-11T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Querying Stack Exchange database dumps with Cascalog",
+          "item": "https://wtfleming.github.io/blog/cascalog-stack-exchange/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+      <header>
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Querying Stack Exchange database dumps with Cascalog</h1>
+    <small>
+      August 11, 2013
+      
+        - 
+        <span class="tags">
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;cascalog&#x2F;">cascalog</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <hr />
+<p><a href="https://github.com/nathanmarz/cascalog">Cascalog</a> is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing Big Data on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading.</p>
+<hr />
+<p>We will use Cascalog to run some basic queries on the <a href="http://gaming.stackexchange.com">Arqade</a> Stack Exchange site database dump. Arqade is a website dedicated to video game questions and answers.</p>
+<p>Every 3 months the team at <a href="http://stackexchange.com">Stack Exchange</a> provides an <a href="https://archive.org/details/stackexchange">data dump</a> of all creative commons licensed questions and answers from network of websites (the largest of which being <a href="http://stackoverflow.com">Stack Overflow</a>.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>The code and data for this post is available <a href="https://github.com/wtfleming/wtfleming.github.io/tree/master/code/cascalog-stack-exchange">here</a>. The relevant file is <em>queries.clj</em>.</p>
+<p>I encourage you to follow along in a REPL. Run the commands that begin with:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt;
+</span></code></pre>
+<p>Fire up a <a href="https://github.com/technomancy/leiningen">leiningen</a> REPL in the project's directory and switch to the demo namespace:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (use &#39;cascalog_stack_exchange.queries)
+</span></code></pre>
+<p>At the start of the <em>queries.clj</em> we have pulled in the following:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">ns</span><span style="color:#c0c5ce;"> cascalog_stack_exchange.queries
+  (</span><span style="color:#d08770;">:use</span><span style="color:#c0c5ce;"> cascalog.api)
+  (</span><span style="color:#d08770;">:require </span><span style="color:#c0c5ce;">[cascalog.ops </span><span style="color:#d08770;">:as</span><span style="color:#c0c5ce;"> ops]
+            [clojure.data.xml </span><span style="color:#d08770;">:as</span><span style="color:#c0c5ce;"> xml]
+            [clojure.string </span><span style="color:#d08770;">:as</span><span style="color:#c0c5ce;"> str]))
+</span></code></pre>
+<p>This provides everything we will need to run the queries.</p>
+<h1 id="parsing-the-xml">Parsing the XML</h1>
+<p>In <em>queries.clj</em> we have defined a function that will parse a line of XML representing a user, and extract the user id, display name, and reputation.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">{% raw %}
+(</span><span style="color:#b48ead;">defmapop </span><span style="color:#8fa1b3;">user-xml-parser </span><span style="color:#c0c5ce;">[user-xml]
+  &quot;</span><span style="color:#a3be8c;">Parse a line of xml representing a stack exchange user.</span><span style="color:#c0c5ce;">&quot;
+  (</span><span style="color:#bf616a;">try
+    </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[user (</span><span style="color:#bf616a;">xml/parse-str</span><span style="color:#c0c5ce;"> user-xml)
+          {{</span><span style="color:#d08770;">:keys </span><span style="color:#c0c5ce;">[Id DisplayName Reputation]} </span><span style="color:#d08770;">:attrs</span><span style="color:#c0c5ce;">} user]
+      [Id DisplayName (</span><span style="color:#bf616a;">Integer/parseInt</span><span style="color:#c0c5ce;"> Reputation)])
+    (</span><span style="color:#bf616a;">catch</span><span style="color:#c0c5ce;"> Exception _ [</span><span style="color:#d08770;">nil nil nil</span><span style="color:#c0c5ce;">])))
+{% endraw %}
+</span></code></pre>
+<p>It takes input that looks like this</p>
+<pre style="background-color:#2b303b;">
+<code class="language-xml" data-lang="xml"><span style="color:#c0c5ce;">&lt;</span><span style="color:#bf616a;">row </span><span style="color:#d08770;">Id</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">3</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">Reputation</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">3272</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">CreationDate</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">2010-07-07T16:10:54.360</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#d08770;">DisplayName</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">David Fullerton</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">LastAccessDate</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">2013-06-02T00:58:32.237</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#d08770;">WebsiteUrl</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">http://careers.stackoverflow.com/dfullerton</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">Location</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">New York, NY</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#d08770;">AboutMe</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">lt;</span><span style="color:#a3be8c;">p</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">gt;</span><span style="color:#a3be8c;">Stack Exchange </span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">lt;</span><span style="color:#a3be8c;">a href=</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">quot;</span><span style="color:#a3be8c;">http://meta.stackoverflow.com/
+a/121542/146719</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">quot;</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">gt;</span><span style="color:#a3be8c;">VP of Engineering</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">lt;</span><span style="color:#a3be8c;">/a</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">gt;</span><span style="color:#a3be8c;">.</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">lt;</span><span style="color:#a3be8c;">/p</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">gt;</span><span style="color:#8fa1b3;">&amp;#x</span><span style="color:#d08770;">A;</span><span style="color:#8fa1b3;">&amp;#x</span><span style="color:#d08770;">A;</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">lt;</span><span style="color:#a3be8c;">p</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">gt;</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#d08770;">Views</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">106</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">UpVotes</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">2163</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">DownVotes</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">18</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">Age</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">28</span><span style="color:#c0c5ce;">&quot;
+</span><span style="color:#d08770;">EmailHash</span><span style="color:#c0c5ce;">=&quot;</span><span style="color:#a3be8c;">7ec7e363b18de72c5ac1f3931b9d56ba</span><span style="color:#c0c5ce;">&quot; /&gt;
+</span></code></pre>
+<p>and returns</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">[&quot;</span><span style="color:#a3be8c;">3</span><span style="color:#c0c5ce;">&quot; &quot;</span><span style="color:#a3be8c;">David Fullerton</span><span style="color:#c0c5ce;">&quot; </span><span style="color:#d08770;">3272</span><span style="color:#c0c5ce;">]
+</span></code></pre><h2 id="querying-users">Querying Users</h2>
+<p>Our first query will iterate over all lines in the file storing user information. Extract their id, reputation score. And finally output the results to standard out.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">user-query
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Run a query that outputs user id, reputation, and display name.</span><span style="color:#c0c5ce;">&quot;
+  []
+  (</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[file-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/users.xml</span><span style="color:#c0c5ce;">&quot;)]
+    (</span><span style="color:#bf616a;">?&lt;-
+      </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stdout</span><span style="color:#c0c5ce;">)
+      [?id ?reputation ?display-name]
+      (</span><span style="color:#bf616a;">file-tap</span><span style="color:#c0c5ce;"> ?line)
+      (</span><span style="color:#bf616a;">user-xml-parser</span><span style="color:#c0c5ce;"> ?line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?id ?display-name ?reputation))))
+</span></code></pre>
+<ol>
+<li>Indicate that this is a Cascalog query which will run immediately.</li>
+</ol>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">?&lt;-
+</span></code></pre>
+<ol start="2">
+<li>Specify that the results will written to standard out. It is possible to store the output in any format and wherever you want (HDFS, a relational database, Amazon S3, etc.). But for simplicity we will just be using stdout in these examples.</li>
+</ol>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">(stdout)
+</span></code></pre>
+<ol start="3">
+<li>Tell Cascalog that we want to output the <em>?id</em> <em>?reputation?</em> and <em>?display-name</em> variables.</li>
+</ol>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">[?id ?reputation ?display-name]
+</span></code></pre>
+<ol start="4">
+<li>We earlier defined <em>file-tap</em> as a generator for each line of text in the file <em>data/users.xml</em>. We put each of them in <em>?line</em> variable. </li>
+</ol>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">(file-tap ?line)
+</span></code></pre>
+<ol start="5">
+<li>Parse each line and use the :&gt; keyword to bind them to the variables <em>?id</em>, <em>?display-name</em>, and <em>?reputation</em>.</li>
+</ol>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">(user-xml-parser ?line :&gt; ?id ?display-name ?reputation)
+</span></code></pre>
+<p>Now lets run the query, and look at the output:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (user-query)
+RESULTS
+-----------------------
+3       3272    David Fullerton
+4       101     Robert Cartaino
+5       238     Jin
+-----------------------
+</span></code></pre><h2 id="query-with-a-filter">Query with a filter</h2>
+<p>We will now run a similar query, but this time we want to only include users with more than 200 reputation.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">user-minimum-reputation-query
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Run a query showing users with a reputation greater than 200.</span><span style="color:#c0c5ce;">&quot;
+  []
+  (</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[file-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/users.xml</span><span style="color:#c0c5ce;">&quot;)]
+    (</span><span style="color:#bf616a;">?&lt;- 
+      </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stdout</span><span style="color:#c0c5ce;">)
+      [?display-name ?reputation]
+      (</span><span style="color:#bf616a;">file-tap</span><span style="color:#c0c5ce;"> ?line)
+      (</span><span style="color:#bf616a;">user-xml-parser</span><span style="color:#c0c5ce;"> ?line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> _ ?display-name ?reputation)
+      (</span><span style="color:#bf616a;">&gt;</span><span style="color:#c0c5ce;"> ?reputation </span><span style="color:#d08770;">200</span><span style="color:#c0c5ce;">))))
+</span></code></pre>
+<p>Running gives us:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (user-minimum-reputation-query)
+RESULTS
+-----------------------
+David Fullerton 3272
+Jin     238
+-----------------------
+</span></code></pre><h2 id="counting-with-built-in-operations">Counting with built in operations</h2>
+<p>Cascalog provides a number of <a href="https://github.com/nathanmarz/cascalog/wiki/Built-in-operations">built in operations</a>. Here we want to know the total number of users with a reputation greater than 200.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">user-minimum-reputation-count-query
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Run a query counting the number of users with a reputation greater than 200.</span><span style="color:#c0c5ce;">&quot;
+  []
+  (</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[file-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/users.xml</span><span style="color:#c0c5ce;">&quot;)]
+    (</span><span style="color:#bf616a;">?&lt;- 
+      </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stdout</span><span style="color:#c0c5ce;">)
+      [?count]
+      (</span><span style="color:#bf616a;">file-tap</span><span style="color:#c0c5ce;"> ?line)
+      (</span><span style="color:#bf616a;">user-xml-parser</span><span style="color:#c0c5ce;"> ?line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> _ ?display-name ?reputation)
+      (</span><span style="color:#bf616a;">&gt;</span><span style="color:#c0c5ce;"> ?reputation </span><span style="color:#d08770;">200</span><span style="color:#c0c5ce;">)
+      (</span><span style="color:#bf616a;">ops/count </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?count))))
+</span></code></pre>
+<p>Everything looks good:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (user-minimum-reputation-count-query)
+RESULTS
+-----------------------
+2
+-----------------------
+</span></code></pre><h2 id="querying-posts">Querying Posts</h2>
+<p>Once again we need to define a function to parse XML, this time for a post (a question or answer).</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">{% raw %}
+(</span><span style="color:#b48ead;">defmapop </span><span style="color:#8fa1b3;">post-xml-parser </span><span style="color:#c0c5ce;">[post-xml]
+  &quot;</span><span style="color:#a3be8c;">Parse a line of xml representing a stack exchange post.</span><span style="color:#c0c5ce;">&quot;
+  (</span><span style="color:#bf616a;">try
+    </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[post (</span><span style="color:#bf616a;">xml/parse-str</span><span style="color:#c0c5ce;"> post-xml)
+          {{</span><span style="color:#d08770;">:keys </span><span style="color:#c0c5ce;">[OwnerUserId PostTypeId Tags]} </span><span style="color:#d08770;">:attrs</span><span style="color:#c0c5ce;">} post]
+      [OwnerUserId PostTypeId Tags])
+    (</span><span style="color:#bf616a;">catch</span><span style="color:#c0c5ce;"> Exception _ [</span><span style="color:#d08770;">nil nil nil</span><span style="color:#c0c5ce;">])))
+{% endraw %}
+</span></code></pre>
+<p>The following query is very similar to the user-query above. But note that in this case we are using <em>!tags</em> rather than <em>?tags</em>. Variables beginning with a ? are non-nullable, Cascalog will filter out any records in which a non-nullable is bound to null.</p>
+<p>Variables beginning with ! are nullable and will not be filtered out. Here we are demonstrating that posts with a post-type-id are answers, and do not contain tags. If you wanted to know which tags are associated with the answer it is possible to join on the answer's parent id.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">post-query
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Run a query that outputs post owner-id, type-id, and tags</span><span style="color:#c0c5ce;">&quot;
+  []
+  (</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[file-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/posts.xml</span><span style="color:#c0c5ce;">&quot;)]
+    (</span><span style="color:#bf616a;">?&lt;-
+     </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stdout</span><span style="color:#c0c5ce;">)
+     [?owner-user-id ?post-type-id !tags]
+     (</span><span style="color:#bf616a;">file-tap</span><span style="color:#c0c5ce;"> ?line)
+     (</span><span style="color:#bf616a;">post-xml-parser</span><span style="color:#c0c5ce;"> ?line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?owner-user-id ?post-type-id !tags))))
+</span></code></pre>
+<p>Running the query this is what we should see:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (post-query)
+RESULTS
+-----------------------
+4       1       &lt;team-fortress-2&gt;
+3       1       &lt;steam&gt;&lt;hosting&gt;&lt;source-engine&gt;
+3       1       &lt;monkey-island&gt;&lt;steam&gt;
+4       2       null
+5       1       &lt;world-of-warcraft&gt;
+4       2       null
+-----------------------
+</span></code></pre><h3 id="aggregating-tags">Aggregating Tags</h3>
+<p>If we wanted to see all the tags used by each user we can run a query like this.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defbufferop </span><span style="color:#8fa1b3;">aggregate-tags
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Function to combine string containing tags</span><span style="color:#c0c5ce;">&quot;
+  [tuples]
+  [(</span><span style="color:#bf616a;">reduce</span><span style="color:#c0c5ce;"> str (</span><span style="color:#bf616a;">map</span><span style="color:#c0c5ce;"> first tuples))])
+
+
+(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">post-aggregate-query
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Run a query to get a list of all tags by each user</span><span style="color:#c0c5ce;">&quot;
+  []
+  (</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[file-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/posts.xml</span><span style="color:#c0c5ce;">&quot;)]
+    (</span><span style="color:#bf616a;">?&lt;-
+     </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stdout</span><span style="color:#c0c5ce;">)
+     [?owner-user-id ?tags]
+     (</span><span style="color:#bf616a;">file-tap</span><span style="color:#c0c5ce;"> ?line)
+     (</span><span style="color:#bf616a;">post-xml-parser</span><span style="color:#c0c5ce;"> ?line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?owner-user-id _ ?tags1)
+     (</span><span style="color:#bf616a;">aggregate-tags</span><span style="color:#c0c5ce;"> ?tags1 </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?tags))))
+</span></code></pre>
+<p>Which will output:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (post-aggregate-query)
+RESULTS
+-----------------------
+3       &lt;steam&gt;&lt;hosting&gt;&lt;source-engine&gt;&lt;monkey-island&gt;&lt;steam&gt;
+4       &lt;team-fortress-2&gt;
+5       &lt;world-of-warcraft&gt;
+-----------------------
+</span></code></pre><h3 id="joining-users-and-posts">Joining users and posts</h3>
+<p>We will now combine what we have learnt to create a query that will output the display name and list of tags used by users with more than 200 reputation.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">user-tags-join-query
+  </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">Run a query on users and posts that joins on user id and output user
+  display name and tags by all users with more than 200 reputation.</span><span style="color:#c0c5ce;">&quot;
+  []
+  (</span><span style="color:#bf616a;">let </span><span style="color:#c0c5ce;">[users-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/users.xml</span><span style="color:#c0c5ce;">&quot;)
+        posts-tap (</span><span style="color:#bf616a;">hfs-textline </span><span style="color:#c0c5ce;">&quot;</span><span style="color:#a3be8c;">data/posts.xml</span><span style="color:#c0c5ce;">&quot;)]
+
+    (</span><span style="color:#bf616a;">?&lt;-
+     </span><span style="color:#c0c5ce;">(</span><span style="color:#bf616a;">stdout</span><span style="color:#c0c5ce;">)
+     [?display-name ?tags]
+
+     (</span><span style="color:#bf616a;">posts-tap</span><span style="color:#c0c5ce;"> ?posts-line)
+     (</span><span style="color:#bf616a;">post-xml-parser</span><span style="color:#c0c5ce;"> ?posts-line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?user-id _ ?raw-tags)
+     (</span><span style="color:#bf616a;">aggregate-tags</span><span style="color:#c0c5ce;"> ?raw-tags </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?tags)
+     
+     (</span><span style="color:#bf616a;">users-tap</span><span style="color:#c0c5ce;"> ?users-line)
+     (</span><span style="color:#bf616a;">user-xml-parser</span><span style="color:#c0c5ce;"> ?users-line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?user-id ?display-name ?reputation)
+     (</span><span style="color:#bf616a;">&gt;</span><span style="color:#c0c5ce;"> ?reputation </span><span style="color:#d08770;">200</span><span style="color:#c0c5ce;">))))
+
+</span></code></pre>
+<p>Since display name is stored in users.xml and the questions are in posts.xml, we will need to join on user id, since that is in both files.</p>
+<p>In the following code posts-line and users-line are from two different sources of data. Since they are both binding to a variable <em>?user-id</em>, behind the scenes Cascalog will using a join to resolve the query.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-clojure" data-lang="clojure"><span style="color:#c0c5ce;">    (</span><span style="color:#bf616a;">post-xml-parser</span><span style="color:#c0c5ce;"> ?posts-line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?user-id _ ?raw-tags)
+    (</span><span style="color:#bf616a;">user-xml-parser</span><span style="color:#c0c5ce;"> ?users-line </span><span style="color:#d08770;">:&gt;</span><span style="color:#c0c5ce;"> ?user-id ?display-name ?reputation)
+</span></code></pre>
+<p>We can now run the query, and everything looks good:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">user=&gt; (user-tags-join-query)
+RESULTS
+-----------------------
+David Fullerton &lt;steam&gt;&lt;hosting&gt;&lt;source-engine&gt;&lt;monkey-island&gt;&lt;steam&gt;
+Jin     &lt;world-of-warcraft&gt;
+-----------------------
+</span></code></pre>
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+      <div class="link">
+        Next <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;msp430-blink&#x2F;">Blinking an LED with the MSP430</a>
+      </div>
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;atom.xml">
+    
+
+    
+      <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;6dfeb9b0bd094d5a00.png" />
+      <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3959b3b31b7ae92700.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;e644b27af091684500.png" />
+      <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3344ee474c2d849c00.png" />
+      <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;d92103ca49c6bd5e00.png" />
+      <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;b8dd2689e662c9cd00.png" />
+      <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;c0d9496000275d3400.png" />
+    
+
+    
+
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+
+    
+
+    
+
+    
+      
+        <meta name="description" content="" />
+        <meta name="twitter:description" content="">
+      
+    
+
+    
+      <meta name="twitter:title" content="Elixir on the BeagleBone Black - Blinking an LED">
+    
+
+    
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+    
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+    
+
+    <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" />
+
+    <title>
+      
+        
+          Elixir on the BeagleBone Black - Blinking an LED
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;apache-commons-daemon-component-clojure&#x2F;">
+  
+
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-raspberry-pi&#x2F;">
+  
+
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;erlang&#x2F;">
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;elixir&#x2F;">
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;beaglebone&#x2F;">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Elixir on the BeagleBone Black - Blinking an LED",
+      "image": [],
+      "datePublished": "2015-12-09T00:00:00+00:00",
+      "dateModified": "2015-12-09T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Elixir on the BeagleBone Black - Blinking an LED",
+          "item": "https://wtfleming.github.io/blog/embedded-elixir-beaglebone/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+      <header>
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Elixir on the BeagleBone Black - Blinking an LED</h1>
+    <small>
+      December 09, 2015
+      
+        - 
+        <span class="tags">
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;erlang&#x2F;">erlang</a>
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;elixir&#x2F;">elixir</a>
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;beaglebone&#x2F;">beaglebone</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>In this post we will see how to run the &quot;Hello, World&quot; of embedded devices, blinking an LED on a breadboard. We will be using the Elixir programming language and a BeagleBone Black.</p>
+<p>I have also written up similar <a href="https://wtfleming.github.io/blog/embedded-elixir-raspberry-pi/">instructions for the Raspberry Pi</a>.</p>
+<p>The final result will look like this:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QR_su_rn74A" frameborder="0" allowfullscreen></iframe>
+<h1 id="elixir-programming-language">Elixir programming language</h1>
+<p><a href="http://elixir-lang.org/">Elixir</a> describes itself:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">Elixir is a dynamic, functional language designed for building scalable and
+maintainable applications.
+
+Elixir leverages the Erlang VM, known for running low-latency, distributed and
+fault-tolerant systems, while also being successfully used in web development and
+the embedded software domain.
+</span></code></pre>
+<p>Some of Elixir's selling points are:</p>
+<ul>
+<li>Runs on the rock solid Erlang Virtual Machine.</li>
+<li>Offers trivial interop with Erlang code, libraries, and frameworks including the <a href="https://en.wikipedia.org/wiki/Open_Telecom_Platform">OTP</a>.</li>
+<li>Code looks a fair bit like Ruby which many may find easier to grok than Erlang's Prolog inspired syntax.</li>
+</ul>
+<p>So far it has been an absolute joy to use.</p>
+<h1 id="beaglebone-black">BeagleBone Black</h1>
+<p>The <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> is a small and relatively low cost 1Ghz ARM board with 512Mb of RAM capable of running Linux. It is similar to a Raspberry Pi (and most of the information here will be applicable to a Pi as well).</p>
+<p><img src="/images/beagleboneblack.jpg" alt="BeagleBone Black" /></p>
+<p>These instructions assume that your BeagleBone is using Debian 2015-03-01 and running commands as the root user. You can obtain this version of the operating system <a href="http://beagleboard.org/latest-images">here</a>.</p>
+<p>If unsure what version is running you can determine it by running this command on the board:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> cat /etc/dogtag
+</span><span style="color:#bf616a;">BeagleBoard.org</span><span style="color:#c0c5ce;"> Debian Image 2015-03-01
+</span></code></pre>
+<p>Now lets install the software dependencies.</p>
+<h1 id="install-erlang-and-elixir">Install Erlang and Elixir</h1>
+<p>Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.</p>
+<p>One possibility would be to use the <a href="http://nerves-project.org/">nerves project</a>. I recently watched the <a href="https://www.youtube.com/watch?v=kpzQrFC55q4">ElixirConf 2015 - Embedded Elixir in Action by Garth Hitchens</a> presentation and am excited to see where it goes, but for this example it would probably be overkill.</p>
+<p>On a desktop PC another option is to use one of the <a href="https://packages.erlang-solutions.com/erlang/">Erlang Solutions repos</a>, but as far as I can tell they only provide recent versions of Erlang built for x86 architectures and the BeagleBone uses an ARM chip.</p>
+<p>So it looks like we'll be installing from source.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#65737e;"># ssh in and run these commands on your BeagleBone Black
+# It should take you about an hour from start to finish
+
+# Download, compile, and install Erlang
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> apt-get install wget libssl-dev ncurses-dev m4 unixodbc-dev erlang-dev
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> wget http://www.erlang.org/download/otp_src_18.1.tar.gz
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> tar</span><span style="color:#bf616a;"> -xzvf</span><span style="color:#c0c5ce;"> otp_src_18.1.tar.gz
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> cd otp_src_18.1/
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> export ERL_TOP=`</span><span style="color:#bf616a;">pwd</span><span style="color:#c0c5ce;">`
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> ./configure
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> make
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> make install
+
+</span><span style="color:#65737e;"># Download a precompiled elixir release from
+# https://github.com/elixir-lang/elixir/releases/
+</span><span style="color:#c0c5ce;">$ apt-get install unzip
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> wget https://github.com/elixir-lang/elixir/releases/download/v1.1.1/Precompiled.zip
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> unzip Precompiled.zip</span><span style="color:#bf616a;"> -d</span><span style="color:#c0c5ce;"> elixir
+
+</span><span style="color:#65737e;"># Add elixir to your path
+# You may want to add this to your .bashrc so you do not have to every time you
+# log on
+</span><span style="color:#c0c5ce;">$ export PATH=&quot;$</span><span style="color:#bf616a;">HOME</span><span style="color:#a3be8c;">/elixir/bin:</span><span style="color:#c0c5ce;">$</span><span style="color:#bf616a;">PATH</span><span style="color:#c0c5ce;">&quot;
+
+</span><span style="color:#65737e;"># Ensure Elixir is working
+</span><span style="color:#c0c5ce;">$ iex
+</span><span style="color:#bf616a;">Erlang/OTP</span><span style="color:#c0c5ce;"> 18 </span><span style="color:#b48ead;">[</span><span style="color:#c0c5ce;">erts-7.1</span><span style="color:#b48ead;">] [</span><span style="color:#c0c5ce;">source</span><span style="color:#b48ead;">] [</span><span style="color:#c0c5ce;">async-threads:10</span><span style="color:#b48ead;">] [</span><span style="color:#c0c5ce;">hipe</span><span style="color:#b48ead;">] [</span><span style="color:#c0c5ce;">kernel-poll:false</span><span style="color:#b48ead;">]
+</span><span style="color:#bf616a;">Interactive</span><span style="color:#c0c5ce;"> Elixir (1.1.1) </span><span style="color:#bf616a;">-</span><span style="color:#c0c5ce;"> press Ctrl+C to exit (type h() </span><span style="color:#bf616a;">ENTER</span><span style="color:#c0c5ce;"> for help)
+</span><span style="color:#bf616a;">iex</span><span style="color:#c0c5ce;">(1)&gt; </span><span style="color:#d08770;">1 </span><span style="color:#bf616a;">+</span><span style="color:#c0c5ce;"> 2
+</span><span style="color:#bf616a;">3
+iex</span><span style="color:#c0c5ce;">(2)&gt;
+</span><span style="color:#65737e;"># Press Ctrl+C twice to exit iex
+</span></code></pre>
+<p>We're now ready to explore GPIO (general purpose I/O) on the BeagleBone.</p>
+<h1 id="wire-up-the-led">Wire up the LED</h1>
+<p><img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="schematic" /></p>
+<hr />
+<p>Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading the <a href="https://github.com/CircuitCo/BeagleBone-Black/blob/master/BBB_SRM.pdf?raw=true">BeagleBone System Reference Manual</a> to make sure you do not damage your board.</p>
+<hr />
+<ol>
+<li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
+<li>Place an LED in the breadboard.</li>
+<li>Using a jumper wire connect the cathode (shorter) wire of the LED to the negative rail.</li>
+<li>Connect one end of a 100 ohm resistor to the anode (longer) wire of the LED.</li>
+<li>Using another jumper wire connect the other end of the resistor to Pin 13 on Header P8</li>
+</ol>
+<p>Once wired up we can proceed.</p>
+<h1 id="turn-an-led-on-and-off-on-the-command-line">Turn an LED on and off on the command line</h1>
+<p>In this example we'll be using the built in <a href="https://en.wikipedia.org/wiki/Sysfs">sysfs</a> to control the GPIO pins. Wikipedia describes it:</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">sysfs is a virtual file system provided by the Linux kernel that exports information
+about various kernel subsystems, hardware devices, and associated device drivers
+from the kernel&#39;s device model to user space through virtual files. In addition to
+providing information about various devices and kernel subsystems, exported virtual
+files are also used for their configuring.
+</span></code></pre>
+<p>This allows us to treat the pins like a file, and while not the most efficient way to work with the GPIO pins, it is very convenient for some use cases.</p>
+<p>When you follow along with the example below on a BeagleBone it should make sense.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#65737e;"># A few gpio pins already exist
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> ls /sys/class/gpio
+</span><span style="color:#b48ead;">export </span><span style="color:#bf616a;">gpiochip0  gpiochip32  gpiochip64  gpiochip96  unexport
+
+</span><span style="color:#65737e;"># Export a new one
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> echo 23 &gt; /sys/class/gpio/export
+
+</span><span style="color:#65737e;"># Notice that gpio23 has now appeared
+</span><span style="color:#c0c5ce;">$ ls /sys/class/gpio
+</span><span style="color:#b48ead;">export </span><span style="color:#bf616a;">gpio23  gpiochip0  gpiochip32  gpiochip64  gpiochip96  unexport
+
+</span><span style="color:#65737e;"># What we can do with gpio23
+</span><span style="color:#bf616a;">$</span><span style="color:#c0c5ce;"> ls /sys/class/gpio/gpio23
+</span><span style="color:#bf616a;">active_low</span><span style="color:#c0c5ce;">  direction  edge  power  subsystem  uevent  value
+
+</span><span style="color:#65737e;"># Set the direction to out
+</span><span style="color:#c0c5ce;">$ echo out &gt; /sys/class/gpio/gpio23/direction
+
+</span><span style="color:#65737e;"># Turn on the LED
+</span><span style="color:#c0c5ce;">$ echo 1 &gt; /sys/class/gpio/gpio23/value
+
+</span><span style="color:#65737e;"># Turn off the LED
+</span><span style="color:#c0c5ce;">$ echo 1 &gt; /sys/class/gpio/gpio23/value
+
+
+</span><span style="color:#65737e;"># Now use Elixir to turn the LED on and then off
+</span><span style="color:#c0c5ce;">$ iex
+</span><span style="color:#bf616a;">iex</span><span style="color:#c0c5ce;">(1)&gt; :os.cmd(&#39;</span><span style="color:#a3be8c;">echo 1 &gt; /sys/class/gpio/gpio23/value</span><span style="color:#c0c5ce;">&#39;)
+</span><span style="color:#bf616a;">[]
+iex</span><span style="color:#c0c5ce;">(2)&gt; :os.cmd(&#39;</span><span style="color:#a3be8c;">echo 0 &gt; /sys/class/gpio/gpio23/value</span><span style="color:#c0c5ce;">&#39;)
+</span><span style="color:#bf616a;">[]
+
+</span></code></pre>
+<p>Now lets make a module.</p>
+<h1 id="elixir-code">Elixir Code</h1>
+<p>On your BeagleBone create a file called blink-led.ex with the following contents:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-elixir" data-lang="elixir"><span style="color:#b48ead;">defmodule </span><span style="color:#ebcb8b;">BlinkLED </span><span style="color:#b48ead;">do
+  </span><span style="color:#65737e;">@moduledoc &quot;&quot;&quot;
+  Blink an LED on a BeagleBone Black
+
+  ## Examples
+  
+  iex&gt; c(&quot;blink-led.ex&quot;)
+  [BlinkLED]
+  iex&gt; {:ok, pid} = BlinkLED.start_link()
+  {:ok, #PID&lt;0.102.0&gt;}
+  
+  &quot;&quot;&quot;
+
+  @doc &quot;&quot;&quot;
+  Setup and start the process
+  &quot;&quot;&quot;
+  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">start_link</span><span style="color:#c0c5ce;">() </span><span style="color:#b48ead;">do
+    </span><span style="color:#a3be8c;">:os</span><span style="color:#c0c5ce;">.cmd(&#39;</span><span style="color:#a3be8c;">echo 23 &gt; /sys/class/gpio/export</span><span style="color:#c0c5ce;">&#39;)
+    </span><span style="color:#a3be8c;">:os</span><span style="color:#c0c5ce;">.cmd(&#39;</span><span style="color:#a3be8c;">echo out &gt; /sys/class/gpio/gpio23/direction</span><span style="color:#c0c5ce;">&#39;)
+    {</span><span style="color:#a3be8c;">:ok</span><span style="color:#c0c5ce;">, spawn_link(</span><span style="color:#b48ead;">fn </span><span style="color:#c0c5ce;">-&gt; loop() </span><span style="color:#b48ead;">end</span><span style="color:#c0c5ce;">)}
+  </span><span style="color:#b48ead;">end
+
+  defp </span><span style="color:#8fa1b3;">loop</span><span style="color:#c0c5ce;">() </span><span style="color:#b48ead;">do
+    </span><span style="color:#a3be8c;">:os</span><span style="color:#c0c5ce;">.cmd(&#39;</span><span style="color:#a3be8c;">echo 1 &gt; /sys/class/gpio/gpio23/value</span><span style="color:#c0c5ce;">&#39;)
+    </span><span style="color:#a3be8c;">:timer</span><span style="color:#c0c5ce;">.sleep(</span><span style="color:#d08770;">1000</span><span style="color:#c0c5ce;">)
+    </span><span style="color:#a3be8c;">:os</span><span style="color:#c0c5ce;">.cmd(&#39;</span><span style="color:#a3be8c;">echo 0 &gt; /sys/class/gpio/gpio23/value</span><span style="color:#c0c5ce;">&#39;)
+    </span><span style="color:#a3be8c;">:timer</span><span style="color:#c0c5ce;">.sleep(</span><span style="color:#d08770;">1000</span><span style="color:#c0c5ce;">)
+    loop()
+  </span><span style="color:#b48ead;">end
+end
+</span></code></pre>
+<p>To run the code you can start iex and do the following:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">iex</span><span style="color:#c0c5ce;">&gt; c(&quot;</span><span style="color:#a3be8c;">blink-led.ex</span><span style="color:#c0c5ce;">&quot;)
+</span><span style="color:#bf616a;">iex</span><span style="color:#c0c5ce;">&gt; {:ok, pid} = BlinkLED.start_link()
+</span></code></pre>
+<p>The LED on the breadboard should now turn on for one second, turn off for a second, and repeat indefinitely.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+      <div class="link">
+        Previous <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;apache-commons-daemon-component-clojure&#x2F;">Creating an Apache Commons Daemon using Component with Clojure</a>
+      </div>
+    
+
+    
+      <div class="link">
+        Next <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-raspberry-pi&#x2F;">Elixir on the Raspberry Pi - Blinking an LED</a>
+      </div>
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

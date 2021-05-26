@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://wtfleming.github.io/sitemap.xml

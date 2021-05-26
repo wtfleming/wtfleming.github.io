@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;atom.xml">
+    
+
+    
+      <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;6dfeb9b0bd094d5a00.png" />
+      <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3959b3b31b7ae92700.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;e644b27af091684500.png" />
+      <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3344ee474c2d849c00.png" />
+      <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;d92103ca49c6bd5e00.png" />
+      <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;b8dd2689e662c9cd00.png" />
+      <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;c0d9496000275d3400.png" />
+    
+
+    
+
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+
+    
+
+    
+
+    
+      
+        <meta name="description" content="" />
+        <meta name="twitter:description" content="">
+      
+    
+
+    
+      <meta name="twitter:title" content="Blinking an LED with the MSP430">
+    
+
+    
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+    
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+    
+
+    <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" />
+
+    <title>
+      
+        
+          Blinking an LED with the MSP430
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;cascalog-stack-exchange&#x2F;">
+  
+
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-1-install-java-leiningen&#x2F;">
+  
+
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;msp430&#x2F;">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Blinking an LED with the MSP430",
+      "image": [],
+      "datePublished": "2013-11-06T00:00:00+00:00",
+      "dateModified": "2013-11-06T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Blinking an LED with the MSP430",
+          "item": "https://wtfleming.github.io/blog/msp430-blink/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+      <header>
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Blinking an LED with the MSP430</h1>
+    <small>
+      November 06, 2013
+      
+        - 
+        <span class="tags">
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;msp430&#x2F;">msp430</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <hr />
+<p>I recently bought a <a href="http://processors.wiki.ti.com/index.php/MSP430_LaunchPad">MSP430 Launchpad</a> from Texas Instruments. The <a href="http://en.wikipedia.org/wiki/TI_MSP430">MSP430</a> is a family of low power, low cost microcontrollers. To make sure my development environment was setup correctly I wanted to start with one of the simplest things to do, blink a LED.</p>
+<p><img src="/images/msp430-led-blink.jpg" alt="MSP430" /></p>
+<p>I have a wire connected to P1.0, another connected to GND, a 180 ohm resistor, and an LED 180 Ohm resistor. The code is compiled with GCC.</p>
+<p>blink.c</p>
+<pre style="background-color:#2b303b;">
+<code class="language-c" data-lang="c"><span style="color:#b48ead;">#include </span><span style="color:#c0c5ce;">&lt;</span><span style="color:#a3be8c;">msp430.h</span><span style="color:#c0c5ce;">&gt;
+
+</span><span style="color:#b48ead;">int </span><span style="color:#8fa1b3;">main</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">void</span><span style="color:#c0c5ce;">) {
+  WDTCTL = WDTPW + WDTHOLD; </span><span style="color:#65737e;">// Stop watchdog timer
+</span><span style="color:#c0c5ce;">  P1DIR = </span><span style="color:#d08770;">0x01</span><span style="color:#c0c5ce;">; </span><span style="color:#65737e;">// Set pin to output, 0b00000001
+
+  </span><span style="color:#b48ead;">for </span><span style="color:#c0c5ce;">(;;) {
+    </span><span style="color:#b48ead;">volatile unsigned int</span><span style="color:#c0c5ce;"> i;
+    P1OUT ^= </span><span style="color:#d08770;">0x01</span><span style="color:#c0c5ce;">; </span><span style="color:#65737e;">// toggle LED1 (P1.0) on/off, 0b00000001
+</span><span style="color:#c0c5ce;">    i = </span><span style="color:#d08770;">50000</span><span style="color:#c0c5ce;">;
+    </span><span style="color:#b48ead;">do </span><span style="color:#c0c5ce;">(i--);
+    </span><span style="color:#b48ead;">while </span><span style="color:#c0c5ce;">(i != </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">);
+  }
+}
+</span></code></pre>
+<hr />
+<p>Makefile</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">CC=msp430-gcc
+CFLAGS=-Os -Wall -g -mmcu=msp430g2553
+
+OBJS=main.o
+
+
+all: $(OBJS)
+        $(CC) $(CFLAGS) -o main.elf $(OBJS)
+
+%.o: %.c
+        $(CC) $(CFLAGS) -c $&lt;
+
+clean:
+        rm -fr main.elf $(OBJS)
+</span></code></pre>
+<p>We build, then use <a href="http://mspdebug.sourceforge.net/">mspdebug</a> to load the program onto the chip from the command line.</p>
+<pre style="background-color:#2b303b;">
+<code><span style="color:#c0c5ce;">$ make
+$ mspdebug rf2500
+(mspdebug) prog main.elf
+Erasing...
+Programming...
+Writing  108 bytes at c000 [section: .text]...
+Writing   32 bytes at ffe0 [section: .vectors]...
+Done, 140 bytes total
+(mspdebug) exit
+</span></code></pre>
+<p>Now we have a LED blinking.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+      <div class="link">
+        Previous <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;cascalog-stack-exchange&#x2F;">Querying Stack Exchange database dumps with Cascalog</a>
+      </div>
+    
+
+    
+      <div class="link">
+        Next <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-1-install-java-leiningen&#x2F;">Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24</a>
+      </div>
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

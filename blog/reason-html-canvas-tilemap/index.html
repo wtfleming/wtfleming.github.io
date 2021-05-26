@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;atom.xml">
+    
+
+    
+      <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;444e76059742f47b00.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;6dfeb9b0bd094d5a00.png" />
+      <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3959b3b31b7ae92700.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;e644b27af091684500.png" />
+      <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;3344ee474c2d849c00.png" />
+      <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;d92103ca49c6bd5e00.png" />
+      <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;b8dd2689e662c9cd00.png" />
+      <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;c0d9496000275d3400.png" />
+    
+
+    
+
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+
+    
+
+    
+
+    
+      
+        <meta name="description" content="" />
+        <meta name="twitter:description" content="">
+      
+    
+
+    
+      <meta name="twitter:title" content="Drawing Tilemaps on an HTML Canvas with ReasonML">
+    
+
+    
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+    
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+    
+
+    <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" />
+
+    <title>
+      
+        
+          Drawing Tilemaps on an HTML Canvas with ReasonML
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;geospatial-app-elixir-postgis-phoenix&#x2F;">
+  
+
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-with-reason&#x2F;">
+  
+
+  
+    <link rel="prerender"  href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;reasonml&#x2F;">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Drawing Tilemaps on an HTML Canvas with ReasonML",
+      "image": [],
+      "datePublished": "2018-06-17T00:00:00+00:00",
+      "dateModified": "2018-06-17T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Drawing Tilemaps on an HTML Canvas with ReasonML",
+          "item": "https://wtfleming.github.io/blog/reason-html-canvas-tilemap/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+      <header>
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;53af5229a2f8852200.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Drawing Tilemaps on an HTML Canvas with ReasonML</h1>
+    <small>
+      June 17, 2018
+      
+        - 
+        <span class="tags">
+          
+            <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;tags&#x2F;reasonml&#x2F;">reasonml</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <script src="/js/reason-canvas-tilemap-1/App.bs.js" charset="utf-8"> </script>
+<p>I was curious about using <a href="https://reasonml.github.io/">Reason</a> to draw 2D tilemaps in the browser using a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas</a> element. If you need an overview of tiles, tilemaps, etc. there is a great introduction over at <a href="https://developer.mozilla.org/en-US/docs/Games/Techniques/Tilemaps">developer.mozilla.org</a>.</p>
+<p>We will end up drawing this level of what could be a roguelike game, with an adventurer, monsters, and treasure chests:</p>
+<p><canvas id="demo" width="256" height="256"></canvas></p>
+<p>A full project with the source code is <a href="https://github.com/wtfleming/reason-examples/tree/master/bs-canvas-tilemap">available here</a>.</p>
+<h1 id="sprites">Sprites</h1>
+<p>We will be using a sprite atlas modified from <a href="http://files.sablab.net/Games/Angband/Angband/lib/xtra/graf/16x16.bmp">this Angband tileset</a> with a permissive <a href="http://angband.oook.cz/forum/showpost.php?p=316&amp;postcount=16">license</a>. It looks like this:</p>
+<p><img src="/images/reason-canvas-tilemap-1/tiles16.png" alt="Sprite Atlas" /></p>
+<p>The level data is stored in a list, each number represents the index of the sprite atlas to use when drawing that tile.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-ocaml" data-lang="ocaml"><span style="color:#c0c5ce;">     </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tiles </span><span style="color:#c0c5ce;">= [ 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">,
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2 
+        </span><span style="color:#c0c5ce;">];
+</span></code></pre><h1 id="working-with-the-dom">Working with the DOM</h1>
+<p>Reason (and <a href="https://bucklescript.github.io/">BuckleScript</a>) allows us to write type safe code to work with the browser DOM, but we will need to write some code for the interop. You could just use <code>bs.raw</code> and use <a href="https://reasonml.github.io/docs/en/interop.html">JavaScript directly</a>, but doing it this way will provide some type safety and let you catch some errors at compile time instead of runtime.</p>
+<p><em>Note</em>: If you need to work with the DOM you should use the excellent <a href="https://github.com/reasonml-community/bs-webapi-incubator">bs-webapi</a> library instead. The code below is just something I used for learning Reason/JavaScript interop.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-ocaml" data-lang="ocaml"><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">Window = {
+  </span><span style="color:#b48ead;">type t;
+  [@bs.val] external t : t </span><span style="color:#c0c5ce;">= </span><span style="color:#65737e;">&quot;window&quot;</span><span style="color:#c0c5ce;">;
+
+  [@bs.send]
+  </span><span style="color:#b48ead;">external </span><span style="color:#c0c5ce;">addEventListener : (</span><span style="color:#b48ead;">t</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">string</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">unit </span><span style="color:#c0c5ce;">=&gt; </span><span style="color:#b48ead;">unit</span><span style="color:#c0c5ce;">) =&gt; </span><span style="color:#b48ead;">unit </span><span style="color:#c0c5ce;">=
+    &quot;</span><span style="color:#a3be8c;">addEventListener</span><span style="color:#c0c5ce;">&quot;;
+};
+
+</span><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">Document = {
+  </span><span style="color:#b48ead;">type t;
+  [@bs.val] external t : t </span><span style="color:#c0c5ce;">= </span><span style="color:#65737e;">&quot;document&quot;</span><span style="color:#c0c5ce;">;
+};
+
+</span><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">HtmlImageElement = {
+  </span><span style="color:#b48ead;">type t;
+  [@bs.new] external make : unit </span><span style="color:#c0c5ce;">=&gt; </span><span style="color:#b48ead;">t </span><span style="color:#c0c5ce;">= </span><span style="color:#65737e;">&quot;Image&quot;</span><span style="color:#c0c5ce;">;
+
+  [@bs.set] </span><span style="color:#b48ead;">external </span><span style="color:#c0c5ce;">setSrc : (</span><span style="color:#b48ead;">t</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">string</span><span style="color:#c0c5ce;">) =&gt; </span><span style="color:#b48ead;">unit </span><span style="color:#c0c5ce;">= &quot;</span><span style="color:#a3be8c;">src</span><span style="color:#c0c5ce;">&quot;;
+
+  [@bs.send]
+  </span><span style="color:#b48ead;">external </span><span style="color:#c0c5ce;">addEventListener : (</span><span style="color:#b48ead;">t</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">string</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">unit </span><span style="color:#c0c5ce;">=&gt; </span><span style="color:#b48ead;">unit</span><span style="color:#c0c5ce;">) =&gt; </span><span style="color:#b48ead;">unit </span><span style="color:#c0c5ce;">=
+    &quot;</span><span style="color:#a3be8c;">addEventListener</span><span style="color:#c0c5ce;">&quot;;
+
+  /* Create a html &lt;img&gt; element, </span><span style="color:#b48ead;">and </span><span style="color:#8fa1b3;">return </span><span style="color:#bf616a;">a promise that resolves when the</span><span style="color:#c0c5ce;"> */
+  /* </span><span style="color:#bf616a;">image has finished loading</span><span style="color:#c0c5ce;">. */
+  </span><span style="color:#bf616a;">let loadFromSrc </span><span style="color:#c0c5ce;">= imageSrc =&gt; {
+    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">imageEl </span><span style="color:#c0c5ce;">= make</span><span style="color:#d08770;">()</span><span style="color:#c0c5ce;">;
+
+    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">loadImagePromise </span><span style="color:#c0c5ce;">=
+      Js.Promise.make((</span><span style="color:#bf616a;">~resolve</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~reject</span><span style="color:#c0c5ce;">) =&gt; {
+        addEventListener(imageEl, &quot;</span><span style="color:#a3be8c;">load</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#d08770;">() </span><span style="color:#c0c5ce;">=&gt; resolve(. imageEl));
+        addEventListener(imageEl, &quot;</span><span style="color:#a3be8c;">error</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#d08770;">() </span><span style="color:#c0c5ce;">=&gt;
+          reject(. Invalid_argument(&quot;</span><span style="color:#a3be8c;">Could not load image: </span><span style="color:#c0c5ce;">&quot; ++ imageSrc))
+        );
+      });
+
+    setSrc(imageEl, imageSrc);
+    loadImagePromise;
+  };
+};
+
+</span><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">Canvas = {
+  </span><span style="color:#b48ead;">type t;
+  [@bs.send]
+  external getElementById : (Document.t, string) </span><span style="color:#c0c5ce;">=&gt; </span><span style="color:#b48ead;">t </span><span style="color:#c0c5ce;">= </span><span style="color:#65737e;">&quot;getElementById&quot;</span><span style="color:#c0c5ce;">;
+};
+
+</span><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">Context = {
+  </span><span style="color:#b48ead;">type t;
+
+  /* JavaScript equivalent: canvas.getContext(&#39;2d&#39;); */
+  [@bs.send]
+  external getContext2d : (Canvas.t, [@bs.as &quot;2d&quot;] _) </span><span style="color:#c0c5ce;">=&gt; </span><span style="color:#b48ead;">t </span><span style="color:#c0c5ce;">= </span><span style="color:#65737e;">&quot;getContext&quot;</span><span style="color:#c0c5ce;">;
+
+  [@bs.send]
+  </span><span style="color:#b48ead;">external </span><span style="color:#c0c5ce;">drawImage :
+    (
+      </span><span style="color:#b48ead;">t</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~image: </span><span style="color:#c0c5ce;">HtmlImageElement</span><span style="color:#b48ead;">.t</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~dx: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~dy: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~d</span><span style="color:#c0c5ce;">Width: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~d</span><span style="color:#c0c5ce;">Height: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~sx: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~sy: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~s</span><span style="color:#c0c5ce;">Width: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+      </span><span style="color:#bf616a;">~s</span><span style="color:#c0c5ce;">Height: </span><span style="color:#b48ead;">int
+</span><span style="color:#c0c5ce;">    ) =&gt;
+    </span><span style="color:#b48ead;">unit </span><span style="color:#c0c5ce;">=
+    &quot;</span><span style="color:#a3be8c;">drawImage</span><span style="color:#c0c5ce;">&quot;;
+};
+</span></code></pre><h1 id="spriteatlas">SpriteAtlas</h1>
+<p>The sprite atlas is an image with all the sprites in it, it looks like:</p>
+<p><img src="/images/reason-canvas-tilemap-1/tiles16.png" alt="Sprite Atlas" /></p>
+<p>This code allows us to load the atlas into memory and draw one of the sprites into the context.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-ocaml" data-lang="ocaml"><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">SpriteAtlas = {
+  </span><span style="color:#b48ead;">type t </span><span style="color:#c0c5ce;">= {
+    imageElement: HtmlImageElement</span><span style="color:#b48ead;">.t</span><span style="color:#c0c5ce;">,
+    </span><span style="color:#b48ead;">spriteWidth</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+  };
+
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">make </span><span style="color:#c0c5ce;">= (src:</span><span style="color:#b48ead;"> string, spriteWidth: int</span><span style="color:#c0c5ce;">) =&gt;
+    HtmlImageElement.loadFromSrc(src)
+    |&gt; Js.Promise.then_(imageElement =&gt;
+         Js.Promise.resolve({imageElement, spriteWidth})
+       );
+
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">drawSprite </span><span style="color:#c0c5ce;">= (</span><span style="color:#bf616a;">~atlas:</span><span style="color:#c0c5ce;"> t, </span><span style="color:#bf616a;">~ctx</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~atlas</span><span style="color:#c0c5ce;">Number, </span><span style="color:#bf616a;">~x</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~y</span><span style="color:#c0c5ce;">) =&gt;
+    Context.drawImage(
+      ctx,
+      </span><span style="color:#bf616a;">~image</span><span style="color:#c0c5ce;">=atlas.imageElement,
+      </span><span style="color:#bf616a;">~dx</span><span style="color:#c0c5ce;">=atlasNumber * atlas.spriteWidth,
+      </span><span style="color:#bf616a;">~dy</span><span style="color:#c0c5ce;">=</span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, /*  In this code we only support atlases </span><span style="color:#b48ead;">with</span><span style="color:#c0c5ce;"> a single row of images */
+      </span><span style="color:#bf616a;">~d</span><span style="color:#c0c5ce;">Width=atlas.spriteWidth,
+      </span><span style="color:#bf616a;">~d</span><span style="color:#c0c5ce;">Height=atlas.spriteWidth,
+      </span><span style="color:#bf616a;">~sx</span><span style="color:#c0c5ce;">=x,
+      </span><span style="color:#bf616a;">~sy</span><span style="color:#c0c5ce;">=y,
+      </span><span style="color:#bf616a;">~s</span><span style="color:#c0c5ce;">Width=atlas.spriteWidth,
+      </span><span style="color:#bf616a;">~s</span><span style="color:#c0c5ce;">Height=atlas.spriteWidth,
+    );
+};
+</span></code></pre><h1 id="tilemap">Tilemap</h1>
+<p>The tilemap describes what our level looks like, it has a reference to a sprite atlas and a number of rows and columns representing what to draw in the level.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-ocaml" data-lang="ocaml"><span style="color:#b48ead;">module </span><span style="color:#c0c5ce;">TileMap = {
+  </span><span style="color:#b48ead;">type t </span><span style="color:#c0c5ce;">= {
+    atlas: SpriteAtlas</span><span style="color:#b48ead;">.t</span><span style="color:#c0c5ce;">,
+    </span><span style="color:#b48ead;">numRows</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+    </span><span style="color:#b48ead;">numCols</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">,
+    </span><span style="color:#b48ead;">tileSize</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">, /* </span><span style="color:#b48ead;">pixels </span><span style="color:#c0c5ce;">*/
+    </span><span style="color:#b48ead;">tiles</span><span style="color:#c0c5ce;">: </span><span style="color:#b48ead;">list</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">) /* Maybe </span><span style="color:#b48ead;">should be an array so it is mutable</span><span style="color:#c0c5ce;">? */
+  };
+
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">make </span><span style="color:#c0c5ce;">= (</span><span style="color:#bf616a;">~atlas</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~num</span><span style="color:#c0c5ce;">Rows, </span><span style="color:#bf616a;">~num</span><span style="color:#c0c5ce;">Cols, </span><span style="color:#bf616a;">~tile</span><span style="color:#c0c5ce;">Size, </span><span style="color:#bf616a;">~tiles</span><span style="color:#c0c5ce;">) =&gt; {
+    atlas,
+    numRows,
+    numCols,
+    tileSize,
+    tiles,
+  };
+
+  /* Given an index </span><span style="color:#b48ead;">in</span><span style="color:#c0c5ce;"> a tilemap, get the row </span><span style="color:#b48ead;">and </span><span style="color:#8fa1b3;">column </span><span style="color:#bf616a;">as if it was a </span><span style="background-color:#bf616a;color:#2b303b;">2D array</span><span style="color:#c0c5ce;"> */
+  </span><span style="color:#bf616a;">let getRowAndColumn </span><span style="color:#c0c5ce;">= (idx:</span><span style="color:#b48ead;"> int, tilemap: t</span><span style="color:#c0c5ce;">) : (</span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">, </span><span style="color:#b48ead;">int</span><span style="color:#c0c5ce;">) =&gt; {
+    </span><span style="color:#b48ead;">let </span><span style="color:#c0c5ce;">col: </span><span style="color:#b48ead;">int </span><span style="color:#c0c5ce;">= </span><span style="color:#b48ead;">idx mod tilemap</span><span style="color:#c0c5ce;">.numCols;
+    </span><span style="color:#b48ead;">let </span><span style="color:#c0c5ce;">row: </span><span style="color:#b48ead;">int </span><span style="color:#c0c5ce;">=
+      Js.Math</span><span style="color:#b48ead;">.floor</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">float_of_int</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">idx</span><span style="color:#c0c5ce;">) /. </span><span style="color:#b48ead;">float_of_int</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">tilemap</span><span style="color:#c0c5ce;">.numCols));
+    (row, col);
+  };
+
+  </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">render </span><span style="color:#c0c5ce;">= (ctx:</span><span style="color:#b48ead;"> Context.t, tilemap: t</span><span style="color:#c0c5ce;">) =&gt;
+    List.iteri(
+      (i, num) =&gt; {
+        </span><span style="color:#b48ead;">let </span><span style="color:#c0c5ce;">(row, col) = getRowAndColumn(i, tilemap);
+        SpriteAtlas.drawSprite(
+          </span><span style="color:#bf616a;">~atlas</span><span style="color:#c0c5ce;">=tilemap.atlas,
+          </span><span style="color:#bf616a;">~ctx</span><span style="color:#c0c5ce;">,
+          </span><span style="color:#bf616a;">~atlas</span><span style="color:#c0c5ce;">Number=num,
+          </span><span style="color:#bf616a;">~x</span><span style="color:#c0c5ce;">=col * tilemap.tileSize,
+          </span><span style="color:#bf616a;">~y</span><span style="color:#c0c5ce;">=row * tilemap.tileSize,
+        );
+      },
+      tilemap.tiles,
+    );
+};
+</span></code></pre><h1 id="drawing-the-tilemap">Drawing the tilemap</h1>
+<p>Here we do the actual work. Setup the canvas, load the sprites, create a tilemap, then render it in the browser.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-ocaml" data-lang="ocaml"><span style="color:#b48ead;">let </span><span style="color:#bf616a;">doWindowOnload </span><span style="color:#c0c5ce;">= </span><span style="color:#d08770;">() </span><span style="color:#c0c5ce;">=&gt; {
+  </span><span style="color:#b48ead;">let </span><span style="color:#c0c5ce;">canvas: Canvas</span><span style="color:#b48ead;">.t </span><span style="color:#c0c5ce;">= Canvas</span><span style="color:#b48ead;">.getElementById</span><span style="color:#c0c5ce;">(Document</span><span style="color:#b48ead;">.t</span><span style="color:#c0c5ce;">, </span><span style="color:#65737e;">&quot;demo&quot;</span><span style="color:#c0c5ce;">);
+  </span><span style="color:#b48ead;">let </span><span style="color:#c0c5ce;">ctx: Context</span><span style="color:#b48ead;">.t </span><span style="color:#c0c5ce;">= Context</span><span style="color:#b48ead;">.getContext2d</span><span style="color:#c0c5ce;">(</span><span style="color:#b48ead;">canvas</span><span style="color:#c0c5ce;">);
+  SpriteAtlas.make(&quot;</span><span style="color:#a3be8c;">./tiles16.png</span><span style="color:#c0c5ce;">&quot;, </span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">)
+  |&gt; Js.Promise.then_(atlas =&gt; {
+     </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tiles </span><span style="color:#c0c5ce;">= [ 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">4</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">,
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">3</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">5</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, 
+          </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">0</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2</span><span style="color:#c0c5ce;">, </span><span style="color:#d08770;">2 
+        </span><span style="color:#c0c5ce;">]; 
+
+       </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">tilemap </span><span style="color:#c0c5ce;">= 
+         TileMap.make(</span><span style="color:#bf616a;">~atlas</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~num</span><span style="color:#c0c5ce;">Rows=</span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~num</span><span style="color:#c0c5ce;">Cols=</span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~tile</span><span style="color:#c0c5ce;">Size=</span><span style="color:#d08770;">16</span><span style="color:#c0c5ce;">, </span><span style="color:#bf616a;">~tiles</span><span style="color:#c0c5ce;">);
+
+       TileMap.render(ctx, tilemap);
+
+       Js.Promise.resolve</span><span style="color:#d08770;">()</span><span style="color:#c0c5ce;">;
+     })
+  |&gt; Js.Promise.catch(err =&gt; {
+       Js.log2(&quot;</span><span style="color:#a3be8c;">Failure!</span><span style="color:#c0c5ce;">&quot;, err);
+       Js.Promise.resolve</span><span style="color:#d08770;">()</span><span style="color:#c0c5ce;">;
+     })
+  |&gt; ignore;
+};
+
+Window.addEventListener(Window.t, &quot;</span><span style="color:#a3be8c;">load</span><span style="color:#c0c5ce;">&quot;, doWindowOnload);
+</span></code></pre>
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+      <div class="link">
+        Previous <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;geospatial-app-elixir-postgis-phoenix&#x2F;">Exploring Geospatial data in Elixir with Phoenix, D3, and PostGIS</a>
+      </div>
+    
+
+    
+      <div class="link">
+        Next <br />
+        <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-with-reason&#x2F;">Ray Tracing in the Browser using ReasonML</a>
+      </div>
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>
