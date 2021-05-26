@@ -9,13 +9,17 @@
     />
 
     <style>
-      :root {
-        --accent-color: {{ config.extra.accent }};
-        --accent-color-light: {{ config.extra.accent_light }};
-      }
+     :root {
+       --accent-color: {{ config.extra.accent }};
+       --accent-color-light: {{ config.extra.accent_light }};
+     }
     </style>
 
     <meta name="theme-color" content="{{ config.extra.accent }}" />
+
+    {% block rss %}
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
+    {% endblock %}
 
     {% if config.extra.profile_small %}
       <link rel="icon" href="{{ resize_image(path=config.extra.profile_small, width=48, height=48, op="fill") }}" />
