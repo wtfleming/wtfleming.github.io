@@ -79,7 +79,7 @@ history = model.fit_generator(
     validation_steps=90) # 90 x 50 == 4500
 ```
 
-```text
+```
 Epoch 1/30
 320/320 [==============================] - 48s 150ms/step - loss: 0.6070 - acc: 0.6579 - val_loss: 0.5263 - val_acc: 0.7413
 Epoch 2/30
@@ -111,7 +111,7 @@ print('test acc:', test_acc)
 ```
 
 
-```text
+```
 Found 4500 images belonging to 2 classes.
 test acc: 0.8406666629844242
 ```
@@ -146,7 +146,7 @@ model.compile(loss='binary_crossentropy',
 
 How does this model perform?
 
-```text
+```
 Epoch 1/30
 320/320 [==============================] - 46s 145ms/step - loss: 0.6166 - acc: 0.6449 - val_loss: 0.5348 - val_acc: 0.7378
 Epoch 2/30
@@ -233,7 +233,7 @@ validation_generator = test_datagen.flow_from_directory(
     class_mode='binary')
 ```
 
-```text
+```
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 ```
@@ -249,7 +249,7 @@ history = model.fit_generator(
     validation_steps=90) # 90 x 50 == 4500
 ```
 
-```text
+```
 Epoch 1/30
 960/960 [==============================] - 411s 429ms/step - loss: 0.6202 - acc: 0.6428 - val_loss: 0.5285 - val_acc: 0.7413
 Epoch 2/30
@@ -278,7 +278,7 @@ test_loss, test_acc = model.evaluate_generator(test_generator, steps=90)
 print('test acc:', test_acc)
 ```
 
-```text
+```
 Found 4500 images belonging to 2 classes.
 test acc: 0.928444442484114
 ```

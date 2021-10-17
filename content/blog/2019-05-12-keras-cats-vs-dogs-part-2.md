@@ -60,7 +60,7 @@ features = model.predict(x)
 decode_predictions(features, top=5)
 ```
 
-```text
+```
 [[('n02097298', 'Scotch_terrier', 0.84078884),
   ('n02105412', 'kelpie', 0.07755529),
   ('n02105056', 'groenendael', 0.048816346),
@@ -123,7 +123,7 @@ validation_generator = test_datagen.flow_from_directory(
     class_mode='binary')
 ```
 
-```text
+```
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 ```
@@ -139,7 +139,7 @@ history = model.fit_generator(
     validation_steps=90) # batches in the generator are 50, so it takes 90 batches to get to 4500 images
 ```
 
-```text
+```
 Epoch 1/30
 320/320 [==============================] - 139s 434ms/step - loss: 0.7365 - acc: 0.9238 - val_loss: 0.2217 - val_acc: 0.9751
 Epoch 2/30
@@ -170,7 +170,7 @@ test_loss, test_acc = model.evaluate_generator(test_generator, steps=90)
 print('test acc:', test_acc)
 ```
 
-```text
+```
 Found 4500 images belonging to 2 classes.
 test acc: 0.9833333353201549
 ```
@@ -221,7 +221,7 @@ history = model.fit_generator(
     validation_steps=90) # batches in the generator are 50, so it takes 90 batches to get to 4500 images
 ```
 
-```text
+```
 Epoch 1/30
 320/320 [==============================] - 151s 471ms/step - loss: 0.7004 - acc: 0.9150 - val_loss: 0.1462 - val_acc: 0.9720
 Epoch 2/30
@@ -254,7 +254,7 @@ test_loss, test_acc = model.evaluate_generator(test_generator, steps=90)
 print('test acc:', test_acc)
 ```
 
-```text
+```
 Found 4500 images belonging to 2 classes.
 test acc: 0.9862222280767229
 ```

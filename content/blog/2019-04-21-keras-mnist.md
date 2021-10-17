@@ -34,7 +34,7 @@ The training set consists of 60,000 28x28 pixel images, and the test set 10,000.
 train_images.shape, test_images.shape
 ```
 
-```text
+```
 ((60000, 28, 28), (10000, 28, 28))
 ```
 
@@ -56,7 +56,7 @@ And the labels representing which class the image represents.
 train_labels[0:10]
 ```
 
-```text
+```
 array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
 ```
 
@@ -84,7 +84,7 @@ One way to see what the network looks like is to use the summary() function:
 model.summary()
 ```
 
-```text
+```
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -135,7 +135,7 @@ train_labels = train_labels[:50000]
 history = model.fit(train_images, train_labels, epochs=5, batch_size=64, validation_data=(validation_images, validation_labels))
 ```
 
-```text
+```
 Train on 50000 samples, validate on 10000 samples
 Epoch 1/5
 50000/50000 [==============================] - 20s 391us/step - loss: 0.1959 - acc: 0.9387 - val_loss: 0.0798 - val_acc: 0.9760
@@ -155,7 +155,7 @@ print('Accuracy:', test_acc)
 print('Loss: ', test_loss)
 ```
 
-```text
+```
 10000/10000 [==============================] - 1s 122us/step
 Accuracy: 0.992
 Loss:  0.027386048025220953
@@ -218,7 +218,7 @@ Since the output of the network was a layer with 10 units and a softmax activati
 print(preds[0])
 ```
 
-```text
+```
 [2.6081236e-12 1.8943378e-09 1.0174886e-08 6.8640638e-08 2.3309353e-11
  1.9539477e-10 7.4824168e-19 9.9999988e-01 4.3342949e-10 8.6599723e-09]
  ```
@@ -229,7 +229,7 @@ We can also find the class with the highest prediction score with a numpy functi
 np.argmax(preds[0])
 ```
 
-```text
+```
 7
 ```
 
