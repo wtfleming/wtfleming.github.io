@@ -1,30 +1,32 @@
 {% extends "base.html" %}
 
 {% block styles%}
-  <link rel="stylesheet" href="{{ get_url(path="index.css") | safe }}">
+<link rel="stylesheet" href="{{ get_url(path="index.css") | safe }}">
 {% endblock styles %}
 
 {% block posthead %}
-  <link rel="prefetch" href="{{ resize_image(path=config.extra.profile_large, width=280, height=373, op="fill") }}">
+{% set image = resize_image(path=config.extra.profile_large, width=280, height=373, op="fill") %}
+<link rel="prefetch" href="{{ image.url }}">
 
-  {% if config.extra.latest_text %}
-    {% set blog_path = "blog" %}
-    {% if config.extra.blog_path %}
-      {% set_global blog_path = config.extra.blog_path %}
-    {% endif %}
-    {% set blogs = get_section(path=blog_path ~ "/_index.md") %}
-    {% set latest = blogs.pages.0 %}
-    {% if latest %}
-      <link rel="prerender" href="{{ latest.permalink }}" />
-    {% endif %}
-  {% endif %}
+{% if config.extra.latest_text %}
+{% set blog_path = "blog" %}
+{% if config.extra.blog_path %}
+{% set_global blog_path = config.extra.blog_path %}
+{% endif %}
+{% set blogs = get_section(path=blog_path ~ "/_index.md") %}
+{% set latest = blogs.pages.0 %}
+{% if latest %}
+<link rel="prerender" href="{{ latest.permalink }}" />
+{% endif %}
+{% endif %}
 {% endblock posthead %}
 
 
 {% block content %}
+  {% set image = resize_image(path=config.extra.profile_large, width=280, height=373, op="fill") %}
   <div class="profile">
     <div class="profile-container">
-      <img src="{{ resize_image(path=config.extra.profile_large, width=280, height=373, op="fill") }}" alt="profile picture">
+      <img src="{{ image.url }}" alt="profile picture">
     </div>
   </div>
   <div class="content">
