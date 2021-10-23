@@ -22,7 +22,8 @@ I am using Leiningin for this project, so create a `project.clj` file with these
 ```clojure
 (defproject clojure-aws-lambda-example "0.1.0-SNAPSHOT"
   :dependencies [[com.amazonaws/aws-lambda-java-runtime-interface-client "2.0.0"]
-                 [org.clojure/clojure "1.10.3"]]
+                 [org.clojure/clojure "1.10.3"]
+                 [org.clojure/data.json "2.4.0"]]
   :repl-options {:init-ns clojure-aws-lambda-example.core}
   :profiles {:uberjar {:aot :all}})
 ```
@@ -34,15 +35,103 @@ Create a file called `src/clojure_aws_lambda_example/core.clj` with these conten
 
 ```clojure
 (ns clojure-aws-lambda-example.core
+  (:require [clojure.data.json :as json]
+            [clojure.java.io :as io]
+            [clojure.spec.alpha :as spec])
   (:gen-class
    :implements [com.amazonaws.services.lambda.runtime.RequestStreamHandler]))
 
+;; -------------------- Specs --------------------
+;; The json for an inbound scheduled event should look like this
+;; {
+;;     "version": "0",
+;;     "id": "53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa",
+;;     "detail-type": "Scheduled Event",
+;;     "source": "aws.events",
+;;     "account": "123456789012",
+;;     "time": "2015-10-08T16:53:06Z",
+;;     "region": "us-east-1",
+;;     "resources": [
+;;         "arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule"
+;;     ],
+;;     "detail": {}
+;; }
+;;
+;; See https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-run-lambda-schedule.html
+(spec/def ::version string?)
+(spec/def ::id string?)
+(spec/def ::detail-type string?)
+(spec/def ::source string?)
+(spec/def ::account string?)
+(spec/def ::time string?)
+(spec/def ::region string?)
+(spec/def ::resources (spec/coll-of string?))
+(spec/def ::detail map?)
+
+(spec/def ::scheduled-event
+  (spec/keys
+   :req-un [::version ::id ::detail-type ::source ::account ::time ::region ::resources ::detail]))
+
+
+;; -------------------- Request handling --------------------
+(defn- stream->scheduled-event
+  "Transforms an input stream into a scheduled event "
+  [in]
+  (json/read (io/reader in) :key-fn keyword))
+
+
 (defn -handleRequest
-  [_ _input-stream _output-stream _context]
-  (println "-handleRequest called!"))
+  "Implementation for RequestStreamHandler that handles a Lambda Function request"
+  [_ input-stream _output-stream _context]
+  (println "-handleRequest called with event:" (stream->scheduled-event input-stream)))
 ```
 
+## Testing
+
+Lets create a simple unit test. Create a file named `test/eventbridge-scheduled-event.json` with these contents.
+
+```json
+{
+    "version": "0",
+    "id": "53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa",
+    "detail-type": "Scheduled Event",
+    "source": "aws.events",
+    "account": "123456789012",
+    "time": "2015-10-08T16:53:06Z",
+    "region": "us-east-1",
+    "resources": [
+        "arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule"
+    ],
+    "detail": {}
+}
+```
+
+And a file named `test/clojure_aws_lambda_example/core_test.clj` with these contents
+
+```clojure
+(ns clojure-aws-lambda-example.core-test
+  (:require [clojure.test :refer [deftest is]])
+  (:require [clojure-aws-lambda-example.core :as lambda-example]
+            [clojure.java.io :as io]
+            [clojure.spec.alpha :as spec]))
+
+(deftest test-stream->scheduled-event
+  (let [stream (io/input-stream "./test/eventbridge-scheduled-event.json")
+        event (lambda-example/stream->scheduled-event stream)]
+    (is (spec/valid? ::lambda-example/scheduled-event event))))
+```
+
+In the test we:
+
+* Load a sample event from disk.
+* Pass it to the `stream->scheduled-event` function.
+* Use clojure.spec to validate that the return value looks correct.
+
+Note that rather than relying on a single json event, there is a much more we could test using spec's generative testing features, but I will leave that as an exercise for the reader.
+
 ---
+
+## Dockerfile
 
 We will also need a Dockerfile. We will use a `clojure:openjdk-11-slim-buster` image to build the Java jar, and then run the function inside a `eclipse-temurin:11-focal` container. By using a separate image to build our app, we can use a final image that doesn't have to ship Clojure build tools like lein with it.
 
@@ -77,6 +166,8 @@ CMD ["clojure_aws_lambda_example.core::handleRequest"]
 ```
 
 ---
+
+## SAM Configuration
 
 Finally we will need a SAM template that will have all the information the SAM CLI tool needs to generate a CloudFormation template. We want to create a Lambda function and a CloudWatch event that fires every minute to trigger a run of the function.
 
@@ -141,7 +232,7 @@ $ sam build
 Run it with
 
 ```sh
-$ sam local invoke
+$ sam local invoke --event test/eventbridge-scheduled-event.json
 ```
 
 You should see output similar to
@@ -151,9 +242,10 @@ Invoking Container created from clojureawslambdaexamplefunction:clojure-aws-lamb
 Building image.................
 Skip pulling image and use local one: clojureawslambdaexamplefunction:rapid-1.33.0-x86_64.
 
--handleRequest called!
-END RequestId: 39f892fb-bc5a-4399-b691-679b42565426
-REPORT RequestId: 39f892fb-bc5a-4399-b691-679b42565426  Init Duration: 0.12 ms  Duration: 663.31 ms     Billed Duration: 664 ms Memory Size: 256 MB  Max Memory Used: 256 MB
+START RequestId: 7dfdf5e7-7580-466b-b3da-c24935837cf0 Version: $LATEST
+-handleRequest called with event:  {:detail-type Scheduled Event, :time 2015-10-08T16:53:06Z, :source aws.events, :account 123456789012, :region us-east-1, :id 53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa, :version 0, :resources [arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule], :detail {}}
+END RequestId: 7dfdf5e7-7580-466b-b3da-c24935837cf0
+REPORT RequestId: 7dfdf5e7-7580-466b-b3da-c24935837cf0  Init Duration: 0.26 ms  Duration: 795.48 ms     Billed Duration: 796 ms Memory Size: 256 MB  Max Memory Used: 256 MB
 ```
 
 ## Deploy to the Cloud
@@ -179,25 +271,25 @@ Once the deploy has finished we can check that it is running by tailing the Clou
 $ sam logs -n ClojureAwsLambdaExampleFunction --stack-name sam-app --tail
 ```
 
-After a few minutes of running you should see output along the lines of
+After a few minutes of running you should see output similar to
 
 
 ```
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.729000 START RequestId: cc9f8cfd-04bf-44af-9b88-8d0349adf74e Version
 : $LATEST
-2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.734000 -handleRequest called!
+2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.734000 -handleRequest called! with event:  {:detail-type Scheduled Event, :time 2015-10-08T16:53:06Z, :source aws.events, :account 123456789012, :region us-east-1, :id 53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa, :version 0, :resources [arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule], :detail {}}
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.736000 END RequestId: cc9f8cfd-04bf-44af-9b88-8d0349adf74e
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.736000 REPORT RequestId: cc9f8cfd-04bf-44af-9b88-8d0349adf74e  Durat
 ion: 6.05 ms    Billed Duration: 2637 ms        Memory Size: 256 MB     Max Memory Used: 101 MB Init Duration: 2630.22 ms
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:01:15.451000 START RequestId: 4dfa088e-8328-411e-bf34-e70fe0f74691 Version
 : $LATEST
-2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:01:15.457000 -handleRequest called!
+2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:01:15.457000 -handleRequest called! with event:  {:detail-type Scheduled Event, :time 2015-10-08T16:53:06Z, :source aws.events, :account 123456789012, :region us-east-1, :id 53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa, :version 0, :resources [arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule], :detail {}}
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:01:15.475000 END RequestId: 4dfa088e-8328-411e-bf34-e70fe0f74691
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:01:15.475000 REPORT RequestId: 4dfa088e-8328-411e-bf34-e70fe0f74691  Durat
 ion: 18.81 ms   Billed Duration: 19 ms  Memory Size: 256 MB     Max Memory Used: 102 MB
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:02:11.605000 START RequestId: 13ae2a9c-3d0d-40eb-8427-1e7807bff399 Version
 : $LATEST
-2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:02:11.609000 -handleRequest called!
+2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:02:11.609000 -handleRequest called! with event:  {:detail-type Scheduled Event, :time 2015-10-08T16:53:06Z, :source aws.events, :account 123456789012, :region us-east-1, :id 53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa, :version 0, :resources [arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule], :detail {}}
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:02:11.609000 END RequestId: 13ae2a9c-3d0d-40eb-8427-1e7807bff399
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:02:11.609000 REPORT RequestId: 13ae2a9c-3d0d-40eb-8427-1e7807bff399  Durat
 ion: 1.06 ms    Billed Duration: 2 ms   Memory Size: 256 MB     Max Memory Used: 102 MB
