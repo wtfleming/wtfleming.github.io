@@ -50,7 +50,6 @@ This provides everything we will need to run the queries.
 In *queries.clj* we have defined a function that will parse a line of XML representing a user, and extract the user id, display name, and reputation.
 
 ``` clojure
-{% raw %}
 (defmapop user-xml-parser [user-xml]
   "Parse a line of xml representing a stack exchange user."
   (try
@@ -58,7 +57,6 @@ In *queries.clj* we have defined a function that will parse a line of XML repres
           {{:keys [Id DisplayName Reputation]} :attrs} user]
       [Id DisplayName (Integer/parseInt Reputation)])
     (catch Exception _ [nil nil nil])))
-{% endraw %}
 ```
 
 
@@ -201,7 +199,6 @@ RESULTS
 Once again we need to define a function to parse XML, this time for a post (a question or answer).
 
 ``` clojure
-{% raw %}
 (defmapop post-xml-parser [post-xml]
   "Parse a line of xml representing a stack exchange post."
   (try
@@ -209,7 +206,6 @@ Once again we need to define a function to parse XML, this time for a post (a qu
           {{:keys [OwnerUserId PostTypeId Tags]} :attrs} post]
       [OwnerUserId PostTypeId Tags])
     (catch Exception _ [nil nil nil])))
-{% endraw %}
 ```
 
 The following query is very similar to the user-query above. But note that in this case we are using *!tags* rather than *?tags*. Variables beginning with a ? are non-nullable, Cascalog will filter out any records in which a non-nullable is bound to null.
