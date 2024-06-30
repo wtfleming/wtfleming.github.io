@@ -11,7 +11,7 @@ taxonomies = [ { name = "tags" } ]
 
 theme = "simple-dev-blog"
 
-generate_feed = true
+generate_feeds = true
 
 [markdown]
 # Whether to do syntax highlighting
