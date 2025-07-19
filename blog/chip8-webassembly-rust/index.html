@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="CHIP-8 emulator in WebAssembly using Rust">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          CHIP-8 emulator in WebAssembly using Rust
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/rust/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/webassembly/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "CHIP-8 emulator in WebAssembly using Rust",
+      "image": [],
+      "datePublished": "2020-01-26T00:00:00+00:00",
+      "dateModified": "2020-01-26T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CHIP-8 emulator in WebAssembly using Rust",
+          "item": "https://wtfleming.github.io/blog/chip8-webassembly-rust/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>CHIP-8 emulator in WebAssembly using Rust</h1>
+    <small>
+      January 26, 2020
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/rust/">rust</a>
+          
+            <a href="https://wtfleming.github.io/tags/webassembly/">webassembly</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>Lately I have been working on an emulator for the <a href="https://en.wikipedia.org/wiki/CHIP-8">CHIP-8</a> that can compile to WebAssembly using Rust. The source code is <a href="https://github.com/wtfleming/chip-8-rust-wasm">available on GitHub</a>. And you can <a href="/projects/chip8/index.html">play a game of pong here</a>.</p>
+<p><img src="/images/rust-chip8/chip8.png" alt="Screenshot" /></p>
+<p>I've always wanted to write an emulator for an older hardware like the Nintendo Entertainment System or Game Boy Advance, but decided to start with a simpler project that could be finished over the course of a few nights. The CHIP-8 is a great starter emulation project, it has:</p>
+<ul>
+<li>A relatively small instruction set (35 instructions)</li>
+<li>16 general purpose registers</li>
+<li>A 64x32 monochromatic display</li>
+<li>A 16 character hex based keypad</li>
+<li>No interrupts, but it does have two timer registers that count down at 60 Hz</li>
+</ul>
+<p>A few references I found useful to get started are this <a href="http://www.multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/">post by Laurence Muller</a>, <a href="http://devernay.free.fr/hacks/chip8/C8TECH10.HTM">Cowgod's Chip-8 Technical Reference</a>, and this <a href="https://blog.scottlogic.com/2017/12/13/chip8-emulator-webassembly-rust.html">post by Colin Eberhardt</a>. If you want to create your own emulator I highly recommend taking a look at the above pages.</p>
+<h3 id="implementation">Implementation</h3>
+<p>I won't go too deep into implementations details here, but if you want to know more the <a href="https://github.com/wtfleming/chip-8-rust-wasm">source code is available</a>. I represented the CPU in Rust like this:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub struct </span><span>Cpu {
+</span><span>    </span><span style="color:#65737e;">// 4k Memory
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">memory</span><span>: [</span><span style="color:#b48ead;">u8</span><span>; 4096],
+</span><span>    </span><span style="color:#65737e;">// Program Counter
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">pc</span><span>: </span><span style="color:#b48ead;">u16</span><span>,
+</span><span>    </span><span style="color:#65737e;">// 16 general purpose 8-bit registers, usually referred to as Vx, where x is a hexadecimal digit (0 through F)
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">v</span><span>: [</span><span style="color:#b48ead;">u8</span><span>; 16],
+</span><span>    </span><span style="color:#65737e;">// Index register
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">i</span><span>: </span><span style="color:#b48ead;">u16</span><span>,
+</span><span>    </span><span style="color:#65737e;">// The stack is an array of 16 16-bit values
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">stack</span><span>: [</span><span style="color:#b48ead;">u16</span><span>; 16],
+</span><span>    </span><span style="color:#65737e;">// Stack pointer
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">sp</span><span>: </span><span style="color:#b48ead;">u8</span><span>,
+</span><span>    </span><span style="color:#65737e;">// Display - 64x32 pixels
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">display</span><span>: [</span><span style="color:#b48ead;">u8</span><span>; 64 * 32],
+</span><span>    </span><span style="color:#65737e;">// Delay timer
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">dt</span><span>: </span><span style="color:#b48ead;">u8</span><span>,
+</span><span>    </span><span style="color:#65737e;">// Sound timer
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">st</span><span>: </span><span style="color:#b48ead;">u8</span><span>,
+</span><span>    </span><span style="color:#65737e;">// Keyboard
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">keys</span><span>: [</span><span style="color:#b48ead;">bool</span><span>; 16],
+</span><span>}
+</span></code></pre>
+<h4 id="memory">Memory</h4>
+<p>The system's memory map looks like:</p>
+<ul>
+<li>0x000-0x1FF - In original implementations the CHIP 8 interpreter.</li>
+<li>0x050-0x0A0 - In emulators stores the 4x5 pixel font set (0-F).</li>
+<li>0x200-0xFFF - Program ROM and work RAM.</li>
+</ul>
+<p>One of the first things you will need to do is load the program into memory starting at position 0x200.</p>
+<h4 id="opcodes">Opcodes</h4>
+<p>The CHIP-8 has <a href="http://en.wikipedia.org/wiki/CHIP-8#Opcode_table">35 opcodes</a> you will need to handle, all of which are two bytes long. First you need to extract the opcode, since memory elements are 8 bits and an opcode is 16 bits, we need to fetch two locations from memory and do some bit shifting to get a <code>u16</code> opcode.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">let</span><span> code1: </span><span style="color:#b48ead;">u16 </span><span>= </span><span style="color:#bf616a;">self</span><span>.memory[</span><span style="color:#bf616a;">self</span><span>.pc as </span><span style="color:#b48ead;">usize</span><span>] as </span><span style="color:#b48ead;">u16</span><span>;
+</span><span style="color:#b48ead;">let</span><span> code2: </span><span style="color:#b48ead;">u16 </span><span>= </span><span style="color:#bf616a;">self</span><span>.memory[(</span><span style="color:#bf616a;">self</span><span>.pc + </span><span style="color:#d08770;">1</span><span>) as </span><span style="color:#b48ead;">usize</span><span>] as </span><span style="color:#b48ead;">u16</span><span>;
+</span><span style="color:#b48ead;">let</span><span> opcode: </span><span style="color:#b48ead;">u16 </span><span>= code1 &lt;&lt; </span><span style="color:#d08770;">8 </span><span>| code2;
+</span><span>
+</span></code></pre>
+<p>An opcode will look something like <code>0x7301</code>. I highly recommend writing a disassembler to make it easier to read. An example of doing so is <a href="https://github.com/wtfleming/chip-8-rust-wasm/blob/master/chip_8_lib/src/disassembler.rs">here</a>. In this case the <code>0x7301</code> is displayed as <code>ADD V3, 01</code> or in other words, add 1 to the current value of register V3.</p>
+<p>Thanks to Rust's support for pattern matching over ranges, handling each opcode is relatively easy to do:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">match</span><span> opcode {
+</span><span>    </span><span style="color:#d08770;">0x7000</span><span>..= </span><span style="color:#d08770;">0x7FFF </span><span>=&gt; {
+</span><span>        </span><span style="color:#65737e;">// 7xkk - ADD Vx, byte
+</span><span>        </span><span style="color:#65737e;">// Set Vx = Vx + kk.
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = ((opcode &amp; </span><span style="color:#d08770;">0x0F00</span><span>) &gt;&gt; </span><span style="color:#d08770;">8</span><span>) as </span><span style="color:#b48ead;">usize</span><span>;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> kk = (opcode &amp; </span><span style="color:#d08770;">0x00FF</span><span>) as </span><span style="color:#b48ead;">u8</span><span>;
+</span><span>
+</span><span>        </span><span style="color:#65737e;">// Note the overflowing_add, since addition values are 8 bits adding
+</span><span>        </span><span style="color:#65737e;">// 255 + 2 should overflow and result in 1.
+</span><span>        </span><span style="color:#b48ead;">let </span><span>(result, _) = </span><span style="color:#bf616a;">self</span><span>.v[x].</span><span style="color:#96b5b4;">overflowing_add</span><span>(kk);
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.v[x] = result;
+</span><span>        </span><span style="color:#65737e;">// Increment the program counter to point at the next opcode.
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.pc += </span><span style="color:#d08770;">2</span><span>;
+</span><span>    },
+</span><span>
+</span><span>    </span><span style="color:#65737e;">// ...
+</span><span>    </span><span style="color:#65737e;">// code to handle the remaining opcodes would go here
+</span><span>    </span><span style="color:#65737e;">// ...
+</span><span>    
+</span><span>    _ =&gt; {
+</span><span>        </span><span style="color:#65737e;">// This is an opcode we don&#39;t know how to handle yet
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.pc += </span><span style="color:#d08770;">2</span><span>;
+</span><span>        </span><span style="color:#65737e;">// EmulateCycleError is a custom error defined elsewhere in the code
+</span><span>        </span><span style="color:#b48ead;">let</span><span> error = EmulateCycleError { message: format!(&quot;</span><span style="color:#d08770;">{:X}</span><span style="color:#a3be8c;"> opcode not handled</span><span>&quot;, opcode) };
+</span><span>        </span><span style="color:#b48ead;">return </span><span>Err(error);
+</span><span>    }
+</span><span>}
+</span><span>
+</span></code></pre>
+<h4 id="handling-keyboard-input-in-javascript">Handling keyboard input in JavaScript</h4>
+<p>Running the emulator and communicating between JavaScript and WebAssembly is easy thanks to the Rust <a href="https://rustwasm.github.io/docs/wasm-pack/">wasm-pack</a> tool.</p>
+<p>In this case we annotate this Rust code with <code>#[wasm_bindgen]</code> so we can call it from JavaScript. Note that we are using the unsafe keyword here because CPU is a static value that we hold it's state in.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">wasm_bindgen</span><span>]
+</span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">key_down</span><span>(</span><span style="color:#bf616a;">key</span><span>: </span><span style="color:#b48ead;">u8</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">unsafe </span><span>{
+</span><span>        </span><span style="color:#d08770;">CPU</span><span>.keys[key as </span><span style="color:#b48ead;">usize</span><span>] = </span><span style="color:#d08770;">true</span><span>;
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Then in JavaScript we can call update the state of the keypad on the WebAssembly side like this:</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span>import(&quot;</span><span style="color:#a3be8c;">./crate/pkg/index.js</span><span>&quot;).</span><span style="color:#96b5b4;">then</span><span>(</span><span style="color:#bf616a;">wasm </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>  document.</span><span style="color:#96b5b4;">addEventListener</span><span>(&quot;</span><span style="color:#a3be8c;">keydown</span><span>&quot;, </span><span style="color:#bf616a;">event </span><span style="color:#b48ead;">=&gt; </span><span>{
+</span><span>    </span><span style="color:#b48ead;">let </span><span style="color:#bf616a;">keyCode </span><span>= </span><span style="color:#bf616a;">keyMap</span><span>[event.</span><span style="color:#bf616a;">key</span><span>];
+</span><span>    </span><span style="color:#b48ead;">if </span><span>(</span><span style="color:#bf616a;">keyCode </span><span>&gt;= </span><span style="color:#d08770;">0 </span><span>&amp;&amp; </span><span style="color:#bf616a;">keyCode </span><span>&lt;= </span><span style="color:#d08770;">0xf</span><span>) {
+</span><span>      </span><span style="color:#bf616a;">wasm</span><span>.</span><span style="color:#8fa1b3;">key_down</span><span>(</span><span style="color:#bf616a;">keyMap</span><span>[event.</span><span style="color:#bf616a;">key</span><span>]);
+</span><span>    }
+</span><span>  });
+</span><span>});
+</span><span>
+</span></code></pre>
+<p>The keyMap is a mapping from the user's keyboard to the hex based keypad on the CHIP-8, and looks like this:</p>
+<pre data-lang="js" style="background-color:#2b303b;color:#c0c5ce;" class="language-js "><code class="language-js" data-lang="js"><span style="color:#65737e;">// CHIP-8 Keypad    User Keyboard
+</span><span style="color:#65737e;">// +-+-+-+-+        +-+-+-+-+
+</span><span style="color:#65737e;">// |1|2|3|C|        |1|2|3|4|
+</span><span style="color:#65737e;">// +-+-+-+-+        +-+-+-+-+
+</span><span style="color:#65737e;">// |4|5|6|D|        |Q|W|E|R|
+</span><span style="color:#65737e;">// +-+-+-+-+   &lt;=   +-+-+-+-+
+</span><span style="color:#65737e;">// |7|8|9|E|        |A|S|D|F|
+</span><span style="color:#65737e;">// +-+-+-+-+        +-+-+-+-+
+</span><span style="color:#65737e;">// |A|0|B|F|        |Z|X|C|V|
+</span><span style="color:#65737e;">// +-+-+-+-+        +-+-+-+-+
+</span><span>
+</span><span style="color:#b48ead;">const </span><span style="color:#bf616a;">keyMap </span><span>= {
+</span><span>  &#39;</span><span style="color:#a3be8c;">1</span><span>&#39;: </span><span style="color:#d08770;">0x1</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">2</span><span>&#39;: </span><span style="color:#d08770;">0x2</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">3</span><span>&#39;: </span><span style="color:#d08770;">0x3</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">4</span><span>&#39;: </span><span style="color:#d08770;">0xc</span><span>,
+</span><span>
+</span><span>  &#39;</span><span style="color:#a3be8c;">q</span><span>&#39;: </span><span style="color:#d08770;">0x4</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">w</span><span>&#39;: </span><span style="color:#d08770;">0x5</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">e</span><span>&#39;: </span><span style="color:#d08770;">0x6</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">r</span><span>&#39;: </span><span style="color:#d08770;">0xd</span><span>,
+</span><span>
+</span><span>  &#39;</span><span style="color:#a3be8c;">a</span><span>&#39;: </span><span style="color:#d08770;">0x7</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">s</span><span>&#39;: </span><span style="color:#d08770;">0x8</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">d</span><span>&#39;: </span><span style="color:#d08770;">0x9</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">f</span><span>&#39;: </span><span style="color:#d08770;">0xe</span><span>,
+</span><span>
+</span><span>  &#39;</span><span style="color:#a3be8c;">z</span><span>&#39;: </span><span style="color:#d08770;">0xa</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">x</span><span>&#39;: </span><span style="color:#d08770;">0x0</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">c</span><span>&#39;: </span><span style="color:#d08770;">0xb</span><span>,
+</span><span>  &#39;</span><span style="color:#a3be8c;">v</span><span>&#39;: </span><span style="color:#d08770;">0xf</span><span>,
+</span><span>};
+</span><span>
+</span></code></pre>
+<h4 id="running-the-emulator">Running the emulator</h4>
+<p>We use <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">window.requestAnimationFrame()</a> to run 9 cycles on the cpu 60 times per second, then update the HTML canvas display and the UI. We run 9 cycles because the CHIP-8 seems to run at about 500hz, and calling 9 cycles 60 times per second gets us to 540 hZ, which is close enough for this project.</p>
+<p>Note that with <code>window.requestAnimationFrame()</code></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>The number of callbacks is usually 60 times per second
+</span><span>but will generally match the display refresh rate in most web
+</span><span>browsers as per W3C recommendation.
+</span></code></pre>
+<p>So if your monitor's refresh rate is not 60 Hz the emulator will likely run either too fast or slow. For this project it is a compromise i'm ok with, but it is something that could be improved.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

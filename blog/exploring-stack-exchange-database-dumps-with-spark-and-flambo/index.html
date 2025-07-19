@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Exploring Stack Exchange data with Clojure using Apache Spark and Flambo">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Exploring Stack Exchange data with Clojure using Apache Spark and Flambo
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/spark/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Exploring Stack Exchange data with Clojure using Apache Spark and Flambo",
+      "image": [],
+      "datePublished": "2015-07-07T00:00:00+00:00",
+      "dateModified": "2015-07-07T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Exploring Stack Exchange data with Clojure using Apache Spark and Flambo",
+          "item": "https://wtfleming.github.io/blog/exploring-stack-exchange-database-dumps-with-spark-and-flambo/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Exploring Stack Exchange data with Clojure using Apache Spark and Flambo</h1>
+    <small>
+      July 07, 2015
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/spark/">spark</a>
+          
+            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="introduction">Introduction</h1>
+<p><a href="https://spark.apache.org/">Apache Spark</a> is a is a fast and general engine for large-scale data processing (as in terabytes or larger data sets), and <a href="https://github.com/yieldbot/flambo">Flambo</a> is a Clojure DSL for working with Spark. Stack Exchange is a network of question and answer websites with a variety of topics (the most popular one being <a href="http://stackoverflow.com/">Stack Overflow</a>). They periodically provide a <a href="https://archive.org/details/stackexchange">creative commons licensed database dump</a>. We'll be using data from the <a href="http://gaming.stackexchange.com/">Stack Exchange Gaming Site</a> as a toy dataset to work with them.</p>
+<p>First we will use Spark to convert the Stack Exchange files provided in XML into <a href="https://parquet.apache.org/">Apache Parquet</a> format and then later we will use it to run some queries to find out things like which users have the highest reputation, as well as which ones like to play <a href="https://en.wikipedia.org/wiki/Dwarf_Fortress">Dwarf Fortress</a>.</p>
+<hr />
+<p>This post assumes you are using leiningen, some basic familiarity with either the Java or Scala Spark API, Spark 1.3.1 is installed in ~/bin/spark and that the March 2015 Gaming Stack Exchange Data Dump has been downloaded and extracted to ~/data/gaming-stackexchange The full code for this post is also <a href="https://github.com/wtfleming/clojure-examples/tree/master/apache-spark/flambo-gaming-stack-exchange">available on Github</a>.</p>
+<h1 id="leiningen-project">Leiningen Project</h1>
+<p>Our project.clj looks like this:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">flambo-gaming-stack-exchange </span><span>&quot;</span><span style="color:#a3be8c;">0.1.0-SNAPSHOT</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:description </span><span>&quot;</span><span style="color:#a3be8c;">Example of using Spark and Flambo</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:license </span><span>{</span><span style="color:#d08770;">:name </span><span>&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span>&quot;
+</span><span>            </span><span style="color:#d08770;">:url </span><span>&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span>&quot;}
+</span><span>  </span><span style="color:#d08770;">:profiles </span><span>{</span><span style="color:#d08770;">:uberjar </span><span>{</span><span style="color:#d08770;">:aot :all</span><span>}
+</span><span>             </span><span style="color:#d08770;">:provided </span><span>{</span><span style="color:#d08770;">:dependencies
+</span><span>                        [[org.apache.spark/spark-core_2.10 &quot;</span><span style="color:#a3be8c;">1.3.1</span><span>&quot;]]}}
+</span><span>  </span><span style="color:#d08770;">:dependencies </span><span>[[org.clojure/clojure &quot;</span><span style="color:#a3be8c;">1.7.0</span><span>&quot;]
+</span><span>                 [yieldbot/flambo &quot;</span><span style="color:#a3be8c;">0.6.0</span><span>&quot;]
+</span><span>                 [commons-codec/commons-codec &quot;</span><span style="color:#a3be8c;">1.10</span><span>&quot;]
+</span><span>                 [org.clojure/data.xml &quot;</span><span style="color:#a3be8c;">0.0.8</span><span>&quot;]
+</span><span>                 [org.apache.spark/spark-sql_2.10 &quot;</span><span style="color:#a3be8c;">1.3.1</span><span>&quot;]])
+</span></code></pre>
+<h1 id="step-1-etl-users">Step 1: ETL Users</h1>
+<p>The Stack Exchange data is provided in XML format. While it would be possible to leave it as is and load the XML into one of Spark's <a href="https://spark.apache.org/docs/1.3.1/api/java/org/apache/spark/rdd/RDD.html">Resilient Distributed Dataset (RDD)</a> when we query (this might be desirable if you are building a <a href="http://martinfowler.com/bliki/DataLake.html">data lake</a>), here we will be building a <a href="https://en.wikipedia.org/wiki/Data_mart">data mart</a> with a subset of the data, stored in Parquet format, and queried using <a href="https://spark.apache.org/docs/1.3.1/api/java/org/apache/spark/sql/DataFrame.html">Spark DataFrames</a>.</p>
+<p>We want to take a line from the Stack Exchange Users.xml file that looks something like this:</p>
+<pre data-lang="xml" style="background-color:#2b303b;color:#c0c5ce;" class="language-xml "><code class="language-xml" data-lang="xml"><span>  &lt;</span><span style="color:#bf616a;">row </span><span style="color:#d08770;">Id</span><span>=&quot;</span><span style="color:#a3be8c;">2</span><span>&quot; </span><span style="color:#d08770;">Reputation</span><span>=&quot;</span><span style="color:#a3be8c;">101</span><span>&quot; </span><span style="color:#d08770;">CreationDate</span><span>=&quot;</span><span style="color:#a3be8c;">2010-07-07T16:01:11.480</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">DisplayName</span><span>=&quot;</span><span style="color:#a3be8c;">Geoff Dalgas</span><span>&quot; </span><span style="color:#d08770;">LastAccessDate</span><span>=&quot;</span><span style="color:#a3be8c;">2015-03-06T05:00:48.087</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">WebsiteUrl</span><span>=&quot;</span><span style="color:#a3be8c;">http://stackoverflow.com</span><span>&quot; </span><span style="color:#d08770;">Location</span><span>=&quot;</span><span style="color:#a3be8c;">Corvallis, OR</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">AboutMe</span><span>=&quot;</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">lt;</span><span style="color:#a3be8c;">p</span><span style="color:#8fa1b3;">&amp;</span><span style="color:#d08770;">gt;</span><span style="color:#a3be8c;">Developer on the StackOverflow team.</span><span>&quot; </span><span style="color:#d08770;">Views</span><span>=&quot;</span><span style="color:#a3be8c;">98</span><span>&quot; </span><span style="color:#d08770;">UpVotes</span><span>=&quot;</span><span style="color:#a3be8c;">20</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">DownVotes</span><span>=&quot;</span><span style="color:#a3be8c;">1</span><span>&quot; </span><span style="color:#d08770;">Age</span><span>=&quot;</span><span style="color:#a3be8c;">38</span><span>&quot; </span><span style="color:#d08770;">AccountId</span><span>=&quot;</span><span style="color:#a3be8c;">2</span><span>&quot; /&gt;
+</span></code></pre>
+<p>And convert it into a DataFrame represented like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>| id | name         | reputation|
+</span><span>|----+--------------+-----------|
+</span><span>| 2  | Geoff Dalgas | 101       |
+</span></code></pre>
+<p>We'll use the following code:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> flambo-gaming-stack-exchange.etl-users
+</span><span>  (</span><span style="color:#d08770;">:require </span><span>[flambo.conf </span><span style="color:#d08770;">:as</span><span> conf]
+</span><span>            [flambo.api </span><span style="color:#d08770;">:as</span><span> f]
+</span><span>            [flambo.sql </span><span style="color:#d08770;">:as</span><span> sql]
+</span><span>            [clojure.data.xml </span><span style="color:#d08770;">:as</span><span> xml])
+</span><span>  (</span><span style="color:#d08770;">:import </span><span>[org.apache.spark.sql RowFactory]
+</span><span>           [org.apache.spark.sql.types StructType StructField Metadata DataTypes])
+</span><span>  (</span><span style="color:#d08770;">:gen-class</span><span>))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">build-sql-context
+</span><span>  &quot;</span><span style="color:#a3be8c;">Returns a Spark SQLContext</span><span>&quot;
+</span><span>  [app-name]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[c (</span><span style="color:#bf616a;">-&gt; </span><span>(</span><span style="color:#bf616a;">conf/spark-conf</span><span>)
+</span><span>              (</span><span style="color:#bf616a;">conf/master </span><span>&quot;</span><span style="color:#a3be8c;">local[*]</span><span>&quot;)
+</span><span>              (</span><span style="color:#bf616a;">conf/app-name</span><span> app-name))
+</span><span>        sc (</span><span style="color:#bf616a;">f/spark-context</span><span> c)]
+</span><span>    (</span><span style="color:#bf616a;">sql/sql-context</span><span> sc)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">xml-&gt;row
+</span><span>  &quot;</span><span style="color:#a3be8c;">Parse a row of user xml and return it as a Spark Row</span><span>&quot;
+</span><span>  [user-xml]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[user (</span><span style="color:#bf616a;">xml/parse-str</span><span> user-xml)
+</span><span>        {{</span><span style="color:#d08770;">:keys </span><span>[Id DisplayName Reputation]} </span><span style="color:#d08770;">:attrs</span><span>} user]
+</span><span>    [(</span><span style="color:#bf616a;">RowFactory/create </span><span>(</span><span style="color:#bf616a;">into-array</span><span> Object [(</span><span style="color:#bf616a;">Integer/parseInt</span><span> Id) DisplayName  (</span><span style="color:#bf616a;">Integer/parseInt</span><span> Reputation)]))]))
+</span><span>
+</span><span>&quot;</span><span style="color:#a3be8c;">Spark function that reads in a line of XML and potentially returns a Row</span><span>&quot;
+</span><span>(</span><span style="color:#bf616a;">f/defsparkfn</span><span> parse-user
+</span><span>  [user-xml]
+</span><span>  (</span><span style="color:#bf616a;">if </span><span>(</span><span style="color:#bf616a;">.startsWith</span><span> user-xml  &quot;</span><span style="color:#a3be8c;">  &lt;row</span><span>&quot;)
+</span><span>    (</span><span style="color:#bf616a;">xml-&gt;row</span><span> user-xml)
+</span><span>    []))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">user-schema
+</span><span>  (</span><span style="color:#bf616a;">StructType.
+</span><span>   (</span><span style="color:#bf616a;">into-array</span><span> StructField [(</span><span style="color:#bf616a;">StructField. </span><span>&quot;</span><span style="color:#a3be8c;">id</span><span>&quot; (</span><span style="color:#bf616a;">DataTypes/IntegerType</span><span>) </span><span style="color:#d08770;">true </span><span>(</span><span style="color:#bf616a;">Metadata/empty</span><span>))
+</span><span>                            (</span><span style="color:#bf616a;">StructField. </span><span>&quot;</span><span style="color:#a3be8c;">name</span><span>&quot; (</span><span style="color:#bf616a;">DataTypes/StringType</span><span>) </span><span style="color:#d08770;">true </span><span>(</span><span style="color:#bf616a;">Metadata/empty</span><span>))
+</span><span>                            (</span><span style="color:#bf616a;">StructField. </span><span>&quot;</span><span style="color:#a3be8c;">reputation</span><span>&quot; (</span><span style="color:#bf616a;">DataTypes/IntegerType</span><span>) </span><span style="color:#d08770;">true </span><span>(</span><span style="color:#bf616a;">Metadata/empty</span><span>))])))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-main </span><span>[&amp; args]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[home (</span><span style="color:#bf616a;">java.lang.System/getenv </span><span>&quot;</span><span style="color:#a3be8c;">HOME</span><span>&quot;)
+</span><span>        sql-ctx (</span><span style="color:#bf616a;">build-sql-context </span><span>&quot;</span><span style="color:#a3be8c;">ETL Users</span><span>&quot;)
+</span><span>        sc (</span><span style="color:#bf616a;">sql/spark-context</span><span> sql-ctx)
+</span><span>        xml-users (</span><span style="color:#bf616a;">f/text-file</span><span> sc (</span><span style="color:#bf616a;">str</span><span> home &quot;</span><span style="color:#a3be8c;">/data/gaming-stackexchange/Users.xml</span><span>&quot;))
+</span><span>        users (</span><span style="color:#bf616a;">f/flat-map</span><span> xml-users parse-user)
+</span><span>        users-df (</span><span style="color:#bf616a;">.createDataFrame</span><span> sql-ctx users user-schema)]
+</span><span>    (</span><span style="color:#bf616a;">.saveAsParquetFile</span><span> users-df (</span><span style="color:#bf616a;">str</span><span> home &quot;</span><span style="color:#a3be8c;">/data/gaming-stack-exchange-warehouse/users.parquet</span><span>&quot;))))
+</span></code></pre>
+<p>Now build and run. For simplicity in these examples we will run everything in local mode.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> lein uberjar
+</span><span style="color:#bf616a;">$ ~</span><span>/bin/spark/bin/spark-submit</span><span style="color:#bf616a;"> --class</span><span> flambo_gaming_stack_exchange.etl_users \
+</span><span>target/flambo-gaming-stack-exchange-0.1.0-SNAPSHOT-standalone.jar
+</span></code></pre>
+<p>You should now have a directory at ~/data/gaming-stack-exchange-warehouse/users.parquet containing the user data in Parquet format.</p>
+<h1 id="step-2-etl-posts">Step 2: ETL Posts</h1>
+<p>Next we want to load posts. This is almost identical to loading users. I'll omit most of the code here, but it is <a href="https://github.com/wtfleming/clojure-examples/blob/master/apache-spark/flambo-gaming-stack-exchange/src/flambo_gaming_stack_exchange/etl_posts.clj">available on GitHub</a>. However I will include the schema here to make following along with the queries easier.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">post-schema
+</span><span>  (</span><span style="color:#bf616a;">StructType.
+</span><span>   (</span><span style="color:#bf616a;">into-array</span><span> StructField
+</span><span>     [(</span><span style="color:#bf616a;">StructField. </span><span>&quot;</span><span style="color:#a3be8c;">ownerId</span><span>&quot; (</span><span style="color:#bf616a;">DataTypes/IntegerType</span><span>) </span><span style="color:#d08770;">true </span><span>(</span><span style="color:#bf616a;">Metadata/empty</span><span>))
+</span><span>      (</span><span style="color:#bf616a;">StructField. </span><span>&quot;</span><span style="color:#a3be8c;">postType</span><span>&quot; (</span><span style="color:#bf616a;">DataTypes/IntegerType</span><span>) </span><span style="color:#d08770;">true </span><span>(</span><span style="color:#bf616a;">Metadata/empty</span><span>))
+</span><span>      (</span><span style="color:#bf616a;">StructField. </span><span>&quot;</span><span style="color:#a3be8c;">tags</span><span>&quot; (</span><span style="color:#bf616a;">DataTypes/StringType</span><span>) </span><span style="color:#d08770;">true </span><span>(</span><span style="color:#bf616a;">Metadata/empty</span><span>))])))
+</span><span>
+</span></code></pre>
+<p>Now ETL the posts into Parquet format.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$ ~</span><span>/bin/spark/bin/spark-submit</span><span style="color:#bf616a;"> --class</span><span> flambo_gaming_stack_exchange.etl_posts \
+</span><span>target/flambo-gaming-stack-exchange-0.1.0-SNAPSHOT-standalone.jar
+</span></code></pre>
+<p>Like with the users step, you should now have a directory at ~/data/gaming-stack-exchange-warehouse/posts.parquet containing the post data in Parquet format.</p>
+<h1 id="step-3-query-the-data">Step 3: Query the data</h1>
+<p>Now lets run some queries. The code here will be broken up and be pseudo-Clojure for demonstration purposes. The code this is derived from is <a href="https://github.com/wtfleming/clojure-examples/blob/master/apache-spark/flambo-gaming-stack-exchange/src/flambo_gaming_stack_exchange/core.clj">available here at GitHub</a>. And can be run like this:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$ ~</span><span>/bin/spark/bin/spark-submit</span><span style="color:#bf616a;"> --class</span><span> flambo_gaming_stack_exchange.core \
+</span><span>target/flambo-gaming-stack-exchange-0.1.0-SNAPSHOT-standalone.jar
+</span></code></pre>
+<p>It's worth noting that the gaming site data is not particularly large, in all likelihood you'd be better off loading the files into RAM with your programming language of choice or into a relational database and querying them that way. However if the data was significantly larger (terabytes or more) you'd be able to use the exact same code and horizontally scale your data processing over a cluster of machines.</p>
+<h1 id="query-1-top-users">Query 1 - Top users</h1>
+<p>Lets find the top 10 users by reputation who have at least a 30,000 reputation score.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#d08770;">:require </span><span>[flambo.conf </span><span style="color:#d08770;">:as</span><span> conf]
+</span><span>          [flambo.api </span><span style="color:#d08770;">:as</span><span> f]
+</span><span>          [flambo.sql </span><span style="color:#d08770;">:as</span><span> sql])
+</span><span>(</span><span style="color:#d08770;">:import </span><span>[org.apache.spark.sql Column]
+</span><span>         [org.apache.commons.codec.binary Hex])
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">build-sql-context
+</span><span>  &quot;</span><span style="color:#a3be8c;">Returns a Spark SQLContext</span><span>&quot;
+</span><span>  [app-name]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[c (</span><span style="color:#bf616a;">-&gt; </span><span>(</span><span style="color:#bf616a;">conf/spark-conf</span><span>)
+</span><span>              (</span><span style="color:#bf616a;">conf/master </span><span>&quot;</span><span style="color:#a3be8c;">local[*]</span><span>&quot;)
+</span><span>              (</span><span style="color:#bf616a;">conf/app-name</span><span> app-name))
+</span><span>        sc (</span><span style="color:#bf616a;">f/spark-context</span><span> c)]
+</span><span>    (</span><span style="color:#bf616a;">sql/sql-context</span><span> sc)))
+</span><span>
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">let </span><span>[home (</span><span style="color:#bf616a;">java.lang.System/getenv </span><span>&quot;</span><span style="color:#a3be8c;">HOME</span><span>&quot;)
+</span><span>      sql-ctx (</span><span style="color:#bf616a;">build-sql-context </span><span>&quot;</span><span style="color:#a3be8c;">Stack Exchange Queries</span><span>&quot;)
+</span><span>
+</span><span>      </span><span style="color:#65737e;">;; Read in the users Parquet file
+</span><span>      users (</span><span style="color:#bf616a;">sql/parquet-file</span><span> sql-ctx (</span><span style="color:#bf616a;">string-array </span><span>(</span><span style="color:#bf616a;">str</span><span> home &quot;</span><span style="color:#a3be8c;">/data/gaming-stack-exchange-warehouse/users.parquet</span><span>&quot;)))
+</span><span>
+</span><span>      </span><span style="color:#65737e;">;; This is one way to query a DataFrame.
+</span><span>      query (</span><span style="color:#bf616a;">-&gt;</span><span> users
+</span><span>                (</span><span style="color:#bf616a;">.select </span><span>(</span><span style="color:#bf616a;">column-array </span><span>(</span><span style="color:#bf616a;">.col</span><span> users &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;) (</span><span style="color:#bf616a;">.col</span><span> users &quot;</span><span style="color:#a3be8c;">reputation</span><span>&quot;)))
+</span><span>                (</span><span style="color:#bf616a;">.filter </span><span>&quot;</span><span style="color:#a3be8c;">reputation &gt; 30000</span><span>&quot;)
+</span><span>                (</span><span style="color:#bf616a;">.orderBy </span><span>(</span><span style="color:#bf616a;">column-array </span><span>(</span><span style="color:#bf616a;">-&gt;</span><span> users
+</span><span>                                            (</span><span style="color:#bf616a;">.col </span><span>&quot;</span><span style="color:#a3be8c;">reputation</span><span>&quot;)
+</span><span>                                            (</span><span style="color:#bf616a;">.desc</span><span>))))
+</span><span>                (</span><span style="color:#bf616a;">.limit </span><span style="color:#d08770;">10</span><span>))
+</span><span>
+</span><span>      </span><span style="color:#65737e;">;; This is another way to run the same query, but to do it this way
+</span><span>      </span><span style="color:#65737e;">;; we must first register any tables we will be using.
+</span><span>      _ (</span><span style="color:#bf616a;">sql/register-temp-table</span><span> users &quot;</span><span style="color:#a3be8c;">users</span><span>&quot;)
+</span><span>      sql-query (</span><span style="color:#bf616a;">sql/sql</span><span> sql-ctx &quot;</span><span style="color:#a3be8c;">SELECT name, reputation FROM users WHERE reputation &gt; 30000 ORDER BY reputation DESC LIMIT 10</span><span>&quot;)]
+</span><span>    (</span><span style="color:#bf616a;">.show</span><span> sql-query))
+</span></code></pre>
+<p>Running either of the the above queries will output:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>name             reputation
+</span><span>Raven Dreamer    123648
+</span><span>agent86          89947
+</span><span>z  &#39;             54792
+</span><span>LessPop_MoreFizz 51582
+</span><span>kalina           41496
+</span><span>Oak              40572
+</span><span>tzenes           40458
+</span><span>StrixVaria       38108
+</span><span>badp             37688
+</span><span>fredley          35584
+</span></code></pre>
+<h1 id="query-2-top-users-names-obfuscated">Query 2 - Top users, names obfuscated</h1>
+<p>Next lets say we've been given the requirement that we need to obfuscate user names prior to displaying them. Here we will use a SHA-1 hash function and the <a href="https://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/binary/Hex.html">Apache Commons Hex encoder</a>.</p>
+<p>This is obviously not a good way to obfuscate the name and not how you would want to do it in a production environment, but for the purposes of demonstrating calling arbitrary functions in Spark it is "good enough" for this example.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">hash-string
+</span><span>  &quot;</span><span style="color:#a3be8c;">Returns a hexidecimal encoded SHA-1 hash of a string</span><span>&quot;
+</span><span>  [data]
+</span><span>  (</span><span style="color:#bf616a;">-&gt; </span><span>(</span><span style="color:#bf616a;">java.security.MessageDigest/getInstance </span><span>&quot;</span><span style="color:#a3be8c;">SHA-1</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">.digest </span><span>(</span><span style="color:#bf616a;">.getBytes</span><span> data))
+</span><span>      (</span><span style="color:#bf616a;">Hex/encodeHexString</span><span>)))
+</span><span>
+</span><span style="color:#65737e;">;; &quot;Hash name in a row with the schema [name reputation], returning a
+</span><span style="color:#65737e;">;;  vector with the name hashed.&quot;
+</span><span>(</span><span style="color:#bf616a;">f/defsparkfn</span><span> hash-name
+</span><span>  [row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[[name reputation] row
+</span><span>        hashed-name (</span><span style="color:#bf616a;">hash-string</span><span> name)]
+</span><span>    [hashed-name reputation]))
+</span><span>
+</span><span style="color:#65737e;">;; We can also turn a DataFrame to an RDD and use Flambo functions.
+</span><span style="color:#65737e;">;; Here we hash the users name prior to displaying it.
+</span><span>rdd-query (</span><span style="color:#bf616a;">-&gt;</span><span> sql-query
+</span><span>              (</span><span style="color:#bf616a;">.toJavaRDD</span><span>)
+</span><span>              (</span><span style="color:#bf616a;">f/map</span><span> sql/row-&gt;vec)
+</span><span>              (</span><span style="color:#bf616a;">f/map</span><span> hash-name)
+</span><span>              (</span><span style="color:#bf616a;">f/foreach </span><span>(</span><span style="color:#bf616a;">f/fn </span><span>[x] (</span><span style="color:#bf616a;">println</span><span> x))))
+</span><span>
+</span></code></pre>
+<p>A few things to note:</p>
+<ul>
+<li>sql-query is the DataFrame from the previous query example.</li>
+<li>We need to turn the DataFrame into a RDD.</li>
+<li>At this time not all of the Spark SQL functions are wrapped in Clojure, so we have to call the Java method .toJavaRDD directly on the DataFrame object rather than a function provided by Flambo.</li>
+<li>We need to use Flambo's defsparkfn macro to to define the function we will be using.</li>
+</ul>
+<p>Running the above code will output:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[74cfefcff37f81e278398e4de6ce6ada68e7c80e 123648]
+</span><span>[e6eaf112ecf8020e9e1d389ca1e432488bfc7476 89947]
+</span><span>[a8d6f6c81225d88c1797dfc0592935a879d3b626 54792]
+</span><span>[aaa0b19e5e4db300832368b88871e39b695693fe 51582]
+</span><span>[6109e96245bc6d375d942e1cd0d88da8c8172f4a 41496]
+</span><span>[7badddf11e798303d6321ad096d5b2b447f97293 40572]
+</span><span>[7572126b4fd86ccd3610c5280a116c51f186781f 40458]
+</span><span>[8af617f985b18b676f6d809d9b1a9615b72a187b 38108]
+</span><span>[e122e7f4d0fc01a52a909621b43e67ddab506889 37688]
+</span><span>[9f9b1f7ec647cec6f9a4477face2216a81fee0dc 35584]
+</span></code></pre>
+<h1 id="query-3-people-who-like-to-play-dwarf-fortress">Query 3 - People who like to play Dwarf Fortress</h1>
+<p>Finally lets run one more query to find out which users have created the most questions about the game <a href="https://en.wikipedia.org/wiki/Dwarf_Fortress">Dwarf Fortress</a>. In order to answer this we'll need to join users against posts and can do so like this:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span style="color:#65737e;">;; Top 10 users by number of questions asked about the
+</span><span style="color:#65737e;">;; game Dwarf Fortress.
+</span><span>(</span><span style="color:#bf616a;">let </span><span>[df-query (</span><span style="color:#bf616a;">sql/sql</span><span> sql-ctx
+</span><span>                        &quot;</span><span style="color:#a3be8c;">SELECT u.name, count(1) as cnt
+</span><span style="color:#a3be8c;">                        FROM users u, posts p
+</span><span style="color:#a3be8c;">                        WHERE p.tags LIKE &#39;%dwarf-fortress%&#39;
+</span><span style="color:#a3be8c;">                        AND u.id = p.ownerId
+</span><span style="color:#a3be8c;">                        GROUP BY u.name
+</span><span style="color:#a3be8c;">                        ORDER BY cnt DESC
+</span><span style="color:#a3be8c;">                        LIMIT 10</span><span>&quot;)]
+</span><span>  (</span><span style="color:#bf616a;">.show</span><span> df-query))
+</span></code></pre>
+<p>Running the query gives us these users and how many questions they have asked:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>name           cnt
+</span><span>antony.trupe   37
+</span><span>aslum          32
+</span><span>Anna           31
+</span><span>C. Ross        29
+</span><span>Paralytic      15
+</span><span>David Grinberg 15
+</span><span>user5781       14
+</span><span>Mechko         13
+</span><span>andronikus     10
+</span><span>Menno Gouw     9
+</span></code></pre>
+<h1 id="conclusion">Conclusion</h1>
+<p>While this post looked mostly at Spark SQL and DataFrames, support for them in Flambo is currently a bit rudimentary. It still provides access to the underlying Java objects, and the examples above demonstrated this is not a problem. I suspect more of it may get wrapped in Clojure land in future releases.</p>
+<p>Flambo seems to be currently geared more towards working with Resilient Distributed Datasets. There are a number of <a href="https://github.com/yieldbot/flambo#rdds">RDD operations</a> we didn't touch on here. I highly recommend exploring the documentation to see more of what is available.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

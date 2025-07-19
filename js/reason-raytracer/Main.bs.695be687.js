@@ -1,0 +1,1063 @@
+// modules are defined as an array
+// [ module function, map of requires ]
+//
+// map of requires is short require name -> numeric require
+//
+// anything defined in a previous bundle is accessed via the
+// orig method which is the require for previous bundles
+
+// eslint-disable-next-line no-global-assign
+parcelRequire = (function (modules, cache, entry, globalName) {
+  // Save the require from previous bundle to this closure if any
+  var previousRequire = typeof parcelRequire === 'function' && parcelRequire;
+  var nodeRequire = typeof require === 'function' && require;
+
+  function newRequire(name, jumped) {
+    if (!cache[name]) {
+      if (!modules[name]) {
+        // if we cannot find the module within our internal map or
+        // cache jump to the current global require ie. the last bundle
+        // that was added to the page.
+        var currentRequire = typeof parcelRequire === 'function' && parcelRequire;
+        if (!jumped && currentRequire) {
+          return currentRequire(name, true);
+        }
+
+        // If there are other bundles on this page the require from the
+        // previous one is saved to 'previousRequire'. Repeat this as
+        // many times as there are bundles until the module is found or
+        // we exhaust the require chain.
+        if (previousRequire) {
+          return previousRequire(name, true);
+        }
+
+        // Try the node require function if it exists.
+        if (nodeRequire && typeof name === 'string') {
+          return nodeRequire(name);
+        }
+
+        var err = new Error('Cannot find module \'' + name + '\'');
+        err.code = 'MODULE_NOT_FOUND';
+        throw err;
+      }
+
+      localRequire.resolve = resolve;
+      localRequire.cache = {};
+
+      var module = cache[name] = new newRequire.Module(name);
+
+      modules[name][0].call(module.exports, localRequire, module, module.exports, this);
+    }
+
+    return cache[name].exports;
+
+    function localRequire(x){
+      return newRequire(localRequire.resolve(x));
+    }
+
+    function resolve(x){
+      return modules[name][1][x] || x;
+    }
+  }
+
+  function Module(moduleName) {
+    this.id = moduleName;
+    this.bundle = newRequire;
+    this.exports = {};
+  }
+
+  newRequire.isParcelRequire = true;
+  newRequire.Module = Module;
+  newRequire.modules = modules;
+  newRequire.cache = cache;
+  newRequire.parent = previousRequire;
+  newRequire.register = function (id, exports) {
+    modules[id] = [function (require, module) {
+      module.exports = exports;
+    }, {}];
+  };
+
+  for (var i = 0; i < entry.length; i++) {
+    newRequire(entry[i]);
+  }
+
+  if (entry.length) {
+    // Expose entry point to Node, AMD or browser globals
+    // Based on https://github.com/ForbesLindesay/umd/blob/master/template.js
+    var mainExports = newRequire(entry[entry.length - 1]);
+
+    // CommonJS
+    if (typeof exports === "object" && typeof module !== "undefined") {
+      module.exports = mainExports;
+
+    // RequireJS
+    } else if (typeof define === "function" && define.amd) {
+     define(function () {
+       return mainExports;
+     });
+
+    // <script>
+    } else if (globalName) {
+      this[globalName] = mainExports;
+    }
+  }
+
+  // Override the current require with this new one
+  return newRequire;
+})({"oEax":[function(require,module,exports) {
+'use strict';
+
+
+var undefinedHeader = /* array */[];
+
+function some(x) {
+  if (x === undefined) {
+    var block = /* tuple */[
+      undefinedHeader,
+      0
+    ];
+    block.tag = 256;
+    return block;
+  } else if (x !== null && x[0] === undefinedHeader) {
+    var nid = x[1] + 1 | 0;
+    var block$1 = /* tuple */[
+      undefinedHeader,
+      nid
+    ];
+    block$1.tag = 256;
+    return block$1;
+  } else {
+    return x;
+  }
+}
+
+function nullable_to_opt(x) {
+  if (x === null || x === undefined) {
+    return undefined;
+  } else {
+    return some(x);
+  }
+}
+
+function undefined_to_opt(x) {
+  if (x === undefined) {
+    return undefined;
+  } else {
+    return some(x);
+  }
+}
+
+function null_to_opt(x) {
+  if (x === null) {
+    return undefined;
+  } else {
+    return some(x);
+  }
+}
+
+function valFromOption(x) {
+  if (x !== null && x[0] === undefinedHeader) {
+    var depth = x[1];
+    if (depth === 0) {
+      return undefined;
+    } else {
+      return /* tuple */[
+              undefinedHeader,
+              depth - 1 | 0
+            ];
+    }
+  } else {
+    return x;
+  }
+}
+
+function option_get(x) {
+  if (x === undefined) {
+    return undefined;
+  } else {
+    return valFromOption(x);
+  }
+}
+
+function option_get_unwrap(x) {
+  if (x === undefined) {
+    return undefined;
+  } else {
+    return valFromOption(x)[1];
+  }
+}
+
+exports.nullable_to_opt = nullable_to_opt;
+exports.undefined_to_opt = undefined_to_opt;
+exports.null_to_opt = null_to_opt;
+exports.valFromOption = valFromOption;
+exports.some = some;
+exports.option_get = option_get;
+exports.option_get_unwrap = option_get_unwrap;
+/* No side effect */
+
+},{}],"NYa0":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+function make(x, y, z) {
+  return (
+    /* record */
+    [
+    /* x */
+    x,
+    /* y */
+    y,
+    /* z */
+    z]
+  );
+}
+
+function add(vec1, vec2) {
+  return (
+    /* record */
+    [
+    /* x */
+    vec1[
+    /* x */
+    0] + vec2[
+    /* x */
+    0],
+    /* y */
+    vec1[
+    /* y */
+    1] + vec2[
+    /* y */
+    1],
+    /* z */
+    vec1[
+    /* z */
+    2] + vec2[
+    /* z */
+    2]]
+  );
+}
+
+function sub(vec1, vec2) {
+  return (
+    /* record */
+    [
+    /* x */
+    vec1[
+    /* x */
+    0] - vec2[
+    /* x */
+    0],
+    /* y */
+    vec1[
+    /* y */
+    1] - vec2[
+    /* y */
+    1],
+    /* z */
+    vec1[
+    /* z */
+    2] - vec2[
+    /* z */
+    2]]
+  );
+}
+
+function div(vec, f) {
+  return (
+    /* record */
+    [
+    /* x */
+    vec[
+    /* x */
+    0] / f,
+    /* y */
+    vec[
+    /* y */
+    1] / f,
+    /* z */
+    vec[
+    /* z */
+    2] / f]
+  );
+}
+
+function mul(vec, f) {
+  return (
+    /* record */
+    [
+    /* x */
+    vec[
+    /* x */
+    0] * f,
+    /* y */
+    vec[
+    /* y */
+    1] * f,
+    /* z */
+    vec[
+    /* z */
+    2] * f]
+  );
+}
+
+function mulVector(vec1, vec2) {
+  return (
+    /* record */
+    [
+    /* x */
+    vec1[
+    /* x */
+    0] * vec2[
+    /* x */
+    0],
+    /* y */
+    vec1[
+    /* y */
+    1] * vec2[
+    /* y */
+    1],
+    /* z */
+    vec1[
+    /* z */
+    2] * vec2[
+    /* z */
+    2]]
+  );
+}
+
+function dot(vec1, vec2) {
+  return vec1[
+  /* x */
+  0] * vec2[
+  /* x */
+  0] + vec1[
+  /* y */
+  1] * vec2[
+  /* y */
+  1] + vec1[
+  /* z */
+  2] * vec2[
+  /* z */
+  2];
+}
+
+function cross(vec1, vec2) {
+  return (
+    /* record */
+    [
+    /* x */
+    vec1[
+    /* y */
+    1] * vec2[
+    /* z */
+    2] - vec2[
+    /* y */
+    1] * vec1[
+    /* z */
+    2],
+    /* y */
+    vec1[
+    /* z */
+    2] * vec2[
+    /* x */
+    0] - vec2[
+    /* z */
+    2] * vec1[
+    /* x */
+    0],
+    /* z */
+    vec1[
+    /* x */
+    0] * vec2[
+    /* y */
+    1] - vec2[
+    /* x */
+    0] * vec1[
+    /* y */
+    1]]
+  );
+}
+
+function length(vec) {
+  return Math.sqrt(vec[
+  /* x */
+  0] * vec[
+  /* x */
+  0] + vec[
+  /* y */
+  1] * vec[
+  /* y */
+  1] + vec[
+  /* z */
+  2] * vec[
+  /* z */
+  2]);
+}
+
+function squaredLength(vec) {
+  return vec[
+  /* x */
+  0] * vec[
+  /* x */
+  0] + vec[
+  /* y */
+  1] * vec[
+  /* y */
+  1] + vec[
+  /* z */
+  2] * vec[
+  /* z */
+  2];
+}
+
+function unitVector(vec) {
+  return div(vec, length(vec));
+}
+
+exports.make = make;
+exports.add = add;
+exports.sub = sub;
+exports.div = div;
+exports.mul = mul;
+exports.mulVector = mulVector;
+exports.dot = dot;
+exports.cross = cross;
+exports.length = length;
+exports.squaredLength = squaredLength;
+exports.unitVector = unitVector;
+/* No side effect */
+},{}],"OTT/":[function(require,module,exports) {
+'use strict';
+
+
+function __(tag, block) {
+  block.tag = tag;
+  return block;
+}
+
+function record(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsRecord"), {
+              value: meta
+            });
+}
+
+function variant(meta, tag, xs) {
+  xs.tag = tag;
+  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+              value: meta
+            });
+}
+
+function simpleVariant(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsVariant"), {
+              value: meta
+            });
+}
+
+function localModule(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsLocalModule"), {
+              value: meta
+            });
+}
+
+function polyVar(meta, xs) {
+  return Object.defineProperty(xs, Symbol.for("BsPolyVar"), {
+              value: meta
+            });
+}
+
+exports.__ = __;
+exports.record = record;
+exports.variant = variant;
+exports.simpleVariant = simpleVariant;
+exports.localModule = localModule;
+exports.polyVar = polyVar;
+/* No side effect */
+
+},{}],"vbcW":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+function make(origin, direction) {
+  return (
+    /* record */
+    [
+    /* origin */
+    origin,
+    /* direction */
+    direction]
+  );
+}
+
+function pointAtParameter(ray, t) {
+  return Vec3$RayTracer.add(ray[
+  /* origin */
+  0], Vec3$RayTracer.mul(ray[
+  /* direction */
+  1], t));
+}
+
+exports.make = make;
+exports.pointAtParameter = pointAtParameter;
+/* No side effect */
+},{"./Vec3.bs.js":"NYa0"}],"M3X7":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+function make(t, p, normal, material) {
+  return (
+    /* record */
+    [
+    /* t */
+    t,
+    /* p */
+    p,
+    /* normal */
+    normal,
+    /* material */
+    material]
+  );
+}
+
+exports.make = make;
+/* No side effect */
+},{}],"ZiIR":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Ray$RayTracer = require("./Ray.bs.js");
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+var HitRecord$RayTracer = require("./HitRecord.bs.js");
+
+function make(center, radius, material) {
+  return (
+    /* record */
+    [
+    /* center */
+    center,
+    /* radius */
+    radius,
+    /* material */
+    material]
+  );
+}
+
+function hit(sphere, ray, tMin, tMax) {
+  var oc = Vec3$RayTracer.sub(ray[
+  /* origin */
+  0], sphere[
+  /* center */
+  0]);
+  var a = Vec3$RayTracer.dot(ray[
+  /* direction */
+  1], ray[
+  /* direction */
+  1]);
+  var b = Vec3$RayTracer.dot(oc, ray[
+  /* direction */
+  1]);
+  var c = Vec3$RayTracer.dot(oc, oc) - sphere[
+  /* radius */
+  1] * sphere[
+  /* radius */
+  1];
+  var discriminant = b * b - a * c;
+
+  if (discriminant > 0.0) {
+    var temp1 = (-b - Math.sqrt(discriminant)) / a;
+
+    if (temp1 < tMax && temp1 > tMin) {
+      var p = Ray$RayTracer.pointAtParameter(ray, temp1);
+      return HitRecord$RayTracer.make(temp1, p, Vec3$RayTracer.div(Vec3$RayTracer.sub(p, sphere[
+      /* center */
+      0]), sphere[
+      /* radius */
+      1]), sphere[
+      /* material */
+      2]);
+    } else {
+      var temp2 = (-b + Math.sqrt(discriminant)) / a;
+      var p$1 = Ray$RayTracer.pointAtParameter(ray, temp2);
+
+      if (temp2 < tMax && temp2 > tMin) {
+        return HitRecord$RayTracer.make(temp2, p$1, Vec3$RayTracer.div(Vec3$RayTracer.sub(p$1, sphere[
+        /* center */
+        0]), sphere[
+        /* radius */
+        1]), sphere[
+        /* material */
+        2]);
+      } else {
+        return undefined;
+      }
+    }
+  }
+}
+
+exports.make = make;
+exports.hit = hit;
+/* No side effect */
+},{"./Ray.bs.js":"vbcW","./Vec3.bs.js":"NYa0","./HitRecord.bs.js":"M3X7"}],"ApXL":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Block = require("bs-platform/lib/js/block.js");
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+var Sphere$RayTracer = require("./Sphere.bs.js");
+
+function hit(world, ray, tMin, tMax) {
+  var closestSoFar =
+  /* record */
+  [
+  /* contents */
+  tMax];
+  var _acc = undefined;
+  var _input = world[
+  /* spheres */
+  0];
+
+  while (true) {
+    var input = _input;
+    var acc = _acc;
+
+    if (input) {
+      var t = input[1];
+      var hitRec = Sphere$RayTracer.hit(input[0], ray, tMin, closestSoFar[0]);
+
+      if (hitRec !== undefined) {
+        var x = hitRec;
+        closestSoFar[0] = x[
+        /* t */
+        0];
+        _input = t;
+        _acc = x;
+        continue;
+      } else {
+        _input = t;
+        continue;
+      }
+    } else {
+      return acc;
+    }
+  }
+
+  ;
+}
+
+function makeRandomSpheres(param) {
+  var theSpheres =
+  /* [] */
+  0;
+
+  for (var a = -5; a <= 5; ++a) {
+    for (var b = -5; b <= 5; ++b) {
+      var center = Vec3$RayTracer.make(a + 0.9 + Math.random(), 0.2, b + 0.9 + Math.random());
+
+      if (Vec3$RayTracer.length(Vec3$RayTracer.sub(center, Vec3$RayTracer.make(4.0, 0.2, 0.0))) > 0.9) {
+        var chooseMat = Math.random();
+        var material = chooseMat < 0.8 ?
+        /* LambertianMaterial */
+        Block.__(0, [Vec3$RayTracer.make(Math.random() * Math.random(), Math.random() * Math.random(), Math.random() * Math.random())]) :
+        /* MetalMaterial */
+        Block.__(1, [Vec3$RayTracer.make(0.5 * (1.0 + Math.random()), 0.5 * (1.0 + Math.random()), 0.5 * (1.0 + Math.random())), 0.5 * Math.random()]);
+        var s = Sphere$RayTracer.make(center, 0.2, material);
+        theSpheres =
+        /* :: */
+        [s, theSpheres];
+      }
+    }
+  }
+
+  return theSpheres;
+}
+
+var randomSpheres = makeRandomSpheres(
+/* () */
+0);
+var spheresInScene_000 = Sphere$RayTracer.make(Vec3$RayTracer.make(0.0, -1000.0, 0.0), 1000.0,
+/* LambertianMaterial */
+Block.__(0, [Vec3$RayTracer.make(0.5, 0.5, 0.5)]));
+var spheresInScene_001 =
+/* :: */
+[Sphere$RayTracer.make(Vec3$RayTracer.make(4.0, 1.0, 0.0), 1.0,
+/* MetalMaterial */
+Block.__(1, [Vec3$RayTracer.make(0.7, 0.6, 0.5), 0.0])),
+/* :: */
+[Sphere$RayTracer.make(Vec3$RayTracer.make(0.0, 1.0, 1.5), 1.0,
+/* LambertianMaterial */
+Block.__(0, [Vec3$RayTracer.make(0.4, 0.2, 0.1)])), randomSpheres]];
+var spheresInScene =
+/* :: */
+[spheresInScene_000, spheresInScene_001];
+
+function make(param) {
+  return (
+    /* record */
+    [
+    /* spheres */
+    spheresInScene]
+  );
+}
+
+exports.hit = hit;
+exports.makeRandomSpheres = makeRandomSpheres;
+exports.randomSpheres = randomSpheres;
+exports.spheresInScene = spheresInScene;
+exports.make = make;
+/* randomSpheres Not a pure module */
+},{"bs-platform/lib/js/block.js":"OTT/","./Vec3.bs.js":"NYa0","./Sphere.bs.js":"ZiIR"}],"vY2F":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Ray$RayTracer = require("./Ray.bs.js");
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+function randomVectorInUnitDisk(param) {
+  var randomVector = function randomVector(param) {
+    return Vec3$RayTracer.sub(Vec3$RayTracer.mul(Vec3$RayTracer.make(Math.random(), Math.random(), Math.random()), 2.0), Vec3$RayTracer.make(1.0, 1.0, 0.0));
+  };
+
+  var p = randomVector(
+  /* () */
+  0);
+
+  while (Vec3$RayTracer.dot(p, p) >= 1.0) {
+    p = randomVector(
+    /* () */
+    0);
+  }
+
+  ;
+  return p;
+}
+
+function make(lookFrom, lookAt, vUp, vFov, aspect, aperture, focusDistance) {
+  var lensRadius = aperture / 2.0;
+  var theta = vFov * Math.PI / 180.0;
+  var halfHeight = Math.tan(theta / 2.0);
+  var halfWidth = aspect * halfHeight;
+  var w = Vec3$RayTracer.unitVector(Vec3$RayTracer.sub(lookFrom, lookAt));
+  var u = Vec3$RayTracer.unitVector(Vec3$RayTracer.cross(vUp, w));
+  var v = Vec3$RayTracer.cross(w, u);
+  var lowerLeftCorner = Vec3$RayTracer.sub(Vec3$RayTracer.sub(Vec3$RayTracer.sub(lookFrom, Vec3$RayTracer.mul(u, halfWidth * focusDistance)), Vec3$RayTracer.mul(v, halfHeight * focusDistance)), Vec3$RayTracer.mul(w, focusDistance));
+  var horizontal = Vec3$RayTracer.mul(u, 2.0 * halfWidth * focusDistance);
+  var vertical = Vec3$RayTracer.mul(v, 2.0 * halfHeight * focusDistance);
+  return (
+    /* record */
+    [
+    /* lowerLeftCorner */
+    lowerLeftCorner,
+    /* horizontal */
+    horizontal,
+    /* vertical */
+    vertical,
+    /* origin */
+    lookFrom,
+    /* u */
+    u,
+    /* v */
+    v,
+    /* lensRadius */
+    lensRadius]
+  );
+}
+
+function getRay(camera, s, t) {
+  var rd = Vec3$RayTracer.mul(randomVectorInUnitDisk(
+  /* () */
+  0), camera[
+  /* lensRadius */
+  6]);
+  var offset = Vec3$RayTracer.add(Vec3$RayTracer.mul(camera[
+  /* u */
+  4], rd[
+  /* x */
+  0]), Vec3$RayTracer.mul(camera[
+  /* v */
+  5], rd[
+  /* y */
+  1]));
+  var rayDirection = Vec3$RayTracer.sub(Vec3$RayTracer.sub(Vec3$RayTracer.add(Vec3$RayTracer.add(camera[
+  /* lowerLeftCorner */
+  0], Vec3$RayTracer.mul(camera[
+  /* horizontal */
+  1], s)), Vec3$RayTracer.mul(camera[
+  /* vertical */
+  2], t)), camera[
+  /* origin */
+  3]), offset);
+  return Ray$RayTracer.make(Vec3$RayTracer.add(camera[
+  /* origin */
+  3], offset), rayDirection);
+}
+
+exports.randomVectorInUnitDisk = randomVectorInUnitDisk;
+exports.make = make;
+exports.getRay = getRay;
+/* No side effect */
+},{"./Ray.bs.js":"vbcW","./Vec3.bs.js":"NYa0"}],"vkk9":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+function rgbString(r, g, b) {
+  return "rgb(" + (String(r) + ("," + (String(g) + ("," + (String(b) + ")")))));
+}
+
+function drawPixel(t, x, y, r, g, b) {
+  t.fillStyle = rgbString(r, g, b);
+  t.fillRect(x, y, 1, 1);
+  return (
+    /* () */
+    0
+  );
+}
+
+var Context =
+/* module */
+[
+/* rgbString */
+rgbString,
+/* drawPixel */
+drawPixel];
+var Canvas =
+/* module */
+[];
+var Document =
+/* module */
+[];
+exports.Context = Context;
+exports.Canvas = Canvas;
+exports.Document = Document;
+/* No side effect */
+},{}],"E/Du":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+function randomVectorInUnitSphere(param) {
+  var randomVector = function randomVector(param) {
+    return Vec3$RayTracer.sub(Vec3$RayTracer.mul(Vec3$RayTracer.make(Math.random(), Math.random(), Math.random()), 2.0), Vec3$RayTracer.make(1.0, 1.0, 1.0));
+  };
+
+  var p = randomVector(
+  /* () */
+  0);
+
+  while (Vec3$RayTracer.squaredLength(p) >= 1.0) {
+    p = randomVector(
+    /* () */
+    0);
+  }
+
+  ;
+  return p;
+}
+
+exports.randomVectorInUnitSphere = randomVectorInUnitSphere;
+/* No side effect */
+},{"./Vec3.bs.js":"NYa0"}],"y8dT":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Ray$RayTracer = require("./Ray.bs.js");
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+var SphereUtils$RayTracer = require("./SphereUtils.bs.js");
+
+function reflect(v, n) {
+  var a = Vec3$RayTracer.mul(n, Vec3$RayTracer.dot(v, n) * 2.0);
+  return Vec3$RayTracer.sub(v, a);
+}
+
+function scatter(rayIn, hitNormal, hitP, albedo, fuzziness) {
+  var match = fuzziness > 1.0;
+  var fuzz = match ? 1.0 : fuzziness;
+  var reflected = reflect(Vec3$RayTracer.unitVector(rayIn[
+  /* direction */
+  1]), hitNormal);
+  var scattered = Ray$RayTracer.make(hitP, Vec3$RayTracer.add(reflected, Vec3$RayTracer.mul(SphereUtils$RayTracer.randomVectorInUnitSphere(
+  /* () */
+  0), fuzz)));
+
+  if (Vec3$RayTracer.dot(scattered[
+  /* direction */
+  1], hitNormal) > 0.0) {
+    return (
+      /* tuple */
+      [albedo, scattered]
+    );
+  }
+}
+
+exports.reflect = reflect;
+exports.scatter = scatter;
+/* No side effect */
+},{"./Ray.bs.js":"vbcW","./Vec3.bs.js":"NYa0","./SphereUtils.bs.js":"E/Du"}],"yXTQ":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Ray$RayTracer = require("./Ray.bs.js");
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+var SphereUtils$RayTracer = require("./SphereUtils.bs.js");
+
+function scatter(_rayIn, hitNormal, hitP, albedo) {
+  var target = Vec3$RayTracer.add(Vec3$RayTracer.add(hitP, hitNormal), SphereUtils$RayTracer.randomVectorInUnitSphere(
+  /* () */
+  0));
+  var scattered = Ray$RayTracer.make(hitP, Vec3$RayTracer.sub(target, hitP));
+  return (
+    /* tuple */
+    [albedo, scattered]
+  );
+}
+
+exports.scatter = scatter;
+/* No side effect */
+},{"./Ray.bs.js":"vbcW","./Vec3.bs.js":"NYa0","./SphereUtils.bs.js":"E/Du"}],"kHAo":[function(require,module,exports) {
+// Generated by BUCKLESCRIPT VERSION 4.0.7, PLEASE EDIT WITH CARE
+'use strict';
+
+var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
+
+var Vec3$RayTracer = require("./Vec3.bs.js");
+
+var World$RayTracer = require("./World.bs.js");
+
+var Camera$RayTracer = require("./Camera.bs.js");
+
+var DomUtils$RayTracer = require("./DomUtils.bs.js");
+
+var MetalMaterial$RayTracer = require("./MetalMaterial.bs.js");
+
+var LambertianMaterial$RayTracer = require("./LambertianMaterial.bs.js");
+
+var canvas = document.getElementById("demo");
+var ctx = canvas.getContext("2d");
+var width = canvas.width;
+var height = canvas.height;
+
+function backgroundColor(ray) {
+  var unitDirection = Vec3$RayTracer.unitVector(ray[
+  /* direction */
+  1]);
+  var t = (unitDirection[
+  /* y */
+  1] + 1.0) * 0.5;
+  return Vec3$RayTracer.add(Vec3$RayTracer.mul(Vec3$RayTracer.make(1.0, 1.0, 1.0), 1.0 - t), Vec3$RayTracer.mul(Vec3$RayTracer.make(0.5, 0.7, 1.0), t));
+}
+
+function color(ray, world, depth) {
+  var hitRecordOption = World$RayTracer.hit(world, ray, 0.001, Number.MAX_VALUE);
+
+  if (hitRecordOption !== undefined) {
+    var hitRecord = hitRecordOption;
+
+    if (depth < 50) {
+      var match = hitRecord[
+      /* material */
+      3];
+      var result;
+      result = match.tag ? MetalMaterial$RayTracer.scatter(ray, hitRecord[
+      /* normal */
+      2], hitRecord[
+      /* p */
+      1], match[0], match[1]) : LambertianMaterial$RayTracer.scatter(ray, hitRecord[
+      /* normal */
+      2], hitRecord[
+      /* p */
+      1], match[0]);
+
+      if (result !== undefined) {
+        var match$1 = result;
+        return Vec3$RayTracer.mulVector(match$1[0], color(match$1[1], world, depth + 1 | 0));
+      } else {
+        return Vec3$RayTracer.make(0.0, 0.0, 0.0);
+      }
+    } else {
+      return Vec3$RayTracer.make(0.0, 0.0, 0.0);
+    }
+  } else {
+    return backgroundColor(ray);
+  }
+}
+
+function drawScene($$event) {
+  var world = World$RayTracer.make(
+  /* () */
+  0);
+  var lookFrom = Vec3$RayTracer.make(13.0, 2.0, 3.0);
+  var lookAt = Vec3$RayTracer.make(0.0, 0.0, 0.0);
+  var camera = Camera$RayTracer.make(lookFrom, lookAt, Vec3$RayTracer.make(0.0, 1.0, 0.0), 20.0, width / height, 0.1, 10.0);
+
+  for (var y = height - 1 | 0; y >= 0; --y) {
+    for (var x = 0, x_finish = width - 1 | 0; x <= x_finish; ++x) {
+      var col = Vec3$RayTracer.make(0.0, 0.0, 0.0);
+
+      for (var _for = 0; _for <= 24; ++_for) {
+        var u = (x + Math.random()) / width;
+        var v = (y + Math.random()) / height;
+        var ray = Camera$RayTracer.getRay(camera, u, v);
+        col = Vec3$RayTracer.add(col, color(ray, world, 0));
+      }
+
+      col = Vec3$RayTracer.div(col, 25);
+      col = Vec3$RayTracer.make(Math.sqrt(col[
+      /* x */
+      0]), Math.sqrt(col[
+      /* y */
+      1]), Math.sqrt(col[
+      /* z */
+      2]));
+      var ir = 255.99 * col[
+      /* x */
+      0] | 0;
+      var ig = 255.99 * col[
+      /* y */
+      1] | 0;
+      var ib = 255.99 * col[
+      /* z */
+      2] | 0;
+      DomUtils$RayTracer.Context[
+      /* drawPixel */
+      1](ctx, x, height - y | 0, ir, ig, ib);
+    }
+  }
+
+  var target = $$event.currentTarget;
+  target.setAttribute("disabled", "disabled");
+  return (
+    /* () */
+    0
+  );
+}
+
+var calcButton = document.getElementById("calculate");
+
+if (!(calcButton == null)) {
+  calcButton.addEventListener("click", drawScene);
+}
+
+var calcButton$1 = calcButton == null ? undefined : Js_primitive.some(calcButton);
+exports.canvas = canvas;
+exports.ctx = ctx;
+exports.width = width;
+exports.height = height;
+exports.backgroundColor = backgroundColor;
+exports.color = color;
+exports.drawScene = drawScene;
+exports.calcButton = calcButton$1;
+/* canvas Not a pure module */
+},{"bs-platform/lib/js/js_primitive.js":"oEax","./Vec3.bs.js":"NYa0","./World.bs.js":"ApXL","./Camera.bs.js":"vY2F","./DomUtils.bs.js":"vkk9","./MetalMaterial.bs.js":"y8dT","./LambertianMaterial.bs.js":"yXTQ"}]},{},["kHAo"], null)
+//# sourceMappingURL=Main.bs.695be687.map

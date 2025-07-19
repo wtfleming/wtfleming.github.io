@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+     
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;rust-benchmarking&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;billion-row-challenge-clojure&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojurescript-pong&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-aws-lambda&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;pytorch-cats-vs-dogs-part-3&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;chip8-webassembly-rust&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-webassembly-rust&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-cats-vs-dogs-part-2&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-cats-vs-dogs-part-1&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-mnist&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-with-reason&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;reason-html-canvas-tilemap&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;geospatial-app-elixir-postgis-phoenix&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;getting-started-opengl-elixir&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;erlang-cluster-elxir-raspberry-pi-beaglebone&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-raspberry-pi&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-beaglebone&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;apache-commons-daemon-component-clojure&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;exploring-stack-exchange-database-dumps-with-spark-and-flambo&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;adventures-with-core-async-part-two-parking-timeouts-alt&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;adventures-with-core-async-part-one-channels-messages&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;d3-force-directed-graph&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;kafka-clojure-producer-consumer&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;run-dockerized-clojure-app-on-coreos&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;dockerize-clojure-compojure-http-kit-web-application&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;elasticsearch-polygon&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-4-digital-input-clojurescript&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-3-blink-led-clojurescript&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-2-blink-led-clojure&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-1-install-java-leiningen&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;msp430-blink&#x2F;" />
+  
+    <link rel="prerender" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;cascalog-stack-exchange&#x2F;" />
+  
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <h2 id="blog">Blog</h2>
+
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;rust-benchmarking&#x2F;">Rust benchmarking with Criterion</a></h3>
+    <small>
+      July 03, 2024 - 624 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        I was recently looking into benchmarking some Rust code and thought I would write up how to do so with the criterion library. Code for this post is available here at GitHub.
+For this toy example we&#x27;ll be writing code to determine the distance between 2 points. This is relatively easy to do with the …
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;rust-benchmarking&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;billion-row-challenge-clojure&#x2F;">Clojure Performace and the Billion Row Challenge</a></h3>
+    <small>
+      January 21, 2024 - 1228 words - 7 mins
+    </small>
+    <div class="summary">
+      
+        I recently discovered The One Billion Row Challenge and thought i&#x27;d give it a shot using Clojure. TLDR: the solution I ended up with is ~41% faster than the Java baseline provided by the challenge.
+The problem is described as:
+
+Write a Java program for retrieving temperature measurement values from …
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;billion-row-challenge-clojure&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojurescript-pong&#x2F;">Pong in ClojureScript</a></h3>
+    <small>
+      April 23, 2022 - 125 words - 1 mins
+    </small>
+    <div class="summary">
+      
+        Click to start!
+
+ 
+I&#x27;m working predominantly with Clojure at work these days, but I wanted to spend some time with ClojureScript, so I figured making a pong clone would be a fun weekend project.
+
+Every time the ball hits a paddle it increases in speed and it&#x27;s direction is set to a randomized unit v…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojurescript-pong&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-aws-lambda&#x2F;">Create a Clojure AWS Lambda function in Docker and deployed via AWS SAM</a></h3>
+    <small>
+      October 17, 2021 - 626 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        In this post I will cover using Clojure to write an AWS Lambda function that will run on a schedule of once per minute. It will be deployed via the AMS SAM CLI tool and use the Docker runtime. The complete code is available at this GitHub repo.
+I&#x27;ll start with a simple Lambda function that just writ…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-aws-lambda&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;pytorch-cats-vs-dogs-part-3&#x2F;">Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models</a></h3>
+    <small>
+      April 12, 2020 - 683 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        In 2014 Kaggle ran a competition to determine if images contained a dog or a cat. In this series of posts we&#x27;ll see how easy it is to use Keras to create a 2D convolutional neural network that potentially could have won the contest.
+In part 1 we used Keras to define a neural network architecture fro…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;pytorch-cats-vs-dogs-part-3&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;chip8-webassembly-rust&#x2F;">CHIP-8 emulator in WebAssembly using Rust</a></h3>
+    <small>
+      January 26, 2020 - 662 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        Lately I have been working on an emulator for the CHIP-8 that can compile to WebAssembly using Rust. The source code is available on GitHub. And you can play a game of pong here.
+
+I&#x27;ve always wanted to write an emulator for an older hardware like the Nintendo Entertainment System or Game Boy Advance…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;chip8-webassembly-rust&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-webassembly-rust&#x2F;">Ray Tracing with Rust and WebAssembly</a></h3>
+    <small>
+      January 17, 2020 - 369 words - 2 mins
+    </small>
+    <div class="summary">
+      
+        
+I have been working through the book The Ray Tracer Challenge: A Test-Driven Guide to Your First 3D Renderer by Jamis Buck. It is a fantastic book, there is almost no code (other than a little bit of pseudocode), instead there is an explanation of how to build a Whitted ray tracer and a large numbe…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-webassembly-rust&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-cats-vs-dogs-part-2&#x2F;">Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning</a></h3>
+    <small>
+      May 12, 2019 - 881 words - 5 mins
+    </small>
+    <div class="summary">
+      
+        In 2014 Kaggle ran a competition to determine if images contained a dog or a cat. In this series of posts we&#x27;ll see how easy it is to use Keras to create a 2D convolutional neural network that potentially could have won the contest.
+
+In this post we&#x27;ll see how we can fine tune a network pretrained o…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-cats-vs-dogs-part-2&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-cats-vs-dogs-part-1&#x2F;">Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning</a></h3>
+    <small>
+      May 07, 2019 - 859 words - 5 mins
+    </small>
+    <div class="summary">
+      
+        In 2014 Kaggle ran a competition to determine if images contained a dog or a cat. In this series of posts we&#x27;ll see how easy it is to use Keras to create a 2D convolutional neural network that potentially could have won the contest.
+We will start with a basic neural network that is 84% accurate at p…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-cats-vs-dogs-part-1&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-mnist&#x2F;">MNIST Image Classification using Deep Learning and Keras</a></h3>
+    <small>
+      April 21, 2019 - 531 words - 3 mins
+    </small>
+    <div class="summary">
+      
+        In this post we&#x27;ll use Keras to build the hello world of machine learning, classify a number in an image from the MNIST database of handwritten digits, and achieve ~99% classification accuracy using a convolutional neural network.
+Much of this is inspired by the book Deep Learning with Python by Fra…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;keras-mnist&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-with-reason&#x2F;">Ray Tracing in the Browser using ReasonML</a></h3>
+    <small>
+      November 23, 2018 - 150 words - 1 mins
+    </small>
+    <div class="summary">
+      
+        
+I was reading Peter Shirley&#x27;s little book Ray Tracing in One Weekend which provides code in C and for fun wanted to try to implement it in Reason. Source code is available here.
+Above is a pregenerated image, but you can click the button below to generate a smaller lower quality picture on demand (…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;raytracing-with-reason&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;reason-html-canvas-tilemap&#x2F;">Drawing Tilemaps on an HTML Canvas with ReasonML</a></h3>
+    <small>
+      June 17, 2018 - 390 words - 2 mins
+    </small>
+    <div class="summary">
+      
+         
+I was curious about using Reason to draw 2D tilemaps in the browser using a Canvas element. If you need an overview of tiles, tilemaps, etc. there is a great introduction over at developer.mozilla.org.
+We will end up drawing this level of what could be a roguelike game, with an adventurer, monster…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;reason-html-canvas-tilemap&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;geospatial-app-elixir-postgis-phoenix&#x2F;">Exploring Geospatial data in Elixir with Phoenix, D3, and PostGIS</a></h3>
+    <small>
+      January 28, 2016 - 1097 words - 6 mins
+    </small>
+    <div class="summary">
+      
+        I noticed that Kaggle has started hosting some publicly available datasets. One of which is Ocean Ship Logbooks (1750-1850). I thought it would be interesting to visualize Captain Cook&#x27;s travels on the HMS Endeavour using the Phoenix Web Framework, the D3 JavaScript library, and PostGIS.
+Source code…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;geospatial-app-elixir-postgis-phoenix&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;getting-started-opengl-elixir&#x2F;">Getting started with OpenGL in Elixir</a></h3>
+    <small>
+      January 03, 2016 - 295 words - 2 mins
+    </small>
+    <div class="summary">
+      
+        I was curious about using OpenGL with Elixir and couldn&#x27;t find much very information. Other than a kludge for working with constants defined in Erlang .hrl files it turned out to be not too difficult.
+The final result draws a triangle on the screen and looks like this:
+
+wxWidgets and Erlang
+Erlang&#x2F;O…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;getting-started-opengl-elixir&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;erlang-cluster-elxir-raspberry-pi-beaglebone&#x2F;">Erlang clustering on the Raspberry Pi and BeagleBone with Elixir</a></h3>
+    <small>
+      December 11, 2015 - 452 words - 3 mins
+    </small>
+    <div class="summary">
+      
+        I have been looking at Elixir&#x2F;Erlang clustering with credit card sized computers and using the Phoenix web framework to communicate from the cluster to an Android tablet in realtime.
+I am pleasantly surprised at how easy it has been and how little code I had to write for this demo.
+
+In the above vid…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;erlang-cluster-elxir-raspberry-pi-beaglebone&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-raspberry-pi&#x2F;">Elixir on the Raspberry Pi - Blinking an LED</a></h3>
+    <small>
+      December 10, 2015 - 687 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        In this post we will see how to run the &quot;Hello, World&quot; of embedded devices, blinking an LED on a breadboard. We will be using the Elixir programming language and a Raspberry Pi.
+I have also written up similar instructions for the BeagleBone Black.
+The final result will look like this:
+
+Elixir progra…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-raspberry-pi&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-beaglebone&#x2F;">Elixir on the BeagleBone Black - Blinking an LED</a></h3>
+    <small>
+      December 09, 2015 - 690 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        In this post we will see how to run the &quot;Hello, World&quot; of embedded devices, blinking an LED on a breadboard. We will be using the Elixir programming language and a BeagleBone Black.
+I have also written up similar instructions for the Raspberry Pi.
+The final result will look like this:
+
+Elixir progra…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;embedded-elixir-beaglebone&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;apache-commons-daemon-component-clojure&#x2F;">Creating an Apache Commons Daemon using Component with Clojure</a></h3>
+    <small>
+      October 29, 2015 - 556 words - 3 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+One way to write a long running server application that runs on the JVM with proper start&#x2F;stop semantics is to the the Apache Commons Daemon. In this post we&#x27;ll see how we can do so in Clojure and also use the Component framework to structure our application.
+The full source for this po…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;apache-commons-daemon-component-clojure&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;exploring-stack-exchange-database-dumps-with-spark-and-flambo&#x2F;">Exploring Stack Exchange data with Clojure using Apache Spark and Flambo</a></h3>
+    <small>
+      July 07, 2015 - 1061 words - 6 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+Apache Spark is a is a fast and general engine for large-scale data processing (as in terabytes or larger data sets), and Flambo is a Clojure DSL for working with Spark. Stack Exchange is a network of question and answer websites with a variety of topics (the most popular one being Stac…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;exploring-stack-exchange-database-dumps-with-spark-and-flambo&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;adventures-with-core-async-part-two-parking-timeouts-alt&#x2F;">Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!</a></h3>
+    <small>
+      May 27, 2015 - 600 words - 3 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+
+In part 1 of this series we looked at the basics of core.async via channels and messages.
+In part 2 we will explore timeouts and working with multiple channels using examples of calling out to web APIs.
+
+We will be using the example of a web site that wants to display weather informati…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;adventures-with-core-async-part-two-parking-timeouts-alt&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;adventures-with-core-async-part-one-channels-messages&#x2F;">Adventures in Clojure with core.async - Part 1 - Channels and Messages</a></h3>
+    <small>
+      April 15, 2015 - 877 words - 5 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+
+In part 1 of this series we will look at the basics of core.async via channels and messages.
+In part 2 we explore timeouts and working with multiple channels using examples of calling out to web APIs.
+
+core.async is a Clojure&#x2F;ClojureScript library to facilitate asynchronous programming…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;adventures-with-core-async-part-one-channels-messages&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;d3-force-directed-graph&#x2F;">Visualizing Twitter Connections with D3 and ClojureScript</a></h3>
+    <small>
+      February 19, 2015 - 255 words - 2 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+I was curious about the connections between some of the people I follow on Twitter and wanted to try visualizing it using D3 and ClojureScript using a force directed graph. The end result looks like this:
+
+ 
+
+force_directed_graph.core.main(&#x27;&#x2F;js&#x2F;d3-force-directed-graph.json&#x27;);
+
+Not a lot…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;d3-force-directed-graph&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;kafka-clojure-producer-consumer&#x2F;">Writing a Kafka Producer and High Level Consumer in Clojure</a></h3>
+    <small>
+      January 14, 2015 - 438 words - 3 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+Kafka is a platform for handling real-time data feeds. In some ways it is like a database that exposes semantics of a messaging system.
+The Kafka documentation provides an excellent overview which I have provided an extract from:
+Kafka is a distributed, partitioned, replicated commit lo…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;kafka-clojure-producer-consumer&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;run-dockerized-clojure-app-on-coreos&#x2F;">Running a Dockerized Clojure Web App on CoreOS</a></h3>
+    <small>
+      December 06, 2014 - 1233 words - 7 mins
+    </small>
+    <div class="summary">
+      
+        Introduction
+In the previous post we created a Clojure web service and ran it in a Docker container. Here we will deploy that container on a 3 node CoreOS cluster running in Vagrant on a local development machine.
+CoreOS
+CoreOS is a minimal version of Linux meant for large scale server deployments.
+…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;run-dockerized-clojure-app-on-coreos&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;dockerize-clojure-compojure-http-kit-web-application&#x2F;">Dockerizing a Clojure, Compojure, and HTTP Kit Web Application</a></h3>
+    <small>
+      November 29, 2014 - 400 words - 2 mins
+    </small>
+    <div class="summary">
+      
+        Docker is &quot;an open platform for developers and sysadmins to build, ship, and run distributed applications. With Docker, developers can build any app in any language using any toolchain. Dockerized apps are completely portable and can run anywhere - colleagues’ OS X and Windows laptops, QA servers ru…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;dockerize-clojure-compojure-http-kit-web-application&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;elasticsearch-polygon&#x2F;">Geospatial queries with elasticsearch</a></h3>
+    <small>
+      October 24, 2014 - 144 words - 1 mins
+    </small>
+    <div class="summary">
+      
+        Recently I was investigating the geospatial capabilities of elasticsearch for a project (in this case I am using version 1.3.4). While I ultimately ended up not using it for this project I thought I would write up an example using the command line.
+
+Create a mapping
+First we need to create a mapping…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;elasticsearch-polygon&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-4-digital-input-clojurescript&#x2F;">Clojure on the BeagleBone part 4 - Digital Input with ClojureScript</a></h3>
+    <small>
+      October 23, 2014 - 619 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        Intro
+
+In part 1 of this series we saw how to install Java and Leiningen on a BeagleBone.
+In part 2 we used the BeagleBone to blink an LED on a breadboard using Clojure.
+In part 3 we blinked an LED using ClojureScript.
+In part 4 we read digital inputs via polling and interrupts.
+
+The BeagleBone is a…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-4-digital-input-clojurescript&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-3-blink-led-clojurescript&#x2F;">Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript</a></h3>
+    <small>
+      July 14, 2014 - 476 words - 3 mins
+    </small>
+    <div class="summary">
+      
+        Intro
+
+In part 1 of this series we saw how to install Java and Leiningen on a BeagleBone.
+In part 2 we used the BeagleBone to blink an LED on a breadboard using Clojure.
+In part 3 we will blink an LED using ClojureScript.
+In part 4 we will read digital inputs via polling and interrupts.
+
+The BeagleB…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-3-blink-led-clojurescript&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-2-blink-led-clojure&#x2F;">Clojure on the BeagleBone part 2 - Blinking an LED with Clojure</a></h3>
+    <small>
+      May 25, 2014 - 329 words - 2 mins
+    </small>
+    <div class="summary">
+      
+        Intro
+
+In part 1 of this series we saw how to install Java and Leiningen on a BeagleBone.
+In part 2 we use the BeagleBone to blink an LED on a breadboard using Clojure.
+In part 3 we will blink an LED using ClojureScript.
+In part 4 we will read digital inputs via polling and interrupts.
+
+This is insp…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-2-blink-led-clojure&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-1-install-java-leiningen&#x2F;">Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24</a></h3>
+    <small>
+      May 24, 2014 - 353 words - 2 mins
+    </small>
+    <div class="summary">
+      
+        Intro
+
+In part 1 of this series we see how to install Java and Leiningen on a BeagleBone.
+In part 2 we use the BeagleBone to blink an LED on a breadboard using Clojure.
+In part 3 we will blink an LED using ClojureScript.
+In part 4 we will read digital inputs via polling and interrupts.
+
+The BeagleBo…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;clojure-beaglebone-part-1-install-java-leiningen&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;msp430-blink&#x2F;">Blinking an LED with the MSP430</a></h3>
+    <small>
+      November 06, 2013 - 110 words - 1 mins
+    </small>
+    <div class="summary">
+      
+        
+I recently bought a MSP430 Launchpad from Texas Instruments. The MSP430 is a family of low power, low cost microcontrollers. To make sure my development environment was setup correctly I wanted to start with one of the simplest things to do, blink a LED.
+
+I have a wire connected to P1.0, another co…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;msp430-blink&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="post-preview">
+    <h3 class="post-title"><a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;cascalog-stack-exchange&#x2F;">Querying Stack Exchange database dumps with Cascalog</a></h3>
+    <small>
+      August 11, 2013 - 726 words - 4 mins
+    </small>
+    <div class="summary">
+      
+        
+Cascalog is a fully-featured data processing and querying library for Clojure. The main use cases for Cascalog are processing Big Data on top of Hadoop or doing analysis on your local computer from the Clojure REPL. Cascalog is a replacement for tools like Pig, Hive, and Cascading.
+
+We will use Cas…
+      <a href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;blog&#x2F;cascalog-stack-exchange&#x2F;">read more</a>
+    </div>
+  </div>
+
+  
+
+    </main>
+  </body>
+</html>

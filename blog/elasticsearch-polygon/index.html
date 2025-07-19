@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Geospatial queries with elasticsearch">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Geospatial queries with elasticsearch
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/elasticsearch/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Geospatial queries with elasticsearch",
+      "image": [],
+      "datePublished": "2014-10-24T00:00:00+00:00",
+      "dateModified": "2014-10-24T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Geospatial queries with elasticsearch",
+          "item": "https://wtfleming.github.io/blog/elasticsearch-polygon/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Geospatial queries with elasticsearch</h1>
+    <small>
+      October 24, 2014
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/elasticsearch/">elasticsearch</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>Recently I was investigating the geospatial capabilities of <a href="http://www.elasticsearch.org/">elasticsearch</a> for a project (in this case I am using version 1.3.4). While I ultimately ended up not using it for this project I thought I would write up an example using the command line.</p>
+<hr />
+<h1 id="create-a-mapping">Create a mapping</h1>
+<p>First we need to create a mapping for the geotest index. A mapping allows us to tell elasticsearch how an index is structured. In this case we expect our documents to have two fields: a user identifier, and a location (in this case we are using a 2 dimensional point to represent lat/lon).</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">curl -XPUT</span><span> http://localhost:9200/geotest</span><span style="color:#bf616a;"> -d </span><span>&#39;
+</span><span style="color:#a3be8c;">{
+</span><span style="color:#a3be8c;">    &quot;mappings&quot;: {
+</span><span style="color:#a3be8c;">        &quot;usergeo&quot;: {
+</span><span style="color:#a3be8c;">            &quot;properties&quot;: {
+</span><span style="color:#a3be8c;">                &quot;udid&quot;: {&quot;type&quot;: &quot;string&quot;},
+</span><span style="color:#a3be8c;">                &quot;location&quot;: {&quot;type&quot;: &quot;geo_point&quot;}
+</span><span style="color:#a3be8c;">            }
+</span><span style="color:#a3be8c;">        }
+</span><span style="color:#a3be8c;">    }
+</span><span style="color:#a3be8c;">}
+</span><span>&#39;
+</span></code></pre>
+<h1 id="add-users-to-the-index">Add users to the index</h1>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">curl -XPOST </span><span>&#39;</span><span style="color:#a3be8c;">http://localhost:9200/geotest/usergeo</span><span>&#39;</span><span style="color:#bf616a;"> -d </span><span>&#39;
+</span><span style="color:#a3be8c;">{
+</span><span style="color:#a3be8c;">    &quot;udid&quot; : &quot;foo-udid&quot;,
+</span><span style="color:#a3be8c;">    &quot;location&quot;: {&quot;lat&quot;: &quot;38.897676&quot;, &quot;lon&quot;: &quot;-77.03653&quot;}
+</span><span style="color:#a3be8c;">}
+</span><span>&#39;
+</span><span style="color:#bf616a;">curl -XPOST </span><span>&#39;</span><span style="color:#a3be8c;">http://localhost:9200/geotest/usergeo</span><span>&#39;</span><span style="color:#bf616a;"> -d </span><span>&#39;
+</span><span style="color:#a3be8c;">{
+</span><span style="color:#a3be8c;">    &quot;udid&quot; : &quot;bar-udid&quot;,
+</span><span style="color:#a3be8c;">    &quot;location&quot;: {&quot;lat&quot;: &quot;28.897676&quot;, &quot;lon&quot;: &quot;-81.03653&quot;}
+</span><span style="color:#a3be8c;">}
+</span><span>&#39;
+</span></code></pre>
+<h1 id="run-a-query">Run a query</h1>
+<p>Find all users located within a polygon.</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">curl -XGET </span><span>&#39;</span><span style="color:#a3be8c;">http://localhost:9200/geotest/usergeo/_search?pretty=true</span><span>&#39;</span><span style="color:#bf616a;"> -d </span><span>&#39;
+</span><span style="color:#a3be8c;">{
+</span><span style="color:#a3be8c;">  &quot;query&quot;: {
+</span><span style="color:#a3be8c;">    &quot;filtered&quot; : {
+</span><span style="color:#a3be8c;">        &quot;query&quot; : {
+</span><span style="color:#a3be8c;">            &quot;match_all&quot; : {}
+</span><span style="color:#a3be8c;">        },
+</span><span style="color:#a3be8c;">       &quot;filter&quot; : {
+</span><span style="color:#a3be8c;">            &quot;geo_polygon&quot; : {
+</span><span style="color:#a3be8c;">                &quot;location&quot; : {
+</span><span style="color:#a3be8c;">                    &quot;points&quot; : [
+</span><span style="color:#a3be8c;">                        {&quot;lat&quot; : 30, &quot;lon&quot; : -70},
+</span><span style="color:#a3be8c;">                        {&quot;lat&quot; : 30, &quot;lon&quot; : -80},
+</span><span style="color:#a3be8c;">                        {&quot;lat&quot; : 40, &quot;lon&quot; : -80},
+</span><span style="color:#a3be8c;">                        {&quot;lat&quot; : 40, &quot;lon&quot; : -70}
+</span><span style="color:#a3be8c;">                    ]
+</span><span style="color:#a3be8c;">                }
+</span><span style="color:#a3be8c;">            }
+</span><span style="color:#a3be8c;">        }
+</span><span style="color:#a3be8c;">    }
+</span><span style="color:#a3be8c;">  }
+</span><span style="color:#a3be8c;">}
+</span><span>&#39;
+</span></code></pre>
+<p>You should see output similar to the following. As you can see, elasticsearch only returned the one user that was within the polygon.</p>
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">took</span><span>&quot; : </span><span style="color:#d08770;">4</span><span>,
+</span><span>  &quot;</span><span style="color:#a3be8c;">timed_out</span><span>&quot; : </span><span style="color:#d08770;">false</span><span>,
+</span><span>  &quot;</span><span style="color:#a3be8c;">_shards</span><span>&quot; : {
+</span><span>    &quot;</span><span style="color:#a3be8c;">total</span><span>&quot; : </span><span style="color:#d08770;">5</span><span>,
+</span><span>    &quot;</span><span style="color:#a3be8c;">successful</span><span>&quot; : </span><span style="color:#d08770;">5</span><span>,
+</span><span>    &quot;</span><span style="color:#a3be8c;">failed</span><span>&quot; : </span><span style="color:#d08770;">0
+</span><span>  },
+</span><span>  &quot;</span><span style="color:#a3be8c;">hits</span><span>&quot; : {
+</span><span>    &quot;</span><span style="color:#a3be8c;">total</span><span>&quot; : </span><span style="color:#d08770;">1</span><span>,
+</span><span>    &quot;</span><span style="color:#a3be8c;">max_score</span><span>&quot; : </span><span style="color:#d08770;">1.0</span><span>,
+</span><span>    &quot;</span><span style="color:#a3be8c;">hits</span><span>&quot; : [ {
+</span><span>      &quot;</span><span style="color:#a3be8c;">_index</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">geotest</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">_type</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">usergeo</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">_id</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">_R-YQd-eS-2vc3rBzhibAQ</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">_score</span><span>&quot; : </span><span style="color:#d08770;">1.0</span><span>,
+</span><span>      &quot;</span><span style="color:#a3be8c;">_source</span><span>&quot;:
+</span><span>{
+</span><span>    &quot;</span><span style="color:#a3be8c;">udid</span><span>&quot; : &quot;</span><span style="color:#a3be8c;">foobar-udid</span><span>&quot;,
+</span><span>    &quot;</span><span style="color:#a3be8c;">location</span><span>&quot;: {&quot;</span><span style="color:#a3be8c;">lat</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">38.897676</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">lon</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">-77.03653</span><span>&quot;}
+</span><span>}
+</span><span>
+</span><span>    } ]
+</span><span>  }
+</span><span>}
+</span></code></pre>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

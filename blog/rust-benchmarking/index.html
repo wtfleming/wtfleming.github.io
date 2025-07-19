@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Rust benchmarking with Criterion">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Rust benchmarking with Criterion
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/rust/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Rust benchmarking with Criterion",
+      "image": [],
+      "datePublished": "2024-07-03T00:00:00+00:00",
+      "dateModified": "2024-07-03T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Rust benchmarking with Criterion",
+          "item": "https://wtfleming.github.io/blog/rust-benchmarking/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Rust benchmarking with Criterion</h1>
+    <small>
+      July 03, 2024
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/rust/">rust</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>I was recently looking into benchmarking some Rust code and thought I would write up how to do so with the <a href="https://github.com/bheisler/criterion.rs">criterion</a> library. Code for this post is available <a href="https://github.com/wtfleming/rust_benchmarking_example">here at GitHub</a>.</p>
+<p>For this toy example we'll be writing code to determine the distance between 2 points. This is relatively easy to do with the <a href="https://en.wikipedia.org/wiki/Pythagorean_theorem">pythagorean theorem</a>, but the downside is you will need to use a relatively slow square root calculation to do so.</p>
+<p>Many times you don't need the exact distance. Say you have a point and a vector of points and want to know which one in the vector is the closest - in this case what you care about is the relative distance each point is, and can skip the square root and use distance squared.</p>
+<p>So how much faster would it be to use squared distance? Lets find out.</p>
+<h3 id="create-a-library">Create a library</h3>
+<p>Lets create a library and add criterion as a dependency.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ cargo new --lib rust_benchmarking_example
+</span><span>$ cd rust_benchmarking_example
+</span></code></pre>
+<p>Now lets add <code>criterion</code> as a dev-dependency</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>cargo add criterion --dev --features html_reports
+</span></code></pre>
+<p>Your <code>Cargo.toml</code> file should now look something like this</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[package]
+</span><span>name = &quot;rust_benchmarking_example&quot;
+</span><span>version = &quot;0.1.0&quot;
+</span><span>edition = &quot;2021&quot;
+</span><span>
+</span><span>[dependencies]
+</span><span>
+</span><span>[dev-dependencies]
+</span><span>criterion = { version = &quot;0.5.1&quot;, features = [&quot;html_reports&quot;] }
+</span><span>
+</span></code></pre>
+<h3 id="code">Code</h3>
+<p>Open <code>src/lib.rs</code> and add the following code</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">pub struct </span><span>Vector2 {
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">x</span><span>: </span><span style="color:#b48ead;">f64</span><span>,
+</span><span>    </span><span style="color:#b48ead;">pub </span><span style="color:#bf616a;">y</span><span>: </span><span style="color:#b48ead;">f64</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>Vector2 {
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">new</span><span>(</span><span style="color:#bf616a;">x</span><span>: </span><span style="color:#b48ead;">f64</span><span>, </span><span style="color:#bf616a;">y</span><span>: </span><span style="color:#b48ead;">f64</span><span>) -&gt; Vector2 {
+</span><span>        Vector2 { x, y }
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">distance</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">rhs</span><span>: &amp;Vector2) -&gt; </span><span style="color:#b48ead;">f64 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#bf616a;">self</span><span>.x - rhs.x;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> y = </span><span style="color:#bf616a;">self</span><span>.y - rhs.y;
+</span><span>        (x * x + y * y).</span><span style="color:#96b5b4;">sqrt</span><span>()
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">distance_squared</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">rhs</span><span>: &amp;Vector2) -&gt; </span><span style="color:#b48ead;">f64 </span><span>{
+</span><span>        </span><span style="color:#b48ead;">let</span><span> x = </span><span style="color:#bf616a;">self</span><span>.x - rhs.x;
+</span><span>        </span><span style="color:#b48ead;">let</span><span> y = </span><span style="color:#bf616a;">self</span><span>.y - rhs.y;
+</span><span>        x * x + y * y
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<h3 id="unit-tests">Unit tests</h3>
+<p>Lets make sure everything is working as expected, add the following tests to <code>src/lib.rs</code>.</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">cfg</span><span>(test)]
+</span><span style="color:#b48ead;">mod </span><span>tests {
+</span><span>    </span><span style="color:#b48ead;">use super</span><span>::*;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">approximately</span><span>(</span><span style="color:#bf616a;">lhs</span><span>: </span><span style="color:#b48ead;">f64</span><span>, </span><span style="color:#bf616a;">rhs</span><span>: </span><span style="color:#b48ead;">f64</span><span>) -&gt; </span><span style="color:#b48ead;">bool </span><span>{
+</span><span>        (lhs - rhs).</span><span style="color:#96b5b4;">abs</span><span>() &lt; </span><span style="color:#b48ead;">f64</span><span>::</span><span style="color:#d08770;">EPSILON
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="color:#bf616a;">test</span><span>]
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">distance_test</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> a = Vector2::new(</span><span style="color:#d08770;">1.0</span><span>, </span><span style="color:#d08770;">5.0</span><span>);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> b = Vector2::new(-</span><span style="color:#d08770;">2.0</span><span>, </span><span style="color:#d08770;">1.0</span><span>);
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let</span><span> result = a.</span><span style="color:#96b5b4;">distance</span><span>(&amp;b);
+</span><span>        assert!(</span><span style="color:#96b5b4;">approximately</span><span>(result, </span><span style="color:#d08770;">5.0</span><span>), &quot;</span><span style="color:#a3be8c;">{result} was not equal to 5.0</span><span>&quot;);
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let</span><span> result = b.</span><span style="color:#96b5b4;">distance</span><span>(&amp;a);
+</span><span>        assert!(</span><span style="color:#96b5b4;">approximately</span><span>(result, </span><span style="color:#d08770;">5.0</span><span>), &quot;</span><span style="color:#a3be8c;">{result} was not equal to 5.0</span><span>&quot;);
+</span><span>    }
+</span><span>
+</span><span>    #[</span><span style="color:#bf616a;">test</span><span>]
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">distance_squared_test</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> a = Vector2::new(</span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>);
+</span><span>        </span><span style="color:#b48ead;">let</span><span> b = Vector2::new(</span><span style="color:#d08770;">3.0</span><span>, </span><span style="color:#d08770;">4.0</span><span>);
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let</span><span> result = a.</span><span style="color:#96b5b4;">distance_squared</span><span>(&amp;b);
+</span><span>        assert!(
+</span><span>            </span><span style="color:#96b5b4;">approximately</span><span>(result, </span><span style="color:#d08770;">25.0</span><span>),
+</span><span>            &quot;</span><span style="color:#a3be8c;">{result} was not equal to 25.0</span><span>&quot;
+</span><span>        );
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let</span><span> result = b.</span><span style="color:#96b5b4;">distance_squared</span><span>(&amp;a);
+</span><span>        assert!(
+</span><span>            </span><span style="color:#96b5b4;">approximately</span><span>(result, </span><span style="color:#d08770;">25.0</span><span>),
+</span><span>            &quot;</span><span style="color:#a3be8c;">{result} was not equal to 25.0</span><span>&quot;
+</span><span>        );
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<h3 id="create-a-benchmark">Create a benchmark</h3>
+<p>Now lets create a benchmark with criterion, these files are put outside of the <code>src</code> directory in a directory called <code>benches</code> that you will need to create. Lets do that and also create a file in it called distance.rs</p>
+<p>At this point your directory structure should look like this</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> tree
+</span><span style="color:#96b5b4;">.
+</span><span style="color:#bf616a;">├──</span><span> Cargo.lock
+</span><span style="color:#bf616a;">├──</span><span> Cargo.toml
+</span><span style="color:#bf616a;">├──</span><span> benches
+</span><span style="color:#bf616a;">│</span><span>   └── distance.rs
+</span><span style="color:#bf616a;">├──</span><span> src
+</span><span style="color:#bf616a;">│</span><span>   └── lib.rs
+</span></code></pre>
+<p>Add the following to your <code>Cargo.toml</code> file.</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[[bench]]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">distance</span><span>&quot;
+</span><span style="color:#bf616a;">harness </span><span>= </span><span style="color:#d08770;">false
+</span></code></pre>
+<p>and the following code to <code>benches/distance.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>criterion::{criterion_group, criterion_main, Criterion};
+</span><span style="color:#b48ead;">use </span><span>rust_benchmarking_example::*;
+</span><span>
+</span><span style="color:#b48ead;">pub fn </span><span style="color:#8fa1b3;">criterion_benchmark</span><span>(</span><span style="color:#bf616a;">c</span><span>: &amp;</span><span style="color:#b48ead;">mut</span><span> Criterion) {
+</span><span>    c.</span><span style="color:#96b5b4;">bench_function</span><span>(&quot;</span><span style="color:#a3be8c;">distance</span><span>&quot;, |</span><span style="color:#bf616a;">bench</span><span>| {
+</span><span>        bench.</span><span style="color:#96b5b4;">iter</span><span>(|| {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> a = Vector2::new(</span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>);
+</span><span>            </span><span style="color:#b48ead;">let</span><span> b = Vector2::new(</span><span style="color:#d08770;">3.0</span><span>, </span><span style="color:#d08770;">4.0</span><span>);
+</span><span>            a.</span><span style="color:#96b5b4;">distance</span><span>(&amp;b);
+</span><span>        })
+</span><span>    });
+</span><span>}
+</span><span>
+</span><span>criterion_group!(benches, criterion_benchmark);
+</span><span>criterion_main!(benches);
+</span></code></pre>
+<p>You can then run the benchmark from the command like with <code>cargo bench</code> which will run the code a number of times</p>
+<p>In the output look for a line like:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">distance</span><span>                time:   </span><span style="color:#b48ead;">[</span><span>934.09 ps 935.48 ps 937.28 ps</span><span style="color:#b48ead;">]
+</span></code></pre>
+<p>Which tells you</p>
+<ul>
+<li>934.09 ps - fastest benchmark</li>
+<li>935.48 ps - average benchmark</li>
+<li>937.28 ps - slowest benchmark</li>
+</ul>
+<p>The results are cached, so if you run <code>cargo bench</code> again it will compare the results against the most recently run ones, here we can see that there was no real change detected - which makes sense as other than some background noise on your computer we are running it on the same code.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">distance</span><span>                time:   </span><span style="color:#b48ead;">[</span><span>934.73 ps 935.46 ps 936.38 ps</span><span style="color:#b48ead;">]
+</span><span>                        </span><span style="color:#bf616a;">change: </span><span style="color:#b48ead;">[</span><span>-0.1119% +0.0493% +0.2134%</span><span style="color:#b48ead;">]</span><span> (p = 0.55 &gt; </span><span style="color:#d08770;">0</span><span>.05)
+</span><span>                        </span><span style="color:#bf616a;">No</span><span> change in performance detected.
+</span></code></pre>
+<p>And since we enabled the html_reports feature we can see them by opening <code>target/criterion/report/index.html</code> in a web browser, where you should see something that looks like this</p>
+<p><img src="/images/rust-benchmarking-criterion/rust-criterion-distance.jpg" alt="image" /></p>
+<h3 id="benchmark-squared-distance-implementation">Benchmark squared distance implementation</h3>
+<p>Now lets benchmark our distance squared code, change</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    c.</span><span style="color:#96b5b4;">bench_function</span><span>(&quot;</span><span style="color:#a3be8c;">distance</span><span>&quot;, |</span><span style="color:#bf616a;">bench</span><span>| {
+</span><span>        bench.</span><span style="color:#96b5b4;">iter</span><span>(|| {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> a = Vector2::new(</span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>);
+</span><span>            </span><span style="color:#b48ead;">let</span><span> b = Vector2::new(</span><span style="color:#d08770;">3.0</span><span>, </span><span style="color:#d08770;">4.0</span><span>);
+</span><span>            a.</span><span style="color:#96b5b4;">distance</span><span>(&amp;b);
+</span><span>        })
+</span><span>    });
+</span></code></pre>
+<p>to</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>    c.</span><span style="color:#96b5b4;">bench_function</span><span>(&quot;</span><span style="color:#a3be8c;">distance</span><span>&quot;, |</span><span style="color:#bf616a;">bench</span><span>| {
+</span><span>        bench.</span><span style="color:#96b5b4;">iter</span><span>(|| {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> a = Vector2::new(</span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>);
+</span><span>            </span><span style="color:#b48ead;">let</span><span> b = Vector2::new(</span><span style="color:#d08770;">3.0</span><span>, </span><span style="color:#d08770;">4.0</span><span>);
+</span><span>            a.</span><span style="color:#96b5b4;">distance_squared</span><span>(&amp;b);
+</span><span>        })
+</span><span>    });
+</span></code></pre>
+<p>and run <code>cargo bench</code> again. On my machine I get this error</p>
+<blockquote>
+<p>Benchmarking distance: AnalyzingCriterion.rs ERROR: At least one measurement of benchmark distance took zero time per iteration. This should not be possible. If using iter_custom, please verify that your routine is correctly measured.</p>
+</blockquote>
+<p>It appears that the <code>distance_squared()</code> implementation is so fast it effectively takes zero time to run and can't be measured. Which I suppose makes sense as the much slower version using a square root took picoseconds to run.</p>
+<p>If you really want to have this complete you could artificially make it slower by disabling compiler optimizations when benchmarking by adding this to your <code>Cargo.toml</code></p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[profile.bench]
+</span><span>opt-level = 0
+</span></code></pre>
+<p>but you generally wouldn't want to do so since taking measurements on a dev build won't be very useful. If you were to do so, you would see output like</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>distance                time:   [9.9843 ns 10.000 ns 10.017 ns]
+</span><span>
+</span><span>
+</span><span>distance                time:   [9.3626 ns 9.3730 ns 9.3848 ns]
+</span><span>                        change: [-6.2155% -6.0317% -5.8404%] (p = 0.00 &lt; 0.05)
+</span><span>                        Performance has improved.
+</span></code></pre>
+<p>Alternatively you could also do a benchmark run where only the the <code>a.distance(&amp;b);</code> call happens and another where it calls that and <code>a.distance_squared(&amp;b);</code> and you can see that the distance_squared call does not add any noticeable overhead.</p>
+<p>But realistically the code in this toy example is probably so fast that it is not a great candidate for benchmarking.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

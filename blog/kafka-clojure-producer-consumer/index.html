@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Writing a Kafka Producer and High Level Consumer in Clojure">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Writing a Kafka Producer and High Level Consumer in Clojure
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/kafka/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Writing a Kafka Producer and High Level Consumer in Clojure",
+      "image": [],
+      "datePublished": "2015-01-14T00:00:00+00:00",
+      "dateModified": "2015-01-14T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Writing a Kafka Producer and High Level Consumer in Clojure",
+          "item": "https://wtfleming.github.io/blog/kafka-clojure-producer-consumer/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Writing a Kafka Producer and High Level Consumer in Clojure</h1>
+    <small>
+      January 14, 2015
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
+          
+            <a href="https://wtfleming.github.io/tags/kafka/">kafka</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="introduction">Introduction</h1>
+<p>Kafka is a platform for handling real-time data feeds. In some ways it is like a database that exposes semantics of a messaging system.</p>
+<p>The <a href="https://kafka.apache.org/documentation.html">Kafka documentation</a> provides an excellent overview which I have provided an extract from:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Kafka is a distributed, partitioned, replicated commit log service. It provides the
+</span><span>functionality of a messaging system, but with a unique design.
+</span><span>
+</span><span>* Kafka maintains feeds of messages in categories called topics.
+</span><span>* We&#39;ll call processes that publish messages to a Kafka topic producers.
+</span><span>* We&#39;ll call processes that subscribe to topics and process the feed of published
+</span><span>messages consumers.
+</span><span>* Kafka is run as a cluster comprised of one or more servers each of which is called
+</span><span>a broker.
+</span><span>
+</span></code></pre>
+<p>In this post we'll use Clojure to write a producer that periodically writes random integers to a Kafka topic, and a High Level Consumer that reads them back. I am using Kafka 0.8.1.1 and assume it and ZooKeeper are running on localhost. A <a href="http://kafka.apache.org/07/quickstart.html">quickstart</a> is available that can walk you through downloading and starting the services.</p>
+<p>The source code for this project is <a href="https://github.com/wtfleming/clojure-examples/tree/master/kafka/hello-world-kafka">available on GitHub</a>.</p>
+<h1 id="create-a-project">Create a Project</h1>
+<p>We'll be using <a href="http://leiningen.org/">Leiningen</a> to build and run our app.</p>
+<p>Create a file called project.clj with the following contents:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">hello-world-kafka </span><span>&quot;</span><span style="color:#a3be8c;">0.1.0</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:description </span><span>&quot;</span><span style="color:#a3be8c;">Create a kafka producer and high level consumer</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:license </span><span>{</span><span style="color:#d08770;">:name </span><span>&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span>&quot;
+</span><span>            </span><span style="color:#d08770;">:url </span><span>&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span>&quot;}
+</span><span>  </span><span style="color:#d08770;">:dependencies </span><span>[[org.clojure/clojure &quot;</span><span style="color:#a3be8c;">1.6.0</span><span>&quot;]
+</span><span>                 [org.apache.kafka/kafka_2.9.2 &quot;</span><span style="color:#a3be8c;">0.8.1.1</span><span>&quot; </span><span style="color:#d08770;">:exclusions </span><span>[javax.jms/jms
+</span><span>                                                                      com.sun.jdmk/jmxtools
+</span><span>                                                                      com.sun.jmx/jmxri]]]
+</span><span>  </span><span style="color:#d08770;">:aot </span><span>[hello-world-kafka.core]
+</span><span>  </span><span style="color:#d08770;">:main</span><span> hello-world-kafka.core)
+</span></code></pre>
+<p>Next create a file /src/hello_world_kafka/core.clj with these contents:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> hello-world-kafka.core
+</span><span>  (</span><span style="color:#d08770;">:import </span><span>(</span><span style="color:#bf616a;">kafka.consumer</span><span> Consumer ConsumerConfig KafkaStream)
+</span><span>           (</span><span style="color:#bf616a;">kafka.producer</span><span> KeyedMessage ProducerConfig)
+</span><span>           (</span><span style="color:#bf616a;">kafka.javaapi.producer</span><span> Producer)
+</span><span>           (</span><span style="color:#bf616a;">java.util</span><span> Properties)
+</span><span>           (</span><span style="color:#bf616a;">java.util.concurrent</span><span> Executors))
+</span><span>  (</span><span style="color:#d08770;">:gen-class</span><span>))
+</span></code></pre>
+<h1 id="producer-code">Producer Code</h1>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">create-producer
+</span><span>  &quot;</span><span style="color:#a3be8c;">Creates a producer that can be used to send a message to Kafka</span><span>&quot;
+</span><span>  [brokers]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[props (</span><span style="color:#bf616a;">Properties.</span><span>)]
+</span><span>    (</span><span style="color:#bf616a;">doto</span><span> props
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">metadata.broker.list</span><span>&quot; brokers)
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">serializer.class</span><span>&quot; &quot;</span><span style="color:#a3be8c;">kafka.serializer.StringEncoder</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">request.required.acks</span><span>&quot; &quot;</span><span style="color:#a3be8c;">1</span><span>&quot;))
+</span><span>    (</span><span style="color:#bf616a;">Producer. </span><span>(</span><span style="color:#bf616a;">ProducerConfig.</span><span> props))))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">send-to-producer
+</span><span>  &quot;</span><span style="color:#a3be8c;">Send a string message to Kafka</span><span>&quot;
+</span><span>  [producer topic message]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[data (</span><span style="color:#bf616a;">KeyedMessage.</span><span> topic </span><span style="color:#d08770;">nil</span><span> message)]
+</span><span>    (</span><span style="color:#bf616a;">.send</span><span> producer data)))
+</span></code></pre>
+<p>Creating a producer and sending a message is pretty straightforward. Call the create-producer function with a list of Kafka brokers, and when you want to send a message pass the producer to the send-to-producer method along with the name of the topic and the message.</p>
+<h1 id="consumer-code">Consumer Code</h1>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defrecord </span><span>KafkaMessage [topic offset partition key value-bytes])
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">create-consumer-config
+</span><span>  &quot;</span><span style="color:#a3be8c;">Returns a configuration for a Kafka client.</span><span>&quot;
+</span><span>  []
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[props (</span><span style="color:#bf616a;">Properties.</span><span>)]
+</span><span>    (</span><span style="color:#bf616a;">doto</span><span> props
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">zookeeper.connect</span><span>&quot; &quot;</span><span style="color:#a3be8c;">127.0.0.1:2181</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">group.id</span><span>&quot; &quot;</span><span style="color:#a3be8c;">group1</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">zookeeper.session.timeout.ms</span><span>&quot; &quot;</span><span style="color:#a3be8c;">400</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">zookeeper.sync.time.ms</span><span>&quot; &quot;</span><span style="color:#a3be8c;">200</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">.put </span><span>&quot;</span><span style="color:#a3be8c;">auto.commit.interval.ms</span><span>&quot; &quot;</span><span style="color:#a3be8c;">1000</span><span>&quot;))
+</span><span>    (</span><span style="color:#bf616a;">ConsumerConfig.</span><span> props)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">consume-messages
+</span><span>  &quot;</span><span style="color:#a3be8c;">Continually consume messages from a Kafka topic and write message value to stdout.</span><span>&quot;
+</span><span>  [stream thread-num]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[it (</span><span style="color:#bf616a;">.iterator </span><span>^KafkaStream stream)]
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>(</span><span style="color:#bf616a;">str </span><span>&quot;</span><span style="color:#a3be8c;">Starting thread </span><span>&quot; thread-num))
+</span><span>    (</span><span style="color:#bf616a;">while </span><span>(</span><span style="color:#bf616a;">.hasNext</span><span> it)
+</span><span>      (</span><span style="color:#bf616a;">as-&gt; </span><span>(</span><span style="color:#bf616a;">.next</span><span> it) msg
+</span><span>            (</span><span style="color:#bf616a;">KafkaMessage. </span><span>(</span><span style="color:#bf616a;">.topic</span><span> msg) (</span><span style="color:#bf616a;">.offset</span><span> msg) (</span><span style="color:#bf616a;">.partition</span><span> msg) (</span><span style="color:#bf616a;">.key</span><span> msg) (</span><span style="color:#bf616a;">.message</span><span> msg))
+</span><span>            (</span><span style="color:#bf616a;">println </span><span>(</span><span style="color:#bf616a;">str </span><span>&quot;</span><span style="color:#a3be8c;">Received on thread </span><span>&quot; thread-num &quot;</span><span style="color:#a3be8c;">: </span><span>&quot; (</span><span style="color:#bf616a;">String. </span><span>(</span><span style="color:#d08770;">:value-bytes</span><span> msg))))))
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>(</span><span style="color:#bf616a;">str </span><span>&quot;</span><span style="color:#a3be8c;">Stopping thread </span><span>&quot; thread-num))))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">start-consumer-threads
+</span><span>  &quot;</span><span style="color:#a3be8c;">Start a thread for each stream.</span><span>&quot;
+</span><span>  [thread-pool kafka-streams]
+</span><span>  (</span><span style="color:#bf616a;">loop </span><span>[streams kafka-streams
+</span><span>         index </span><span style="color:#d08770;">0</span><span>]
+</span><span>    (</span><span style="color:#bf616a;">when </span><span>(</span><span style="color:#bf616a;">seq</span><span> streams)
+</span><span>      (</span><span style="color:#bf616a;">.submit</span><span> thread-pool (</span><span style="color:#bf616a;">cast</span><span> Callable #(</span><span style="color:#bf616a;">consume-messages </span><span>(</span><span style="color:#bf616a;">first</span><span> streams) index)))
+</span><span>      (</span><span style="color:#bf616a;">recur </span><span>(</span><span style="color:#bf616a;">rest</span><span> streams) (</span><span style="color:#bf616a;">inc</span><span> index)))))
+</span></code></pre>
+<p>A few things to take note of:</p>
+<ul>
+<li>
+<p>The message is stored in Kafka as bytes, so in this case we need to turn the bytes into a String.</p>
+</li>
+<li>
+<p>In consume-messages the call to the KafkaStream iterator .hasNext function is reading from a single partition of it's topic and will block until a message is received. So to read from multiple partitions we will need to run multiple threads of the consume-messages function.</p>
+</li>
+<li>
+<p>The threads will run in a thread pool we later create with a java.util.concurrent.Executors</p>
+</li>
+<li>
+<p>Clojure functions implement both Runnable and Callable, but since the executor's submit function is overloaded and can accept either, we must explicitly cast the function to a Callable.</p>
+</li>
+</ul>
+<h1 id="application-code">Application code</h1>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-main
+</span><span>  &quot;</span><span style="color:#a3be8c;">Pull messages from a Kafka topic using the High Level Consumer</span><span>&quot;
+</span><span>  [topic num-threads]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[consumer (</span><span style="color:#bf616a;">Consumer/createJavaConsumerConnector </span><span>(</span><span style="color:#bf616a;">create-consumer-config</span><span>))
+</span><span>        consumer-map (</span><span style="color:#bf616a;">.createMessageStreams</span><span> consumer {topic (</span><span style="color:#bf616a;">Integer/parseInt</span><span> num-threads)})
+</span><span>        kafka-streams (</span><span style="color:#bf616a;">.get</span><span> consumer-map topic)
+</span><span>        thread-pool (</span><span style="color:#bf616a;">Executors/newFixedThreadPool </span><span>(</span><span style="color:#bf616a;">Integer/parseInt</span><span> num-threads))
+</span><span>        producer (</span><span style="color:#bf616a;">create-producer </span><span>&quot;</span><span style="color:#a3be8c;">127.0.0.1:9092</span><span>&quot;)]
+</span><span>
+</span><span>    </span><span style="color:#65737e;">;; Clean up on a SIGTERM or Ctrl-C
+</span><span>    (</span><span style="color:#bf616a;">.addShutdownHook </span><span>(</span><span style="color:#bf616a;">Runtime/getRuntime</span><span>)
+</span><span>                      (</span><span style="color:#bf616a;">Thread. </span><span>#(</span><span style="color:#bf616a;">do </span><span>(</span><span style="color:#bf616a;">.shutdown</span><span> consumer)
+</span><span>                                    (</span><span style="color:#bf616a;">.shutdown</span><span> thread-pool))))
+</span><span>
+</span><span>    </span><span style="color:#65737e;">;; Connect and start listening for messages on Kafka
+</span><span>    (</span><span style="color:#bf616a;">start-consumer-threads</span><span> thread-pool kafka-streams)
+</span><span>
+</span><span>    </span><span style="color:#65737e;">;; Send a random int to Kafka every 500 milliseconds
+</span><span>    (</span><span style="color:#bf616a;">loop </span><span>[]
+</span><span>      (</span><span style="color:#bf616a;">let </span><span>[num (</span><span style="color:#bf616a;">str </span><span>(</span><span style="color:#bf616a;">rand-int </span><span style="color:#d08770;">1000</span><span>))]
+</span><span>        (</span><span style="color:#bf616a;">println </span><span>(</span><span style="color:#bf616a;">str </span><span>&quot;</span><span style="color:#a3be8c;">Sending to Kafka topic </span><span>&quot; topic &quot;</span><span style="color:#a3be8c;">: </span><span>&quot; num))
+</span><span>        (</span><span style="color:#bf616a;">send-to-producer</span><span> producer topic num)
+</span><span>        (</span><span style="color:#bf616a;">Thread/sleep </span><span style="color:#d08770;">500</span><span>)
+</span><span>        (</span><span style="color:#bf616a;">recur</span><span>)))))
+</span></code></pre>
+<p>The above code sets up our thread pools, creates and starts some consumers, and then sends a random integer between 0 and 999 to a topic every 500 milliseconds.</p>
+<p>Running from the command line expects arguments like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ lein trampoline run &lt;topic&gt; &lt;num consumer threads&gt;
+</span></code></pre>
+<p>We use lein trampoline so we can catch a SIGTERM or Control-C and clean up prior to shutting down.</p>
+<p>If we want to send and read messages from a topic called random_numbers and use 2 threads for the consumers we can start the app like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ lein trampoline run random_numbers 2
+</span></code></pre>
+<p>You should see output that looks something like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Starting thread 0
+</span><span>Starting thread 1
+</span><span>Sending to Kafka topic random_numbers: 753
+</span><span>Received on thread 1: 753
+</span><span>Sending to Kafka topic random_numbers: 971
+</span><span>Received on thread 1: 971
+</span><span>Sending to Kafka topic random_numbers: 56
+</span><span>Received on thread 1: 56
+</span><span>Sending to Kafka topic random_numbers: 536
+</span><span>Received on thread 1: 536
+</span><span>Sending to Kafka topic random_numbers: 589
+</span><span>Received on thread 1: 589
+</span><span>Stopping thread 0
+</span><span>Stopping thread 1
+</span></code></pre>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

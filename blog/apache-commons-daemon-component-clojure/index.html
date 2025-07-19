@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Creating an Apache Commons Daemon using Component with Clojure">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Creating an Apache Commons Daemon using Component with Clojure
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Creating an Apache Commons Daemon using Component with Clojure",
+      "image": [],
+      "datePublished": "2015-10-29T00:00:00+00:00",
+      "dateModified": "2015-10-29T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Creating an Apache Commons Daemon using Component with Clojure",
+          "item": "https://wtfleming.github.io/blog/apache-commons-daemon-component-clojure/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Creating an Apache Commons Daemon using Component with Clojure</h1>
+    <small>
+      October 29, 2015
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="introduction">Introduction</h1>
+<p>One way to write a long running server application that runs on the JVM with proper start/stop semantics is to the the <a href="http://commons.apache.org/proper/commons-daemon/">Apache Commons Daemon</a>. In this post we'll see how we can do so in Clojure and also use the <a href="https://github.com/stuartsierra/component">Component</a> framework to structure our application.</p>
+<p>The full source for this post is <a href="https://github.com/wtfleming/clojure-examples/tree/master/apache-commons-daemon">available on Github</a>.</p>
+<h1 id="component">Component</h1>
+<p>Component describes itself as:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>A tiny Clojure framework for managing the lifecycle and dependencies
+</span><span>of software components which have runtime state.
+</span><span>
+</span><span>This is primarily a design pattern with a few helper functions. It can be seen as a
+</span><span>style of dependency injection using immutable data structures.
+</span></code></pre>
+<p>There are two concepts to be aware of:</p>
+<ul>
+<li>Components</li>
+</ul>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>A collection of functions or procedures which share some runtime state.
+</span></code></pre>
+<ul>
+<li>Systems</li>
+</ul>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Components are composed into systems. A system is a component which knows how to
+</span><span>start and stop other components. It is also responsible for injecting dependencies
+</span><span>into the components which need them.
+</span></code></pre>
+<p>I won't go into very much detail about Component in this post, to learn more the <a href="https://github.com/stuartsierra/component">documentation</a> is excellent.</p>
+<h1 id="the-application">The Application</h1>
+<p>We will be building an app with two components and one system.</p>
+<p>The <strong>first component</strong> will store application metrics and the <strong>second component</strong> will repeatedly print "tick" to stdout and increment a tick counter in the metrics component once a second.</p>
+<p>The <strong>system</strong> will bring them together and handle the metrics component being a dependency of the tick one.</p>
+<h1 id="leiningen-project">Leiningen Project</h1>
+<p>Our <em>project.clj</em> looks like this:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">apache-commons-daemon </span><span>&quot;</span><span style="color:#a3be8c;">0.1.0-SNAPSHOT</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:description </span><span>&quot;</span><span style="color:#a3be8c;">Example of running a daemon</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:license </span><span>{</span><span style="color:#d08770;">:name </span><span>&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span>&quot;
+</span><span>            </span><span style="color:#d08770;">:url </span><span>&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span>&quot;}
+</span><span>  </span><span style="color:#d08770;">:dependencies </span><span>[[org.clojure/clojure &quot;</span><span style="color:#a3be8c;">1.7.0</span><span>&quot;]
+</span><span>                 [commons-daemon/commons-daemon &quot;</span><span style="color:#a3be8c;">1.0.15</span><span>&quot;]
+</span><span>                 [com.stuartsierra/component &quot;</span><span style="color:#a3be8c;">0.3.0</span><span>&quot;]]
+</span><span>  </span><span style="color:#d08770;">:main</span><span> apache-commons-daemon.core
+</span><span>  </span><span style="color:#d08770;">:aot :all</span><span>)
+</span></code></pre>
+<h1 id="code">Code</h1>
+<p>Next create a file called <em>src/apache_commons_daemon/core.clj</em></p>
+<p>Insert the following at the top of the file:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> apache-commons-daemon.core
+</span><span>  (</span><span style="color:#d08770;">:require </span><span>[com.stuartsierra.component </span><span style="color:#d08770;">:as</span><span> component])
+</span><span>  (</span><span style="color:#d08770;">:import </span><span>[org.apache.commons.daemon Daemon DaemonContext])
+</span><span>  (</span><span style="color:#d08770;">:gen-class
+</span><span>   </span><span style="color:#d08770;">:implements </span><span>[org.apache.commons.daemon.Daemon]))
+</span></code></pre>
+<h1 id="metrics-component">Metrics Component</h1>
+<p>For simplicity the first component simply stores the number of times the other component has ticked, however we could easily store additional metrics.</p>
+<p>We also provide a constructor and a function to increment the tick count.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span style="color:#65737e;">;; Application Metrics Component
+</span><span>(</span><span style="color:#b48ead;">defrecord </span><span>MetricsComponent [num-ticks]
+</span><span>  </span><span style="color:#65737e;">;; Implement the Lifecycle protocol
+</span><span>  </span><span style="color:#a3be8c;">component/Lifecycle
+</span><span>  (</span><span style="color:#8fa1b3;">start </span><span>[component]
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>&quot;</span><span style="color:#a3be8c;">;; Starting MetricsComponent</span><span>&quot;)
+</span><span>    (</span><span style="color:#bf616a;">reset! </span><span>(</span><span style="color:#d08770;">:num-ticks</span><span> component) </span><span style="color:#d08770;">0</span><span>)
+</span><span>    component)
+</span><span>  (</span><span style="color:#8fa1b3;">stop </span><span>[component]
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>&quot;</span><span style="color:#a3be8c;">;; Stopping MetricsComponent</span><span>&quot;)
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>(</span><span style="color:#bf616a;">str </span><span>&quot;</span><span style="color:#a3be8c;">;; Metric num ticks: </span><span>&quot; @(</span><span style="color:#d08770;">:num-ticks</span><span> component)))
+</span><span>    component))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">make-metrics-component
+</span><span>  &quot;</span><span style="color:#a3be8c;">Constructor for a metrics component</span><span>&quot;
+</span><span>  []
+</span><span>  (</span><span style="color:#bf616a;">map-&gt;MetricsComponent </span><span>{</span><span style="color:#d08770;">:num-ticks </span><span>(</span><span style="color:#bf616a;">atom </span><span style="color:#d08770;">0</span><span>)}))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">inc-num-ticks-metric </span><span>[metrics-component]
+</span><span>  (</span><span style="color:#bf616a;">swap! </span><span>(</span><span style="color:#bf616a;">get</span><span> metrics-component </span><span style="color:#d08770;">:num-ticks</span><span>) inc))
+</span></code></pre>
+<h1 id="tick-component">Tick Component</h1>
+<p>At startup the tick component creates a future which repeatedly outputs "tick" to stdout for as long as the component's state is set to :running.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span style="color:#65737e;">;; Tick Component
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-ticks
+</span><span>  &quot;</span><span style="color:#a3be8c;">Print to stdout and increment the ticks metric once a second when the component
+</span><span style="color:#a3be8c;">  is running</span><span>&quot;
+</span><span>  [state metrics-component]
+</span><span>  (</span><span style="color:#bf616a;">while </span><span>(</span><span style="color:#bf616a;">= </span><span style="color:#d08770;">:running </span><span>@state)
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>&quot;</span><span style="color:#a3be8c;">tick</span><span>&quot;)
+</span><span>    (</span><span style="color:#bf616a;">inc-num-ticks-metric</span><span> metrics-component)
+</span><span>    (</span><span style="color:#bf616a;">Thread/sleep </span><span style="color:#d08770;">1000</span><span>)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defrecord </span><span>TickComponent [state metrics-component]
+</span><span>  </span><span style="color:#65737e;">;; Implement the Lifecycle protocol
+</span><span>  </span><span style="color:#a3be8c;">component/Lifecycle
+</span><span>  (</span><span style="color:#8fa1b3;">start </span><span>[component]
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>&quot;</span><span style="color:#a3be8c;">;; Starting TickComponent</span><span>&quot;)
+</span><span>    (</span><span style="color:#bf616a;">reset! </span><span>(</span><span style="color:#d08770;">:state</span><span> component) </span><span style="color:#d08770;">:running</span><span>)
+</span><span>    </span><span style="color:#65737e;">;; Do some work in another thread
+</span><span>    (</span><span style="color:#bf616a;">future </span><span>(</span><span style="color:#bf616a;">do-ticks </span><span>(</span><span style="color:#d08770;">:state</span><span> component) metrics-component))
+</span><span>    component)
+</span><span>  (</span><span style="color:#8fa1b3;">stop </span><span>[component]
+</span><span>    (</span><span style="color:#bf616a;">println </span><span>&quot;</span><span style="color:#a3be8c;">;; Stopping TickComponent</span><span>&quot;)
+</span><span>    (</span><span style="color:#bf616a;">reset! </span><span>(</span><span style="color:#d08770;">:state</span><span> component) </span><span style="color:#d08770;">:stopped</span><span>)
+</span><span>    component))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">make-tick-component
+</span><span>  &quot;</span><span style="color:#a3be8c;">Constructor for a tick component</span><span>&quot;
+</span><span>  []
+</span><span>  (</span><span style="color:#bf616a;">map-&gt;TickComponent </span><span>{</span><span style="color:#d08770;">:state </span><span>(</span><span style="color:#bf616a;">atom </span><span style="color:#d08770;">:stopped</span><span>)}))
+</span></code></pre>
+<h1 id="application-system">Application System</h1>
+<p>Here we have a system which creates the two components. It also indicates that the metrics component is a dependency of the tick component, so it will ensure the metrics component is started first and provide an instance of it to the tick component.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span style="color:#65737e;">;; Application System
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">make-app-system </span><span>[]
+</span><span>  (</span><span style="color:#bf616a;">component/system-map
+</span><span>   </span><span style="color:#d08770;">:metrics-component </span><span>(</span><span style="color:#bf616a;">make-metrics-component</span><span>)
+</span><span>   </span><span style="color:#d08770;">:tick-component </span><span>(</span><span style="color:#bf616a;">component/using
+</span><span>                    (</span><span style="color:#bf616a;">make-tick-component</span><span>)
+</span><span>                    [</span><span style="color:#d08770;">:metrics-component</span><span>])))
+</span></code></pre>
+<p>Now we create the system and provide functions to start and stop it. The start and stop methods make it easy to develop and test in a REPL (without the need for jsvc in that environment).</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">app-system </span><span>(</span><span style="color:#bf616a;">make-app-system</span><span>))
+</span><span>
+</span><span style="color:#65737e;">;; Separate start/stop functions for easier development in a REPL
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">start </span><span>[]
+</span><span>  (</span><span style="color:#bf616a;">alter-var-root </span><span>#&#39;app-system component/start))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">stop </span><span>[]
+</span><span>  (</span><span style="color:#bf616a;">alter-var-root </span><span>#&#39;app-system component/stop))
+</span></code></pre>
+<h1 id="commons-daemon">Commons Daemon</h1>
+<p>Finally we provide an implementatation of the <a href="http://commons.apache.org/proper/commons-daemon/apidocs/org/apache/commons/daemon/Daemon.html">Daemon interface</a>. This will allow us to start and stop the application with jsvc.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span style="color:#65737e;">;; Commons Daemon implementatation
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-init </span><span>[this ^DaemonContext context])
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-start </span><span>[this]
+</span><span>  (</span><span style="color:#bf616a;">start</span><span>))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-stop </span><span>[this]
+</span><span>  (</span><span style="color:#bf616a;">stop</span><span>))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-destroy </span><span>[this])
+</span></code></pre>
+<h1 id="running-the-application">Running the Application</h1>
+<p>Build with Leiningen:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lein uberjar
+</span></code></pre>
+<p>To interact with the daemon you will need <a href="http://commons.apache.org/proper/commons-daemon/jsvc.html">jsvc</a> as well. On Ubuntu 14.04 it is as easy as:</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo apt-get install jsvc
+</span></code></pre>
+<p>Start/stop like this (change your java home to what is appropriate for you):</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> sudo /usr/bin/jsvc</span><span style="color:#bf616a;"> -java-home</span><span> /usr/lib/jvm/java-8-oracle/jre/ \
+</span><span style="color:#bf616a;">  -cp </span><span>&quot;$</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">pwd</span><span style="color:#a3be8c;">)/target/apache-commons-daemon-0.1.0-SNAPSHOT-standalone.jar</span><span>&quot; \
+</span><span style="color:#bf616a;">  -outfile </span><span>&quot;$</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">pwd</span><span style="color:#a3be8c;">)/out.txt</span><span>&quot; \
+</span><span>  apache_commons_daemon.core
+</span><span>
+</span><span style="color:#65737e;"># Wait a few seconds...
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> sudo /usr/bin/jsvc</span><span style="color:#bf616a;"> -java-home</span><span> /usr/lib/jvm/java-8-oracle/jre/ \
+</span><span style="color:#bf616a;">  -cp </span><span>&quot;$</span><span style="color:#a3be8c;">(</span><span style="color:#bf616a;">pwd</span><span style="color:#a3be8c;">)/target/apache-commons-daemon-0.1.0-SNAPSHOT-standalone.jar</span><span>&quot; \
+</span><span style="color:#bf616a;">  -stop </span><span>\
+</span><span>  apache_commons_daemon.core
+</span><span>
+</span><span style="color:#bf616a;">$</span><span> sudo cat out.txt
+</span></code></pre>
+<p>You should see output that looks something like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>;; Starting MetricsComponent
+</span><span>;; Starting TickComponent
+</span><span>tick
+</span><span>tick
+</span><span>tick
+</span><span>tick
+</span><span>tick
+</span><span>;; Stopping TickComponent
+</span><span>;; Stopping MetricsComponent
+</span><span>;; Metric num ticks: 5
+</span></code></pre>
+<p>Note that jsvc can be a bit finicky and you may need to make some changes depending on your environment. If you do not see anything in the file, try adding the <strong>-debug</strong> flag to the jsvc calls which will provide useful information.</p>
+<h1 id="next-steps">Next Steps</h1>
+<p>You will likely want to do is create a script to start the application. There is much more to jsvc than we covered here, Sheldon Neilson has written an excellent <a href="http://www.neilson.co.za/creating-a-java-daemon-system-service-for-debian-using-apache-commons-jsvc/">article</a> for Debian based systems which I encourage you to read.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

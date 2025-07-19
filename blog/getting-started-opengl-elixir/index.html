@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Getting started with OpenGL in Elixir">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Getting started with OpenGL in Elixir
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/erlang/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/elixir/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Getting started with OpenGL in Elixir",
+      "image": [],
+      "datePublished": "2016-01-03T00:00:00+00:00",
+      "dateModified": "2016-01-03T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Getting started with OpenGL in Elixir",
+          "item": "https://wtfleming.github.io/blog/getting-started-opengl-elixir/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Getting started with OpenGL in Elixir</h1>
+    <small>
+      January 03, 2016
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/erlang/">erlang</a>
+          
+            <a href="https://wtfleming.github.io/tags/elixir/">elixir</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>I was curious about using OpenGL with Elixir and couldn't find much very information. Other than a kludge for working with constants defined in Erlang .hrl files it turned out to be not too difficult.</p>
+<p>The final result draws a triangle on the screen and looks like this:</p>
+<p><img src="/images/elixir-opengl-01/triangle.png" alt="OpenGL Triangle" /></p>
+<h1 id="wxwidgets-and-erlang">wxWidgets and Erlang</h1>
+<p>Erlang/OTP ships with a port of <a href="http://www.erlang.org/doc/man/wx.html">wxWidgets</a>, so creating a window and obtaining an OpenGL context is relatively easy.</p>
+<p>To see some examples and the associated Erlang code start iex and run the following command:</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex(</span><span style="color:#d08770;">1</span><span>)&gt; </span><span style="color:#a3be8c;">:wx</span><span>.demo
+</span></code></pre>
+<p>A window that looks something like this should appear.</p>
+<p><img src="/images/elixir-opengl-01/wxerlang.png" alt="wxErlang" /></p>
+<p>Next we want to do something similar, but in Elixir instead.</p>
+<h1 id="create-an-elixir-project">Create an Elixir project</h1>
+<p>Run these commands in a shell</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> mix new elixir_opengl
+</span><span style="color:#bf616a;">$</span><span> cd elixir_opengl
+</span><span>
+</span><span style="color:#65737e;"># To make this work we are also going to need to create a couple Erlang source files
+</span><span style="color:#bf616a;">$</span><span> mkdir src
+</span></code></pre>
+<h1 id="erlang-modules">Erlang modules</h1>
+<p>If you look inside your Erlang/OTP distribution directory at the file lib/wx/include/wx.hrl you will see a number of defines that look like:</p>
+<pre data-lang="erlang" style="background-color:#2b303b;color:#c0c5ce;" class="language-erlang "><code class="language-erlang" data-lang="erlang"><span>-</span><span style="color:#b48ead;">define</span><span>(wxID_ANY, -</span><span style="color:#d08770;">1</span><span>).
+</span></code></pre>
+<p>I found <a href="https://groups.google.com/forum/#!topic/elixir-lang-talk/VbGTz7rKebM">this discussion</a> about how to access them from Elixir - create an Erlang module with functions that return the value. You can then reference it from Elixir with a function call like this:</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#a3be8c;">:wx_const</span><span>.wx_id_any()
+</span></code></pre>
+<p>Now create an Erlang file named src/wx_const.erl with the following contents:</p>
+<pre data-lang="erlang" style="background-color:#2b303b;color:#c0c5ce;" class="language-erlang "><code class="language-erlang" data-lang="erlang"><span>-</span><span style="color:#b48ead;">module</span><span>(wx_const).
+</span><span>-</span><span style="color:#b48ead;">compile</span><span>(</span><span style="color:#a3be8c;">export_all</span><span>).
+</span><span>
+</span><span>-</span><span style="color:#b48ead;">include_lib</span><span>(&quot;</span><span style="color:#a3be8c;">wx/include/wx.hrl</span><span>&quot;).
+</span><span>
+</span><span style="color:#8fa1b3;">wx_id_any</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?wxID_ANY</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">wx_sunken_border</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?wxSUNKEN_BORDER</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">wx_gl_rgba</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?WX_GL_RGBA</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">wx_gl_doublebuffer</span><span>() -&gt;
+</span><span> </span><span style="color:#d08770;">?WX_GL_DOUBLEBUFFER</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">wx_gl_min_red</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?WX_GL_MIN_RED</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">wx_gl_min_green</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?WX_GL_MIN_GREEN</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">wx_gl_min_blue</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?WX_GL_MIN_BLUE</span><span>.
+</span><span>  
+</span><span style="color:#8fa1b3;">wx_gl_depth_size</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?WX_GL_DEPTH_SIZE</span><span>.
+</span></code></pre>
+<p>Next create a file src/gl_const.erl with these contents:</p>
+<pre data-lang="erlang" style="background-color:#2b303b;color:#c0c5ce;" class="language-erlang "><code class="language-erlang" data-lang="erlang"><span>-</span><span style="color:#b48ead;">module</span><span>(gl_const).
+</span><span>-</span><span style="color:#b48ead;">compile</span><span>(</span><span style="color:#a3be8c;">export_all</span><span>).
+</span><span>
+</span><span>-</span><span style="color:#b48ead;">include_lib</span><span>(&quot;</span><span style="color:#a3be8c;">wx/include/gl.hrl</span><span>&quot;).
+</span><span>
+</span><span style="color:#8fa1b3;">gl_smooth</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_SMOOTH</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_depth_test</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_DEPTH_TEST</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_lequal</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_LEQUAL</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_perspective_correction_hint</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_PERSPECTIVE_CORRECTION_HINT</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_nicest</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_NICEST</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_color_buffer_bit</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_COLOR_BUFFER_BIT</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_depth_buffer_bit</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_DEPTH_BUFFER_BIT</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_triangles</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_TRIANGLES</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_projection</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_PROJECTION</span><span>.
+</span><span>
+</span><span style="color:#8fa1b3;">gl_modelview</span><span>() -&gt;
+</span><span>  </span><span style="color:#d08770;">?GL_MODELVIEW</span><span>.
+</span><span>
+</span></code></pre>
+<p>We're now done with Erlang.</p>
+<h1 id="elixir-code">Elixir Code</h1>
+<p>Change lib/elixir_opengl.ex to look like this:</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span style="color:#b48ead;">defmodule </span><span style="color:#ebcb8b;">ElixirOpengl </span><span style="color:#b48ead;">do
+</span><span>  @</span><span style="color:#bf616a;">behaviour </span><span style="color:#a3be8c;">:wx_object
+</span><span>  </span><span style="color:#b48ead;">use </span><span style="color:#ebcb8b;">Bitwise
+</span><span>
+</span><span>  @</span><span style="color:#bf616a;">title </span><span>&#39;</span><span style="color:#a3be8c;">Elixir OpenGL</span><span>&#39;
+</span><span>  @</span><span style="color:#bf616a;">size </span><span>{</span><span style="color:#d08770;">600</span><span>, </span><span style="color:#d08770;">600</span><span>}
+</span><span>
+</span><span style="color:#65737e;">  #######
+</span><span style="color:#65737e;">  # API #
+</span><span style="color:#65737e;">  #######
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">start_link</span><span>() </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#a3be8c;">:wx_object</span><span>.start_link(</span><span style="color:#bf616a;">__MODULE__</span><span>, [], [])
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span style="color:#65737e;">  #################################
+</span><span style="color:#65737e;">  # :wx_object behavior callbacks #
+</span><span style="color:#65737e;">  #################################
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">init</span><span>(config) </span><span style="color:#b48ead;">do
+</span><span>    wx = </span><span style="color:#a3be8c;">:wx</span><span>.new(config)
+</span><span>    frame = </span><span style="color:#a3be8c;">:wxFrame</span><span>.new(wx, </span><span style="color:#a3be8c;">:wx_const</span><span>.wx_id_any, @</span><span style="color:#bf616a;">title</span><span>, [{</span><span style="color:#a3be8c;">:size</span><span>, @</span><span style="color:#bf616a;">size</span><span>}])
+</span><span>    </span><span style="color:#a3be8c;">:wxWindow</span><span>.connect(frame, </span><span style="color:#a3be8c;">:close_window</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:wxFrame</span><span>.show(frame)
+</span><span>
+</span><span>    opts = [{</span><span style="color:#a3be8c;">:size</span><span>, @</span><span style="color:#bf616a;">size</span><span>}]
+</span><span>    gl_attrib = [{</span><span style="color:#a3be8c;">:attribList</span><span>, [</span><span style="color:#a3be8c;">:wx_const</span><span>.wx_gl_rgba,
+</span><span>                                </span><span style="color:#a3be8c;">:wx_const</span><span>.wx_gl_doublebuffer,
+</span><span>                                </span><span style="color:#a3be8c;">:wx_const</span><span>.wx_gl_min_red, </span><span style="color:#d08770;">8</span><span>,
+</span><span>                                </span><span style="color:#a3be8c;">:wx_const</span><span>.wx_gl_min_green, </span><span style="color:#d08770;">8</span><span>,
+</span><span>                                </span><span style="color:#a3be8c;">:wx_const</span><span>.wx_gl_min_blue, </span><span style="color:#d08770;">8</span><span>,
+</span><span>                                </span><span style="color:#a3be8c;">:wx_const</span><span>.wx_gl_depth_size, </span><span style="color:#d08770;">24</span><span>, </span><span style="color:#d08770;">0</span><span>]}]
+</span><span>    canvas = </span><span style="color:#a3be8c;">:wxGLCanvas</span><span>.new(frame, opts ++ gl_attrib)
+</span><span>
+</span><span>    </span><span style="color:#a3be8c;">:wxGLCanvas</span><span>.connect(canvas, </span><span style="color:#a3be8c;">:size</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:wxWindow</span><span>.reparent(canvas, frame)
+</span><span>    </span><span style="color:#a3be8c;">:wxGLCanvas</span><span>.setCurrent(canvas)
+</span><span>    setup_gl(canvas)
+</span><span>
+</span><span style="color:#65737e;">    # Periodically send a message to trigger a redraw of the scene
+</span><span>    timer = </span><span style="color:#a3be8c;">:timer</span><span>.send_interval(</span><span style="color:#d08770;">20</span><span>, self(), </span><span style="color:#a3be8c;">:update</span><span>)
+</span><span>
+</span><span>    {frame, %{</span><span style="color:#d08770;">canvas:</span><span> canvas, </span><span style="color:#d08770;">timer:</span><span> timer}}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">code_change</span><span>(_, _, state) </span><span style="color:#b48ead;">do
+</span><span>    {</span><span style="color:#a3be8c;">:stop</span><span>, </span><span style="color:#a3be8c;">:not_implemented</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">handle_cast</span><span>(msg, state) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#ebcb8b;">IO</span><span>.puts &quot;</span><span style="color:#a3be8c;">Cast:</span><span>&quot;
+</span><span>    </span><span style="color:#ebcb8b;">IO</span><span>.inspect msg
+</span><span>    {</span><span style="color:#a3be8c;">:noreply</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">handle_call</span><span>(msg, _from, state) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#ebcb8b;">IO</span><span>.puts &quot;</span><span style="color:#a3be8c;">Call:</span><span>&quot;
+</span><span>    </span><span style="color:#ebcb8b;">IO</span><span>.inspect msg
+</span><span>    {</span><span style="color:#a3be8c;">:reply</span><span>, </span><span style="color:#a3be8c;">:ok</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">handle_info</span><span>(</span><span style="color:#a3be8c;">:stop</span><span>, state) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#a3be8c;">:timer</span><span>.cancel(state.timer)
+</span><span>    </span><span style="color:#a3be8c;">:wxGLCanvas</span><span>.destroy(state.canvas)
+</span><span>    {</span><span style="color:#a3be8c;">:stop</span><span>, </span><span style="color:#a3be8c;">:normal</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">handle_info</span><span>(</span><span style="color:#a3be8c;">:update</span><span>, state) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#a3be8c;">:wx</span><span>.batch(</span><span style="color:#b48ead;">fn </span><span>-&gt; render(state) </span><span style="color:#b48ead;">end</span><span>)
+</span><span>    {</span><span style="color:#a3be8c;">:noreply</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span style="color:#65737e;">  # Example input:
+</span><span style="color:#65737e;">  # {:wx, -2006, {:wx_ref, 35, :wxFrame, []}, [], {:wxClose, :close_window}}
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">handle_event</span><span>({</span><span style="color:#a3be8c;">:wx</span><span>, _, _, _, {</span><span style="color:#a3be8c;">:wxClose</span><span>, </span><span style="color:#a3be8c;">:close_window</span><span>}}, state) </span><span style="color:#b48ead;">do
+</span><span>    {</span><span style="color:#a3be8c;">:stop</span><span>, </span><span style="color:#a3be8c;">:normal</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">handle_event</span><span>({</span><span style="color:#a3be8c;">:wx</span><span>, _, _, _, {</span><span style="color:#a3be8c;">:wxSize</span><span>, </span><span style="color:#a3be8c;">:size</span><span>, {width, height}, _}}, state) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#b48ead;">if</span><span> width != </span><span style="color:#d08770;">0 </span><span>and height != </span><span style="color:#d08770;">0 </span><span style="color:#b48ead;">do
+</span><span>      resize_gl_scene(width, height)
+</span><span>    </span><span style="color:#b48ead;">end
+</span><span>    {</span><span style="color:#a3be8c;">:noreply</span><span>, state}
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">terminate</span><span>(_reason, state) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#a3be8c;">:wxGLCanvas</span><span>.destroy(state.canvas)
+</span><span>    </span><span style="color:#a3be8c;">:timer</span><span>.cancel(state.timer)
+</span><span>    </span><span style="color:#a3be8c;">:timer</span><span>.sleep(</span><span style="color:#d08770;">300</span><span>)
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>
+</span><span style="color:#65737e;">  #####################
+</span><span style="color:#65737e;">  # Private Functions #
+</span><span style="color:#65737e;">  #####################
+</span><span>  </span><span style="color:#b48ead;">defp </span><span style="color:#8fa1b3;">setup_gl</span><span>(win) </span><span style="color:#b48ead;">do
+</span><span>    {w, h} = </span><span style="color:#a3be8c;">:wxWindow</span><span>.getClientSize(win)
+</span><span>    resize_gl_scene(w, h)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.shadeModel(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_smooth)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.clearColor(</span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.clearDepth(</span><span style="color:#d08770;">1.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.enable(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_depth_test)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.depthFunc(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_lequal)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.hint(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_perspective_correction_hint, </span><span style="color:#a3be8c;">:gl_const</span><span>.gl_nicest)
+</span><span>    </span><span style="color:#a3be8c;">:ok
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">defp </span><span style="color:#8fa1b3;">resize_gl_scene</span><span>(width, height) </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.viewport(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">0</span><span>, width, height)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.matrixMode(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_projection)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.loadIdentity()
+</span><span>    </span><span style="color:#a3be8c;">:glu</span><span>.perspective(</span><span style="color:#d08770;">45.0</span><span>, width / height, </span><span style="color:#d08770;">0.1</span><span>, </span><span style="color:#d08770;">100.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.matrixMode(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_modelview)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.loadIdentity()
+</span><span>    </span><span style="color:#a3be8c;">:ok
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">defp </span><span style="color:#8fa1b3;">draw</span><span>() </span><span style="color:#b48ead;">do
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.clear(</span><span style="color:#ebcb8b;">Bitwise</span><span>.bor(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_color_buffer_bit, </span><span style="color:#a3be8c;">:gl_const</span><span>.gl_depth_buffer_bit))
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.loadIdentity()
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.translatef(-</span><span style="color:#d08770;">1.5</span><span>, </span><span style="color:#d08770;">0.0</span><span>, -</span><span style="color:#d08770;">6.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.&#39;</span><span style="color:#a3be8c;">begin</span><span>&#39;(</span><span style="color:#a3be8c;">:gl_const</span><span>.gl_triangles)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.vertex3f(</span><span style="color:#d08770;">0.0</span><span>, </span><span style="color:#d08770;">1.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.vertex3f(-</span><span style="color:#d08770;">1.0</span><span>, -</span><span style="color:#d08770;">1.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.vertex3f(</span><span style="color:#d08770;">1.0</span><span>, -</span><span style="color:#d08770;">1.0</span><span>, </span><span style="color:#d08770;">0.0</span><span>)
+</span><span>    </span><span style="color:#a3be8c;">:gl</span><span>.&#39;</span><span style="color:#a3be8c;">end</span><span>&#39;()
+</span><span>    </span><span style="color:#a3be8c;">:ok
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span>
+</span><span>  </span><span style="color:#b48ead;">defp </span><span style="color:#8fa1b3;">render</span><span>(%{</span><span style="color:#d08770;">canvas:</span><span> canvas} = _state) </span><span style="color:#b48ead;">do
+</span><span>    draw()
+</span><span>    </span><span style="color:#a3be8c;">:wxGLCanvas</span><span>.swapBuffers(canvas)
+</span><span>    </span><span style="color:#a3be8c;">:ok
+</span><span>  </span><span style="color:#b48ead;">end
+</span><span style="color:#b48ead;">end
+</span></code></pre>
+<p>Now lets run the program, start iex like this:</p>
+<pre data-lang="sh" style="background-color:#2b303b;color:#c0c5ce;" class="language-sh "><code class="language-sh" data-lang="sh"><span style="color:#bf616a;">$</span><span> iex</span><span style="color:#bf616a;"> -S</span><span> mix
+</span></code></pre>
+<p>And run this command</p>
+<pre data-lang="elixir" style="background-color:#2b303b;color:#c0c5ce;" class="language-elixir "><code class="language-elixir" data-lang="elixir"><span>iex(</span><span style="color:#d08770;">1</span><span>)&gt; </span><span style="color:#ebcb8b;">ElixirOpengl</span><span>.start_link
+</span></code></pre>
+<p>A window should appear that looks like this:</p>
+<p><img src="/images/elixir-opengl-01/triangle.png" alt="OpenGL Triangle" /></p>
+<p>I suspect this can be improved on, but we've got an OpenGL context which is good enough for now.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

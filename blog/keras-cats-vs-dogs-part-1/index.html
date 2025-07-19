@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/keras/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/machine-learning/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning",
+      "image": [],
+      "datePublished": "2019-05-07T00:00:00+00:00",
+      "dateModified": "2019-05-07T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning",
+          "item": "https://wtfleming.github.io/blog/keras-cats-vs-dogs-part-1/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Cats vs Dogs - Part 1 - 92.8% Accuracy - Binary Image Classification with Keras and Deep Learning</h1>
+    <small>
+      May 07, 2019
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/keras/">keras</a>
+          
+            <a href="https://wtfleming.github.io/tags/machine-learning/">machine learning</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>In 2014 Kaggle ran a <a href="https://www.kaggle.com/c/dogs-vs-cats/overview">competition</a> to determine if images contained a dog or a cat. In this series of posts we'll see how easy it is to use Keras to create a <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">2D convolutional neural network</a> that potentially could have won the contest.</p>
+<p>We will start with a basic neural network that is 84% accurate at predicting whether an image contains a cat or dog. Then we'll add dropout and finally add data augmentation to get to 92.8% categorization accuracy.</p>
+<p>In <a href="https://wtfleming.github.io/blog/keras-cats-vs-dogs-part-2/">part 2</a> we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry <a href="https://www.kaggle.com/c/dogs-vs-cats/leaderboard">scored 98.9%</a>).</p>
+<p>In <a href="https://wtfleming.github.io/blog/pytorch-cats-vs-dogs-part-3/">part 3</a> we'll switch gears and use PyTorch instead of Keras to create an ensemble of models that provides more predictive power than any single model and reaches 99.1% accuracy.</p>
+<p>The code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-1.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.</p>
+<h3 id="build-the-first-network">Build the first network</h3>
+<p>We'll use the Keras sequential API to build a pretty straightforward network that consists of a number of Conv2D and pooling layers with a dense network at the end that makes the cat or dog prediction.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras </span><span style="color:#b48ead;">import </span><span>layers, models, optimizers
+</span><span>
+</span><span>model = models.</span><span style="color:#bf616a;">Sequential</span><span>()
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">32</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;, </span><span style="color:#bf616a;">input_shape</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">3</span><span>)))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">64</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">128</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">128</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Flatten</span><span>())
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">512</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">sigmoid</span><span>&#39;))
+</span><span>
+</span><span>model.</span><span style="color:#bf616a;">compile</span><span>(</span><span style="color:#bf616a;">loss</span><span>=&#39;</span><span style="color:#a3be8c;">binary_crossentropy</span><span>&#39;,
+</span><span>              </span><span style="color:#bf616a;">optimizer</span><span>=optimizers.</span><span style="color:#bf616a;">RMSprop</span><span>(</span><span style="color:#bf616a;">lr</span><span>=</span><span style="color:#d08770;">1e-4</span><span>),
+</span><span>              </span><span style="color:#bf616a;">metrics</span><span>=[&#39;</span><span style="color:#a3be8c;">acc</span><span>&#39;])
+</span></code></pre>
+<p>We'll create some generators that will do some preprocessing on the images and resize them to be 224x224 pixels.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras.preprocessing.image </span><span style="color:#b48ead;">import </span><span>ImageDataGenerator
+</span><span>
+</span><span style="color:#65737e;"># Rescale pixel values from [0, 255] to [0, 1]
+</span><span>train_datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(</span><span style="color:#bf616a;">rescale</span><span>=</span><span style="color:#d08770;">1.</span><span>/</span><span style="color:#d08770;">255</span><span>) 
+</span><span>test_datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(</span><span style="color:#bf616a;">rescale</span><span>=</span><span style="color:#d08770;">1.</span><span>/</span><span style="color:#d08770;">255</span><span>)
+</span><span>
+</span><span style="color:#65737e;"># The list of classes will be automatically inferred from the subdirectory names/structure under train_dir
+</span><span>train_generator = train_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    train_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>), </span><span style="color:#65737e;"># resize all images to 224 x 224
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;) </span><span style="color:#65737e;"># because we use binary_crossentropy loss we need binary labels
+</span><span>
+</span><span>validation_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    validation_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 16000 images belonging to 2 classes.
+</span><span>Found 4500 images belonging to 2 classes.
+</span></code></pre>
+<p>Now lets fit the network for 30 epochs.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>history = model.</span><span style="color:#bf616a;">fit_generator</span><span>(
+</span><span>    train_generator,
+</span><span>    </span><span style="color:#bf616a;">steps_per_epoch</span><span>=</span><span style="color:#d08770;">320</span><span>, </span><span style="color:#65737e;"># 50 batches in the generator, so it takes 320 batches to get to 16000 images
+</span><span>    </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">30</span><span>,
+</span><span>    </span><span style="color:#bf616a;">validation_data</span><span>=validation_generator,
+</span><span>    </span><span style="color:#bf616a;">validation_steps</span><span>=</span><span style="color:#d08770;">90</span><span>) </span><span style="color:#65737e;"># 90 x 50 == 4500
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch 1/30
+</span><span>320/320 [==============================] - 48s 150ms/step - loss: 0.6070 - acc: 0.6579 - val_loss: 0.5263 - val_acc: 0.7413
+</span><span>Epoch 2/30
+</span><span>320/320 [==============================] - 45s 142ms/step - loss: 0.5145 - acc: 0.7433 - val_loss: 0.5812 - val_acc: 0.6971
+</span><span>...
+</span><span>...
+</span><span>...
+</span><span>Epoch 29/30
+</span><span>320/320 [==============================] - 46s 143ms/step - loss: 0.0133 - acc: 0.9959 - val_loss: 0.9195 - val_acc: 0.8349
+</span><span>Epoch 30/30
+</span><span>320/320 [==============================] - 46s 143ms/step - loss: 0.0133 - acc: 0.9965 - val_loss: 0.8704 - val_acc: 0.8351
+</span></code></pre>
+<p>Plotting the results (code to generate the graphs is available in the <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-1.ipynb">jupyter notebook</a>) we can see that the model begins to overfit the training data almost immediately. The training accuracy continues to improve until it gets close to 100%, while the validation set tops out at around 84% and loss degrades as training continues.</p>
+<p><img src="/images/dogs-vs-cats-part-one/first-model-accuracy-loss.png" alt="first-model-accuracy-loss" /></p>
+<p>In the final epoch we reached 83.5% accuracy on the validation set, lets quickly double check on the test set to compare.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>test_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    test_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span><span>
+</span><span>test_loss, test_acc = model.</span><span style="color:#bf616a;">evaluate_generator</span><span>(test_generator, </span><span style="color:#bf616a;">steps</span><span>=</span><span style="color:#d08770;">90</span><span>)
+</span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">test acc:</span><span>&#39;, test_acc)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 4500 images belonging to 2 classes.
+</span><span>test acc: 0.8406666629844242
+</span></code></pre>
+<p>On one hand this isn't horrible, a baseline where we pick dog every time would have 50% accuracy. But on the other hand we can do much better.</p>
+<h3 id="add-dropout">Add Dropout</h3>
+<p>We can add dropout to regularize the model. Adding dropout randomly removes a percentage of neurons (sets their value to 0) at each update during training time, which helps prevent overfitting. By randomly throwing out data this will help to prevent the network from becoming too smart and essentially memorizing the training data, and thereby generalize to new data better.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras </span><span style="color:#b48ead;">import </span><span>layers, models, optimizers
+</span><span>
+</span><span>model = models.</span><span style="color:#bf616a;">Sequential</span><span>()
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">32</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;, </span><span style="color:#bf616a;">input_shape</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">3</span><span>)))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">64</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">128</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Conv2D</span><span>(</span><span style="color:#d08770;">128</span><span>, (</span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">3</span><span>), </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">MaxPool2D</span><span>(</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">2</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Flatten</span><span>())
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dropout</span><span>(</span><span style="color:#d08770;">0.5</span><span>)) </span><span style="color:#65737e;"># Note the only change is that we added dropout here
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">512</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">sigmoid</span><span>&#39;))
+</span><span>
+</span><span>model.</span><span style="color:#bf616a;">compile</span><span>(</span><span style="color:#bf616a;">loss</span><span>=&#39;</span><span style="color:#a3be8c;">binary_crossentropy</span><span>&#39;,
+</span><span>              </span><span style="color:#bf616a;">optimizer</span><span>=optimizers.</span><span style="color:#bf616a;">RMSprop</span><span>(</span><span style="color:#bf616a;">lr</span><span>=</span><span style="color:#d08770;">1e-4</span><span>),
+</span><span>              </span><span style="color:#bf616a;">metrics</span><span>=[&#39;</span><span style="color:#a3be8c;">acc</span><span>&#39;])
+</span></code></pre>
+<p>How does this model perform?</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch 1/30
+</span><span>320/320 [==============================] - 46s 145ms/step - loss: 0.6166 - acc: 0.6449 - val_loss: 0.5348 - val_acc: 0.7378
+</span><span>Epoch 2/30
+</span><span>320/320 [==============================] - 46s 143ms/step - loss: 0.5280 - acc: 0.7364 - val_loss: 0.4777 - val_acc: 0.7733
+</span><span>...
+</span><span>...
+</span><span>...
+</span><span>Epoch 29/30
+</span><span>320/320 [==============================] - 46s 144ms/step - loss: 0.1037 - acc: 0.9603 - val_loss: 0.3722 - val_acc: 0.8720
+</span><span>Epoch 30/30
+</span><span>320/320 [==============================] - 46s 144ms/step - loss: 0.1030 - acc: 0.9604 - val_loss: 0.3444 - val_acc: 0.8780
+</span></code></pre>
+<p><img src="/images/dogs-vs-cats-part-one/first-model-accuracy-loss-add-dropout.png" alt="first-model-accuracy-loss-add-dropout" /></p>
+<p>We still seem to be overfitting, but not as badly. We've also increase validation accuracy to 87.8%, so this is a bit of a win. We could try tuning the network architecture or the dropout amount, but instead lets try something else next.</p>
+<h3 id="add-data-augmentation">Add Data Augmentation</h3>
+<p>Keras includes an <a href="https://keras.io/preprocessing/image/">ImageDataGenerator</a> class which lets us generate a number of random transformations on an image. Since we're only training on 16,000 images, we can use this to create "new" images to help the network learn. There are limits to how much this can help, but in this case we will get a decent accuracy boost.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras.preprocessing.image </span><span style="color:#b48ead;">import </span><span>ImageDataGenerator
+</span><span>
+</span><span>datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(
+</span><span>    </span><span style="color:#bf616a;">rotation_range</span><span>=</span><span style="color:#d08770;">40</span><span>,
+</span><span>    </span><span style="color:#bf616a;">width_shift_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">height_shift_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">shear_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">zoom_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">horizontal_flip</span><span>=</span><span style="color:#d08770;">True</span><span>,
+</span><span>    </span><span style="color:#bf616a;">fill_mode</span><span>=&#39;</span><span style="color:#a3be8c;">nearest</span><span>&#39;)
+</span></code></pre>
+<p>The above creates a data generator that will take in an image from the training set and return an image that has been slightly altered. Lets visualize what this looks like.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras.preprocessing </span><span style="color:#b48ead;">import </span><span>image
+</span><span>
+</span><span>fnames = [os.path.</span><span style="color:#bf616a;">join</span><span>(train_cats_dir, fname) </span><span style="color:#b48ead;">for </span><span>fname </span><span style="color:#b48ead;">in </span><span>os.</span><span style="color:#bf616a;">listdir</span><span>(train_cats_dir)]
+</span><span>img_path = fnames[</span><span style="color:#d08770;">4</span><span>] </span><span style="color:#65737e;"># Choose one image to augment
+</span><span>img = image.</span><span style="color:#bf616a;">load_img</span><span>(img_path, </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>)) </span><span style="color:#65737e;"># load image and resize it
+</span><span>x = image.</span><span style="color:#bf616a;">img_to_array</span><span>(img) </span><span style="color:#65737e;"># Convert to a Numpy array with shape (224, 224, 3)
+</span><span>x = x.</span><span style="color:#bf616a;">reshape</span><span>((</span><span style="color:#d08770;">1</span><span>,) + x.shape)
+</span><span>
+</span><span style="color:#65737e;"># Generates batches of randomly transformed images.
+</span><span style="color:#65737e;"># Loops indefinitely, so you need to break once three images have been created
+</span><span>i = </span><span style="color:#d08770;">0
+</span><span style="color:#b48ead;">for </span><span>batch </span><span style="color:#b48ead;">in </span><span>datagen.</span><span style="color:#bf616a;">flow</span><span>(x, </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">1</span><span>):
+</span><span>    plt.</span><span style="color:#bf616a;">figure</span><span>(i)
+</span><span>    imgplot = plt.</span><span style="color:#bf616a;">imshow</span><span>(image.</span><span style="color:#bf616a;">array_to_img</span><span>(batch[</span><span style="color:#d08770;">0</span><span>]))
+</span><span>    i += </span><span style="color:#d08770;">1
+</span><span>    </span><span style="color:#b48ead;">if </span><span>i % </span><span style="color:#d08770;">3 </span><span>== </span><span style="color:#d08770;">0</span><span>:
+</span><span>        </span><span style="color:#b48ead;">break
+</span><span>plt.</span><span style="color:#bf616a;">show</span><span>()
+</span></code></pre>
+<p><img src="/images/dogs-vs-cats-part-one/image-augmentation.png" alt="image-augmentation" /></p>
+<p>We'll use the same network architecture as the previous step, but generate images like this</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>train_datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(
+</span><span>    </span><span style="color:#bf616a;">rescale</span><span>=</span><span style="color:#d08770;">1.</span><span>/</span><span style="color:#d08770;">255</span><span>,
+</span><span>    </span><span style="color:#bf616a;">rotation_range</span><span>=</span><span style="color:#d08770;">40</span><span>,
+</span><span>    </span><span style="color:#bf616a;">width_shift_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">height_shift_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">shear_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">zoom_range</span><span>=</span><span style="color:#d08770;">0.2</span><span>,
+</span><span>    </span><span style="color:#bf616a;">horizontal_flip</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>
+</span><span>test_datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(</span><span style="color:#bf616a;">rescale</span><span>=</span><span style="color:#d08770;">1.</span><span>/</span><span style="color:#d08770;">255</span><span>) </span><span style="color:#65737e;"># Note that validation data should not be augmented
+</span><span>
+</span><span>train_generator = train_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    train_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span><span>
+</span><span>validation_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    validation_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 16000 images belonging to 2 classes.
+</span><span>Found 4500 images belonging to 2 classes.
+</span></code></pre>
+<p>And then increase the steps per epoch 3x so that we are training on 48,000 images instead of 16,000. This takes awhile as in the example I'm running on a 5 year old GPU I had laying around the house, training should be much faster if you can use more recent hardware or rent time on a GPU in the cloud.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>history = model.</span><span style="color:#bf616a;">fit_generator</span><span>(
+</span><span>    train_generator,
+</span><span>    </span><span style="color:#bf616a;">steps_per_epoch</span><span>=</span><span style="color:#d08770;">960</span><span>, </span><span style="color:#65737e;"># 960 x 50 = 48000 (we are showing different augmented images more than once per epoch)
+</span><span>    </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">30</span><span>,
+</span><span>    </span><span style="color:#bf616a;">validation_data</span><span>=validation_generator,
+</span><span>    </span><span style="color:#bf616a;">validation_steps</span><span>=</span><span style="color:#d08770;">90</span><span>) </span><span style="color:#65737e;"># 90 x 50 == 4500
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch 1/30
+</span><span>960/960 [==============================] - 411s 429ms/step - loss: 0.6202 - acc: 0.6428 - val_loss: 0.5285 - val_acc: 0.7413
+</span><span>Epoch 2/30
+</span><span>960/960 [==============================] - 410s 427ms/step - loss: 0.5495 - acc: 0.7141 - val_loss: 0.5082 - val_acc: 0.7447
+</span><span>...
+</span><span>...
+</span><span>...
+</span><span>Epoch 29/30
+</span><span>960/960 [==============================] - 409s 426ms/step - loss: 0.2323 - acc: 0.9057 - val_loss: 0.2284 - val_acc: 0.9136
+</span><span>Epoch 30/30
+</span><span>960/960 [==============================] - 413s 430ms/step - loss: 0.2330 - acc: 0.9040 - val_loss: 0.1821 - val_acc: 0.9222
+</span></code></pre>
+<p><img src="/images/dogs-vs-cats-part-one/add-data-augmentation.png" alt="add-data-augmentation" /></p>
+<p>And finally compare to the holdout test set.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>test_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    test_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span><span>
+</span><span>test_loss, test_acc = model.</span><span style="color:#bf616a;">evaluate_generator</span><span>(test_generator, </span><span style="color:#bf616a;">steps</span><span>=</span><span style="color:#d08770;">90</span><span>)
+</span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">test acc:</span><span>&#39;, test_acc)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 4500 images belonging to 2 classes.
+</span><span>test acc: 0.928444442484114
+</span></code></pre>
+<p>Yet another improvement, we've reached 92.8% on the test set, are seeing similar numbers on the validation data, and overfitting doesn't seem to be nearly as much of a problem.</p>
+<p>We could work to improve these results, but that's all for today. In the next post we’ll see how we can take advantage of transfer learning to reach 98.6% accuracy.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

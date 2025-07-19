@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Running a Dockerized Clojure Web App on CoreOS">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Running a Dockerized Clojure Web App on CoreOS
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/docker/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/coreos/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Running a Dockerized Clojure Web App on CoreOS",
+      "image": [],
+      "datePublished": "2014-12-06T00:00:00+00:00",
+      "dateModified": "2014-12-06T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Running a Dockerized Clojure Web App on CoreOS",
+          "item": "https://wtfleming.github.io/blog/run-dockerized-clojure-app-on-coreos/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Running a Dockerized Clojure Web App on CoreOS</h1>
+    <small>
+      December 06, 2014
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
+          
+            <a href="https://wtfleming.github.io/tags/docker/">docker</a>
+          
+            <a href="https://wtfleming.github.io/tags/coreos/">coreos</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="introduction">Introduction</h1>
+<p>In the <a href="https://wtfleming.github.io/blog/dockerize-clojure-compojure-http-kit-web-application/">previous post</a> we created a Clojure web service and ran it in a Docker container. Here we will deploy that container on a 3 node CoreOS cluster running in <a href="https://www.vagrantup.com/">Vagrant</a> on a local development machine.</p>
+<h1 id="coreos">CoreOS</h1>
+<p>CoreOS is a minimal version of Linux meant for large scale server deployments.</p>
+<p>It has a very different model than a Debian/Red Hat/etc distribution. The OS runs on a read-only partition, and applications/services run in Docker containers on a read-write filesystem.</p>
+<p>It's web page describes it as:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>A new Linux distribution that has been rearchitected to provide features needed
+</span><span>to run modern infrastructure stacks. The strategies and architectures that influence
+</span><span>CoreOS allow companies like Google, Facebook and Twitter to run their services at
+</span><span>scale with high resilience.
+</span></code></pre>
+<p>The components to be aware of are:</p>
+<hr />
+<ul>
+<li><strong><a href="https://coreos.com/">CoreOS</a></strong> - The underlying operating system.</li>
+<li><strong><a href="https://www.docker.com/">Docker</a></strong> - CoreOS applications run in containers. At this time only Docker is supported. However, the CoreOS team recently announced a new container runtime called <a href="https://github.com/coreos/rocket">Rocket</a> they will also be adding support for.</li>
+<li><strong><a href="https://coreos.com/using-coreos/etcd/">etcd</a></strong> - A highly-available key value store for shared configuration and service discovery. This fulfills a role similar to ZooKeeper.</li>
+<li><strong><a href="https://github.com/coreos/fleet">fleet</a></strong> - You will use this to start/stop containers, define a cluster topology, etc. It ties together systemd and etcd into a distributed init system. Think of it as an extension of systemd that operates at the cluster level instead of the machine level.</li>
+</ul>
+<hr />
+<p>We won't be really be going into etcd in this post, but there are some interesting things you can do with it. For instance, you could configure a trigger so that when a new web service comes online it can detect this and automatically change an nginx configuration to proxy traffic to it (or remove it from the rotation when the service is stopped).</p>
+<h1 id="start-vagrant">Start Vagrant</h1>
+<p>I am assuming you are on either a Linux or OS X machine, if you are on Windows you will likely need to make a few changes.</p>
+<p>If you run into any problems there is also a guide to using Vagrant on the CoreOS <a href="https://coreos.com/blog/coreos-clustering-with-vagrant/">blog</a> and <a href="https://coreos.com/docs/running-coreos/platforms/vagrant/">documentation</a> which may help you troubleshoot.</p>
+<p>Ensure you have installed Vagrant on you development machine, then use git to clone the <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant repo</a>.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ git clone git@github.com:coreos/coreos-vagrant.git
+</span><span>$ cd coreos-vagrant
+</span></code></pre>
+<p>Rename the file <em>config.rb.sample</em> to <em>config.rb</em> and change the lines:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#$num_instances=1
+</span><span>#$update_channel=&#39;alpha&#39;
+</span></code></pre>
+<p>to</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$num_instances=3
+</span><span>$update_channel=&#39;stable&#39;
+</span></code></pre>
+<p>Next rename the file <em>user-data.sample</em> to <em>user-data</em> and then browse to <a href="https://discovery.etcd.io/new">https://discovery.etcd.io/new</a> and copy the what was on the page then uncomment and insert it on the the line that looks like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>#discovery: https://discovery.etcd.io/&lt;token&gt;
+</span></code></pre>
+<p>Every time you start a new cluster you will need a new token. If you do not want to use the discovery service you can instead include the network addresses of the machines that will be running etcd yourself. The CoreOS team provide the discovery.etcd.io service as a convenience to make it easier to bootstrap a cluster, but you are not required to use it.</p>
+<p>Now run this command:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ vagrant up
+</span></code></pre>
+<p>and Vagrant will launch 3 VirtualBox machines running CoreOS.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ vagrant status
+</span><span>Current machine states:
+</span><span>core-01                   running (virtualbox)
+</span><span>core-02                   running (virtualbox)
+</span><span>core-03                   running (virtualbox)
+</span></code></pre>
+<p>As you can see, there are 3 machines running.</p>
+<h1 id="ssh-to-your-cluster">SSH to your cluster</h1>
+<p>In order to forward your SSH session to other machines in the cluster you will need to use a key that is installed on all machines. In this case one from Vagrant will already be installed on the machines and we can add it like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ ssh-add ~/.vagrant.d/insecure_private_key
+</span></code></pre>
+<p>Now SSH into one of the boxes with agent forwarding:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ vagrant ssh core-01 -- -A
+</span><span>
+</span></code></pre>
+<p>We'll use the fleetctl tool to control our cluster. First lets see that we can see all 3 machines:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl list-machines
+</span><span>MACHINE         IP              METADATA
+</span><span>c313e784...     172.17.8.102    -
+</span><span>c3ddc4fd...     172.17.8.101    -
+</span><span>d0f027da...     172.17.8.103    -
+</span></code></pre>
+<p>You should see something like the above. We haven't defined any metadata, but you could do something like tag a machine backed by a SSD drive, and then when you launch a service like PostgreSQL tell fleet that it should only run on a machine with that metadata.</p>
+<h1 id="create-a-service-file">Create A Service File</h1>
+<p>CoreOS runs applications as Docker containers. We will be running a simple web server written in Clojure that just displays the text "Hello World". The source code is <a href="https://github.com/wtfleming/docker-compojure-hello-world">available on GitHub</a> and the Docker container is also <a href="https://registry.hub.docker.com/u/wtfleming/docker-compojure-hello-world/">published at Docker Hub</a>.</p>
+<p>Ensure that you are logged onto a machine in the cluster via SSH and create a file named <em>clojure-http@.service</em>. The file format is a <a href="http://freedesktop.org/wiki/Software/systemd/">systemd</a> service file.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[Unit]
+</span><span>Description=clojure-http
+</span><span>
+</span><span>[Service]
+</span><span>ExecStart=/usr/bin/docker run --name clojure-http-%i --rm -p 5000:5000 -e PORT=5000 wtfleming/docker-compojure-hello-world
+</span><span>ExecStop=/usr/bin/docker stop clojure-http-%i
+</span><span>
+</span><span>[X-Fleet]
+</span><span>Conflicts=clojure-http@*.service
+</span></code></pre>
+<p>This file provides the instructions about how the service should run. There are a few things to note:</p>
+<ul>
+<li>We are running a docker container and exposing port 5000.</li>
+<li>The wtfleming/docker-compojure-hello-world container is publicly hosted on Docker Hub, it will be automatically downloaded to the CoreOS cluster.</li>
+<li>The %i refers to the string between the @ and the suffix when we start the service (which we will do shortly, and should make sense then).</li>
+<li>The X-Fleet directive indicates that this service should only one instance of the service on a machine. Since we've bound to port 5000 if we start up a second copy of this service we don't want it here, fleet will launch it on another machine in the cluster.</li>
+</ul>
+<p>Now submit the service file and check that it registered:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl submit clojure-http@.service
+</span><span>
+</span><span>$ fleetctl list-unit-files
+</span><span>UNIT                    HASH    DSTATE          STATE           TARGET
+</span><span>clojure-http@.service   aab3979 inactive        inactive        -
+</span></code></pre>
+<p>If you see the file listed we are ready to move on.</p>
+<h1 id="start-the-web-services">Start the Web Services</h1>
+<p>We will be running 2 copies of the service, lets start them:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl start clojure-http@1.service
+</span><span>Unit clojure-http@1.service launched on c313e784.../172.17.8.102
+</span><span>
+</span><span>$ fleetctl start clojure-http@2.service
+</span><span>Unit clojure-http@2.service launched on c3ddc4fd.../172.17.8.101
+</span></code></pre>
+<p>You can check the status of running units:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl list-units
+</span><span>UNIT                    MACHINE                         ACTIVE  SUB
+</span><span>clojure-http@1.service  c313e784.../172.17.8.102        active  running
+</span><span>clojure-http@2.service  c3ddc4fd.../172.17.8.101        active  running
+</span></code></pre>
+<p>You can view logs like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl journal clojure-http@1.service
+</span><span>Dec 03 04:44:48 core-02 systemd[1]: Starting clojure-http...
+</span><span>Dec 03 04:44:48 core-02 systemd[1]: Started clojure-http.
+</span><span>Dec 03 04:44:52 core-02 docker[711]: Listening on port 5000
+</span></code></pre>
+<p>Finally lets view each of the pages:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ curl http://172.17.8.101:5000
+</span><span>Hello World
+</span><span>
+</span><span>$ curl http://172.17.8.102:5000
+</span><span>Hello World
+</span></code></pre>
+<p>Hopefully you'll have gotten output similar to above.</p>
+<h1 id="stop-the-services-and-clean-up">Stop the Services and Clean Up</h1>
+<p>Lets stop the services:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl stop clojure-http@1.service
+</span><span>Unit clojure-http@1.service loaded on c313e784.../172.17.8.102
+</span><span>
+</span><span>$ fleetctl stop clojure-http@2.service
+</span><span>Unit clojure-http@2.service loaded on c3ddc4fd.../172.17.8.101
+</span></code></pre>
+<p>Notice that they have now entered a failed state, but remain listed.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl list-units
+</span><span>UNIT                    MACHINE                         ACTIVE  SUB
+</span><span>clojure-http@1.service  c313e784.../172.17.8.102        failed  failed
+</span><span>clojure-http@2.service  c3ddc4fd.../172.17.8.101        failed  failed
+</span></code></pre>
+<p>We could restart them, but instead we will remove them like this:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl destroy clojure-http@1.service
+</span><span>Destroyed clojure-http@1.service
+</span><span>
+</span><span>$ fleetctl destroy clojure-http@2.service
+</span><span>Destroyed clojure-http@2.service
+</span><span>
+</span><span>$ fleetctl list-units
+</span><span>UNIT    MACHINE ACTIVE  SUB
+</span></code></pre>
+<p>Now lets remove our service file.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ fleetctl destroy clojure-http@.service
+</span><span>Destroyed clojure-http@.service
+</span><span>
+</span><span>$ fleetctl list-unit-files
+</span><span>UNIT    HASH    DSTATE  STATE   TARGET
+</span></code></pre>
+<p>Now exit the cluster, shut it down, and clean up Vagrant.</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ exit
+</span><span>
+</span><span>$ vagrant halt
+</span><span>==&gt; core-03: Attempting graceful shutdown of VM...
+</span><span>==&gt; core-02: Attempting graceful shutdown of VM...
+</span><span>==&gt; core-01: Attempting graceful shutdown of VM...
+</span><span>
+</span><span>$ vagrant destroy
+</span><span>...
+</span></code></pre>
+<p>And we're done!</p>
+<h1 id="next-steps">Next Steps</h1>
+<p>So far we created a CoreOS cluster and ran a web server on it, but we have just barely scratched the surface of what is possible.</p>
+<p>In a production environment you would want expose the web services to the world. If you are on EC2 you might want to register the services with an Elastic Load Balancer. One way to do that is with a <a href="https://coreos.com/docs/launching-containers/launching/launching-containers-fleet/#run-a-simple-sidekick">"sidekick" container</a> for each web service.</p>
+<p>The CoreOS team provides <a href="https://github.com/coreos/elb-presence">code to create a container on github</a> that will register a service with an ELB, and <a href="https://github.com/coreos/unit-examples/tree/master/blog-fleet-intro">example of how to use it</a>.</p>
+<p>Marcel de Graaf has also <a href="http://marceldegraaf.net/2014/04/24/experimenting-with-coreos-confd-etcd-fleet-and-cloudformation.html">written about running on EC2 and using nginx to proxy</a>. If you want to know more, I highly recommend taking the time to read his post and the CoreOS documentation, they both go into much greater detail about what is possible and issues you should be aware of running a service in a production setting.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

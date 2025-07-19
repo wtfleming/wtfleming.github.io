@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Visualizing Twitter Connections with D3 and ClojureScript">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Visualizing Twitter Connections with D3 and ClojureScript
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/d3/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojurescript/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Visualizing Twitter Connections with D3 and ClojureScript",
+      "image": [],
+      "datePublished": "2015-02-19T00:00:00+00:00",
+      "dateModified": "2015-02-19T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Visualizing Twitter Connections with D3 and ClojureScript",
+          "item": "https://wtfleming.github.io/blog/d3-force-directed-graph/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Visualizing Twitter Connections with D3 and ClojureScript</h1>
+    <small>
+      February 19, 2015
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/d3/">d3</a>
+          
+            <a href="https://wtfleming.github.io/tags/clojurescript/">clojurescript</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="introduction">Introduction</h1>
+<p>I was curious about the connections between some of the people I follow on Twitter and wanted to try visualizing it using <a href="http://d3js.org/">D3</a> and ClojureScript using a <a href="https://github.com/mbostock/d3/wiki/Force-Layout">force directed graph</a>. The end result looks like this:</p>
+<div class="app"></div>
+<script src="/js/d3-force-directed-graph.js"> </script>
+<script>
+force_directed_graph.core.main('/js/d3-force-directed-graph.json');
+</script>
+<p>Not a lot of surprises, there are a few clusters around common interests: Emacs, food, Dwarf Fortress, Hadoop, etc.</p>
+<h1 id="code">Code</h1>
+<p>In this post i'll just share a minimum of ClojureScript code, but a <a href="https://github.com/wtfleming/clojurescript-examples/tree/master/d3-force-directed-graph">code for a full example is available at Github</a>. I highly recommend checking out the code, running the commands in the README file, and then viewing the results in a browser.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> force-directed-graph.core
+</span><span>  (</span><span style="color:#d08770;">:require</span><span> cljsjs.d3))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">build-force-layout </span><span>[width height]
+</span><span>  (</span><span style="color:#bf616a;">..</span><span> js/d3
+</span><span>      -layout
+</span><span>      force
+</span><span>      (</span><span style="color:#bf616a;">charge </span><span style="color:#d08770;">-140</span><span>)
+</span><span>      (</span><span style="color:#bf616a;">linkDistance </span><span style="color:#d08770;">40</span><span>)
+</span><span>      (</span><span style="color:#bf616a;">size </span><span>(</span><span style="color:#bf616a;">array</span><span> width height))))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">setup-force-layout </span><span>[force-layout graph]
+</span><span>  (</span><span style="color:#bf616a;">..</span><span> force-layout
+</span><span>      (</span><span style="color:#bf616a;">nodes </span><span>(</span><span style="color:#bf616a;">.-nodes</span><span> graph))
+</span><span>      (</span><span style="color:#bf616a;">links </span><span>(</span><span style="color:#bf616a;">.-links</span><span> graph))
+</span><span>      start))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">build-svg </span><span>[width height]
+</span><span>  (</span><span style="color:#bf616a;">..</span><span> js/d3
+</span><span>      (</span><span style="color:#bf616a;">select </span><span>&quot;</span><span style="color:#a3be8c;">.app</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">append </span><span>&quot;</span><span style="color:#a3be8c;">svg</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">width</span><span>&quot; width)
+</span><span>      (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">height</span><span>&quot; height)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">build-links </span><span>[svg graph]
+</span><span>  (</span><span style="color:#bf616a;">..</span><span> svg
+</span><span>      (</span><span style="color:#bf616a;">selectAll </span><span>&quot;</span><span style="color:#a3be8c;">.link</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">data </span><span>(</span><span style="color:#bf616a;">.-links</span><span> graph))
+</span><span>      enter
+</span><span>      (</span><span style="color:#bf616a;">append </span><span>&quot;</span><span style="color:#a3be8c;">line</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">class</span><span>&quot; &quot;</span><span style="color:#a3be8c;">link</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">stroke</span><span>&quot; &quot;</span><span style="color:#a3be8c;">grey</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">style </span><span>&quot;</span><span style="color:#a3be8c;">stroke-width</span><span>&quot; </span><span style="color:#d08770;">1</span><span>)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn- </span><span style="color:#8fa1b3;">build-nodes </span><span>[svg graph force-layout]
+</span><span>  (</span><span style="color:#bf616a;">..</span><span> svg
+</span><span>      (</span><span style="color:#bf616a;">selectAll </span><span>&quot;</span><span style="color:#a3be8c;">.node</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">data </span><span>(</span><span style="color:#bf616a;">.-nodes</span><span> graph))
+</span><span>      enter
+</span><span>      (</span><span style="color:#bf616a;">append </span><span>&quot;</span><span style="color:#a3be8c;">text</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">cx</span><span>&quot; </span><span style="color:#d08770;">12</span><span>)
+</span><span>      (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">cy</span><span>&quot; &quot;</span><span style="color:#a3be8c;">.35em</span><span>&quot;)
+</span><span>      (</span><span style="color:#bf616a;">text </span><span>#(</span><span style="color:#bf616a;">.-name</span><span> %))
+</span><span>      (</span><span style="color:#bf616a;">call </span><span>(</span><span style="color:#bf616a;">.-drag</span><span> force-layout))))
+</span><span>
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">on-tick </span><span>[link node]
+</span><span>  (</span><span style="color:#b48ead;">fn </span><span>[]
+</span><span>    (</span><span style="color:#bf616a;">..</span><span> link
+</span><span>        (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">x1</span><span>&quot; #(</span><span style="color:#bf616a;">..</span><span> % -source -x))
+</span><span>        (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">y1</span><span>&quot; #(</span><span style="color:#bf616a;">..</span><span> % -source -y))
+</span><span>        (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">x2</span><span>&quot; #(</span><span style="color:#bf616a;">..</span><span> % -target -x))
+</span><span>        (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">y2</span><span>&quot; #(</span><span style="color:#bf616a;">..</span><span> % -target -y)))
+</span><span>    (</span><span style="color:#bf616a;">..</span><span> node
+</span><span>        (</span><span style="color:#bf616a;">attr </span><span>&quot;</span><span style="color:#a3be8c;">transform</span><span>&quot; #(</span><span style="color:#bf616a;">str </span><span>&quot;</span><span style="color:#a3be8c;">translate(</span><span>&quot; (</span><span style="color:#bf616a;">..</span><span> % -x) &quot;</span><span style="color:#a3be8c;">,</span><span>&quot; (</span><span style="color:#bf616a;">..</span><span> % -y) &quot;</span><span style="color:#a3be8c;">)</span><span>&quot;)))))
+</span><span>
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span>^</span><span style="color:#d08770;">:export </span><span style="color:#8fa1b3;">main </span><span>[json-file]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[width </span><span style="color:#d08770;">960
+</span><span>        height </span><span style="color:#d08770;">600
+</span><span>        force-layout (</span><span style="color:#bf616a;">build-force-layout</span><span> width height)
+</span><span>        svg (</span><span style="color:#bf616a;">build-svg</span><span> width height)]
+</span><span>    (</span><span style="color:#bf616a;">.json</span><span> js/d3 json-file
+</span><span>           (</span><span style="color:#b48ead;">fn </span><span>[error json]
+</span><span>             (</span><span style="color:#bf616a;">..</span><span> json
+</span><span>                 -links
+</span><span>                 (</span><span style="color:#bf616a;">forEach </span><span>#(</span><span style="color:#bf616a;">do </span><span>(</span><span style="color:#bf616a;">aset</span><span> %1 &quot;</span><span style="color:#a3be8c;">weight</span><span>&quot; </span><span style="color:#d08770;">1.0</span><span>)
+</span><span>                               (</span><span style="color:#bf616a;">aset</span><span> %1 &quot;</span><span style="color:#a3be8c;">index</span><span>&quot; %2))))
+</span><span>             (</span><span style="color:#bf616a;">setup-force-layout</span><span> force-layout json)
+</span><span>             (</span><span style="color:#bf616a;">let </span><span>[links (</span><span style="color:#bf616a;">build-links</span><span> svg json)
+</span><span>                   nodes (</span><span style="color:#bf616a;">build-nodes</span><span> svg json force-layout)]
+</span><span>               (</span><span style="color:#bf616a;">.on</span><span> force-layout &quot;</span><span style="color:#a3be8c;">tick</span><span>&quot;
+</span><span>                    (</span><span style="color:#bf616a;">on-tick</span><span> links nodes)))))))
+</span><span>
+</span></code></pre>
+<p>We are pulling in D3 via <a href="http://cljsjs.github.io/">CLJSJS</a> packages, which makes adding dependencies on Javascript libraries very easy. Otherwise, it is all pretty straightforward and not too different from an <a href="http://bl.ocks.org/mbostock/4062045">example like this in Javascript</a>.</p>
+<h1 id="sample-input">Sample input</h1>
+<p>The one thing to be aware of is how the JSON that will be passed in needs to be formatted. You will need to define nodes and links between the nodes.</p>
+<p>Here is a simple example with four nodes, in this case the node named A follows B and C, while B follows D.</p>
+<pre data-lang="json" style="background-color:#2b303b;color:#c0c5ce;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  &quot;</span><span style="color:#a3be8c;">nodes</span><span>&quot;: [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">A</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">index</span><span>&quot;: </span><span style="color:#d08770;">0
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">B</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">index</span><span>&quot;: </span><span style="color:#d08770;">1
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">C</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">index</span><span>&quot;: </span><span style="color:#d08770;">2
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">name</span><span>&quot;: &quot;</span><span style="color:#a3be8c;">D</span><span>&quot;,
+</span><span>      &quot;</span><span style="color:#a3be8c;">index</span><span>&quot;: </span><span style="color:#d08770;">3
+</span><span>    }
+</span><span>  ],
+</span><span>    &quot;</span><span style="color:#a3be8c;">links</span><span>&quot;: [
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">target</span><span>&quot;: </span><span style="color:#d08770;">1</span><span>,
+</span><span>      &quot;</span><span style="color:#a3be8c;">source</span><span>&quot;: </span><span style="color:#d08770;">0
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">target</span><span>&quot;: </span><span style="color:#d08770;">2</span><span>,
+</span><span>      &quot;</span><span style="color:#a3be8c;">source</span><span>&quot;: </span><span style="color:#d08770;">0
+</span><span>    },
+</span><span>    {
+</span><span>      &quot;</span><span style="color:#a3be8c;">target</span><span>&quot;: </span><span style="color:#d08770;">3</span><span>,
+</span><span>      &quot;</span><span style="color:#a3be8c;">source</span><span>&quot;: </span><span style="color:#d08770;">1
+</span><span>    }
+</span><span>  ]
+</span><span>}
+</span></code></pre>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

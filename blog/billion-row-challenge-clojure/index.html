@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Clojure Performace and the Billion Row Challenge">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Clojure Performace and the Billion Row Challenge
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Clojure Performace and the Billion Row Challenge",
+      "image": [],
+      "datePublished": "2024-01-21T00:00:00+00:00",
+      "dateModified": "2024-01-21T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Clojure Performace and the Billion Row Challenge",
+          "item": "https://wtfleming.github.io/blog/billion-row-challenge-clojure/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Clojure Performace and the Billion Row Challenge</h1>
+    <small>
+      January 21, 2024
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>I recently discovered <a href="https://www.morling.dev/blog/one-billion-row-challenge/">The One Billion Row Challenge</a> and thought i'd give it a shot using Clojure. TLDR: the solution I ended up with is ~41% faster than the <a href="https://github.com/gunnarmorling/1brc/blob/main/src/main/java/dev/morling/onebrc/CalculateAverage_baseline.java">Java baseline</a> provided by the challenge.</p>
+<p>The problem is described as:</p>
+<blockquote>
+<p>Write a Java program for retrieving temperature measurement values from a text file and calculating the min, mean, and max temperature per weather station. There’s just one caveat: the file has 1,000,000,000 rows!</p>
+<p>The text file has a simple structure with one measurement value per row:</p>
+</blockquote>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Hamburg;12.0
+</span><span>Bulawayo;8.9
+</span><span>Palembang;38.8
+</span><span>St. John&#39;s;15.2
+</span><span>Cracow;12.6
+</span></code></pre>
+<p>The challenge has a <a href="https://github.com/gunnarmorling/1brc">GitHub repo</a> with submissions and leaderboards.</p>
+<hr />
+<p>For most of this post i'll be using measurements against 100 million rows because 1 billion takes too long to test solutions, but I will have results on the full data set at the end of this post.</p>
+<p>When I run the provided Java baseline on my machine (a Mac mini with a 6 core Intel Core i5 and 16GB of RAM) to establish a baseline I get:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>$ time ./calculate_average_baseline.sh
+</span><span>20.80s user 0.65s system 102% cpu 20.948 total
+</span></code></pre>
+<p>So we are trying to beat roughly <code>21 seconds</code>.</p>
+<p>To simplify the examples, I'm not actually calculating the average, but the data is there to do so, and it would be relatively straightforward/fast as there are only 413 weather stations in the resulting data set.</p>
+<h2 id="attempt-1-1-minute-57-seconds">Attempt 1: 1 minute 57 seconds</h2>
+<p>This is a relatively straightforward Clojure implementation. But with a 1:57 runtime, not at all competitive with the 21 second baseline.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt1)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc </span><span>[acc row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[[station measurement] (</span><span style="color:#bf616a;">clojure.string/split</span><span> row #&quot;</span><span style="color:#96b5b4;">;</span><span>&quot;)
+</span><span>        measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>        station-data (</span><span style="color:#bf616a;">get</span><span> acc station {</span><span style="color:#d08770;">:min</span><span> measurement </span><span style="color:#d08770;">:max</span><span> measurement </span><span style="color:#d08770;">:sum 0.0 :count 0</span><span>})
+</span><span>        new-data (</span><span style="color:#bf616a;">-&gt;</span><span> station-data
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:min </span><span>#(</span><span style="color:#bf616a;">min</span><span> % measurement))
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:max </span><span>#(</span><span style="color:#bf616a;">max</span><span> % measurement))
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:sum </span><span>#(</span><span style="color:#bf616a;">+</span><span> % measurement)) </span><span style="color:#65737e;">;; This potentially could overflow, but ignoring for the purposes of this blog post
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:count</span><span> inc))]
+</span><span>    (</span><span style="color:#bf616a;">assoc</span><span> acc station new-data)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">with-open </span><span>[rdr (</span><span style="color:#bf616a;">clojure.java.io/reader </span><span>&quot;</span><span style="color:#a3be8c;">./measurements.txt</span><span>&quot;)]
+</span><span>    (</span><span style="color:#bf616a;">-&gt;&gt; </span><span>(</span><span style="color:#bf616a;">line-seq</span><span> rdr)
+</span><span>         (</span><span style="color:#bf616a;">reduce</span><span> do-calc {}))))
+</span></code></pre>
+<p>Lets profile the code with <a href="https://github.com/clojure-goes-fast/clj-async-profiler">clj-async-profiler</a>.</p>
+<p><img src="/images/billion-row-challenge/attempt1.png" alt="attempt1" /></p>
+<p>It looks like a lot of time was spent in Clojure functions like <code>clojure.core/update</code>, <code>clojure.string/split</code>, and <code>clojure.core/assoc</code> etc</p>
+<h2 id="attempt-2-1-minute-37-seconds">Attempt 2 - 1 minute 37 seconds</h2>
+<p>Lets try using a <a href="https://clojure.org/reference/transients">transient map</a> for the accumulator in the reduce function</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt2)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc </span><span>[acc row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[[station measurement] (</span><span style="color:#bf616a;">clojure.string/split</span><span> row #&quot;</span><span style="color:#96b5b4;">;</span><span>&quot;)
+</span><span>        measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>        station-data (</span><span style="color:#bf616a;">get</span><span> acc station {</span><span style="color:#d08770;">:min</span><span> measurement </span><span style="color:#d08770;">:max</span><span> measurement </span><span style="color:#d08770;">:sum 0.0 :count 0</span><span>})
+</span><span>        new-data (</span><span style="color:#bf616a;">-&gt;</span><span> station-data
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:min </span><span>#(</span><span style="color:#bf616a;">min</span><span> % measurement))
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:max </span><span>#(</span><span style="color:#bf616a;">max</span><span> % measurement))
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:sum </span><span>#(</span><span style="color:#bf616a;">+</span><span> % measurement))
+</span><span>                     (</span><span style="color:#bf616a;">update </span><span style="color:#d08770;">:count</span><span> inc))]
+</span><span>    (</span><span style="color:#bf616a;">assoc!</span><span> acc station new-data)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>   (</span><span style="color:#bf616a;">with-open </span><span>[rdr (</span><span style="color:#bf616a;">clojure.java.io/reader </span><span>&quot;</span><span style="color:#a3be8c;">./measurements.txt</span><span>&quot;)]
+</span><span>     (</span><span style="color:#bf616a;">-&gt;&gt; </span><span>(</span><span style="color:#bf616a;">line-seq</span><span> rdr)
+</span><span>          (</span><span style="color:#bf616a;">reduce</span><span> do-calc (</span><span style="color:#bf616a;">transient </span><span>{}))
+</span><span>          (</span><span style="color:#bf616a;">persistent!</span><span>))))
+</span></code></pre>
+<p>Better, but at 1:37, not much better! Even though we're using a transient map as an accumulator in the <code>reduce</code>, we're still using persistent maps as values in the transient map.</p>
+<p>We could try using a transient map with transient maps as keys, but given how transients work in practice that approach seems fraught with peril.</p>
+<p><img src="/images/billion-row-challenge/attempt2.png" alt="attempt2" /></p>
+<h2 id="attempt-3-did-not-finish">Attempt 3 - Did not finish</h2>
+<p>Lets try using a Java array to store results instead of a Clojure persistent hash map.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt3)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc </span><span>[acc row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[[station measurement] (</span><span style="color:#bf616a;">clojure.string/split</span><span> row #&quot;</span><span style="color:#96b5b4;">;</span><span>&quot;)
+</span><span>        measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>        station-data (</span><span style="color:#bf616a;">get</span><span> acc station (</span><span style="color:#bf616a;">double-array </span><span>[measurement measurement </span><span style="color:#d08770;">0.0 0.0</span><span>]))
+</span><span>        min-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">0</span><span>)
+</span><span>        max-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">1</span><span>)
+</span><span>        sum-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">2</span><span>)
+</span><span>        count-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">3</span><span>)]
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">0 </span><span>(</span><span style="color:#bf616a;">min</span><span> min-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">1 </span><span>(</span><span style="color:#bf616a;">max</span><span> max-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">2 </span><span>(</span><span style="color:#bf616a;">+</span><span> sum-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">3 </span><span>(</span><span style="color:#bf616a;">+</span><span> count-measurement </span><span style="color:#d08770;">1.0</span><span>))
+</span><span>
+</span><span>    (</span><span style="color:#bf616a;">assoc!</span><span> acc station station-data)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">time
+</span><span>   (</span><span style="color:#bf616a;">with-open </span><span>[rdr (</span><span style="color:#bf616a;">clojure.java.io/reader </span><span>&quot;</span><span style="color:#a3be8c;">/Users/wtf/src/open-source/1brc/measurements.txt</span><span>&quot;)]
+</span><span>     (</span><span style="color:#bf616a;">-&gt;&gt; </span><span>(</span><span style="color:#bf616a;">line-seq</span><span> rdr)
+</span><span>          (</span><span style="color:#bf616a;">reduce</span><span> do-calc (</span><span style="color:#bf616a;">transient </span><span>{}))
+</span><span>          (</span><span style="color:#bf616a;">persistent!</span><span>)))))
+</span></code></pre>
+<p>This one was incredibly slow, I had to force quit it before it finished. What is going on here?</p>
+<p>If we add the expression</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">set!</span><span> *warn-on-reflection* </span><span style="color:#d08770;">true</span><span>)
+</span></code></pre>
+<p>and rerun, we see a number of lines on stdout that look like:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Reflection warning, attempt3.clj:9:25 - call to static method aget on clojure.lang.RT can&#39;t be resolved (argument types: java.lang.Object, int).
+</span></code></pre>
+<p>Reflection in the Java interop is incredibly slow! Let fix that.</p>
+<h2 id="attempt-4-1-minute-6-seconds">Attempt 4 - 1 minute 6 seconds</h2>
+<p>We can add type hints to the previous solution like so:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt4)
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *warn-on-reflection* </span><span style="color:#d08770;">true</span><span>)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc </span><span>[acc ^String row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[[station measurement] (</span><span style="color:#bf616a;">clojure.string/split</span><span> row #&quot;</span><span style="color:#96b5b4;">;</span><span>&quot;)
+</span><span>        measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>        station-data ^doubles (</span><span style="color:#bf616a;">get</span><span> acc station (</span><span style="color:#bf616a;">double-array </span><span>[measurement measurement </span><span style="color:#d08770;">0.0 0.0</span><span>]))
+</span><span>        min-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">0</span><span>)
+</span><span>        max-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">1</span><span>)
+</span><span>        sum-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">2</span><span>)
+</span><span>        count-measurement (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">3</span><span>)]
+</span><span>
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">0 </span><span>^double (</span><span style="color:#bf616a;">min</span><span> min-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">1 </span><span>^double (</span><span style="color:#bf616a;">max</span><span> max-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">2 </span><span>^double (</span><span style="color:#bf616a;">+</span><span> sum-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">3 </span><span>^double (</span><span style="color:#bf616a;">+</span><span> count-measurement </span><span style="color:#d08770;">1.0</span><span>))
+</span><span>    (</span><span style="color:#bf616a;">assoc!</span><span> acc station station-data)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">with-open </span><span>[rdr (</span><span style="color:#bf616a;">clojure.java.io/reader </span><span>&quot;</span><span style="color:#a3be8c;">/Users/wtf/src/open-source/1brc/measurements.txt</span><span>&quot;)]
+</span><span>    (</span><span style="color:#bf616a;">-&gt;&gt; </span><span>(</span><span style="color:#bf616a;">line-seq</span><span> rdr)
+</span><span>         (</span><span style="color:#bf616a;">reduce</span><span> do-calc (</span><span style="color:#bf616a;">transient </span><span>{}))
+</span><span>         (</span><span style="color:#bf616a;">persistent!</span><span>))))
+</span></code></pre>
+<p>This one is about 30 seconds better than attempt 2, but still significantly slower than the 21 second Java baseline.</p>
+<h2 id="attempt-5-45-seconds">Attempt 5 - 45 Seconds</h2>
+<p>Lets try some optimizations: manually loop instead of reduce, use Java's String split instead of <code>clojure.string/split</code> and don't destructure the results.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt5)
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *warn-on-reflection* </span><span style="color:#d08770;">true</span><span>)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc </span><span>[acc ^String row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[split-row (</span><span style="color:#bf616a;">.split</span><span> row &quot;</span><span style="color:#a3be8c;">;</span><span>&quot;)
+</span><span>        station ^String (</span><span style="color:#bf616a;">aget</span><span> split-row </span><span style="color:#d08770;">0</span><span>)
+</span><span>        measurement ^String (</span><span style="color:#bf616a;">aget</span><span> split-row </span><span style="color:#d08770;">1</span><span>)
+</span><span>        measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>        station-data ^doubles (</span><span style="color:#bf616a;">get</span><span> acc station (</span><span style="color:#bf616a;">double-array </span><span>[measurement measurement </span><span style="color:#d08770;">0.0 0.0</span><span>]))
+</span><span>        min-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">0</span><span>)
+</span><span>        max-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">1</span><span>)
+</span><span>        sum-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">2</span><span>)
+</span><span>        count-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">3</span><span>)]
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">0 </span><span>^double (</span><span style="color:#bf616a;">min</span><span> min-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">1 </span><span>^double (</span><span style="color:#bf616a;">max</span><span> max-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">2 </span><span>^double (</span><span style="color:#bf616a;">+</span><span> sum-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">3 </span><span>^double (</span><span style="color:#bf616a;">+</span><span> count-measurement </span><span style="color:#d08770;">1.0</span><span>))
+</span><span>    (</span><span style="color:#bf616a;">assoc!</span><span> acc station station-data)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[reader (</span><span style="color:#bf616a;">java.io.BufferedReader. </span><span>(</span><span style="color:#bf616a;">java.io.FileReader. </span><span>&quot;</span><span style="color:#a3be8c;">./measurements.txt</span><span>&quot;))]
+</span><span>    (</span><span style="color:#bf616a;">loop </span><span>[line (</span><span style="color:#bf616a;">.readLine</span><span> reader)
+</span><span>           acc (</span><span style="color:#bf616a;">transient </span><span>{})]
+</span><span>      (</span><span style="color:#bf616a;">if</span><span> line
+</span><span>        (</span><span style="color:#bf616a;">recur </span><span>(</span><span style="color:#bf616a;">.readLine</span><span> reader) (</span><span style="color:#bf616a;">do-calc</span><span> acc line))
+</span><span>        (</span><span style="color:#bf616a;">persistent!</span><span> acc)))))
+</span></code></pre>
+<p>Around 20 seconds faster, but we're still twice the runtime of the Java baseline!</p>
+<p>Looking at a flamegraph we seem to be spending a lot of time in calls to <code>clojure.lang.RT.get</code> and <code>clojure.core/assoc!</code></p>
+<p><img src="/images/billion-row-challenge/attempt5.png" alt="attempt5" /></p>
+<h2 id="attempt-6-30-seconds">Attempt 6 - 30 seconds</h2>
+<p>Lets try replacing the transient Clojure hash map in the accumulator with a <code>java.util.HashMap</code></p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt6)
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *warn-on-reflection* </span><span style="color:#d08770;">true</span><span>)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc </span><span>[^java.util.HashMap acc ^String row]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[split-row (</span><span style="color:#bf616a;">.split</span><span> row &quot;</span><span style="color:#a3be8c;">;</span><span>&quot;)
+</span><span>        station ^String (</span><span style="color:#bf616a;">aget</span><span> split-row </span><span style="color:#d08770;">0</span><span>)
+</span><span>        measurement ^String (</span><span style="color:#bf616a;">aget</span><span> split-row </span><span style="color:#d08770;">1</span><span>)
+</span><span>        measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>        station-data ^doubles (</span><span style="color:#bf616a;">.getOrDefault</span><span> acc station (</span><span style="color:#bf616a;">double-array </span><span>[measurement measurement </span><span style="color:#d08770;">0.0 0.0</span><span>]))
+</span><span>        min-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">0</span><span>)
+</span><span>        max-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">1</span><span>)
+</span><span>        sum-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">2</span><span>)
+</span><span>        count-measurement ^double (</span><span style="color:#bf616a;">aget</span><span> station-data </span><span style="color:#d08770;">3</span><span>)]
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">0 </span><span>^double (</span><span style="color:#bf616a;">min</span><span> min-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">1 </span><span>^double (</span><span style="color:#bf616a;">max</span><span> max-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">2 </span><span>^double (</span><span style="color:#bf616a;">+</span><span> sum-measurement measurement))
+</span><span>    (</span><span style="color:#bf616a;">aset</span><span> station-data </span><span style="color:#d08770;">3 </span><span>^double (</span><span style="color:#bf616a;">+</span><span> count-measurement </span><span style="color:#d08770;">1.0</span><span>))
+</span><span>    (</span><span style="color:#bf616a;">.put</span><span> acc station station-data)
+</span><span>    acc))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">let </span><span>[reader (</span><span style="color:#bf616a;">java.io.BufferedReader. </span><span>(</span><span style="color:#bf616a;">java.io.FileReader. </span><span>&quot;</span><span style="color:#a3be8c;">./measurements.txt</span><span>&quot;))]
+</span><span>    (</span><span style="color:#bf616a;">loop </span><span>[line (</span><span style="color:#bf616a;">.readLine</span><span> reader)
+</span><span>           acc (</span><span style="color:#bf616a;">java.util.HashMap.</span><span>)]
+</span><span>      (</span><span style="color:#bf616a;">if</span><span> line
+</span><span>        (</span><span style="color:#bf616a;">recur </span><span>(</span><span style="color:#bf616a;">.readLine</span><span> reader) (</span><span style="color:#bf616a;">do-calc</span><span> acc line))
+</span><span>        acc))))
+</span></code></pre>
+<p>At 30 seconds we're getting toward respectable compared with the baseline. However we've gotten so deep into Java interop and away from idiomatic Clojure code that it would probably make more sense to just write this solution in pure Java.</p>
+<p>Also, maybe we should next try a solution that isn't effectively single threaded.</p>
+<h2 id="attempt-7-core-async">Attempt 7: core.async</h2>
+<p>Taking the code from attempt 6, but using core.async to fanout to multiple channels ultimately did not go anywhere, we're largely CPU bound and core.async seemed to just add overhead.</p>
+<p>I'm tempted to try this again in the future to see if I can make it faster. Not sharing the code as I never got it to a place I was happy with and didn't want to spend time optimizing a solution that was unlikely to be the best.</p>
+<h2 id="attempt-8-reducers-27-seconds">Attempt 8: Reducers - 27 seconds</h2>
+<p>This time we'll go back to using code that looks more like typical Clojure and leverage <a href="https://clojure.org/reference/reducers">reducers</a>. The <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.reducers/fold">fold</a> function reduces a collection using a (potentially parallel) reduce-combine strategy. Meaning I can easily use all 6 cores on my machine!</p>
+<p>One problem with <code>fold</code> is that it should be used when source data can be generated and held in memory, which is not necessarily the case with billions of records. However, we can use the <a href="https://github.com/thebusby/iota">iota</a> library to create a seq of the file which is tuned for reducers and can handle files larger than available memory.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt8
+</span><span>  (</span><span style="color:#d08770;">:require </span><span>[clojure.core.reducers </span><span style="color:#d08770;">:as</span><span> r]
+</span><span>            [iota </span><span style="color:#d08770;">:as</span><span> iota]))
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *warn-on-reflection* </span><span style="color:#d08770;">true</span><span>)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">merge-counts
+</span><span>  ([] {})
+</span><span>  ([x y] (</span><span style="color:#bf616a;">merge-with </span><span>(</span><span style="color:#b48ead;">fn </span><span>[[x-min x-max x-sum x-count]
+</span><span>                          [y-min y-max y-sum y-count]]
+</span><span>                       [(</span><span style="color:#bf616a;">min</span><span> x-min y-min) (</span><span style="color:#bf616a;">max</span><span> x-max y-max) (</span><span style="color:#bf616a;">+</span><span> x-sum y-sum) (</span><span style="color:#bf616a;">+</span><span> x-count y-count)]) x y)))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc
+</span><span>  ([acc ^String row]
+</span><span>   (</span><span style="color:#bf616a;">let </span><span>[[station measurement] (</span><span style="color:#bf616a;">clojure.string/split</span><span> row #&quot;</span><span style="color:#96b5b4;">;</span><span>&quot;)
+</span><span>         measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>         [cur-minimum cur-maximum cur-sum cur-count] (</span><span style="color:#bf616a;">get</span><span> acc station [measurement measurement </span><span style="color:#d08770;">0.0 0</span><span>])
+</span><span>         new-data [(</span><span style="color:#bf616a;">min</span><span> measurement cur-minimum) (</span><span style="color:#bf616a;">max</span><span> measurement cur-maximum) (</span><span style="color:#bf616a;">+</span><span> measurement cur-sum) (</span><span style="color:#bf616a;">inc</span><span> cur-count)]]
+</span><span>     (</span><span style="color:#bf616a;">assoc</span><span> acc station new-data))))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">-&gt;&gt; </span><span>(</span><span style="color:#bf616a;">iota/seq </span><span>&quot;</span><span style="color:#a3be8c;">./measurements.txt</span><span>&quot;)
+</span><span>       (</span><span style="color:#bf616a;">r/fold</span><span> merge-counts do-calc)
+</span><span>       println))
+</span></code></pre>
+<p>27 seconds isn't bad for a first attempt with this approach.</p>
+<h2 id="attempt-9-reducers-with-optimizations-9-6-seconds">Attempt 9: Reducers with optimizations - 9.6 seconds</h2>
+<p>Lets try the previous attempt but with optimizations used in previous attempts.</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> attempt9
+</span><span>  (</span><span style="color:#d08770;">:require </span><span>[clojure.core.reducers </span><span style="color:#d08770;">:as</span><span> r]
+</span><span>            [iota </span><span style="color:#d08770;">:as</span><span> iota]))
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *warn-on-reflection* </span><span style="color:#d08770;">true</span><span>)
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">merge-counts
+</span><span>  ([] (</span><span style="color:#bf616a;">java.util.HashMap.</span><span>))
+</span><span>  ([^java.util.HashMap x
+</span><span>    ^java.util.HashMap y]
+</span><span>   </span><span style="color:#65737e;">;; Convert to clojure.lang.PersistentHashMap so we can use merge-with.
+</span><span>   </span><span style="color:#65737e;">;; Probably could be optimized to directly merge the Java HashMaps
+</span><span>   </span><span style="color:#65737e;">;; but reducer merges should be relatively infrequent, so probably not worth optimizing
+</span><span>   (</span><span style="color:#bf616a;">let </span><span>[x (</span><span style="color:#bf616a;">into </span><span>{} x)
+</span><span>         y (</span><span style="color:#bf616a;">into </span><span>{} y)
+</span><span>         ^clojure.lang.PersistentHashMap result (</span><span style="color:#bf616a;">merge-with </span><span>(</span><span style="color:#b48ead;">fn </span><span>[[x-min x-max x-sum x-count]
+</span><span>                                                                 [y-min y-max y-sum y-count]]
+</span><span>                                                              [(</span><span style="color:#bf616a;">min</span><span> x-min y-min) (</span><span style="color:#bf616a;">max</span><span> x-max y-max) (</span><span style="color:#bf616a;">+</span><span> x-sum y-sum) (</span><span style="color:#bf616a;">+</span><span> x-count y-count)]) x y)]
+</span><span>     (</span><span style="color:#bf616a;">java.util.HashMap.</span><span> result))))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">do-calc
+</span><span>  ([^java.util.HashMap acc ^String row]
+</span><span>   (</span><span style="color:#bf616a;">let </span><span>[split-row (</span><span style="color:#bf616a;">.split</span><span> row &quot;</span><span style="color:#a3be8c;">;</span><span>&quot;)
+</span><span>         station ^String (</span><span style="color:#bf616a;">aget</span><span> split-row </span><span style="color:#d08770;">0</span><span>)
+</span><span>         measurement ^String (</span><span style="color:#bf616a;">aget</span><span> split-row </span><span style="color:#d08770;">1</span><span>)
+</span><span>         measurement (</span><span style="color:#bf616a;">Double/parseDouble</span><span> measurement)
+</span><span>         [cur-minimum cur-maximum cur-sum cur-count] (</span><span style="color:#bf616a;">.getOrDefault</span><span> acc station [measurement measurement </span><span style="color:#d08770;">0.0 0</span><span>])
+</span><span>         new-data [(</span><span style="color:#bf616a;">min</span><span> measurement cur-minimum) (</span><span style="color:#bf616a;">max</span><span> measurement cur-maximum) (</span><span style="color:#bf616a;">+</span><span> measurement cur-sum) (</span><span style="color:#bf616a;">inc</span><span> cur-count)]]
+</span><span>     (</span><span style="color:#bf616a;">.put</span><span> acc station new-data))
+</span><span>   acc))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">run </span><span>[_opts]
+</span><span>  (</span><span style="color:#bf616a;">-&gt;&gt; </span><span>(</span><span style="color:#bf616a;">iota/seq </span><span>&quot;</span><span style="color:#a3be8c;">/Users/wtf/src/open-source/1brc/measurements.txt</span><span>&quot;)
+</span><span>       (</span><span style="color:#bf616a;">r/fold </span><span style="color:#d08770;">1028</span><span> merge-counts do-calc)
+</span><span>       println))
+</span></code></pre>
+<p>9.6 seconds isn't super fast, but we are now handily beating the 21 second Java baseline.</p>
+<h2 id="results-with-1-billion-rows">Results with 1 Billion rows</h2>
+<p>Instead of using 100 million rows, we'll finally run against the full 1 billion row dataset:</p>
+<table><thead><tr><th>Entry</th><th>Results</th></tr></thead><tbody>
+<tr><td>Java Baseline</td><td>3:47</td></tr>
+<tr><td>Mine</td><td>2:13</td></tr>
+<tr><td>Best competition entry</td><td>0:16</td></tr>
+</tbody></table>
+<p>We're about a minute faster than the <a href="https://github.com/gunnarmorling/1brc/blob/main/src/main/java/dev/morling/onebrc/CalculateAverage_baseline.java">Java baseline</a>.</p>
+<p>But we're nowhere close to the 16 second runtime of the <a href="https://github.com/gunnarmorling/1brc/blob/main/src/main/java/dev/morling/onebrc/CalculateAverage_thomaswue.java">best Java entry</a> (or at least best as of the time of writing). That entry describes itself as:</p>
+<blockquote>
+<p>Simple solution that memory maps the input file, then splits it into one segment per available core and uses sun.misc.Unsafe to directly access the mapped memory. Uses a long at a time when checking for collision.</p>
+</blockquote>
+<p>It appears to be using <code>sun.misc.Unsafe</code> to mostly avoid overhead of using <code>java.lang.String</code> (which i'm not sure if it would break if weather stations could contain UTF-8 characters larger than one byte), a custom hash map implementation, a custom implementation of Java's Integer/parseInt, etc. Definitely an impressive runtime, but I almost wonder if it would make more sense to just use C++ with that approach.</p>
+<p>Though there are some other interesting entries that are fast and don't use <code>sun.misc.Unsafe</code> like <a href="https://github.com/gunnarmorling/1brc/blob/main/src/main/java/dev/morling/onebrc/CalculateAverage_jparera.java">this one</a> that uses the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/jdk.incubator.vector/jdk/incubator/vector/package-summary.html">jdk.incubator.vector package</a> to take advantage of Single Instruction Multiple Data (SIMD) parallelism.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>There are a number of optimizations I could look at to try to get a better time. Looking at a flame graph I think there is a good amount of overhead in the iota code that could be bypassed with a custom solution memory mapping the file into a number of chunks equivalent to the number of processors, but ultimately i'm pretty happy with what I came up with over the course of a Saturday afternoon and probably will call it here.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

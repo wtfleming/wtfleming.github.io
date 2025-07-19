@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/keras/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/machine-learning/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning",
+      "image": [],
+      "datePublished": "2019-05-12T00:00:00+00:00",
+      "dateModified": "2019-05-12T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning",
+          "item": "https://wtfleming.github.io/blog/keras-cats-vs-dogs-part-2/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Cats vs Dogs - Part 2 - 98.6% Accuracy - Binary Image Classification with Keras and Transfer Learning</h1>
+    <small>
+      May 12, 2019
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/keras/">keras</a>
+          
+            <a href="https://wtfleming.github.io/tags/machine-learning/">machine learning</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>In 2014 Kaggle ran a <a href="https://www.kaggle.com/c/dogs-vs-cats/overview">competition</a> to determine if images contained a dog or a cat. In this series of posts we'll see how easy it is to use Keras to create a <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">2D convolutional neural network</a> that potentially could have won the contest.</p>
+<hr />
+<p>In this post we'll see how we can fine tune a network pretrained on ImageNet and take advantage of transfer learning to reach 98.6% accuracy (the winning entry <a href="https://www.kaggle.com/c/dogs-vs-cats/leaderboard">scored 98.9%</a>).</p>
+<p>In <a href="https://wtfleming.github.io/blog/keras-cats-vs-dogs-part-1/">part 1</a> we used Keras to define a neural network architecture from scratch and were able to get to 92.8% categorization accuracy.</p>
+<p>In <a href="https://wtfleming.github.io/blog/pytorch-cats-vs-dogs-part-3/">part 3</a> we'll switch gears a bit and use PyTorch instead of Keras to create an ensemble of models that provides more predictive power than any single model and reaches 99.1% accuracy.</p>
+<hr />
+<p>The code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-2.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.</p>
+<h3 id="vgg16">VGG16</h3>
+<p>We'll use the VGG16 architecture as described in the paper <a href="https://arxiv.org/abs/1409.1556">Very Deep Convolutional Networks for Large-Scale Image Recognition</a> by Karen Simonyan and Andrew Zisserman. We're using it because it has a relatively simple architecture and Keras ships with a model that has been pretrained on ImageNet.</p>
+<p>Keras includes a <a href="https://keras.io/applications/">number of additional pretrained networks</a> if you want to try with a different one. You could also build the VGG16 network yourself, the code for the Keras implementation is <a href="https://github.com/keras-team/keras-applications/blob/master/keras_applications/vgg16.py">here</a>. It is just a number of Conv2D and MaxPooling2D layers with a dense network on top with a final softmax activation function.</p>
+<h3 id="predict-what-an-image-contains-using-vgg16">Predict what an image contains using VGG16</h3>
+<p>First we'll make predictions on what one of our images contained. The Keras VGG16 model provided was trained on the <a href="http://www.image-net.org/challenges/LSVRC/">ILSVRC ImageNet</a> images containing 1,000 categories. It will be especially useful in this case since it 90 of the 1,000 categories are species of dogs.</p>
+<p>First lets take a peek at an image.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras.preprocessing </span><span style="color:#b48ead;">import </span><span>image
+</span><span style="color:#b48ead;">from </span><span>matplotlib.pyplot </span><span style="color:#b48ead;">import </span><span>imshow
+</span><span>
+</span><span>fnames = [os.path.</span><span style="color:#bf616a;">join</span><span>(train_dogs_dir, fname) </span><span style="color:#b48ead;">for </span><span>fname </span><span style="color:#b48ead;">in </span><span>os.</span><span style="color:#bf616a;">listdir</span><span>(train_dogs_dir)]
+</span><span>img_path = fnames[</span><span style="color:#d08770;">1</span><span>] </span><span style="color:#65737e;"># Choose one image to view
+</span><span>img = image.</span><span style="color:#bf616a;">load_img</span><span>(img_path, </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>)) </span><span style="color:#65737e;"># load image and resize it
+</span><span>x = image.</span><span style="color:#bf616a;">img_to_array</span><span>(img) </span><span style="color:#65737e;"># Convert to a Numpy array with shape (224, 224, 3)
+</span><span>
+</span><span>x = x.</span><span style="color:#bf616a;">reshape</span><span>((</span><span style="color:#d08770;">1</span><span>,) + x.shape)
+</span><span>
+</span><span>plt.</span><span style="color:#bf616a;">imshow</span><span>(image.</span><span style="color:#bf616a;">array_to_img</span><span>(x[</span><span style="color:#d08770;">0</span><span>]))
+</span></code></pre>
+<p><img src="/images/dogs-vs-cats-part-two/terrier.png" alt="terrier" /></p>
+<p>Now lets ask the model what it thinks the picture is.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras.applications.imagenet_utils </span><span style="color:#b48ead;">import </span><span>decode_predictions
+</span><span style="color:#b48ead;">from </span><span>keras.applications </span><span style="color:#b48ead;">import </span><span style="color:#bf616a;">VGG16
+</span><span>
+</span><span>model = </span><span style="color:#bf616a;">VGG16</span><span>(</span><span style="color:#bf616a;">weights</span><span>=&#39;</span><span style="color:#a3be8c;">imagenet</span><span>&#39;, </span><span style="color:#bf616a;">include_top</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>
+</span><span>features = model.</span><span style="color:#bf616a;">predict</span><span>(x)
+</span><span style="color:#bf616a;">decode_predictions</span><span>(features, </span><span style="color:#bf616a;">top</span><span>=</span><span style="color:#d08770;">5</span><span>)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>[[(&#39;n02097298&#39;, &#39;Scotch_terrier&#39;, 0.84078884),
+</span><span>  (&#39;n02105412&#39;, &#39;kelpie&#39;, 0.07755529),
+</span><span>  (&#39;n02105056&#39;, &#39;groenendael&#39;, 0.048816346),
+</span><span>  (&#39;n02106662&#39;, &#39;German_shepherd&#39;, 0.006882491),
+</span><span>  (&#39;n02104365&#39;, &#39;schipperke&#39;, 0.005642254)]]
+</span></code></pre>
+<p>It thinks there is an 84% chance it's a Scotch Terrier, and the other top predictions are all dogs. Seems pretty reasonable.</p>
+<h3 id="train-a-cats-vs-dogs-classifier">Train a Cats vs Dogs classifier</h3>
+<p>We can also ask Keras to provide us with the model trained on ImageNet, but without the top dense layers. Then it is just a matter of adding our own dense layers (note that since we are doing binary classification we've used a sigmoid activation function in the final layer). And tell the model to only train the dense layers we created (we don't want to retrain the lower layers that have learnt from ImageNet).</p>
+<p>In this case it works so well because ImageNet has a large number of animal pictures, so the lower layers already have a sort of conception of what is "dogness" and "catness".</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras </span><span style="color:#b48ead;">import </span><span>layers, models, optimizers
+</span><span>
+</span><span>
+</span><span>conv_base = </span><span style="color:#bf616a;">VGG16</span><span>(</span><span style="color:#bf616a;">weights</span><span>=&#39;</span><span style="color:#a3be8c;">imagenet</span><span>&#39;,
+</span><span>                  </span><span style="color:#bf616a;">include_top</span><span>=</span><span style="color:#d08770;">False</span><span>,
+</span><span>                  </span><span style="color:#bf616a;">input_shape</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">3</span><span>))
+</span><span>
+</span><span>model = models.</span><span style="color:#bf616a;">Sequential</span><span>()
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(conv_base)
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Flatten</span><span>())
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dropout</span><span>(</span><span style="color:#d08770;">0.5</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">256</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">sigmoid</span><span>&#39;))
+</span><span>
+</span><span>conv_base.trainable = </span><span style="color:#d08770;">False
+</span><span>
+</span><span>model.</span><span style="color:#bf616a;">compile</span><span>(</span><span style="color:#bf616a;">loss</span><span>=&#39;</span><span style="color:#a3be8c;">binary_crossentropy</span><span>&#39;,
+</span><span>              </span><span style="color:#bf616a;">optimizer</span><span>=optimizers.</span><span style="color:#bf616a;">RMSprop</span><span>(</span><span style="color:#bf616a;">lr</span><span>=</span><span style="color:#d08770;">2e-5</span><span>),
+</span><span>              </span><span style="color:#bf616a;">metrics</span><span>=[&#39;</span><span style="color:#a3be8c;">acc</span><span>&#39;])
+</span></code></pre>
+<p>Lets create a generator for the images</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">from </span><span>keras.applications.vgg16 </span><span style="color:#b48ead;">import </span><span>preprocess_input
+</span><span style="color:#b48ead;">from </span><span>keras.preprocessing.image </span><span style="color:#b48ead;">import </span><span>ImageDataGenerator
+</span><span>
+</span><span>train_datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(</span><span style="color:#bf616a;">preprocessing_function</span><span>=preprocess_input)
+</span><span>test_datagen = </span><span style="color:#bf616a;">ImageDataGenerator</span><span>(</span><span style="color:#bf616a;">preprocessing_function</span><span>=preprocess_input)
+</span><span>
+</span><span style="color:#65737e;"># The list of classes will be automatically inferred from the subdirectory names/structure under train_dir
+</span><span>train_generator = train_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    train_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>), </span><span style="color:#65737e;"># resize all images to 224 x 224
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;) </span><span style="color:#65737e;"># because we use binary_crossentropy loss we need binary labels
+</span><span>
+</span><span>validation_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    validation_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>), </span><span style="color:#65737e;"># resize all images to 224 x 224
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 16000 images belonging to 2 classes.
+</span><span>Found 4500 images belonging to 2 classes.
+</span></code></pre>
+<p>And train.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>history = model.</span><span style="color:#bf616a;">fit_generator</span><span>(
+</span><span>    train_generator,
+</span><span>    </span><span style="color:#bf616a;">steps_per_epoch</span><span>=</span><span style="color:#d08770;">320</span><span>, </span><span style="color:#65737e;"># batches in the generator are 50, so it takes 320 batches to get to 16000 images
+</span><span>    </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">30</span><span>,
+</span><span>    </span><span style="color:#bf616a;">validation_data</span><span>=validation_generator,
+</span><span>    </span><span style="color:#bf616a;">validation_steps</span><span>=</span><span style="color:#d08770;">90</span><span>) </span><span style="color:#65737e;"># batches in the generator are 50, so it takes 90 batches to get to 4500 images
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch 1/30
+</span><span>320/320 [==============================] - 139s 434ms/step - loss: 0.7365 - acc: 0.9238 - val_loss: 0.2217 - val_acc: 0.9751
+</span><span>Epoch 2/30
+</span><span>320/320 [==============================] - 137s 428ms/step - loss: 0.2950 - acc: 0.9689 - val_loss: 0.2579 - val_acc: 0.9736
+</span><span>...
+</span><span>...
+</span><span>...
+</span><span>Epoch 29/30
+</span><span>320/320 [==============================] - 137s 429ms/step - loss: 0.0206 - acc: 0.9977 - val_loss: 0.2079 - val_acc: 0.9818
+</span><span>Epoch 30/30
+</span><span>320/320 [==============================] - 137s 429ms/step - loss: 0.0146 - acc: 0.9982 - val_loss: 0.2063 - val_acc: 0.9824
+</span></code></pre>
+<p>Lets take a look at what accuracy and loss looked like during training. The code to generate the plot is available in the posts <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-2.ipynb">jupyter notebook here</a>.</p>
+<p><img src="/images/dogs-vs-cats-part-two/accuracy-loss-1.png" alt="accuracy-loss-1" /></p>
+<p>We seem to be overfitting (and probably could have trained for far fewer than 30 epochs), but the results are still pretty good. Lets compare against the holdout test set.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>test_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    test_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span><span>
+</span><span>test_loss, test_acc = model.</span><span style="color:#bf616a;">evaluate_generator</span><span>(test_generator, </span><span style="color:#bf616a;">steps</span><span>=</span><span style="color:#d08770;">90</span><span>)
+</span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">test acc:</span><span>&#39;, test_acc)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 4500 images belonging to 2 classes.
+</span><span>test acc: 0.9833333353201549
+</span></code></pre>
+<p>A validation accuracy of 98.2% and test of 98.3%. Not bad, but lets see if we can do better.</p>
+<h3 id="transfer-learning-fine-tune-model">Transfer learning / Fine tune model</h3>
+<p>We can also retrain the later convolutional layers. Here is how we can do it with VGG16.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>conv_base = </span><span style="color:#bf616a;">VGG16</span><span>(</span><span style="color:#bf616a;">weights</span><span>=&#39;</span><span style="color:#a3be8c;">imagenet</span><span>&#39;,
+</span><span>                  </span><span style="color:#bf616a;">include_top</span><span>=</span><span style="color:#d08770;">False</span><span>,
+</span><span>                  </span><span style="color:#bf616a;">input_shape</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">3</span><span>))
+</span><span>
+</span><span>conv_base.trainable = </span><span style="color:#d08770;">True
+</span><span>
+</span><span>set_trainable = </span><span style="color:#d08770;">False
+</span><span style="color:#b48ead;">for </span><span>layer </span><span style="color:#b48ead;">in </span><span>conv_base.layers:
+</span><span>    </span><span style="color:#b48ead;">if </span><span>layer.name == &#39;</span><span style="color:#a3be8c;">block5_conv1</span><span>&#39;:
+</span><span>        set_trainable = </span><span style="color:#d08770;">True
+</span><span>    </span><span style="color:#b48ead;">if </span><span>set_trainable:
+</span><span>        layer.trainable = </span><span style="color:#d08770;">True
+</span><span>    </span><span style="color:#b48ead;">else</span><span>:
+</span><span>        layer.trainable = </span><span style="color:#d08770;">False
+</span><span>
+</span><span>
+</span><span>model = models.</span><span style="color:#bf616a;">Sequential</span><span>()
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(conv_base)
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Flatten</span><span>())
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dropout</span><span>(</span><span style="color:#d08770;">0.5</span><span>))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">256</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">relu</span><span>&#39;))
+</span><span>model.</span><span style="color:#bf616a;">add</span><span>(layers.</span><span style="color:#bf616a;">Dense</span><span>(</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">activation</span><span>=&#39;</span><span style="color:#a3be8c;">sigmoid</span><span>&#39;))
+</span><span>
+</span><span>model.</span><span style="color:#bf616a;">compile</span><span>(</span><span style="color:#bf616a;">loss</span><span>=&#39;</span><span style="color:#a3be8c;">binary_crossentropy</span><span>&#39;,
+</span><span>              </span><span style="color:#bf616a;">optimizer</span><span>=optimizers.</span><span style="color:#bf616a;">RMSprop</span><span>(</span><span style="color:#bf616a;">lr</span><span>=</span><span style="color:#d08770;">1e-5</span><span>),
+</span><span>              </span><span style="color:#bf616a;">metrics</span><span>=[&#39;</span><span style="color:#a3be8c;">acc</span><span>&#39;])
+</span></code></pre>
+<p>And lets fit the model</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>history = model.</span><span style="color:#bf616a;">fit_generator</span><span>(
+</span><span>    train_generator,
+</span><span>    </span><span style="color:#bf616a;">steps_per_epoch</span><span>=</span><span style="color:#d08770;">320</span><span>, </span><span style="color:#65737e;"># batches in the generator are 50, so it takes 320 batches to get to 16000 images
+</span><span>    </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">30</span><span>,
+</span><span>    </span><span style="color:#bf616a;">validation_data</span><span>=validation_generator,
+</span><span>    </span><span style="color:#bf616a;">validation_steps</span><span>=</span><span style="color:#d08770;">90</span><span>) </span><span style="color:#65737e;"># batches in the generator are 50, so it takes 90 batches to get to 4500 images
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch 1/30
+</span><span>320/320 [==============================] - 151s 471ms/step - loss: 0.7004 - acc: 0.9150 - val_loss: 0.1462 - val_acc: 0.9720
+</span><span>Epoch 2/30
+</span><span>320/320 [==============================] - 150s 469ms/step - loss: 0.1335 - acc: 0.9716 - val_loss: 0.0935 - val_acc: 0.9784
+</span><span>...
+</span><span>...
+</span><span>...
+</span><span>Epoch 29/30
+</span><span>320/320 [==============================] - 151s 470ms/step - loss: 0.0035 - acc: 0.9998 - val_loss: 0.1489 - val_acc: 0.9858
+</span><span>Epoch 30/30
+</span><span>320/320 [==============================] - 151s 470ms/step - loss: 0.0040 - acc: 0.9996 - val_loss: 0.1471 - val_acc: 0.9867
+</span></code></pre>
+<p>Lets take a look at accuracy and loss again.</p>
+<p><img src="/images/dogs-vs-cats-part-two/accuracy-loss-2.png" alt="accuracy-loss-2" /></p>
+<p>We still seem to be overfitting, suggesting we could potentially improve performance. The params on the top dense layers were fairly arbitrarily for this post. I'll leave improving performance further as an exercise for the reader. We've also trained on just 16,000 of the 25,000 images available. If the contest was still going we could retrain with the additional 9k images and likely have better results.</p>
+<p>Finally lets compare to the test set.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>test_generator = test_datagen.</span><span style="color:#bf616a;">flow_from_directory</span><span>(
+</span><span>    test_dir,
+</span><span>    </span><span style="color:#bf616a;">target_size</span><span>=(</span><span style="color:#d08770;">224</span><span>, </span><span style="color:#d08770;">224</span><span>),
+</span><span>    </span><span style="color:#bf616a;">batch_size</span><span>=</span><span style="color:#d08770;">50</span><span>,
+</span><span>    </span><span style="color:#bf616a;">class_mode</span><span>=&#39;</span><span style="color:#a3be8c;">binary</span><span>&#39;)
+</span><span>
+</span><span>test_loss, test_acc = model.</span><span style="color:#bf616a;">evaluate_generator</span><span>(test_generator, </span><span style="color:#bf616a;">steps</span><span>=</span><span style="color:#d08770;">90</span><span>)
+</span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">test acc:</span><span>&#39;, test_acc)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Found 4500 images belonging to 2 classes.
+</span><span>test acc: 0.9862222280767229
+</span></code></pre>
+<p>98.6% accuracy. Not bad at all, it goes to show how lucky we have it these days. This would have been competitive with a state of the art solution not that many years ago, and now we can achieve it with Keras and just a few lines of Python.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

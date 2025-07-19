@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/beaglebone/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript",
+      "image": [],
+      "datePublished": "2014-07-14T00:00:00+00:00",
+      "dateModified": "2014-07-14T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript",
+          "item": "https://wtfleming.github.io/blog/clojure-beaglebone-part-3-blink-led-clojurescript/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript</h1>
+    <small>
+      July 14, 2014
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
+          
+            <a href="https://wtfleming.github.io/tags/beaglebone/">beaglebone</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <h1 id="intro">Intro</h1>
+<ul>
+<li>In <a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
+<li>In <a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we used the BeagleBone to blink an LED on a breadboard using Clojure.</li>
+<li>In part 3 we will blink an LED using ClojureScript.</li>
+<li>In <a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-4-digital-input-clojurescript/">part 4</a> we will read digital inputs via polling and interrupts.</li>
+</ul>
+<p>The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. The Debian image ships with node.js and a javascript library in <a href="https://beagleboard.org/Support/BoneScript">BoneScript</a> for interacting with the hardware. Clojurescript provides a compiler for Clojure that targets Javascript, here we will use it to blink an LED on a breadboard using the BeagleBone GPIO.</p>
+<h1 id="hello-world-with-clojurescript-and-node-js">Hello World with Clojurescript and node.js</h1>
+<p>First we will ensure that ClojureScript and node.js are setup. Ensure you have followed the instructions in the first part of this series to install Leiningen.</p>
+<p>SSH into your BeagleBone and create a file named <em>project.clj</em> with the following contents:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">cljs-nodejs-hello-world </span><span>&quot;</span><span style="color:#a3be8c;">0.0.1</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:description </span><span>&quot;</span><span style="color:#a3be8c;">Hello World example for clojurescript on node.js</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:license </span><span>{</span><span style="color:#d08770;">:name </span><span>&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span>&quot;
+</span><span>            </span><span style="color:#d08770;">:url </span><span>&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span>&quot;}
+</span><span>  </span><span style="color:#d08770;">:plugins </span><span>[[lein-cljsbuild &quot;</span><span style="color:#a3be8c;">1.0.3</span><span>&quot;]]
+</span><span>  </span><span style="color:#d08770;">:cljsbuild </span><span>{
+</span><span>    </span><span style="color:#d08770;">:builds </span><span>[{
+</span><span>        </span><span style="color:#d08770;">:source-paths </span><span>[&quot;</span><span style="color:#a3be8c;">src</span><span>&quot;]
+</span><span>        </span><span style="color:#d08770;">:compiler </span><span>{
+</span><span>          </span><span style="color:#d08770;">:output-to </span><span>&quot;</span><span style="color:#a3be8c;">lib/hello-world.js</span><span>&quot;
+</span><span>          </span><span style="color:#d08770;">:optimizations :simple
+</span><span>          </span><span style="color:#d08770;">:target :nodejs
+</span><span>          </span><span style="color:#d08770;">:pretty-print true</span><span>}}]}
+</span><span>  </span><span style="color:#d08770;">:dependencies </span><span>[[org.clojure/clojurescript &quot;</span><span style="color:#a3be8c;">0.0-2197</span><span>&quot;]])
+</span></code></pre>
+<p>And create a file name <em>src/cljs_helloworld/core.cljs</em> with these contents:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> cljs-helloworld.core
+</span><span>  (</span><span style="color:#d08770;">:require </span><span>[cljs.nodejs </span><span style="color:#d08770;">:as</span><span> nodejs]))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-main </span><span>[&amp; args]
+</span><span>  (</span><span style="color:#bf616a;">println </span><span>(</span><span style="color:#bf616a;">apply</span><span> str (</span><span style="color:#bf616a;">map </span><span>[</span><span style="color:#d08770;">\space </span><span>&quot;</span><span style="color:#a3be8c;">world</span><span>&quot; &quot;</span><span style="color:#a3be8c;">hello</span><span>&quot;] [</span><span style="color:#d08770;">2 0 1</span><span>]))))
+</span><span>
+</span><span style="color:#65737e;">; Let println work
+</span><span>(</span><span style="color:#bf616a;">nodejs/enable-util-print!</span><span>)
+</span><span>
+</span><span style="color:#65737e;">; Tell node which function to use as main
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *main-cli-fn* -main)
+</span></code></pre>
+<p>Now compile the clojurescript to javascript and run it on your BeagleBone.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lein cljsbuild once
+</span><span style="color:#bf616a;">$</span><span> node lib/hello-world.js
+</span></code></pre>
+<p>You should see hello world output.</p>
+<h1 id="blinking-an-led">Blinking an LED</h1>
+<p>This is inspired by an example from the excellent book [Getting Started With BeagleBone][beaglebone-book] by [Matt Richardson][matt-richardson].</p>
+<p><img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="schematic" /></p>
+<p>Schematic above was generated using the open source <a href="https://fritzing.org/home/">Fritzing</a>.</p>
+<hr />
+<p>Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do not accidentally connect a jumper to one of the 5 volt source pins. If you are unsure of what you are doing I would highly recommend reading the system reference manual to make sure you do not damage your board.</p>
+<hr />
+<h1 id="wire-up-the-led">Wire up the LED</h1>
+<ol>
+<li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
+<li>Place an LED in the breadboard.</li>
+<li>Using a jumper wire connect the cathode (shorter) wire of the LED to the negative rail.</li>
+<li>Connect one end of a 100 ohm resistor to the anode (longer) wire of the LED.</li>
+<li>Using another jumper wire connect the other end of the resistor to Pin 13 on Header P8</li>
+</ol>
+<p>Now we are ready to write the code.</p>
+<h1 id="clojurescript-code">ClojureScript code</h1>
+<p>SSH into your BeagleBone and create a file named <em>project.clj</em> with the following contents:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defproject </span><span style="color:#8fa1b3;">cljs-beaglebone-blink-led </span><span>&quot;</span><span style="color:#a3be8c;">0.0.1</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:description </span><span>&quot;</span><span style="color:#a3be8c;">Hello World example for clojurescript on node.js</span><span>&quot;
+</span><span>  </span><span style="color:#d08770;">:license </span><span>{</span><span style="color:#d08770;">:name </span><span>&quot;</span><span style="color:#a3be8c;">Eclipse Public License</span><span>&quot;
+</span><span>            </span><span style="color:#d08770;">:url </span><span>&quot;</span><span style="color:#a3be8c;">http://www.eclipse.org/legal/epl-v10.html</span><span>&quot;}
+</span><span>  </span><span style="color:#d08770;">:plugins </span><span>[[lein-cljsbuild &quot;</span><span style="color:#a3be8c;">1.0.3</span><span>&quot;]]
+</span><span>  </span><span style="color:#d08770;">:cljsbuild </span><span>{
+</span><span>    </span><span style="color:#d08770;">:builds </span><span>[{
+</span><span>        </span><span style="color:#d08770;">:source-paths </span><span>[&quot;</span><span style="color:#a3be8c;">src</span><span>&quot;]
+</span><span>        </span><span style="color:#d08770;">:compiler </span><span>{
+</span><span>          </span><span style="color:#d08770;">:output-to </span><span>&quot;</span><span style="color:#a3be8c;">lib/blink.js</span><span>&quot;
+</span><span>          </span><span style="color:#d08770;">:optimizations :simple
+</span><span>          </span><span style="color:#d08770;">:target :nodejs
+</span><span>          </span><span style="color:#d08770;">:pretty-print true</span><span>}}]}
+</span><span>  </span><span style="color:#d08770;">:dependencies </span><span>[[org.clojure/clojurescript &quot;</span><span style="color:#a3be8c;">0.0-2197</span><span>&quot;]])
+</span></code></pre>
+<p>And create a file named <em>src/cljs_blink_led/core.cljs</em> with these contents:</p>
+<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#bf616a;">ns</span><span> cljs-blink-led.core
+</span><span>  (</span><span style="color:#d08770;">:require </span><span>[cljs.nodejs </span><span style="color:#d08770;">:as</span><span> nodejs]))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">bone </span><span>(</span><span style="color:#bf616a;">nodejs/require </span><span>&quot;</span><span style="color:#a3be8c;">bonescript</span><span>&quot;))
+</span><span>
+</span><span style="color:#65737e;">; Bonescript identifiers related to pins
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">OUTPUT </span><span>(</span><span style="color:#bf616a;">aget</span><span> bone &quot;</span><span style="color:#a3be8c;">OUTPUT</span><span>&quot;))
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">HIGH </span><span>(</span><span style="color:#bf616a;">aget</span><span> bone &quot;</span><span style="color:#a3be8c;">HIGH</span><span>&quot;))
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">LOW </span><span>(</span><span style="color:#bf616a;">aget</span><span> bone &quot;</span><span style="color:#a3be8c;">LOW</span><span>&quot;))
+</span><span>
+</span><span>
+</span><span style="color:#65737e;">; LEDs
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">led-pin </span><span>&quot;</span><span style="color:#a3be8c;">P8_13</span><span>&quot;)    </span><span style="color:#65737e;">; GPIO pin 13 on header P8
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">onboard-led </span><span>&quot;</span><span style="color:#a3be8c;">USR3</span><span>&quot;) </span><span style="color:#65737e;">; One of the onboard LEDs
+</span><span>
+</span><span style="color:#65737e;">; State of our LEDs
+</span><span>(</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">led-pin-state </span><span>(</span><span style="color:#bf616a;">atom</span><span> LOW))
+</span><span>
+</span><span style="color:#65737e;">; Set both pins as an output
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">setup-pins </span><span>[]
+</span><span>  (</span><span style="color:#bf616a;">.pinMode</span><span> bone led-pin OUTPUT)
+</span><span>  (</span><span style="color:#bf616a;">.pinMode</span><span> bone onboard-led OUTPUT))
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">toggle-digital-pin-state </span><span>[]
+</span><span>  (</span><span style="color:#bf616a;">if </span><span>(</span><span style="color:#bf616a;">= </span><span>@led-pin-state HIGH)
+</span><span>    (</span><span style="color:#bf616a;">reset!</span><span> led-pin-state LOW)
+</span><span>    (</span><span style="color:#bf616a;">reset!</span><span> led-pin-state HIGH)))
+</span><span>
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">blink-leds </span><span>[]
+</span><span>  (</span><span style="color:#bf616a;">toggle-digital-pin-state</span><span>)
+</span><span>  (</span><span style="color:#bf616a;">.digitalWrite</span><span> bone led-pin @led-pin-state)
+</span><span>  (</span><span style="color:#bf616a;">.digitalWrite</span><span> bone onboard-led @led-pin-state))
+</span><span>
+</span><span>
+</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">-main </span><span>[&amp; args]
+</span><span>  (</span><span style="color:#bf616a;">setup-pins</span><span>)
+</span><span>  (</span><span style="color:#bf616a;">js/setInterval</span><span> blink-leds </span><span style="color:#d08770;">1000</span><span>))
+</span><span>
+</span><span>(</span><span style="color:#bf616a;">set!</span><span> *main-cli-fn* -main)
+</span></code></pre>
+<p>Now compile the clojurescript to javascript and run it on your BeagleBone.</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">$</span><span> lein cljsbuild once
+</span><span style="color:#bf616a;">$</span><span> node lib/blink.js
+</span></code></pre>
+<p>Your LED should now blink on and off every second.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>

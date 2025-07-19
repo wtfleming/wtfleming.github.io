@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <style>
+     :root {
+       --accent-color: #05a081;
+       --accent-color-light: #82d0c0;
+     }
+    </style>
+
+    <meta name="theme-color" content="#05a081" />
+
+    
+    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+
+    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
+    
+
+    
+
+      <meta property="og:type" content="website">
+
+      <meta name="twitter:card" content="summary">
+
+      
+
+      
+
+      
+      
+      <meta name="description" content="" />
+      <meta name="twitter:description" content="">
+      
+      
+
+      
+      <meta name="twitter:title" content="Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models">
+      
+
+      
+      <link rel="prerender" href="&#x2F;about&#x2F;" />
+      
+      <link rel="prerender" href="&#x2F;blog&#x2F;" />
+      
+
+
+      
+      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
+
+    <title>
+      
+        
+          Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models
+        
+      
+    </title>
+
+    
+    
+      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
+    
+    
+  
+
+  
+
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/pytorch/">
+  
+    <link rel="prerender"  href="https://wtfleming.github.io/tags/machine-learning/">
+  
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://google.com/article"
+      },
+      "headline": "Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models",
+      "image": [],
+      "datePublished": "2020-04-12T00:00:00+00:00",
+      "dateModified": "2020-04-12T00:00:00+00:00"
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        
+
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Will&#x27;s Software Journal",
+          "item": "https://wtfleming.github.io/"
+        },
+        
+        {
+          
+          "@type": "ListItem",
+          "position": 2,
+          "name": "",
+          "item": "https://wtfleming.github.io/blog/"
+        },
+        
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models",
+          "item": "https://wtfleming.github.io/blog/pytorch-cats-vs-dogs-part-3/"
+        }
+      ]
+    }
+  </script>
+
+  </head>
+  <body>
+    
+    <header>
+      
+        <a class="profile-icon" href="/">
+          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
+        </a>
+        <nav>
+          
+            <a href="&#x2F;about&#x2F;">About</a>
+          
+            <a href="&#x2F;blog&#x2F;">Blog</a>
+          
+        </nav>
+      </header>
+    
+    <main>
+    
+  <div class="post-title">
+    <h1>Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models</h1>
+    <small>
+      April 12, 2020
+      
+        - 
+        <span class="tags">
+          
+            <a href="https://wtfleming.github.io/tags/pytorch/">pytorch</a>
+          
+            <a href="https://wtfleming.github.io/tags/machine-learning/">machine learning</a>
+          
+        </span>
+      
+    </small>
+  </div>
+
+  <div>
+    <p>In 2014 Kaggle ran a <a href="https://www.kaggle.com/c/dogs-vs-cats/overview">competition</a> to determine if images contained a dog or a cat. In this series of posts we'll see how easy it is to use Keras to create a <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">2D convolutional neural network</a> that potentially could have won the contest.</p>
+<p>In <a href="https://wtfleming.github.io/blog/keras-cats-vs-dogs-part-1/">part 1</a> we used Keras to define a neural network architecture from scratch and were able to get to 92.8% categorization accuracy.</p>
+<p>In <a href="https://wtfleming.github.io/blog/keras-cats-vs-dogs-part-2/">part 2</a> we used once again used Keras and a VGG16 network with transfer learning to achieve 98.6% accuracy.</p>
+<p>In this post we'll switch gears to use <a href="https://pytorch.org/">PyTorch</a> with an ensemble of ResNet models to reach 99.1% accuracy.</p>
+<hr />
+<p>This post was inspired by the book <a href="https://www.oreilly.com/library/view/programming-pytorch-for/9781492045342/">Programming PyTorch for Deep Learning</a> by Ian Pointer.</p>
+<p>Code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-3.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.</p>
+<h3 id="build-the-networks">Build the networks</h3>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>torch
+</span><span style="color:#b48ead;">import </span><span>torch.nn </span><span style="color:#b48ead;">as </span><span>nn
+</span><span style="color:#b48ead;">import </span><span>torch.optim </span><span style="color:#b48ead;">as </span><span>optim
+</span><span style="color:#b48ead;">import </span><span>torch.utils.data
+</span><span style="color:#b48ead;">import </span><span>torch.nn.functional </span><span style="color:#b48ead;">as </span><span>F
+</span><span style="color:#b48ead;">import </span><span>torchvision
+</span><span style="color:#b48ead;">import </span><span>torchvision.models </span><span style="color:#b48ead;">as </span><span>models
+</span><span style="color:#b48ead;">from </span><span>torchvision </span><span style="color:#b48ead;">import </span><span>transforms
+</span><span style="color:#b48ead;">from </span><span>PIL </span><span style="color:#b48ead;">import </span><span>Image
+</span><span style="color:#b48ead;">import </span><span>matplotlib.pyplot </span><span style="color:#b48ead;">as </span><span>plt
+</span></code></pre>
+<p>Download models pretrained on ImageNet with <a href="https://pytorch.org/hub/">PyTorch Hub</a></p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>model_resnet18 = torch.hub.</span><span style="color:#bf616a;">load</span><span>(&#39;</span><span style="color:#a3be8c;">pytorch/vision</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">resnet18</span><span>&#39;, </span><span style="color:#bf616a;">pretrained</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>model_resnet34 = torch.hub.</span><span style="color:#bf616a;">load</span><span>(&#39;</span><span style="color:#a3be8c;">pytorch/vision</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">resnet34</span><span>&#39;, </span><span style="color:#bf616a;">pretrained</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span></code></pre>
+<p>Since we are doing transfer learning we want to freeze all params except the BatchNorm layers, as here they are trained to the mean and standard deviation of ImageNet and we may lose some signal.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">for </span><span>name, param </span><span style="color:#b48ead;">in </span><span>model_resnet18.</span><span style="color:#bf616a;">named_parameters</span><span>():
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(&quot;</span><span style="color:#a3be8c;">bn</span><span>&quot; not in name):
+</span><span>        param.requires_grad = </span><span style="color:#d08770;">False
+</span><span>        
+</span><span style="color:#b48ead;">for </span><span>name, param </span><span style="color:#b48ead;">in </span><span>model_resnet34.</span><span style="color:#bf616a;">named_parameters</span><span>():
+</span><span>    </span><span style="color:#b48ead;">if</span><span>(&quot;</span><span style="color:#a3be8c;">bn</span><span>&quot; not in name):
+</span><span>        param.requires_grad = </span><span style="color:#d08770;">False
+</span></code></pre>
+<p>Next we want to replace the classifier so we can make predictions on our dataset, rather than the 1,000 classes from ImageNet the model was trained on.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>num_classes = </span><span style="color:#d08770;">2
+</span><span>
+</span><span>model_resnet18.fc = nn.</span><span style="color:#bf616a;">Sequential</span><span>(nn.</span><span style="color:#bf616a;">Linear</span><span>(model_resnet18.fc.in_features,</span><span style="color:#d08770;">512</span><span>),
+</span><span>                                  nn.</span><span style="color:#bf616a;">ReLU</span><span>(),
+</span><span>                                  nn.</span><span style="color:#bf616a;">Dropout</span><span>(),
+</span><span>                                  nn.</span><span style="color:#bf616a;">Linear</span><span>(</span><span style="color:#d08770;">512</span><span>, num_classes))
+</span><span>
+</span><span>model_resnet34.fc = nn.</span><span style="color:#bf616a;">Sequential</span><span>(nn.</span><span style="color:#bf616a;">Linear</span><span>(model_resnet34.fc.in_features,</span><span style="color:#d08770;">512</span><span>),
+</span><span>                                  nn.</span><span style="color:#bf616a;">ReLU</span><span>(),
+</span><span>                                  nn.</span><span style="color:#bf616a;">Dropout</span><span>(),
+</span><span>                                  nn.</span><span style="color:#bf616a;">Linear</span><span>(</span><span style="color:#d08770;">512</span><span>, num_classes))
+</span></code></pre>
+<h3 id="functions-for-training-and-loading-data">Functions for training and loading data</h3>
+<p>Create a function we can use to train the model.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">train</span><span>(</span><span style="color:#bf616a;">model</span><span>, </span><span style="color:#bf616a;">optimizer</span><span>, </span><span style="color:#bf616a;">loss_fn</span><span>, </span><span style="color:#bf616a;">train_loader</span><span>, </span><span style="color:#bf616a;">val_loader</span><span>, </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">5</span><span>, </span><span style="color:#bf616a;">device</span><span>=&quot;</span><span style="color:#a3be8c;">cpu</span><span>&quot;):
+</span><span>    </span><span style="color:#b48ead;">for </span><span>epoch </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(epochs):
+</span><span>        training_loss = </span><span style="color:#d08770;">0.0
+</span><span>        valid_loss = </span><span style="color:#d08770;">0.0
+</span><span>        model.</span><span style="color:#bf616a;">train</span><span>()
+</span><span>        </span><span style="color:#b48ead;">for </span><span>batch </span><span style="color:#b48ead;">in </span><span>train_loader:
+</span><span>            optimizer.</span><span style="color:#bf616a;">zero_grad</span><span>()
+</span><span>            inputs, targets = batch
+</span><span>            inputs = inputs.</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>            targets = targets.</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>            output = </span><span style="color:#bf616a;">model</span><span>(inputs)
+</span><span>            loss = </span><span style="color:#bf616a;">loss_fn</span><span>(output, targets)
+</span><span>            loss.</span><span style="color:#bf616a;">backward</span><span>()
+</span><span>            optimizer.</span><span style="color:#bf616a;">step</span><span>()
+</span><span>            training_loss += loss.data.</span><span style="color:#bf616a;">item</span><span>() * inputs.</span><span style="color:#bf616a;">size</span><span>(</span><span style="color:#d08770;">0</span><span>)
+</span><span>        training_loss /= </span><span style="color:#96b5b4;">len</span><span>(train_loader.dataset)
+</span><span>        
+</span><span>        model.</span><span style="color:#bf616a;">eval</span><span>()
+</span><span>        num_correct = </span><span style="color:#d08770;">0 
+</span><span>        num_examples = </span><span style="color:#d08770;">0
+</span><span>        </span><span style="color:#b48ead;">for </span><span>batch </span><span style="color:#b48ead;">in </span><span>val_loader:
+</span><span>            inputs, targets = batch
+</span><span>            inputs = inputs.</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>            output = </span><span style="color:#bf616a;">model</span><span>(inputs)
+</span><span>            targets = targets.</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>            loss = </span><span style="color:#bf616a;">loss_fn</span><span>(output,targets) 
+</span><span>            valid_loss += loss.data.</span><span style="color:#bf616a;">item</span><span>() * inputs.</span><span style="color:#bf616a;">size</span><span>(</span><span style="color:#d08770;">0</span><span>)
+</span><span>                        
+</span><span>            correct = torch.</span><span style="color:#bf616a;">eq</span><span>(torch.</span><span style="color:#bf616a;">max</span><span>(F.</span><span style="color:#bf616a;">softmax</span><span>(output, </span><span style="color:#bf616a;">dim</span><span>=</span><span style="color:#d08770;">1</span><span>), </span><span style="color:#bf616a;">dim</span><span>=</span><span style="color:#d08770;">1</span><span>)[</span><span style="color:#d08770;">1</span><span>], targets).</span><span style="color:#bf616a;">view</span><span>(-</span><span style="color:#d08770;">1</span><span>)
+</span><span>            num_correct += torch.</span><span style="color:#bf616a;">sum</span><span>(correct).</span><span style="color:#bf616a;">item</span><span>()
+</span><span>            num_examples += correct.shape[</span><span style="color:#d08770;">0</span><span>]
+</span><span>        valid_loss /= </span><span style="color:#96b5b4;">len</span><span>(val_loader.dataset)
+</span><span>
+</span><span>        </span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">Epoch: </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, Training Loss: </span><span style="color:#d08770;">{:.4f}</span><span style="color:#a3be8c;">, Validation Loss: </span><span style="color:#d08770;">{:.4f}</span><span style="color:#a3be8c;">, accuracy = </span><span style="color:#d08770;">{:.4f}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(epoch, training_loss,
+</span><span>        valid_loss, num_correct / num_examples))
+</span></code></pre>
+<p>Next create some code to load and process our training, test, and validation images.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>batch_size=</span><span style="color:#d08770;">32
+</span><span>img_dimensions = </span><span style="color:#d08770;">224
+</span><span>
+</span><span style="color:#65737e;"># Normalize to the ImageNet mean and standard deviation
+</span><span style="color:#65737e;"># Could calculate it for the cats/dogs data set, but the ImageNet
+</span><span style="color:#65737e;"># values give acceptable results here.
+</span><span>img_transforms = transforms.</span><span style="color:#bf616a;">Compose</span><span>([
+</span><span>    transforms.</span><span style="color:#bf616a;">Resize</span><span>((img_dimensions, img_dimensions)),
+</span><span>    transforms.</span><span style="color:#bf616a;">ToTensor</span><span>(),
+</span><span>    transforms.</span><span style="color:#bf616a;">Normalize</span><span>(</span><span style="color:#bf616a;">mean</span><span>=[</span><span style="color:#d08770;">0.485</span><span>, </span><span style="color:#d08770;">0.456</span><span>, </span><span style="color:#d08770;">0.406</span><span>],</span><span style="color:#bf616a;">std</span><span>=[</span><span style="color:#d08770;">0.229</span><span>, </span><span style="color:#d08770;">0.224</span><span>, </span><span style="color:#d08770;">0.225</span><span>] )
+</span><span>    ])
+</span><span>
+</span><span>img_test_transforms = transforms.</span><span style="color:#bf616a;">Compose</span><span>([
+</span><span>    transforms.</span><span style="color:#bf616a;">Resize</span><span>((img_dimensions,img_dimensions)),
+</span><span>    transforms.</span><span style="color:#bf616a;">ToTensor</span><span>(),
+</span><span>    transforms.</span><span style="color:#bf616a;">Normalize</span><span>(</span><span style="color:#bf616a;">mean</span><span>=[</span><span style="color:#d08770;">0.485</span><span>, </span><span style="color:#d08770;">0.456</span><span>, </span><span style="color:#d08770;">0.406</span><span>],</span><span style="color:#bf616a;">std</span><span>=[</span><span style="color:#d08770;">0.229</span><span>, </span><span style="color:#d08770;">0.224</span><span>, </span><span style="color:#d08770;">0.225</span><span>] )
+</span><span>    ])
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">check_image</span><span>(</span><span style="color:#bf616a;">path</span><span>):
+</span><span>    </span><span style="color:#b48ead;">try</span><span>:
+</span><span>        im = Image.</span><span style="color:#bf616a;">open</span><span>(path)
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">True
+</span><span>    </span><span style="color:#b48ead;">except</span><span>:
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#d08770;">False
+</span><span>
+</span><span>train_data_path = &quot;</span><span style="color:#a3be8c;">/home/wtf/dogs-vs-cats/train/</span><span>&quot;
+</span><span>train_data = torchvision.datasets.</span><span style="color:#bf616a;">ImageFolder</span><span>(</span><span style="color:#bf616a;">root</span><span>=train_data_path,</span><span style="color:#bf616a;">transform</span><span>=img_transforms, </span><span style="color:#bf616a;">is_valid_file</span><span>=check_image)
+</span><span>
+</span><span>validation_data_path = &quot;</span><span style="color:#a3be8c;">/home/wtf/dogs-vs-cats/validation/</span><span>&quot;
+</span><span>validation_data = torchvision.datasets.</span><span style="color:#bf616a;">ImageFolder</span><span>(</span><span style="color:#bf616a;">root</span><span>=validation_data_path,</span><span style="color:#bf616a;">transform</span><span>=img_test_transforms, </span><span style="color:#bf616a;">is_valid_file</span><span>=check_image)
+</span><span>
+</span><span>test_data_path = &quot;</span><span style="color:#a3be8c;">/home/wtf/dogs-vs-cats/test/</span><span>&quot;
+</span><span>test_data = torchvision.datasets.</span><span style="color:#bf616a;">ImageFolder</span><span>(</span><span style="color:#bf616a;">root</span><span>=test_data_path,</span><span style="color:#bf616a;">transform</span><span>=img_test_transforms, </span><span style="color:#bf616a;">is_valid_file</span><span>=check_image)
+</span><span>
+</span><span>num_workers = </span><span style="color:#d08770;">6
+</span><span>train_data_loader = torch.utils.data.</span><span style="color:#bf616a;">DataLoader</span><span>(train_data, </span><span style="color:#bf616a;">batch_size</span><span>=batch_size, </span><span style="color:#bf616a;">shuffle</span><span>=</span><span style="color:#d08770;">True</span><span>, </span><span style="color:#bf616a;">num_workers</span><span>=num_workers)
+</span><span>validation_data_loader = torch.utils.data.</span><span style="color:#bf616a;">DataLoader</span><span>(validation_data, </span><span style="color:#bf616a;">batch_size</span><span>=batch_size, </span><span style="color:#bf616a;">shuffle</span><span>=</span><span style="color:#d08770;">False</span><span>, </span><span style="color:#bf616a;">num_workers</span><span>=num_workers)
+</span><span>test_data_loader = torch.utils.data.</span><span style="color:#bf616a;">DataLoader</span><span>(test_data, </span><span style="color:#bf616a;">batch_size</span><span>=batch_size, </span><span style="color:#bf616a;">shuffle</span><span>=</span><span style="color:#d08770;">False</span><span>, </span><span style="color:#bf616a;">num_workers</span><span>=num_workers)
+</span><span>
+</span><span>
+</span><span style="color:#b48ead;">if </span><span>torch.cuda.</span><span style="color:#bf616a;">is_available</span><span>():
+</span><span>    device = torch.</span><span style="color:#bf616a;">device</span><span>(&quot;</span><span style="color:#a3be8c;">cuda</span><span>&quot;) 
+</span><span style="color:#b48ead;">else</span><span>:
+</span><span>    device = torch.</span><span style="color:#bf616a;">device</span><span>(&quot;</span><span style="color:#a3be8c;">cpu</span><span>&quot;)
+</span></code></pre>
+<p>Lets verify that the numbers look correct</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&#39;</span><span style="color:#a3be8c;">Num training images: </span><span>{</span><span style="color:#96b5b4;">len</span><span>(train_data_loader.dataset)}&#39;)
+</span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&#39;</span><span style="color:#a3be8c;">Num validation images: </span><span>{</span><span style="color:#96b5b4;">len</span><span>(validation_data_loader.dataset)}&#39;)
+</span><span style="color:#96b5b4;">print</span><span>(</span><span style="color:#b48ead;">f</span><span>&#39;</span><span style="color:#a3be8c;">Num test images: </span><span>{</span><span style="color:#96b5b4;">len</span><span>(test_data_loader.dataset)}&#39;)
+</span></code></pre>
+<p>Which should output:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Num training images: 16000
+</span><span>Num validation images: 4500
+</span><span>Num test images: 4500
+</span></code></pre>
+<h3 id="train-and-test-the-models">Train and test the models</h3>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">test_model</span><span>(</span><span style="color:#bf616a;">model</span><span>):
+</span><span>    correct = </span><span style="color:#d08770;">0
+</span><span>    total = </span><span style="color:#d08770;">0
+</span><span>    </span><span style="color:#b48ead;">with </span><span>torch.</span><span style="color:#bf616a;">no_grad</span><span>():
+</span><span>        </span><span style="color:#b48ead;">for </span><span>data </span><span style="color:#b48ead;">in </span><span>test_data_loader:
+</span><span>            images, labels = data[</span><span style="color:#d08770;">0</span><span>].</span><span style="color:#bf616a;">to</span><span>(device), data[</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>            outputs = </span><span style="color:#bf616a;">model</span><span>(images)
+</span><span>            </span><span style="color:#bf616a;">_</span><span>, predicted = torch.</span><span style="color:#bf616a;">max</span><span>(outputs.data, </span><span style="color:#d08770;">1</span><span>)
+</span><span>            total += labels.</span><span style="color:#bf616a;">size</span><span>(</span><span style="color:#d08770;">0</span><span>)
+</span><span>            correct += (predicted == labels).</span><span style="color:#bf616a;">sum</span><span>().</span><span style="color:#bf616a;">item</span><span>()
+</span><span>    </span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">correct: </span><span style="color:#d08770;">{:d}</span><span style="color:#a3be8c;">  total: </span><span style="color:#d08770;">{:d}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(correct, total))
+</span><span>    </span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">accuracy = </span><span style="color:#d08770;">{:f}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(correct / total))
+</span></code></pre>
+<p>Train the ResNet18 model for a couple epochs. We could let it go longer (and use a larger batch size above), but I've been using a relatively ancient 6 year old GPU for this post, and not wanting to wait forever these settings are good enough for a blog post.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>model_resnet18.</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>optimizer = optim.</span><span style="color:#bf616a;">Adam</span><span>(model_resnet18.</span><span style="color:#bf616a;">parameters</span><span>(), </span><span style="color:#bf616a;">lr</span><span>=</span><span style="color:#d08770;">0.001</span><span>)
+</span><span style="color:#bf616a;">train</span><span>(model_resnet18, optimizer, torch.nn.</span><span style="color:#bf616a;">CrossEntropyLoss</span><span>(), train_data_loader, validation_data_loader, </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#bf616a;">device</span><span>=device)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch: 0, Training Loss: 0.0855, Validation Loss: 0.0358, accuracy = 0.9878
+</span><span>Epoch: 1, Training Loss: 0.0498, Validation Loss: 0.0309, accuracy = 0.9873
+</span></code></pre>
+<p>Now check against our holdout test set</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#bf616a;">test_model</span><span>(model_resnet18)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>correct: 4456  total: 4500
+</span><span>accuracy = 0.990222
+</span></code></pre>
+<p>And do the same for our ResNet34 network</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>model_resnet34.</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>optimizer = optim.</span><span style="color:#bf616a;">Adam</span><span>(model_resnet34.</span><span style="color:#bf616a;">parameters</span><span>(), </span><span style="color:#bf616a;">lr</span><span>=</span><span style="color:#d08770;">0.001</span><span>)
+</span><span style="color:#bf616a;">train</span><span>(model_resnet34, optimizer, torch.nn.</span><span style="color:#bf616a;">CrossEntropyLoss</span><span>(), train_data_loader, validation_data_loader, </span><span style="color:#bf616a;">epochs</span><span>=</span><span style="color:#d08770;">2</span><span>, </span><span style="color:#bf616a;">device</span><span>=device)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>Epoch: 0, Training Loss: 0.0678, Validation Loss: 0.0239, accuracy = 0.9907
+</span><span>Epoch: 1, Training Loss: 0.0354, Validation Loss: 0.0317, accuracy = 0.9887
+</span></code></pre>
+<p>And test</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#bf616a;">test_model</span><span>(model_resnet34)
+</span></code></pre>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>correct: 4450  total: 4500
+</span><span>accuracy = 0.988889
+</span></code></pre>
+<p>This gives us two models, one with 99.0% accuracy on our test set and 98.9% on the other.</p>
+<h3 id="make-some-predictions">Make some predictions</h3>
+<p>Lets check a couple individual images from the test set.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">import </span><span>os
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">find_classes</span><span>(</span><span style="color:#bf616a;">dir</span><span>):
+</span><span>    classes = os.</span><span style="color:#bf616a;">listdir</span><span>(</span><span style="color:#96b5b4;">dir</span><span>)
+</span><span>    classes.</span><span style="color:#bf616a;">sort</span><span>()
+</span><span>    class_to_idx = {classes[i]: i </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(</span><span style="color:#96b5b4;">len</span><span>(classes))}
+</span><span>    </span><span style="color:#b48ead;">return </span><span>classes, class_to_idx
+</span><span>
+</span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">make_prediction</span><span>(</span><span style="color:#bf616a;">model</span><span>, </span><span style="color:#bf616a;">filename</span><span>):
+</span><span>    labels, </span><span style="color:#bf616a;">_ </span><span>= </span><span style="color:#bf616a;">find_classes</span><span>(&#39;</span><span style="color:#a3be8c;">/home/wtf/dogs-vs-cats/test</span><span>&#39;)
+</span><span>    img = Image.</span><span style="color:#bf616a;">open</span><span>(filename)
+</span><span>    img = </span><span style="color:#bf616a;">img_test_transforms</span><span>(img)
+</span><span>    img = img.</span><span style="color:#bf616a;">unsqueeze</span><span>(</span><span style="color:#d08770;">0</span><span>)
+</span><span>    prediction = </span><span style="color:#bf616a;">model</span><span>(img.</span><span style="color:#bf616a;">to</span><span>(device))
+</span><span>    prediction = prediction.</span><span style="color:#bf616a;">argmax</span><span>()
+</span><span>    </span><span style="color:#96b5b4;">print</span><span>(labels[prediction])
+</span><span>    
+</span><span style="color:#bf616a;">make_prediction</span><span>(model_resnet34, &#39;</span><span style="color:#a3be8c;">/home/wtf/dogs-vs-cats/test/dogs/dog.11460.jpg</span><span>&#39;)
+</span><span style="color:#bf616a;">make_prediction</span><span>(model_resnet34, &#39;</span><span style="color:#a3be8c;">/home/wtf/dogs-vs-cats/test/cats/cat.12262.jpg</span><span>&#39;)
+</span></code></pre>
+<p>Which outputs:</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>dogs
+</span><span>cats
+</span></code></pre>
+<p>Seems reasonable.</p>
+<h3 id="save-and-load-models">Save and load models</h3>
+<p>Since we don't want to have to train the models again every time we start up a jupyter notebook, lets see how we can save them to disk and then reload them.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span>torch.</span><span style="color:#bf616a;">save</span><span>(model_resnet18.</span><span style="color:#bf616a;">state_dict</span><span>(), &quot;</span><span style="color:#a3be8c;">./model_resnet18.pth</span><span>&quot;)
+</span><span>torch.</span><span style="color:#bf616a;">save</span><span>(model_resnet34.</span><span style="color:#bf616a;">state_dict</span><span>(), &quot;</span><span style="color:#a3be8c;">./model_resnet34.pth</span><span>&quot;)
+</span><span>
+</span><span>
+</span><span style="color:#65737e;"># Remember that you must call model.eval() to set dropout and batch normalization layers to
+</span><span style="color:#65737e;"># evaluation mode before running inference. Failing to do this will yield inconsistent inference results.
+</span><span>
+</span><span>resnet18 = torch.hub.</span><span style="color:#bf616a;">load</span><span>(&#39;</span><span style="color:#a3be8c;">pytorch/vision</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">resnet18</span><span>&#39;)
+</span><span>resnet18.fc = nn.</span><span style="color:#bf616a;">Sequential</span><span>(nn.</span><span style="color:#bf616a;">Linear</span><span>(resnet18.fc.in_features,</span><span style="color:#d08770;">512</span><span>),nn.</span><span style="color:#bf616a;">ReLU</span><span>(), nn.</span><span style="color:#bf616a;">Dropout</span><span>(), nn.</span><span style="color:#bf616a;">Linear</span><span>(</span><span style="color:#d08770;">512</span><span>, num_classes))
+</span><span>resnet18.</span><span style="color:#bf616a;">load_state_dict</span><span>(torch.</span><span style="color:#bf616a;">load</span><span>(&#39;</span><span style="color:#a3be8c;">./model_resnet18.pth</span><span>&#39;))
+</span><span>resnet18.</span><span style="color:#bf616a;">eval</span><span>()
+</span><span>
+</span><span>resnet34 = torch.hub.</span><span style="color:#bf616a;">load</span><span>(&#39;</span><span style="color:#a3be8c;">pytorch/vision</span><span>&#39;, &#39;</span><span style="color:#a3be8c;">resnet34</span><span>&#39;)
+</span><span>resnet34.fc = nn.</span><span style="color:#bf616a;">Sequential</span><span>(nn.</span><span style="color:#bf616a;">Linear</span><span>(resnet34.fc.in_features,</span><span style="color:#d08770;">512</span><span>),nn.</span><span style="color:#bf616a;">ReLU</span><span>(), nn.</span><span style="color:#bf616a;">Dropout</span><span>(), nn.</span><span style="color:#bf616a;">Linear</span><span>(</span><span style="color:#d08770;">512</span><span>, num_classes))
+</span><span>resnet34.</span><span style="color:#bf616a;">load_state_dict</span><span>(torch.</span><span style="color:#bf616a;">load</span><span>(&#39;</span><span style="color:#a3be8c;">./model_resnet34.pth</span><span>&#39;))
+</span><span>resnet34.</span><span style="color:#bf616a;">eval</span><span>()
+</span></code></pre>
+<h3 id="test-with-an-ensemble">Test with an ensemble</h3>
+<p>We'll use a very simple ensemble here. Take the prediction for each image from each model, average them to generate a new prediction for the image.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#65737e;"># Test against the average of each prediction from the two models
+</span><span>models_ensemble = [resnet18.</span><span style="color:#bf616a;">to</span><span>(device), resnet34.</span><span style="color:#bf616a;">to</span><span>(device)]
+</span><span>correct = </span><span style="color:#d08770;">0
+</span><span>total = </span><span style="color:#d08770;">0
+</span><span style="color:#b48ead;">with </span><span>torch.</span><span style="color:#bf616a;">no_grad</span><span>():
+</span><span>    </span><span style="color:#b48ead;">for </span><span>data </span><span style="color:#b48ead;">in </span><span>test_data_loader:
+</span><span>        images, labels = data[</span><span style="color:#d08770;">0</span><span>].</span><span style="color:#bf616a;">to</span><span>(device), data[</span><span style="color:#d08770;">1</span><span>].</span><span style="color:#bf616a;">to</span><span>(device)
+</span><span>        predictions = [</span><span style="color:#bf616a;">i</span><span>(images).data </span><span style="color:#b48ead;">for </span><span>i </span><span style="color:#b48ead;">in </span><span>models_ensemble]
+</span><span>        avg_predictions = torch.</span><span style="color:#bf616a;">mean</span><span>(torch.</span><span style="color:#bf616a;">stack</span><span>(predictions), </span><span style="color:#bf616a;">dim</span><span>=</span><span style="color:#d08770;">0</span><span>)
+</span><span>        </span><span style="color:#bf616a;">_</span><span>, predicted = torch.</span><span style="color:#bf616a;">max</span><span>(avg_predictions, </span><span style="color:#d08770;">1</span><span>)
+</span><span>
+</span><span>        total += labels.</span><span style="color:#bf616a;">size</span><span>(</span><span style="color:#d08770;">0</span><span>)
+</span><span>        correct += (predicted == labels).</span><span style="color:#bf616a;">sum</span><span>().</span><span style="color:#bf616a;">item</span><span>()
+</span><span>        
+</span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">accuracy = </span><span style="color:#d08770;">{:f}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(correct / total))
+</span><span style="color:#96b5b4;">print</span><span>(&#39;</span><span style="color:#a3be8c;">correct: </span><span style="color:#d08770;">{:d}</span><span style="color:#a3be8c;">  total: </span><span style="color:#d08770;">{:d}</span><span>&#39;.</span><span style="color:#bf616a;">format</span><span>(correct, total))
+</span></code></pre>
+<p>Which results in</p>
+<pre style="background-color:#2b303b;color:#c0c5ce;"><code><span>accuracy = 0.990889
+</span><span>correct: 4459  total: 4500
+</span></code></pre>
+<p>The magic of ensembles is that given two models with accuracy of <code>0.990222</code> and <code>0.988889</code> we are able to make predictions and get to <code>0.990889</code>, which is higher than any individual model.</p>
+<p>In this case we aren't seeing a dramatic increase, but ensembles can be very useful. I once had an entry in a Kaggle competition with around 4,000 entrants where my best individual model put me in the top 10%, but by combining a number of entries into an ensemble placed me in the top 2%.</p>
+<h3 id="next-steps">Next steps</h3>
+<p>There is a lot we didn't do here. You could try <a href="https://pytorch.org/docs/stable/torchvision/transforms.html">augmenting the training images with TorchVision</a>, try different ways of creating the ensemble, add a model using a different network like <a href="https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py">VGG</a> from TorchHub to the ensemble, etc.</p>
+
+  </div>
+
+  <hr class="footer-rule" />
+
+  
+
+  <div class="related-container">
+
+    
+
+    
+
+  </div>
+
+
+    </main>
+  </body>
+</html>
