@@ -5,7 +5,7 @@
 <description><![CDATA[Will's Software Journal]]></description>
 <link>https://wtfleming.github.io/</link>
 <atom:link href="https://wtfleming.github.io/rss.xml" rel="self" type="application/rss+xml" />
-<lastBuildDate>Sat, 01 Aug 2026 22:45:11 +0000</lastBuildDate>
+<lastBuildDate>Sat, 01 Aug 2026 22:49:37 +0000</lastBuildDate>
 <item>
   <title><![CDATA[Rust benchmarking with Criterion]]></title>
   <description><![CDATA[
@@ -24,14 +24,14 @@ Many times you don't need the exact distance. Say you have a point and a vector 
 <p>
 So how much faster would it be to use squared distance? Lets find out.
 </p>
-<div id="outline-container-orgcc2fc78" class="outline-2">
-<h2 id="orgcc2fc78">Create a library</h2>
-<div class="outline-text-2" id="text-orgcc2fc78">
+<div id="outline-container-orgde0efac" class="outline-2">
+<h2 id="orgde0efac">Create a library</h2>
+<div class="outline-text-2" id="text-orgde0efac">
 <p>
 Lets create a library and add criterion as a dependency.
 </p>
 
-<pre class="example" id="org7010b85">
+<pre class="example" id="org73769c4">
 $ cargo new --lib rust_benchmarking_example
 $ cd rust_benchmarking_example
 </pre>
@@ -40,7 +40,7 @@ $ cd rust_benchmarking_example
 Now lets add <code>criterion</code> as a dev-dependency
 </p>
 
-<pre class="example" id="orgdc6a0b6">
+<pre class="example" id="org59400af">
 cargo add criterion --dev --features html_reports
 </pre>
 
@@ -48,7 +48,7 @@ cargo add criterion --dev --features html_reports
 Your <code>Cargo.toml</code> file should now look something like this
 </p>
 
-<pre class="example" id="orga65fd0b">
+<pre class="example" id="org791ebba">
 [package]
 name = "rust_benchmarking_example"
 version = "0.1.0"
@@ -61,9 +61,9 @@ criterion = { version = "0.5.1", features = ["html_reports"] }
 </pre>
 </div>
 </div>
-<div id="outline-container-orgccf76dd" class="outline-2">
-<h2 id="orgccf76dd">Code</h2>
-<div class="outline-text-2" id="text-orgccf76dd">
+<div id="outline-container-orgb8dce8d" class="outline-2">
+<h2 id="orgb8dce8d">Code</h2>
+<div class="outline-text-2" id="text-orgb8dce8d">
 <p>
 Open <code>src/lib.rs</code> and add the following code
 </p>
@@ -95,9 +95,9 @@ impl Vector2 {
 </div>
 </div>
 </div>
-<div id="outline-container-org4d4a114" class="outline-2">
-<h2 id="org4d4a114">Unit tests</h2>
-<div class="outline-text-2" id="text-org4d4a114">
+<div id="outline-container-orgc732ed1" class="outline-2">
+<h2 id="orgc732ed1">Unit tests</h2>
+<div class="outline-text-2" id="text-orgc732ed1">
 <p>
 Lets make sure everything is working as expected, add the following tests to <code>src/lib.rs</code>.
 </p>
@@ -145,9 +145,9 @@ mod tests {
 </div>
 </div>
 </div>
-<div id="outline-container-org9952420" class="outline-2">
-<h2 id="org9952420">Create a benchmark</h2>
-<div class="outline-text-2" id="text-org9952420">
+<div id="outline-container-org6af2f02" class="outline-2">
+<h2 id="org6af2f02">Create a benchmark</h2>
+<div class="outline-text-2" id="text-org6af2f02">
 <p>
 Now lets create a benchmark with criterion, these files are put outside of the <code>src</code> directory in a directory called <code>benches</code> that you will need to create. Lets do that and also create a file in it called distance.rs
 </p>
@@ -241,15 +241,15 @@ And since we enabled the html<sub>reports</sub> feature we can see them by openi
 </p>
 
 
-<figure id="orgf836daf">
+<figure id="orged4e28c">
 <img src="/images/rust-benchmarking-criterion/rust-criterion-distance.jpg" alt="rust-criterion-distance.jpg">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-org7def80c" class="outline-2">
-<h2 id="org7def80c">Benchmark squared distance implementation</h2>
-<div class="outline-text-2" id="text-org7def80c">
+<div id="outline-container-orgc15d247" class="outline-2">
+<h2 id="orgc15d247">Benchmark squared distance implementation</h2>
+<div class="outline-text-2" id="text-orgc15d247">
 <p>
 Now lets benchmark our distance squared code, change
 </p>
@@ -298,7 +298,7 @@ It appears that the <code>distance_squared()</code> implementation is so fast it
 If you really want to have this complete you could artificially make it slower by disabling compiler optimizations when benchmarking by adding this to your <code>Cargo.toml</code>
 </p>
 
-<pre class="example" id="orgc176119">
+<pre class="example" id="org55a60f9">
 [profile.bench]
 opt-level = 0
 </pre>
@@ -307,7 +307,7 @@ opt-level = 0
 but you generally wouldn't want to do so since taking measurements on a dev build won't be very useful. If you were to do so, you would see output like
 </p>
 
-<pre class="example" id="orgb63137c">
+<pre class="example" id="org90befe2">
 distance                time:   [9.9843 ns 10.000 ns 10.017 ns]
 
 distance                time:   [9.3626 ns 9.3730 ns 9.3848 ns]
@@ -351,7 +351,7 @@ The text file has a simple structure with one measurement value per row:
 </p>
 </blockquote>
 
-<pre class="example" id="org04e3891">
+<pre class="example" id="orgf182783">
 Hamburg;12.0
 Bulawayo;8.9
 Palembang;38.8
@@ -373,7 +373,7 @@ For most of this post i'll be using measurements against 100 million rows becaus
 When I run the provided Java baseline on my machine (a Mac mini with a 6 core Intel Core i5 and 16GB of RAM) to establish a baseline I get:
 </p>
 
-<pre class="example" id="org4d1497a">
+<pre class="example" id="orga018452">
 $ time ./calculate_average_baseline.sh
 20.80s user 0.65s system 102% cpu 20.948 total
 </pre>
@@ -385,9 +385,9 @@ So we are trying to beat roughly <code>21 seconds</code>.
 <p>
 To simplify the examples, I'm not actually calculating the average, but the data is there to do so, and it would be relatively straightforward/fast as there are only 413 weather stations in the resulting data set.
 </p>
-<div id="outline-container-org1c54a9b" class="outline-2">
-<h2 id="org1c54a9b">Attempt 1: 1 minute 57 seconds</h2>
-<div class="outline-text-2" id="text-org1c54a9b">
+<div id="outline-container-orgc883c79" class="outline-2">
+<h2 id="orgc883c79">Attempt 1: 1 minute 57 seconds</h2>
+<div class="outline-text-2" id="text-orgc883c79">
 <p>
 This is a relatively straightforward Clojure implementation. But with a 1:57 runtime, not at all competitive with the 21 second baseline.
 </p>
@@ -418,7 +418,7 @@ Lets profile the code with <a href="https://github.com/clojure-goes-fast/clj-asy
 </p>
 
 
-<figure id="orgf79ea55">
+<figure id="org49a6dbb">
 <img src="/images/billion-row-challenge/attempt1.png" alt="attempt1.png">
 
 </figure>
@@ -428,9 +428,9 @@ It looks like a lot of time was spent in Clojure functions like <code>clojure.co
 </p>
 </div>
 </div>
-<div id="outline-container-orge86cb5a" class="outline-2">
-<h2 id="orge86cb5a">Attempt 2 - 1 minute 37 seconds</h2>
-<div class="outline-text-2" id="text-orge86cb5a">
+<div id="outline-container-orgd01a1d9" class="outline-2">
+<h2 id="orgd01a1d9">Attempt 2 - 1 minute 37 seconds</h2>
+<div class="outline-text-2" id="text-orgd01a1d9">
 <p>
 Lets try using a <a href="https://clojure.org/reference/transients">transient map</a> for the accumulator in the reduce function
 </p>
@@ -466,15 +466,15 @@ We could try using a transient map with transient maps as keys, but given how tr
 </p>
 
 
-<figure id="org2ffcd17">
+<figure id="orge31ec46">
 <img src="/images/billion-row-challenge/attempt2.png" alt="attempt2.png">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-org2f6cc30" class="outline-2">
-<h2 id="org2f6cc30">Attempt 3 - Did not finish</h2>
-<div class="outline-text-2" id="text-org2f6cc30">
+<div id="outline-container-orge2abee5" class="outline-2">
+<h2 id="orge2abee5">Attempt 3 - Did not finish</h2>
+<div class="outline-text-2" id="text-orge2abee5">
 <p>
 Lets try using a Java array to store results instead of a Clojure persistent hash map.
 </p>
@@ -523,7 +523,7 @@ If we add the expression
 and rerun, we see a number of lines on stdout that look like:
 </p>
 
-<pre class="example" id="org07a7667">
+<pre class="example" id="orgfec182a">
 Reflection warning, attempt3.clj:9:25 - call to static method aget on clojure.lang.RT can't be resolved (argument types: java.lang.Object, int).
 </pre>
 
@@ -532,9 +532,9 @@ Reflection in the Java interop is incredibly slow! Let fix that.
 </p>
 </div>
 </div>
-<div id="outline-container-org88ab7b8" class="outline-2">
-<h2 id="org88ab7b8">Attempt 4 - 1 minute 6 seconds</h2>
-<div class="outline-text-2" id="text-org88ab7b8">
+<div id="outline-container-org3b62e2f" class="outline-2">
+<h2 id="org3b62e2f">Attempt 4 - 1 minute 6 seconds</h2>
+<div class="outline-text-2" id="text-org3b62e2f">
 <p>
 We can add type hints to the previous solution like so:
 </p>
@@ -572,9 +572,9 @@ This one is about 30 seconds better than attempt 2, but still significantly slow
 </p>
 </div>
 </div>
-<div id="outline-container-orgf3594bd" class="outline-2">
-<h2 id="orgf3594bd">Attempt 5 - 45 Seconds</h2>
-<div class="outline-text-2" id="text-orgf3594bd">
+<div id="outline-container-orgd94a6fd" class="outline-2">
+<h2 id="orgd94a6fd">Attempt 5 - 45 Seconds</h2>
+<div class="outline-text-2" id="text-orgd94a6fd">
 <p>
 Lets try some optimizations: manually loop instead of reduce, use Java's String split instead of <code>clojure.string/split</code> and don't destructure the results.
 </p>
@@ -619,15 +619,15 @@ Looking at a flamegraph we seem to be spending a lot of time in calls to <code>c
 </p>
 
 
-<figure id="orge80e7fe">
+<figure id="orga12e829">
 <img src="/images/billion-row-challenge/attempt5.png" alt="attempt5.png">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-org02f46cd" class="outline-2">
-<h2 id="org02f46cd">Attempt 6 - 30 seconds</h2>
-<div class="outline-text-2" id="text-org02f46cd">
+<div id="outline-container-org290cdad" class="outline-2">
+<h2 id="org290cdad">Attempt 6 - 30 seconds</h2>
+<div class="outline-text-2" id="text-org290cdad">
 <p>
 Lets try replacing the transient Clojure hash map in the accumulator with a <code>java.util.HashMap</code>
 </p>
@@ -673,9 +673,9 @@ Also, maybe we should next try a solution that isn't effectively single threaded
 </p>
 </div>
 </div>
-<div id="outline-container-orgc712065" class="outline-2">
-<h2 id="orgc712065">Attempt 7: core.async</h2>
-<div class="outline-text-2" id="text-orgc712065">
+<div id="outline-container-org04a364b" class="outline-2">
+<h2 id="org04a364b">Attempt 7: core.async</h2>
+<div class="outline-text-2" id="text-org04a364b">
 <p>
 Taking the code from attempt 6, but using core.async to fanout to multiple channels ultimately did not go anywhere, we're largely CPU bound and core.async seemed to just add overhead.
 </p>
@@ -685,9 +685,9 @@ I'm tempted to try this again in the future to see if I can make it faster. Not 
 </p>
 </div>
 </div>
-<div id="outline-container-org4a9083d" class="outline-2">
-<h2 id="org4a9083d">Attempt 8: Reducers - 27 seconds</h2>
-<div class="outline-text-2" id="text-org4a9083d">
+<div id="outline-container-org7f8400e" class="outline-2">
+<h2 id="org7f8400e">Attempt 8: Reducers - 27 seconds</h2>
+<div class="outline-text-2" id="text-org7f8400e">
 <p>
 This time we'll go back to using code that looks more like typical Clojure and leverage <a href="https://clojure.org/reference/reducers">reducers</a>. The <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.reducers/fold">fold</a> function reduces a collection using a (potentially parallel) reduce-combine strategy. Meaning I can easily use all 6 cores on my machine!
 </p>
@@ -729,9 +729,9 @@ One problem with <code>fold</code> is that it should be used when source data ca
 </p>
 </div>
 </div>
-<div id="outline-container-org19596f6" class="outline-2">
-<h2 id="org19596f6">Attempt 9: Reducers with optimizations - 9.6 seconds</h2>
-<div class="outline-text-2" id="text-org19596f6">
+<div id="outline-container-orga2e0a9d" class="outline-2">
+<h2 id="orga2e0a9d">Attempt 9: Reducers with optimizations - 9.6 seconds</h2>
+<div class="outline-text-2" id="text-orga2e0a9d">
 <p>
 Lets try the previous attempt but with optimizations used in previous attempts.
 </p>
@@ -780,9 +780,9 @@ Lets try the previous attempt but with optimizations used in previous attempts.
 </p>
 </div>
 </div>
-<div id="outline-container-org4c0c1ed" class="outline-2">
-<h2 id="org4c0c1ed">Results with 1 Billion rows</h2>
-<div class="outline-text-2" id="text-org4c0c1ed">
+<div id="outline-container-orgaff751c" class="outline-2">
+<h2 id="orgaff751c">Results with 1 Billion rows</h2>
+<div class="outline-text-2" id="text-orgaff751c">
 <p>
 Instead of using 100 million rows, we'll finally run against the full 1 billion row dataset:
 </p>
@@ -842,9 +842,9 @@ Though there are some other interesting entries that are fast and don't use <cod
 </p>
 </div>
 </div>
-<div id="outline-container-orgd63ac78" class="outline-2">
-<h2 id="orgd63ac78">Next steps</h2>
-<div class="outline-text-2" id="text-orgd63ac78">
+<div id="outline-container-org23f97be" class="outline-2">
+<h2 id="org23f97be">Next steps</h2>
+<div class="outline-text-2" id="text-org23f97be">
 <p>
 There are a number of optimizations I could look at to try to get a better time. Looking at a flame graph I think there is a good amount of overhead in the iota code that could be bypassed with a custom solution memory mapping the file into a number of chunks equivalent to the number of processors, but ultimately i'm pretty happy with what I came up with over the course of a Saturday afternoon and probably will call it here.
 </p>
@@ -908,9 +908,9 @@ Note that even though Lambda supports Java as a runtime, we'll be running this f
 While everything works great in the cloud, I ran into some compilation issues running the jar file locally with the sam invoke local command. I think the SAM CLI tool may be doing something unexpected with the java classpath, and could only get it to run without errors using the specific combination of Clojure 1.9 and Java 8. However by using Docker we can easily avoid issues like this.
 </p>
 </blockquote>
-<div id="outline-container-orgb31f830" class="outline-2">
-<h2 id="orgb31f830">Project Code</h2>
-<div class="outline-text-2" id="text-orgb31f830">
+<div id="outline-container-org76a9821" class="outline-2">
+<h2 id="org76a9821">Project Code</h2>
+<div class="outline-text-2" id="text-org76a9821">
 <p>
 I am using Leiningin for this project, so create a <code>project.clj</code> file with these contents:
 </p>
@@ -984,9 +984,9 @@ Now lets write our lambda function Create a file called <code>src/clojure_aws_la
 </div>
 </div>
 </div>
-<div id="outline-container-orgf147be1" class="outline-2">
-<h2 id="orgf147be1">Testing</h2>
-<div class="outline-text-2" id="text-orgf147be1">
+<div id="outline-container-org71eb91e" class="outline-2">
+<h2 id="org71eb91e">Testing</h2>
+<div class="outline-text-2" id="text-org71eb91e">
 <p>
 Lets create a simple unit test. Create a file named <code>test/eventbridge-scheduled-event.json</code> with these contents.
 </p>
@@ -1043,9 +1043,9 @@ Note that rather than relying on a single json event, there is a much more we co
 <hr>
 </div>
 </div>
-<div id="outline-container-orge911915" class="outline-2">
-<h2 id="orge911915">Dockerfile</h2>
-<div class="outline-text-2" id="text-orge911915">
+<div id="outline-container-org9a7712e" class="outline-2">
+<h2 id="org9a7712e">Dockerfile</h2>
+<div class="outline-text-2" id="text-org9a7712e">
 <p>
 We will also need a Dockerfile. We will use a <code>clojure:openjdk-11-slim-buster</code> image to build the Java jar, and then run the function inside a <code>eclipse-temurin:11-focal</code> container. By using a separate image to build our app, we can use a final image that doesn't have to ship Clojure build tools like lein with it.
 </p>
@@ -1085,9 +1085,9 @@ CMD ["clojure_aws_lambda_example.core::handleRequest"]
 <hr>
 </div>
 </div>
-<div id="outline-container-orgcf93f76" class="outline-2">
-<h2 id="orgcf93f76">SAM Configuration</h2>
-<div class="outline-text-2" id="text-orgcf93f76">
+<div id="outline-container-orgcf15aad" class="outline-2">
+<h2 id="orgcf15aad">SAM Configuration</h2>
+<div class="outline-text-2" id="text-orgcf15aad">
 <p>
 Finally we will need a SAM template that will have all the information the SAM CLI tool needs to generate a CloudFormation template. We want to create a Lambda function and a CloudWatch event that fires every minute to trigger a run of the function.
 </p>
@@ -1144,9 +1144,9 @@ Outputs:
 </div>
 </div>
 </div>
-<div id="outline-container-org9fec818" class="outline-2">
-<h2 id="org9fec818">Run the app locally</h2>
-<div class="outline-text-2" id="text-org9fec818">
+<div id="outline-container-org424af5a" class="outline-2">
+<h2 id="org424af5a">Run the app locally</h2>
+<div class="outline-text-2" id="text-org424af5a">
 <p>
 Prior to deploying to the cloud we'll want to run and test on our local machine.
 </p>
@@ -1173,7 +1173,7 @@ Run it with
 You should see output similar to
 </p>
 
-<pre class="example" id="orga5c9ad5">
+<pre class="example" id="org90aa69f">
 Invoking Container created from clojureawslambdaexamplefunction:clojure-aws-lambda-example-v1
 Building image.................
 Skip pulling image and use local one: clojureawslambdaexamplefunction:rapid-1.33.0-x86_64.
@@ -1185,9 +1185,9 @@ REPORT RequestId: 7dfdf5e7-7580-466b-b3da-c24935837cf0  Init Duration: 0.26 ms  
 </pre>
 </div>
 </div>
-<div id="outline-container-orga0f5b2e" class="outline-2">
-<h2 id="orga0f5b2e">Deploy to the Cloud</h2>
-<div class="outline-text-2" id="text-orga0f5b2e">
+<div id="outline-container-org0d8ca70" class="outline-2">
+<h2 id="org0d8ca70">Deploy to the Cloud</h2>
+<div class="outline-text-2" id="text-org0d8ca70">
 <p>
 The first time you deploy run this command to generate a local <code>samconfig.toml</code> file, an S3 bucket, and an ECR repository. When prompted for configuration info you can use the defaults the tool suggests
 </p>
@@ -1216,7 +1216,7 @@ Use the stack-name you choose when you ran sam deploy &#x2013;guided
 </p>
 </blockquote>
 
-<pre class="example" id="org18a1c4b">
+<pre class="example" id="org9716717">
 $ sam logs -n ClojureAwsLambdaExampleFunction --stack-name sam-app --tail
 </pre>
 
@@ -1224,7 +1224,7 @@ $ sam logs -n ClojureAwsLambdaExampleFunction --stack-name sam-app --tail
 After a few minutes of running you should see output similar to
 </p>
 
-<pre class="example" id="org614f2ac">
+<pre class="example" id="orgfcab532">
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.729000 START RequestId: cc9f8cfd-04bf-44af-9b88-8d0349adf74e Version
 : $LATEST
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.734000 -handleRequest called! with event:  {:detail-type Scheduled Event, :time 2015-10-08T16:53:06Z, :source aws.events, :account 123456789012, :region us-east-1, :id 53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa, :version 0, :resources [arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule], :detail {}}
@@ -1248,9 +1248,9 @@ ion: 1.06 ms    Billed Duration: 2 ms   Memory Size: 256 MB     Max Memory Used:
 </pre>
 </div>
 </div>
-<div id="outline-container-org30eb80d" class="outline-2">
-<h2 id="org30eb80d">Clean up</h2>
-<div class="outline-text-2" id="text-org30eb80d">
+<div id="outline-container-org341962f" class="outline-2">
+<h2 id="org341962f">Clean up</h2>
+<div class="outline-text-2" id="text-org341962f">
 <p>
 When you are finished, you can delete the resources associated with the stack
 </p>
@@ -1261,7 +1261,7 @@ Use the stack-name you choose when you ran sam deploy &#x2013;guided
 </p>
 </blockquote>
 
-<pre class="example" id="orgad98bb4">
+<pre class="example" id="org844d6fb">
 $ sam delete --stack-name sam-app
 </pre>
 </div>
@@ -1300,9 +1300,9 @@ This post was inspired by the book <a href="https://www.oreilly.com/library/view
 <p>
 Code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-3.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 </p>
-<div id="outline-container-org8e1074e" class="outline-2">
-<h2 id="org8e1074e">Build the networks</h2>
-<div class="outline-text-2" id="text-org8e1074e">
+<div id="outline-container-org78c6c87" class="outline-2">
+<h2 id="org78c6c87">Build the networks</h2>
+<div class="outline-text-2" id="text-org78c6c87">
 <div class="org-src-container">
 <pre class="src src-python">import torch
 import torch.nn as nn
@@ -1362,9 +1362,9 @@ model_resnet34.fc = nn.Sequential(nn.Linear(model_resnet34.fc.in_features,512),
 </div>
 </div>
 </div>
-<div id="outline-container-org335a130" class="outline-2">
-<h2 id="org335a130">Functions for training and loading data</h2>
-<div class="outline-text-2" id="text-org335a130">
+<div id="outline-container-org1ed84e2" class="outline-2">
+<h2 id="org1ed84e2">Functions for training and loading data</h2>
+<div class="outline-text-2" id="text-org1ed84e2">
 <p>
 Create a function we can use to train the model.
 </p>
@@ -1474,16 +1474,16 @@ print(f'Num test images: {len(test_data_loader.dataset)}')
 Which should output:
 </p>
 
-<pre class="example" id="org06682c7">
+<pre class="example" id="org87bd8c4">
 Num training images: 16000
 Num validation images: 4500
 Num test images: 4500
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb417cf5" class="outline-2">
-<h2 id="orgb417cf5">Train and test the models</h2>
-<div class="outline-text-2" id="text-orgb417cf5">
+<div id="outline-container-orgc658e95" class="outline-2">
+<h2 id="orgc658e95">Train and test the models</h2>
+<div class="outline-text-2" id="text-orgc658e95">
 <div class="org-src-container">
 <pre class="src src-python">def test_model(model):
     correct = 0
@@ -1511,7 +1511,7 @@ train(model_resnet18, optimizer, torch.nn.CrossEntropyLoss(), train_data_loader,
 </pre>
 </div>
 
-<pre class="example" id="org561732f">
+<pre class="example" id="org282a794">
 Epoch: 0, Training Loss: 0.0855, Validation Loss: 0.0358, accuracy = 0.9878
 Epoch: 1, Training Loss: 0.0498, Validation Loss: 0.0309, accuracy = 0.9873
 </pre>
@@ -1525,7 +1525,7 @@ Now check against our holdout test set
 </pre>
 </div>
 
-<pre class="example" id="org0af598d">
+<pre class="example" id="org63b1cc1">
 correct: 4456  total: 4500
 accuracy = 0.990222
 </pre>
@@ -1541,7 +1541,7 @@ train(model_resnet34, optimizer, torch.nn.CrossEntropyLoss(), train_data_loader,
 </pre>
 </div>
 
-<pre class="example" id="org82fa37b">
+<pre class="example" id="orgaf58143">
 Epoch: 0, Training Loss: 0.0678, Validation Loss: 0.0239, accuracy = 0.9907
 Epoch: 1, Training Loss: 0.0354, Validation Loss: 0.0317, accuracy = 0.9887
 </pre>
@@ -1555,7 +1555,7 @@ And test
 </pre>
 </div>
 
-<pre class="example" id="orgcad27d4">
+<pre class="example" id="org4804017">
 correct: 4450  total: 4500
 accuracy = 0.988889
 </pre>
@@ -1565,9 +1565,9 @@ This gives us two models, one with 99.0% accuracy on our test set and 98.9% on t
 </p>
 </div>
 </div>
-<div id="outline-container-org73ce7bc" class="outline-2">
-<h2 id="org73ce7bc">Make some predictions</h2>
-<div class="outline-text-2" id="text-org73ce7bc">
+<div id="outline-container-org2986506" class="outline-2">
+<h2 id="org2986506">Make some predictions</h2>
+<div class="outline-text-2" id="text-org2986506">
 <p>
 Lets check a couple individual images from the test set.
 </p>
@@ -1598,7 +1598,7 @@ make_prediction(model_resnet34, '/home/wtf/dogs-vs-cats/test/cats/cat.12262.jpg'
 Which outputs:
 </p>
 
-<pre class="example" id="org9389a47">
+<pre class="example" id="orga49dc48">
 dogs
 cats
 </pre>
@@ -1608,9 +1608,9 @@ Seems reasonable.
 </p>
 </div>
 </div>
-<div id="outline-container-org47d8808" class="outline-2">
-<h2 id="org47d8808">Save and load models</h2>
-<div class="outline-text-2" id="text-org47d8808">
+<div id="outline-container-orgc812be1" class="outline-2">
+<h2 id="orgc812be1">Save and load models</h2>
+<div class="outline-text-2" id="text-orgc812be1">
 <p>
 Since we don't want to have to train the models again every time we start up a jupyter notebook, lets see how we can save them to disk and then reload them.
 </p>
@@ -1635,9 +1635,9 @@ resnet34.eval()
 </div>
 </div>
 </div>
-<div id="outline-container-org1181c7b" class="outline-2">
-<h2 id="org1181c7b">Test with an ensemble</h2>
-<div class="outline-text-2" id="text-org1181c7b">
+<div id="outline-container-orgbd5f2b2" class="outline-2">
+<h2 id="orgbd5f2b2">Test with an ensemble</h2>
+<div class="outline-text-2" id="text-orgbd5f2b2">
 <p>
 We'll use a very simple ensemble here. Take the prediction for each image from each model, average them to generate a new prediction for the image.
 </p>
@@ -1666,7 +1666,7 @@ print('correct: {:d}  total: {:d}'.format(correct, total))
 Which results in
 </p>
 
-<pre class="example" id="org2f00277">
+<pre class="example" id="org41e92cb">
 accuracy = 0.990889
 correct: 4459  total: 4500
 </pre>
@@ -1680,9 +1680,9 @@ In this case we aren't seeing a dramatic increase, but ensembles can be very use
 </p>
 </div>
 </div>
-<div id="outline-container-orgea4b287" class="outline-2">
-<h2 id="orgea4b287">Next steps</h2>
-<div class="outline-text-2" id="text-orgea4b287">
+<div id="outline-container-org90db5d6" class="outline-2">
+<h2 id="org90db5d6">Next steps</h2>
+<div class="outline-text-2" id="text-org90db5d6">
 <p>
 There is a lot we didn't do here. You could try <a href="https://pytorch.org/docs/stable/torchvision/transforms.html">augmenting the training images with TorchVision</a>, try different ways of creating the ensemble, add a model using a different network like <a href="https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py">VGG</a> from TorchHub to the ensemble, etc.
 </p>
@@ -1703,7 +1703,7 @@ Lately I have been working on an emulator for the <a href="https://en.wikipedia.
 </p>
 
 
-<figure id="org72c2a5b">
+<figure id="org8cac553">
 <img src="/images/rust-chip8/chip8.png" alt="chip8.png">
 
 </figure>
@@ -1723,9 +1723,9 @@ I've always wanted to write an emulator for an older hardware like the Nintendo 
 <p>
 A few references I found useful to get started are this <a href="http://www.multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/">post by Laurence Muller</a>, <a href="http://devernay.free.fr/hacks/chip8/C8TECH10.HTM">Cowgod's Chip-8 Technical Reference</a>, and this <a href="https://blog.scottlogic.com/2017/12/13/chip8-emulator-webassembly-rust.html">post by Colin Eberhardt</a>. If you want to create your own emulator I highly recommend taking a look at the above pages.
 </p>
-<div id="outline-container-orgc4d322c" class="outline-2">
-<h2 id="orgc4d322c">Implementation</h2>
-<div class="outline-text-2" id="text-orgc4d322c">
+<div id="outline-container-org3e0b9a3" class="outline-2">
+<h2 id="org3e0b9a3">Implementation</h2>
+<div class="outline-text-2" id="text-org3e0b9a3">
 <p>
 I won't go too deep into implementations details here, but if you want to know more the <a href="https://github.com/wtfleming/chip-8-rust-wasm">source code is available</a>. I represented the CPU in Rust like this:
 </p>
@@ -1756,9 +1756,9 @@ I won't go too deep into implementations details here, but if you want to know m
 </pre>
 </div>
 </div>
-<div id="outline-container-org8273c81" class="outline-3">
-<h3 id="org8273c81">Memory</h3>
-<div class="outline-text-3" id="text-org8273c81">
+<div id="outline-container-org1170da9" class="outline-3">
+<h3 id="org1170da9">Memory</h3>
+<div class="outline-text-3" id="text-org1170da9">
 <p>
 The system's memory map looks like:
 </p>
@@ -1774,9 +1774,9 @@ One of the first things you will need to do is load the program into memory star
 </p>
 </div>
 </div>
-<div id="outline-container-org25623ee" class="outline-3">
-<h3 id="org25623ee">Opcodes</h3>
-<div class="outline-text-3" id="text-org25623ee">
+<div id="outline-container-org10e0d32" class="outline-3">
+<h3 id="org10e0d32">Opcodes</h3>
+<div class="outline-text-3" id="text-org10e0d32">
 <p>
 The CHIP-8 has <a href="http://en.wikipedia.org/wiki/CHIP-8#Opcode_table">35 opcodes</a> you will need to handle, all of which are two bytes long. First you need to extract the opcode, since memory elements are 8 bits and an opcode is 16 bits, we need to fetch two locations from memory and do some bit shifting to get a <code>u16</code> opcode.
 </p>
@@ -1828,9 +1828,9 @@ Thanks to Rust's support for pattern matching over ranges, handling each opcode 
 </div>
 </div>
 </div>
-<div id="outline-container-org2c1e2f6" class="outline-3">
-<h3 id="org2c1e2f6">Handling keyboard input in JavaScript</h3>
-<div class="outline-text-3" id="text-org2c1e2f6">
+<div id="outline-container-org038faa1" class="outline-3">
+<h3 id="org038faa1">Handling keyboard input in JavaScript</h3>
+<div class="outline-text-3" id="text-org038faa1">
 <p>
 Running the emulator and communicating between JavaScript and WebAssembly is easy thanks to the Rust <a href="https://rustwasm.github.io/docs/wasm-pack/">wasm-pack</a> tool.
 </p>
@@ -1906,9 +1906,9 @@ const keyMap = {
 </div>
 </div>
 </div>
-<div id="outline-container-orgd78a560" class="outline-3">
-<h3 id="orgd78a560">Running the emulator</h3>
-<div class="outline-text-3" id="text-orgd78a560">
+<div id="outline-container-orgacfaed3" class="outline-3">
+<h3 id="orgacfaed3">Running the emulator</h3>
+<div class="outline-text-3" id="text-orgacfaed3">
 <p>
 We use <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">window.requestAnimationFrame()</a> to run 9 cycles on the cpu 60 times per second, then update the HTML canvas display and the UI. We run 9 cycles because the CHIP-8 seems to run at about 500hz, and calling 9 cycles 60 times per second gets us to 540 hZ, which is close enough for this project.
 </p>
@@ -1917,7 +1917,7 @@ We use <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestA
 Note that with <code>window.requestAnimationFrame()</code>
 </p>
 
-<pre class="example" id="orgf1014bf">
+<pre class="example" id="org0281641">
 The number of callbacks is usually 60 times per second
 but will generally match the display refresh rate in most web
 browsers as per W3C recommendation.
@@ -1940,7 +1940,7 @@ So if your monitor's refresh rate is not 60 Hz the emulator will likely run eith
   <title><![CDATA[Ray Tracing with Rust and WebAssembly]]></title>
   <description><![CDATA[
 
-<figure id="org0c655cc">
+<figure id="org8e0fa4f">
 <img src="/images/rust-raytracer-1/example.png" alt="example.png">
 
 </figure>
@@ -2006,9 +2006,9 @@ In <a href="/blog/pytorch-cats-vs-dogs-part-3/">part 3</a> we'll switch gears a 
 <p>
 The code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-2.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 </p>
-<div id="outline-container-orgf8a8db2" class="outline-2">
-<h2 id="orgf8a8db2">VGG16</h2>
-<div class="outline-text-2" id="text-orgf8a8db2">
+<div id="outline-container-org41da750" class="outline-2">
+<h2 id="org41da750">VGG16</h2>
+<div class="outline-text-2" id="text-org41da750">
 <p>
 We'll use the VGG16 architecture as described in the paper <a href="https://arxiv.org/abs/1409.1556">Very Deep Convolutional Networks for Large-Scale Image Recognition</a> by Karen Simonyan and Andrew Zisserman. We're using it because it has a relatively simple architecture and Keras ships with a model that has been pretrained on ImageNet.
 </p>
@@ -2018,9 +2018,9 @@ Keras includes a <a href="https://keras.io/applications/">number of additional p
 </p>
 </div>
 </div>
-<div id="outline-container-org4106b1d" class="outline-2">
-<h2 id="org4106b1d">Predict what an image contains using VGG16</h2>
-<div class="outline-text-2" id="text-org4106b1d">
+<div id="outline-container-orgb5c9540" class="outline-2">
+<h2 id="orgb5c9540">Predict what an image contains using VGG16</h2>
+<div class="outline-text-2" id="text-orgb5c9540">
 <p>
 First we'll make predictions on what one of our images contained. The Keras VGG16 model provided was trained on the <a href="http://www.image-net.org/challenges/LSVRC/">ILSVRC ImageNet</a> images containing 1,000 categories. It will be especially useful in this case since it 90 of the 1,000 categories are species of dogs.
 </p>
@@ -2045,7 +2045,7 @@ plt.imshow(image.array_to_img(x[0]))
 </div>
 
 
-<figure id="orgf041a91">
+<figure id="org00565c1">
 <img src="/images/dogs-vs-cats-part-two/terrier.png" alt="terrier.png">
 
 </figure>
@@ -2065,7 +2065,7 @@ decode_predictions(features, top=5)
 </pre>
 </div>
 
-<pre class="example" id="org15fa5a8">
+<pre class="example" id="orgf21943b">
 [[('n02097298', 'Scotch_terrier', 0.84078884),
   ('n02105412', 'kelpie', 0.07755529),
   ('n02105056', 'groenendael', 0.048816346),
@@ -2078,9 +2078,9 @@ It thinks there is an 84% chance it's a Scotch Terrier, and the other top predic
 </p>
 </div>
 </div>
-<div id="outline-container-orgd115811" class="outline-2">
-<h2 id="orgd115811">Train a Cats vs Dogs classifier</h2>
-<div class="outline-text-2" id="text-orgd115811">
+<div id="outline-container-orgcb23def" class="outline-2">
+<h2 id="orgcb23def">Train a Cats vs Dogs classifier</h2>
+<div class="outline-text-2" id="text-orgcb23def">
 <p>
 We can also ask Keras to provide us with the model trained on ImageNet, but without the top dense layers. Then it is just a matter of adding our own dense layers (note that since we are doing binary classification we've used a sigmoid activation function in the final layer). And tell the model to only train the dense layers we created (we don't want to retrain the lower layers that have learnt from ImageNet).
 </p>
@@ -2137,7 +2137,7 @@ validation_generator = test_datagen.flow_from_directory(
 </pre>
 </div>
 
-<pre class="example" id="org64e14d6">
+<pre class="example" id="orgbeb2634">
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 </pre>
@@ -2156,7 +2156,7 @@ And train.
 </pre>
 </div>
 
-<pre class="example" id="org87ea109">
+<pre class="example" id="org5c460ed">
 Epoch 1/30
 320/320 [==============================] - 139s 434ms/step - loss: 0.7365 - acc: 0.9238 - val_loss: 0.2217 - val_acc: 0.9751
 Epoch 2/30
@@ -2175,7 +2175,7 @@ Lets take a look at what accuracy and loss looked like during training. The code
 </p>
 
 
-<figure id="org96ed1ce">
+<figure id="org3ce7cae">
 <img src="/images/dogs-vs-cats-part-two/accuracy-loss-1.png" alt="accuracy-loss-1.png">
 
 </figure>
@@ -2196,7 +2196,7 @@ print('test acc:', test_acc)
 </pre>
 </div>
 
-<pre class="example" id="org57d714b">
+<pre class="example" id="org71cb3eb">
 Found 4500 images belonging to 2 classes.
 test acc: 0.9833333353201549
 </pre>
@@ -2206,9 +2206,9 @@ A validation accuracy of 98.2% and test of 98.3%. Not bad, but lets see if we ca
 </p>
 </div>
 </div>
-<div id="outline-container-orgc3dec49" class="outline-2">
-<h2 id="orgc3dec49">Transfer learning / Fine tune model</h2>
-<div class="outline-text-2" id="text-orgc3dec49">
+<div id="outline-container-org6de9e90" class="outline-2">
+<h2 id="org6de9e90">Transfer learning / Fine tune model</h2>
+<div class="outline-text-2" id="text-org6de9e90">
 <p>
 We can also retrain the later convolutional layers. Here is how we can do it with VGG16.
 </p>
@@ -2256,7 +2256,7 @@ And lets fit the model
 </pre>
 </div>
 
-<pre class="example" id="org99e9874">
+<pre class="example" id="org06ac396">
 Epoch 1/30
 320/320 [==============================] - 151s 471ms/step - loss: 0.7004 - acc: 0.9150 - val_loss: 0.1462 - val_acc: 0.9720
 Epoch 2/30
@@ -2275,7 +2275,7 @@ Lets take a look at accuracy and loss again.
 </p>
 
 
-<figure id="org37938a1">
+<figure id="org20f23d5">
 <img src="/images/dogs-vs-cats-part-two/accuracy-loss-2.png" alt="accuracy-loss-2.png">
 
 </figure>
@@ -2300,7 +2300,7 @@ print('test acc:', test_acc)
 </pre>
 </div>
 
-<pre class="example" id="orgf75e086">
+<pre class="example" id="orgd5db8cc">
 Found 4500 images belonging to 2 classes.
 test acc: 0.9862222280767229
 </pre>
@@ -2339,9 +2339,9 @@ In <a href="/blog/pytorch-cats-vs-dogs-part-3/">part 3</a> we'll switch gears an
 <p>
 The code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-1.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 </p>
-<div id="outline-container-orgdef38b4" class="outline-2">
-<h2 id="orgdef38b4">Build the first network</h2>
-<div class="outline-text-2" id="text-orgdef38b4">
+<div id="outline-container-orge85d4d4" class="outline-2">
+<h2 id="orge85d4d4">Build the first network</h2>
+<div class="outline-text-2" id="text-orge85d4d4">
 <p>
 We'll use the Keras sequential API to build a pretty straightforward network that consists of a number of Conv2D and pooling layers with a dense network at the end that makes the cat or dog prediction.
 </p>
@@ -2394,7 +2394,7 @@ validation_generator = test_datagen.flow_from_directory(
 </pre>
 </div>
 
-<pre class="example" id="orga479e17">
+<pre class="example" id="org8deb535">
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 </pre>
@@ -2413,7 +2413,7 @@ Now lets fit the network for 30 epochs.
 </pre>
 </div>
 
-<pre class="example" id="orgf8ad913">
+<pre class="example" id="org5ee29f7">
 Epoch 1/30
 320/320 [==============================] - 48s 150ms/step - loss: 0.6070 - acc: 0.6579 - val_loss: 0.5263 - val_acc: 0.7413
 Epoch 2/30
@@ -2432,7 +2432,7 @@ Plotting the results (code to generate the graphs is available in the <a href="h
 </p>
 
 
-<figure id="orga9366f7">
+<figure id="orgf9f3d5b">
 <img src="/images/dogs-vs-cats-part-one/first-model-accuracy-loss.png" alt="first-model-accuracy-loss.png">
 
 </figure>
@@ -2453,7 +2453,7 @@ print('test acc:', test_acc)
 </pre>
 </div>
 
-<pre class="example" id="org721bd9a">
+<pre class="example" id="org58f4bbf">
 Found 4500 images belonging to 2 classes.
 test acc: 0.8406666629844242
 </pre>
@@ -2463,9 +2463,9 @@ On one hand this isn't horrible, a baseline where we pick dog every time would h
 </p>
 </div>
 </div>
-<div id="outline-container-org255e518" class="outline-2">
-<h2 id="org255e518">Add Dropout</h2>
-<div class="outline-text-2" id="text-org255e518">
+<div id="outline-container-org5b547c0" class="outline-2">
+<h2 id="org5b547c0">Add Dropout</h2>
+<div class="outline-text-2" id="text-org5b547c0">
 <p>
 We can add dropout to regularize the model. Adding dropout randomly removes a percentage of neurons (sets their value to 0) at each update during training time, which helps prevent overfitting. By randomly throwing out data this will help to prevent the network from becoming too smart and essentially memorizing the training data, and thereby generalize to new data better.
 </p>
@@ -2497,7 +2497,7 @@ model.compile(loss='binary_crossentropy',
 How does this model perform?
 </p>
 
-<pre class="example" id="orgf5ceffe">
+<pre class="example" id="org9cfd866">
 Epoch 1/30
 320/320 [==============================] - 46s 145ms/step - loss: 0.6166 - acc: 0.6449 - val_loss: 0.5348 - val_acc: 0.7378
 Epoch 2/30
@@ -2512,7 +2512,7 @@ Epoch 30/30
 </pre>
 
 
-<figure id="orgf2b2f61">
+<figure id="org1928b8b">
 <img src="/images/dogs-vs-cats-part-one/first-model-accuracy-loss-add-dropout.png" alt="first-model-accuracy-loss-add-dropout.png">
 
 </figure>
@@ -2522,9 +2522,9 @@ We still seem to be overfitting, but not as badly. We've also increase validatio
 </p>
 </div>
 </div>
-<div id="outline-container-orgb411014" class="outline-2">
-<h2 id="orgb411014">Add Data Augmentation</h2>
-<div class="outline-text-2" id="text-orgb411014">
+<div id="outline-container-org38b5bfe" class="outline-2">
+<h2 id="org38b5bfe">Add Data Augmentation</h2>
+<div class="outline-text-2" id="text-org38b5bfe">
 <p>
 Keras includes an <a href="https://keras.io/preprocessing/image/">ImageDataGenerator</a> class which lets us generate a number of random transformations on an image. Since we're only training on 16,000 images, we can use this to create "new" images to help the network learn. There are limits to how much this can help, but in this case we will get a decent accuracy boost.
 </p>
@@ -2570,7 +2570,7 @@ plt.show()
 </div>
 
 
-<figure id="org86da9fc">
+<figure id="org47a62b4">
 <img src="/images/dogs-vs-cats-part-one/image-augmentation.png" alt="image-augmentation.png">
 
 </figure>
@@ -2605,7 +2605,7 @@ validation_generator = test_datagen.flow_from_directory(
 </pre>
 </div>
 
-<pre class="example" id="org027d0ab">
+<pre class="example" id="org25f94c1">
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 </pre>
@@ -2624,7 +2624,7 @@ And then increase the steps per epoch 3x so that we are training on 48,000 image
 </pre>
 </div>
 
-<pre class="example" id="org3e7e363">
+<pre class="example" id="org440fe06">
 Epoch 1/30
 960/960 [==============================] - 411s 429ms/step - loss: 0.6202 - acc: 0.6428 - val_loss: 0.5285 - val_acc: 0.7413
 Epoch 2/30
@@ -2639,7 +2639,7 @@ Epoch 30/30
 </pre>
 
 
-<figure id="org622971f">
+<figure id="org8393ddd">
 <img src="/images/dogs-vs-cats-part-one/add-data-augmentation.png" alt="add-data-augmentation.png">
 
 </figure>
@@ -2660,7 +2660,7 @@ print('test acc:', test_acc)
 </pre>
 </div>
 
-<pre class="example" id="org5adef92">
+<pre class="example" id="org7b43325">
 Found 4500 images belonging to 2 classes.
 test acc: 0.928444442484114
 </pre>
@@ -2727,7 +2727,7 @@ The training set consists of 60,000 28x28 pixel images, and the test set 10,000.
 </pre>
 </div>
 
-<pre class="example" id="orgcb3b11c">
+<pre class="example" id="orgcfe4f32">
 ((60000, 28, 28), (10000, 28, 28))
 </pre>
 
@@ -2745,7 +2745,7 @@ for i in range(0, 10):
 </div>
 
 
-<figure id="org2b5f48f">
+<figure id="orgdd419f6">
 <img src="/images/mnist-keras/mnist-example-images.png" alt="mnist-example-images.png">
 
 </figure>
@@ -2759,12 +2759,12 @@ And the labels representing which class the image represents.
 </pre>
 </div>
 
-<pre class="example" id="org4836341">
+<pre class="example" id="orgcce067c">
 array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
 </pre>
-<div id="outline-container-orgd172710" class="outline-2">
-<h2 id="orgd172710">Build the neural network</h2>
-<div class="outline-text-2" id="text-orgd172710">
+<div id="outline-container-orga5ef684" class="outline-2">
+<h2 id="orga5ef684">Build the neural network</h2>
+<div class="outline-text-2" id="text-orga5ef684">
 <p>
 Now build the neural network. We'll be using a number of convolutional layers. Note that we only have to specify the input shape in the first layer. The last layer provides the output. It has 10 units (one for each digit 0 to 9) and uses a softmax activation to map the output of a network to a probability distribution over the predicted output classes.
 </p>
@@ -2793,7 +2793,7 @@ One way to see what the network looks like is to use the summary() function:
 </pre>
 </div>
 
-<pre class="example" id="org466d561">
+<pre class="example" id="orgd0b3004">
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -2848,7 +2848,7 @@ history = model.fit(train_images, train_labels, epochs=5, batch_size=64, validat
 </pre>
 </div>
 
-<pre class="example" id="org8e40165">
+<pre class="example" id="org1cad03c">
 Train on 50000 samples, validate on 10000 samples
 Epoch 1/5
 50000/50000 [==============================] - 20s 391us/step - loss: 0.1959 - acc: 0.9387 - val_loss: 0.0798 - val_acc: 0.9760
@@ -2869,7 +2869,7 @@ print('Loss: ', test_loss)
 </pre>
 </div>
 
-<pre class="example" id="org939e64a">
+<pre class="example" id="org439ebdc">
 10000/10000 [==============================] - 1s 122us/step
 Accuracy: 0.992
 Loss:  0.027386048025220953
@@ -2880,9 +2880,9 @@ Looks pretty good we're seeing ~99% accuracy on the test set.
 </p>
 </div>
 </div>
-<div id="outline-container-org6516ed8" class="outline-2">
-<h2 id="org6516ed8">Visualize training</h2>
-<div class="outline-text-2" id="text-org6516ed8">
+<div id="outline-container-org8ae6237" class="outline-2">
+<h2 id="org8ae6237">Visualize training</h2>
+<div class="outline-text-2" id="text-org8ae6237">
 <p>
 Now lets create a function that lets us graph the accuracy and loss values during training.
 </p>
@@ -2913,7 +2913,7 @@ plot_accuracy_and_loss(history)
 </div>
 
 
-<figure id="orgd1218ea">
+<figure id="org34284fc">
 <img src="/images/mnist-keras/plot-accuracy-loss.png" alt="plot-accuracy-loss.png">
 
 </figure>
@@ -2944,7 +2944,7 @@ plt.imshow(test_images[0], cmap=plt.cm.binary)
 </div>
 
 
-<figure id="org878cfe7">
+<figure id="org1c59f8f">
 <img src="/images/mnist-keras/test-prediction.png" alt="test-prediction.png">
 
 </figure>
@@ -2958,7 +2958,7 @@ Since the output of the network was a layer with 10 units and a softmax activati
 </pre>
 </div>
 
-<pre class="example" id="org8d13bf6">
+<pre class="example" id="org9e515b2">
 [2.6081236e-12 1.8943378e-09 1.0174886e-08 6.8640638e-08 2.3309353e-11
  1.9539477e-10 7.4824168e-19 9.9999988e-01 4.3342949e-10 8.6599723e-09]
 </pre>
@@ -2972,7 +2972,7 @@ We can also find the class with the highest prediction score with a numpy functi
 </pre>
 </div>
 
-<pre class="example" id="orgec68982">
+<pre class="example" id="org6cbd0b2">
 7
 </pre>
 
@@ -2992,7 +2992,7 @@ The next step would be to retrain the model with all 60,000 training examples (r
   <title><![CDATA[Ray Tracing in the Browser using ReasonML]]></title>
   <description><![CDATA[
 
-<figure id="org8273b41">
+<figure id="org2c788f3">
 <img src="/images/raytracing-reason/raytracing1.png" alt="raytracing1.png">
 
 </figure>
@@ -3038,15 +3038,15 @@ We will end up drawing this level of what could be a roguelike game, with an adv
 <p>
 A full project with the source code is <a href="https://github.com/wtfleming/reason-examples/tree/master/bs-canvas-tilemap">available here</a>.
 </p>
-<div id="outline-container-orgcf68d0a" class="outline-2">
-<h2 id="orgcf68d0a">Sprites</h2>
-<div class="outline-text-2" id="text-orgcf68d0a">
+<div id="outline-container-orgf68428d" class="outline-2">
+<h2 id="orgf68428d">Sprites</h2>
+<div class="outline-text-2" id="text-orgf68428d">
 <p>
 We will be using a sprite atlas modified from <a href="http://files.sablab.net/Games/Angband/Angband/lib/xtra/graf/16x16.bmp">this Angband tileset</a> with a permissive <a href="http://angband.oook.cz/forum/showpost.php?p=316&amp;postcount=16">license</a>. It looks like this:
 </p>
 
 
-<figure id="org284f4df">
+<figure id="org7c45271">
 <img src="/images/reason-canvas-tilemap-1/tiles16.png" alt="tiles16.png">
 
 </figure>
@@ -3078,9 +3078,9 @@ The level data is stored in a list, each number represents the index of the spri
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7088d7" class="outline-2">
-<h2 id="orgc7088d7">Working with the DOM</h2>
-<div class="outline-text-2" id="text-orgc7088d7">
+<div id="outline-container-org88d4efa" class="outline-2">
+<h2 id="org88d4efa">Working with the DOM</h2>
+<div class="outline-text-2" id="text-org88d4efa">
 <p>
 Reason (and <a href="https://bucklescript.github.io/">BuckleScript</a>) allows us to write type safe code to work with the browser DOM, but we will need to write some code for the interop. You could just use <code>bs.raw</code> and use <a href="https://reasonml.github.io/docs/en/interop.html">JavaScript directly</a>, but doing it this way will provide some type safety and let you catch some errors at compile time instead of runtime.
 </p>
@@ -3166,15 +3166,15 @@ module Context = {
 </div>
 </div>
 </div>
-<div id="outline-container-orga66bbf1" class="outline-2">
-<h2 id="orga66bbf1">SpriteAtlas</h2>
-<div class="outline-text-2" id="text-orga66bbf1">
+<div id="outline-container-org3e30cfa" class="outline-2">
+<h2 id="org3e30cfa">SpriteAtlas</h2>
+<div class="outline-text-2" id="text-org3e30cfa">
 <p>
 The sprite atlas is an image with all the sprites in it, it looks like:
 </p>
 
 
-<figure id="org86d65a3">
+<figure id="org594f6e1">
 <img src="/images/reason-canvas-tilemap-1/tiles16.png" alt="tiles16.png">
 
 </figure>
@@ -3214,9 +3214,9 @@ This code allows us to load the atlas into memory and draw one of the sprites in
 </div>
 </div>
 </div>
-<div id="outline-container-org5be5fe3" class="outline-2">
-<h2 id="org5be5fe3">Tilemap</h2>
-<div class="outline-text-2" id="text-org5be5fe3">
+<div id="outline-container-org507a141" class="outline-2">
+<h2 id="org507a141">Tilemap</h2>
+<div class="outline-text-2" id="text-org507a141">
 <p>
 The tilemap describes what our level looks like, it has a reference to a sprite atlas and a number of rows and columns representing what to draw in the level.
 </p>
@@ -3266,9 +3266,9 @@ The tilemap describes what our level looks like, it has a reference to a sprite 
 </div>
 </div>
 </div>
-<div id="outline-container-org7b220e7" class="outline-2">
-<h2 id="org7b220e7">Drawing the tilemap</h2>
-<div class="outline-text-2" id="text-org7b220e7">
+<div id="outline-container-orgfb33056" class="outline-2">
+<h2 id="orgfb33056">Drawing the tilemap</h2>
+<div class="outline-text-2" id="text-orgfb33056">
 <p>
 Here we do the actual work. Setup the canvas, load the sprites, create a tilemap, then render it in the browser.
 </p>
@@ -3333,9 +3333,9 @@ I noticed that Kaggle has started hosting some publicly available datasets. One 
 <p>
 Source code is available at <a href="https://github.com/wtfleming/phoenix-postgis-example">this GitHub repo</a>.
 </p>
-<div id="outline-container-org8e1a627" class="outline-2">
-<h2 id="org8e1a627">Captain Cook's Journeys on the Endeavor</h2>
-<div class="outline-text-2" id="text-org8e1a627">
+<div id="outline-container-orgca1a713" class="outline-2">
+<h2 id="orgca1a713">Captain Cook's Journeys on the Endeavor</h2>
+<div class="outline-text-2" id="text-orgca1a713">
 <div id="d3_map"></div>
 
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -3422,9 +3422,9 @@ makeRequest("/js/phoenix-captain-cook/ship_data.json");
 </script>
 </div>
 </div>
-<div id="outline-container-org80ec995" class="outline-2">
-<h2 id="org80ec995">Docker</h2>
-<div class="outline-text-2" id="text-org80ec995">
+<div id="outline-container-org5c5c301" class="outline-2">
+<h2 id="org5c5c301">Docker</h2>
+<div class="outline-text-2" id="text-org5c5c301">
 <p>
 For simplicity in this example we'll be using the <a href="https://hub.docker.com/r/mdillon/postgis/">mdillon/postgis</a> Docker image. If you already have PostGIS installed or do not want to use Docker feel free to skip this section.
 </p>
@@ -3475,9 +3475,9 @@ $ sudo docker stop postgres-ocean-ships
 </div>
 </div>
 </div>
-<div id="outline-container-org77722c2" class="outline-2">
-<h2 id="org77722c2">Phoenix</h2>
-<div class="outline-text-2" id="text-org77722c2">
+<div id="outline-container-org080acda" class="outline-2">
+<h2 id="org080acda">Phoenix</h2>
+<div class="outline-text-2" id="text-org080acda">
 <p>
 Create the Phoenix app:
 </p>
@@ -3493,7 +3493,7 @@ $ mix ecto.create
 Add these Elixir <a href="https://github.com/beatrichartz/csv">CSV</a> and <a href="https://github.com/bryanjos/geo">Geo</a> libraries to your mix.exs dependencies.
 </p>
 
-<pre class="example" id="org7a54352">
+<pre class="example" id="orgebf6db4">
 {:csv, "~&gt; 1.2.3"}
 {:geo, "~&gt; 1.0"}
 </pre>
@@ -3534,9 +3534,9 @@ config :ocean_ship_logbooks, OceanShipLogbooks.Repo,
 </div>
 </div>
 </div>
-<div id="outline-container-org3b8b601" class="outline-2">
-<h2 id="org3b8b601">Create database migrations</h2>
-<div class="outline-text-2" id="text-org3b8b601">
+<div id="outline-container-org70d04fa" class="outline-2">
+<h2 id="org70d04fa">Create database migrations</h2>
+<div class="outline-text-2" id="text-org70d04fa">
 <p>
 First we will want to enable the PostGIS extension in Postgres for our database. Lets generate a migration.
 </p>
@@ -3614,9 +3614,9 @@ Run the migrations:
 </div>
 </div>
 </div>
-<div id="outline-container-org895ca7e" class="outline-2">
-<h2 id="org895ca7e">ShipData Model</h2>
-<div class="outline-text-2" id="text-org895ca7e">
+<div id="outline-container-orgac93ad0" class="outline-2">
+<h2 id="orgac93ad0">ShipData Model</h2>
+<div class="outline-text-2" id="text-orgac93ad0">
 <p>
 Create a file at web/models/ship<sub>data.ex</sub> with these contents:
 </p>
@@ -3638,9 +3638,9 @@ This is a pretty straightforward model. We are using the Geo library so we can u
 </p>
 </div>
 </div>
-<div id="outline-container-org789d9e3" class="outline-2">
-<h2 id="org789d9e3">ShipData View</h2>
-<div class="outline-text-2" id="text-org789d9e3">
+<div id="outline-container-orgca7c867" class="outline-2">
+<h2 id="orgca7c867">ShipData View</h2>
+<div class="outline-text-2" id="text-orgca7c867">
 <p>
 Create a file web/views/ship<sub>data</sub><sub>view.ex</sub> with these contents:
 </p>
@@ -3667,9 +3667,9 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org974205c" class="outline-2">
-<h2 id="org974205c">Router</h2>
-<div class="outline-text-2" id="text-org974205c">
+<div id="outline-container-org5225df9" class="outline-2">
+<h2 id="org5225df9">Router</h2>
+<div class="outline-text-2" id="text-org5225df9">
 <p>
 Look in web/router.ex for the api block. Uncomment it and change to look like this:
 </p>
@@ -3684,9 +3684,9 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org787c99e" class="outline-2">
-<h2 id="org787c99e">Ship Data Controller</h2>
-<div class="outline-text-2" id="text-org787c99e">
+<div id="outline-container-orgc7ffa35" class="outline-2">
+<h2 id="orgc7ffa35">Ship Data Controller</h2>
+<div class="outline-text-2" id="text-orgc7ffa35">
 <p>
 Create a file web/controllers/ship<sub>data</sub><sub>controller.ex</sub> with these contents:
 </p>
@@ -3732,9 +3732,9 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org5f430b6" class="outline-2">
-<h2 id="org5f430b6">Download and clean the data.</h2>
-<div class="outline-text-2" id="text-org5f430b6">
+<div id="outline-container-org33fa08c" class="outline-2">
+<h2 id="org33fa08c">Download and clean the data.</h2>
+<div class="outline-text-2" id="text-org33fa08c">
 <p>
 Ensure you have downloaded the data the <a href="https://www.kaggle.com/kaggle/climate-data-from-ocean-ships">ship data from Kaggle</a>. Extract the file CLIWOC15.csv into the root directory of your project (this file should be about 200 megabytes in size).
 </p>
@@ -3765,9 +3765,9 @@ Run the script to remove extraneous newlines:
 </div>
 </div>
 </div>
-<div id="outline-container-org1ec3324" class="outline-2">
-<h2 id="org1ec3324">Load the data into PostGIS</h2>
-<div class="outline-text-2" id="text-org1ec3324">
+<div id="outline-container-orgc7071c9" class="outline-2">
+<h2 id="orgc7071c9">Load the data into PostGIS</h2>
+<div class="outline-text-2" id="text-orgc7071c9">
 <p>
 Run the app inside IEx (Interactive Elixir):
 </p>
@@ -3835,9 +3835,9 @@ Feel free to delete the CSV files to clear up a few hundred megs of disk space.
 </p>
 </div>
 </div>
-<div id="outline-container-org0e4b1c3" class="outline-2">
-<h2 id="org0e4b1c3">Download Countries GeoJSON</h2>
-<div class="outline-text-2" id="text-org0e4b1c3">
+<div id="outline-container-orgcc87ad5" class="outline-2">
+<h2 id="orgcc87ad5">Download Countries GeoJSON</h2>
+<div class="outline-text-2" id="text-orgcc87ad5">
 <p>
 Get the GeoGSON data from <a href="http://emeeks.github.io/d3ia/world.geojson">this GitHub repo</a> and put the geojson file at priv/static/js/world.geojson
 </p>
@@ -3847,9 +3847,9 @@ This will let us draw a map of the world in D3.
 </p>
 </div>
 </div>
-<div id="outline-container-org2c55f40" class="outline-2">
-<h2 id="org2c55f40">HTML and Javascript code</h2>
-<div class="outline-text-2" id="text-org2c55f40">
+<div id="outline-container-org66b0f40" class="outline-2">
+<h2 id="org66b0f40">HTML and Javascript code</h2>
+<div class="outline-text-2" id="text-org66b0f40">
 <p>
 Edit web/templates/page/index.html.eex to look like this:
 </p>
@@ -3950,7 +3950,7 @@ Open a web browser to <a href="http://localhost:4000">http://localhost:4000</a> 
 </p>
 
 
-<figure id="org91f6ed6">
+<figure id="orgff44aab">
 <img src="/images/phoenix-postgis-captain-cook/cooks-travels.jpg" alt="cooks-travels.jpg">
 
 </figure>
@@ -3976,13 +3976,13 @@ The final result draws a triangle on the screen and looks like this:
 </p>
 
 
-<figure id="orgef09802">
+<figure id="org350fe60">
 <img src="/images/elixir-opengl-01/triangle.png" alt="triangle.png">
 
 </figure>
-<div id="outline-container-orga3b2d28" class="outline-2">
-<h2 id="orga3b2d28">wxWidgets and Erlang</h2>
-<div class="outline-text-2" id="text-orga3b2d28">
+<div id="outline-container-orgc52a911" class="outline-2">
+<h2 id="orgc52a911">wxWidgets and Erlang</h2>
+<div class="outline-text-2" id="text-orgc52a911">
 <p>
 Erlang/OTP ships with a port of <a href="http://www.erlang.org/doc/man/wx.html">wxWidgets</a>, so creating a window and obtaining an OpenGL context is relatively easy.
 </p>
@@ -4001,7 +4001,7 @@ A window that looks something like this should appear.
 </p>
 
 
-<figure id="org914de23">
+<figure id="org21632a2">
 <img src="/images/elixir-opengl-01/wxerlang.png" alt="wxerlang.png">
 
 </figure>
@@ -4011,9 +4011,9 @@ Next we want to do something similar, but in Elixir instead.
 </p>
 </div>
 </div>
-<div id="outline-container-orga1d6be8" class="outline-2">
-<h2 id="orga1d6be8">Create an Elixir project</h2>
-<div class="outline-text-2" id="text-orga1d6be8">
+<div id="outline-container-org5df99e6" class="outline-2">
+<h2 id="org5df99e6">Create an Elixir project</h2>
+<div class="outline-text-2" id="text-org5df99e6">
 <p>
 Run these commands in a shell
 </p>
@@ -4028,9 +4028,9 @@ $ mkdir src
 </div>
 </div>
 </div>
-<div id="outline-container-org191879b" class="outline-2">
-<h2 id="org191879b">Erlang modules</h2>
-<div class="outline-text-2" id="text-org191879b">
+<div id="outline-container-org7b2e9d0" class="outline-2">
+<h2 id="org7b2e9d0">Erlang modules</h2>
+<div class="outline-text-2" id="text-org7b2e9d0">
 <p>
 If you look inside your Erlang/OTP distribution directory at the file lib/wx/include/wx.hrl you will see a number of defines that look like:
 </p>
@@ -4132,9 +4132,9 @@ We're now done with Erlang.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaaba5c4" class="outline-2">
-<h2 id="orgaaba5c4">Elixir Code</h2>
-<div class="outline-text-2" id="text-orgaaba5c4">
+<div id="outline-container-org6c95029" class="outline-2">
+<h2 id="org6c95029">Elixir Code</h2>
+<div class="outline-text-2" id="text-org6c95029">
 <p>
 Change lib/elixir<sub>opengl.ex</sub> to look like this:
 </p>
@@ -4298,7 +4298,7 @@ A window should appear that looks like this:
 </p>
 
 
-<figure id="orgf9bd360">
+<figure id="orgd58d34b">
 <img src="/images/elixir-opengl-01/triangle.png" alt="triangle.png">
 
 </figure>
@@ -4337,21 +4337,21 @@ A process written in Elixir on the PC periodically communicates with the Raspber
 </p>
 
 
-<figure id="orgf9f9a9e">
+<figure id="orgae0bc31">
 <img src="/images/embedded-elixir-cluster.dot.png" alt="embedded-elixir-cluster.dot.png">
 
 </figure>
-<div id="outline-container-orgf11d497" class="outline-2">
-<h2 id="orgf11d497">Android code</h2>
-<div class="outline-text-2" id="text-orgf11d497">
+<div id="outline-container-orgff00296" class="outline-2">
+<h2 id="orgff00296">Android code</h2>
+<div class="outline-text-2" id="text-orgff00296">
 <p>
 I simply took this <a href="https://github.com/bryanjos/AndroidPhoenixDemo">Android Phoenix Demo on GitHub</a>, followed the instructions to update the host value, and installed in on a Nexus 7.
 </p>
 </div>
 </div>
-<div id="outline-container-org01e1a92" class="outline-2">
-<h2 id="org01e1a92">Raspberry Pi and BeagleBone Code</h2>
-<div class="outline-text-2" id="text-org01e1a92">
+<div id="outline-container-org18cf86e" class="outline-2">
+<h2 id="org18cf86e">Raspberry Pi and BeagleBone Code</h2>
+<div class="outline-text-2" id="text-org18cf86e">
 <p>
 On both your Pi and BeagleBone create a file called gpio-led.ex with the following contents:
 </p>
@@ -4401,9 +4401,9 @@ If you are curious about what is happening with the GPIO and want to learn more 
 </p>
 </div>
 </div>
-<div id="outline-container-org35e47d1" class="outline-2">
-<h2 id="org35e47d1">Web server code</h2>
-<div class="outline-text-2" id="text-org35e47d1">
+<div id="outline-container-orgca707e3" class="outline-2">
+<h2 id="orgca707e3">Web server code</h2>
+<div class="outline-text-2" id="text-orgca707e3">
 <p>
 I started with the <a href="https://github.com/chrismccord/phoenix_chat_example">Phoenix chat example on GitHub</a>. Clone the repo to your desktop or laptop.
 </p>
@@ -4462,9 +4462,9 @@ Once started the code will recursively loop forever.
 </p>
 </div>
 </div>
-<div id="outline-container-org4b5e095" class="outline-2">
-<h2 id="org4b5e095">Run the code</h2>
-<div class="outline-text-2" id="text-org4b5e095">
+<div id="outline-container-org8f9ca8b" class="outline-2">
+<h2 id="org8f9ca8b">Run the code</h2>
+<div class="outline-text-2" id="text-org8f9ca8b">
 <p>
 ssh to the Raspberry Pi as the root user
 </p>
@@ -4531,14 +4531,14 @@ The final result will look like this:
 </p>
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/w6T2HXzHXRs" frameborder="0" allowfullscreen></iframe>
-<div id="outline-container-orgd403082" class="outline-2">
-<h2 id="orgd403082">Elixir programming language</h2>
-<div class="outline-text-2" id="text-orgd403082">
+<div id="outline-container-org12d7463" class="outline-2">
+<h2 id="org12d7463">Elixir programming language</h2>
+<div class="outline-text-2" id="text-org12d7463">
 <p>
 <a href="http://elixir-lang.org/">Elixir</a> describes itself:
 </p>
 
-<pre class="example" id="org7b1a81a">
+<pre class="example" id="orgfa59d62">
 Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications.
 
@@ -4562,15 +4562,15 @@ So far it has been an absolute joy to use.
 </p>
 </div>
 </div>
-<div id="outline-container-org77675d0" class="outline-2">
-<h2 id="org77675d0">Raspberry Pi</h2>
-<div class="outline-text-2" id="text-org77675d0">
+<div id="outline-container-org88601de" class="outline-2">
+<h2 id="org88601de">Raspberry Pi</h2>
+<div class="outline-text-2" id="text-org88601de">
 <p>
 The <a href="https://www.raspberrypi.org/">Raspberry Pi</a> is a series of small (credit card sized) and relatively low cost computers capable of running Linux with a number of <a href="https://en.wikipedia.org/wiki/General-purpose_input/output">general-purpose input/output (GPIO)</a> pins which can interface with the outside world.
 </p>
 
 
-<figure id="orge9a9bd1">
+<figure id="orge7a3028">
 <img src="/images/raspberry-pi.jpg" alt="raspberry-pi.jpg">
 
 </figure>
@@ -4582,9 +4582,9 @@ Now lets install the software dependencies.
 </p>
 </div>
 </div>
-<div id="outline-container-orge52e97b" class="outline-2">
-<h2 id="orge52e97b">Install Erlang and Elixir</h2>
-<div class="outline-text-2" id="text-orge52e97b">
+<div id="outline-container-org45e65cb" class="outline-2">
+<h2 id="org45e65cb">Install Erlang and Elixir</h2>
+<div class="outline-text-2" id="text-org45e65cb">
 <p>
 Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.
 </p>
@@ -4642,11 +4642,11 @@ We're now ready to explore GPIO (general purpose I/O) on the Pi.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf65e607" class="outline-2">
-<h2 id="orgf65e607">Wire up the LED</h2>
-<div class="outline-text-2" id="text-orgf65e607">
+<div id="outline-container-org6e78735" class="outline-2">
+<h2 id="org6e78735">Wire up the LED</h2>
+<div class="outline-text-2" id="text-org6e78735">
 
-<figure id="orga15a3e8">
+<figure id="org79ee2a0">
 <img src="/images/raspberry-pi-led-fritzing.png" alt="raspberry-pi-led-fritzing.png">
 
 </figure>
@@ -4672,14 +4672,14 @@ Once wired up we can proceed.
 </p>
 </div>
 </div>
-<div id="outline-container-orgeec79da" class="outline-2">
-<h2 id="orgeec79da">Turn an LED on and off on the command line</h2>
-<div class="outline-text-2" id="text-orgeec79da">
+<div id="outline-container-orgbea6602" class="outline-2">
+<h2 id="orgbea6602">Turn an LED on and off on the command line</h2>
+<div class="outline-text-2" id="text-orgbea6602">
 <p>
 In this example we'll be using the built in <a href="https://en.wikipedia.org/wiki/Sysfs">sysfs</a> to control the GPIO pins. Wikipedia describes it:
 </p>
 
-<pre class="example" id="org2f58c36">
+<pre class="example" id="orgb8ad17e">
 sysfs is a virtual file system provided by the Linux kernel that exports information
 about various kernel subsystems, hardware devices, and associated device drivers
 from the kernel's device model to user space through virtual files. In addition to
@@ -4747,9 +4747,9 @@ Now lets make a module.
 </p>
 </div>
 </div>
-<div id="outline-container-org8868163" class="outline-2">
-<h2 id="org8868163">Elixir Code</h2>
-<div class="outline-text-2" id="text-org8868163">
+<div id="outline-container-orgb3d29c9" class="outline-2">
+<h2 id="orgb3d29c9">Elixir Code</h2>
+<div class="outline-text-2" id="text-orgb3d29c9">
 <p>
 On your Raspberry Pi create a file called blink-led.ex with the following contents:
 </p>
@@ -4827,14 +4827,14 @@ The final result will look like this:
 </p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QR_su_rn74A" frameborder="0" allowfullscreen></iframe>
-<div id="outline-container-orgc073175" class="outline-2">
-<h2 id="orgc073175">Elixir programming language</h2>
-<div class="outline-text-2" id="text-orgc073175">
+<div id="outline-container-orgc9dbb75" class="outline-2">
+<h2 id="orgc9dbb75">Elixir programming language</h2>
+<div class="outline-text-2" id="text-orgc9dbb75">
 <p>
 <a href="http://elixir-lang.org/">Elixir</a> describes itself:
 </p>
 
-<pre class="example" id="org4f0cf08">
+<pre class="example" id="org60c3bc1">
 Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications.
 
@@ -4858,15 +4858,15 @@ So far it has been an absolute joy to use.
 </p>
 </div>
 </div>
-<div id="outline-container-org8df1f1f" class="outline-2">
-<h2 id="org8df1f1f">BeagleBone Black</h2>
-<div class="outline-text-2" id="text-org8df1f1f">
+<div id="outline-container-org8bc95a0" class="outline-2">
+<h2 id="org8bc95a0">BeagleBone Black</h2>
+<div class="outline-text-2" id="text-org8bc95a0">
 <p>
 The <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> is a small and relatively low cost 1Ghz ARM board with 512Mb of RAM capable of running Linux. It is similar to a Raspberry Pi (and most of the information here will be applicable to a Pi as well).
 </p>
 
 
-<figure id="orgb980eb4">
+<figure id="org2181eda">
 <img src="/images/beagleboneblack.jpg" alt="beagleboneblack.jpg">
 
 </figure>
@@ -4890,9 +4890,9 @@ Now lets install the software dependencies.
 </p>
 </div>
 </div>
-<div id="outline-container-org663f892" class="outline-2">
-<h2 id="org663f892">Install Erlang and Elixir</h2>
-<div class="outline-text-2" id="text-org663f892">
+<div id="outline-container-orgfc5af6a" class="outline-2">
+<h2 id="orgfc5af6a">Install Erlang and Elixir</h2>
+<div class="outline-text-2" id="text-orgfc5af6a">
 <p>
 Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.
 </p>
@@ -4950,11 +4950,11 @@ We're now ready to explore GPIO (general purpose I/O) on the BeagleBone.
 </p>
 </div>
 </div>
-<div id="outline-container-org7201d5f" class="outline-2">
-<h2 id="org7201d5f">Wire up the LED</h2>
-<div class="outline-text-2" id="text-org7201d5f">
+<div id="outline-container-orgeec6b23" class="outline-2">
+<h2 id="orgeec6b23">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgeec6b23">
 
-<figure id="org62a0db7">
+<figure id="orga4a926b">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -4980,14 +4980,14 @@ Once wired up we can proceed.
 </p>
 </div>
 </div>
-<div id="outline-container-org760d6dd" class="outline-2">
-<h2 id="org760d6dd">Turn an LED on and off on the command line</h2>
-<div class="outline-text-2" id="text-org760d6dd">
+<div id="outline-container-org1378a68" class="outline-2">
+<h2 id="org1378a68">Turn an LED on and off on the command line</h2>
+<div class="outline-text-2" id="text-org1378a68">
 <p>
 In this example we'll be using the built in <a href="https://en.wikipedia.org/wiki/Sysfs">sysfs</a> to control the GPIO pins. Wikipedia describes it:
 </p>
 
-<pre class="example" id="org1898c7e">
+<pre class="example" id="orgafd3423">
 sysfs is a virtual file system provided by the Linux kernel that exports information
 about various kernel subsystems, hardware devices, and associated device drivers
 from the kernel's device model to user space through virtual files. In addition to
@@ -5042,9 +5042,9 @@ Now lets make a module.
 </p>
 </div>
 </div>
-<div id="outline-container-org6d71b33" class="outline-2">
-<h2 id="org6d71b33">Elixir Code</h2>
-<div class="outline-text-2" id="text-org6d71b33">
+<div id="outline-container-org3605a41" class="outline-2">
+<h2 id="org3605a41">Elixir Code</h2>
+<div class="outline-text-2" id="text-org3605a41">
 <p>
 On your BeagleBone create a file called blink-led.ex with the following contents:
 </p>
@@ -5109,9 +5109,9 @@ The LED on the breadboard should now turn on for one second, turn off for a seco
 <item>
   <title><![CDATA[Creating an Apache Commons Daemon using Component with Clojure]]></title>
   <description><![CDATA[
-<div id="outline-container-orgd83da7f" class="outline-2">
-<h2 id="orgd83da7f">Introduction</h2>
-<div class="outline-text-2" id="text-orgd83da7f">
+<div id="outline-container-orgc40b0d9" class="outline-2">
+<h2 id="orgc40b0d9">Introduction</h2>
+<div class="outline-text-2" id="text-orgc40b0d9">
 <p>
 One way to write a long running server application that runs on the JVM with proper start/stop semantics is to the the <a href="http://commons.apache.org/proper/commons-daemon/">Apache Commons Daemon</a>. In this post we'll see how we can do so in Clojure and also use the <a href="https://github.com/stuartsierra/component">Component</a> framework to structure our application.
 </p>
@@ -5121,14 +5121,14 @@ The full source for this post is <a href="https://github.com/wtfleming/clojure-e
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf8562f" class="outline-2">
-<h2 id="orgdf8562f">Component</h2>
-<div class="outline-text-2" id="text-orgdf8562f">
+<div id="outline-container-org11d7771" class="outline-2">
+<h2 id="org11d7771">Component</h2>
+<div class="outline-text-2" id="text-org11d7771">
 <p>
 Component describes itself as:
 </p>
 
-<pre class="example" id="orgbf3f068">
+<pre class="example" id="org64deaae">
 A tiny Clojure framework for managing the lifecycle and dependencies
 of software components which have runtime state.
 
@@ -5144,7 +5144,7 @@ There are two concepts to be aware of:
 <li>Components</li>
 </ul>
 
-<pre class="example" id="orgaa38fd7">
+<pre class="example" id="orgf9cd67a">
 A collection of functions or procedures which share some runtime state.
 </pre>
 
@@ -5152,7 +5152,7 @@ A collection of functions or procedures which share some runtime state.
 <li>Systems</li>
 </ul>
 
-<pre class="example" id="org714ff23">
+<pre class="example" id="orgc4157e0">
 Components are composed into systems. A system is a component which knows how to
 start and stop other components. It is also responsible for injecting dependencies
 into the components which need them.
@@ -5163,9 +5163,9 @@ I won't go into very much detail about Component in this post, to learn more the
 </p>
 </div>
 </div>
-<div id="outline-container-org3a6db0a" class="outline-2">
-<h2 id="org3a6db0a">The Application</h2>
-<div class="outline-text-2" id="text-org3a6db0a">
+<div id="outline-container-org2b78fab" class="outline-2">
+<h2 id="org2b78fab">The Application</h2>
+<div class="outline-text-2" id="text-org2b78fab">
 <p>
 We will be building an app with two components and one system.
 </p>
@@ -5179,9 +5179,9 @@ The <b>system</b> will bring them together and handle the metrics component bein
 </p>
 </div>
 </div>
-<div id="outline-container-org9520cbe" class="outline-2">
-<h2 id="org9520cbe">Leiningen Project</h2>
-<div class="outline-text-2" id="text-org9520cbe">
+<div id="outline-container-orga7e9b23" class="outline-2">
+<h2 id="orga7e9b23">Leiningen Project</h2>
+<div class="outline-text-2" id="text-orga7e9b23">
 <p>
 Our <i>project.clj</i> looks like this:
 </p>
@@ -5200,9 +5200,9 @@ Our <i>project.clj</i> looks like this:
 </div>
 </div>
 </div>
-<div id="outline-container-orgbf76ccc" class="outline-2">
-<h2 id="orgbf76ccc">Code</h2>
-<div class="outline-text-2" id="text-orgbf76ccc">
+<div id="outline-container-org7a0a7fc" class="outline-2">
+<h2 id="org7a0a7fc">Code</h2>
+<div class="outline-text-2" id="text-org7a0a7fc">
 <p>
 Next create a file called <i>src/apache<sub>commons</sub><sub>daemon</sub>/core.clj</i>
 </p>
@@ -5221,9 +5221,9 @@ Insert the following at the top of the file:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd3e1014" class="outline-2">
-<h2 id="orgd3e1014">Metrics Component</h2>
-<div class="outline-text-2" id="text-orgd3e1014">
+<div id="outline-container-orgc6c8052" class="outline-2">
+<h2 id="orgc6c8052">Metrics Component</h2>
+<div class="outline-text-2" id="text-orgc6c8052">
 <p>
 For simplicity the first component simply stores the number of times the other component has ticked, however we could easily store additional metrics.
 </p>
@@ -5257,9 +5257,9 @@ We also provide a constructor and a function to increment the tick count.
 </div>
 </div>
 </div>
-<div id="outline-container-org971a8c0" class="outline-2">
-<h2 id="org971a8c0">Tick Component</h2>
-<div class="outline-text-2" id="text-org971a8c0">
+<div id="outline-container-orgab87a84" class="outline-2">
+<h2 id="orgab87a84">Tick Component</h2>
+<div class="outline-text-2" id="text-orgab87a84">
 <p>
 At startup the tick component creates a future which repeatedly outputs "tick" to stdout for as long as the component's state is set to :running.
 </p>
@@ -5297,9 +5297,9 @@ At startup the tick component creates a future which repeatedly outputs "tick" t
 </div>
 </div>
 </div>
-<div id="outline-container-org744838a" class="outline-2">
-<h2 id="org744838a">Application System</h2>
-<div class="outline-text-2" id="text-org744838a">
+<div id="outline-container-org8eac923" class="outline-2">
+<h2 id="org8eac923">Application System</h2>
+<div class="outline-text-2" id="text-org8eac923">
 <p>
 Here we have a system which creates the two components. It also indicates that the metrics component is a dependency of the tick component, so it will ensure the metrics component is started first and provide an instance of it to the tick component.
 </p>
@@ -5332,9 +5332,9 @@ Now we create the system and provide functions to start and stop it. The start a
 </div>
 </div>
 </div>
-<div id="outline-container-org6efbf81" class="outline-2">
-<h2 id="org6efbf81">Commons Daemon</h2>
-<div class="outline-text-2" id="text-org6efbf81">
+<div id="outline-container-org1ae95be" class="outline-2">
+<h2 id="org1ae95be">Commons Daemon</h2>
+<div class="outline-text-2" id="text-org1ae95be">
 <p>
 Finally we provide an implementatation of the <a href="http://commons.apache.org/proper/commons-daemon/apidocs/org/apache/commons/daemon/Daemon.html">Daemon interface</a>. This will allow us to start and stop the application with jsvc.
 </p>
@@ -5354,9 +5354,9 @@ Finally we provide an implementatation of the <a href="http://commons.apache.org
 </div>
 </div>
 </div>
-<div id="outline-container-org36cb23a" class="outline-2">
-<h2 id="org36cb23a">Running the Application</h2>
-<div class="outline-text-2" id="text-org36cb23a">
+<div id="outline-container-org03f087f" class="outline-2">
+<h2 id="org03f087f">Running the Application</h2>
+<div class="outline-text-2" id="text-org03f087f">
 <p>
 Build with Leiningen:
 </p>
@@ -5400,7 +5400,7 @@ $ sudo cat out.txt
 You should see output that looks something like this:
 </p>
 
-<pre class="example" id="org68a7e69">
+<pre class="example" id="org17660c0">
 ;; Starting MetricsComponent
 ;; Starting TickComponent
 tick
@@ -5418,9 +5418,9 @@ Note that jsvc can be a bit finicky and you may need to make some changes depend
 </p>
 </div>
 </div>
-<div id="outline-container-org9ce785f" class="outline-2">
-<h2 id="org9ce785f">Next Steps</h2>
-<div class="outline-text-2" id="text-org9ce785f">
+<div id="outline-container-org222e27b" class="outline-2">
+<h2 id="org222e27b">Next Steps</h2>
+<div class="outline-text-2" id="text-org222e27b">
 <p>
 You will likely want to do is create a script to start the application. There is much more to jsvc than we covered here, Sheldon Neilson has written an excellent <a href="http://www.neilson.co.za/creating-a-java-daemon-system-service-for-debian-using-apache-commons-jsvc/">article</a> for Debian based systems which I encourage you to read.
 </p>
@@ -5435,9 +5435,9 @@ You will likely want to do is create a script to start the application. There is
 <item>
   <title><![CDATA[Exploring Stack Exchange data with Clojure using Apache Spark and Flambo]]></title>
   <description><![CDATA[
-<div id="outline-container-org03b717d" class="outline-2">
-<h2 id="org03b717d">Introduction</h2>
-<div class="outline-text-2" id="text-org03b717d">
+<div id="outline-container-org675e296" class="outline-2">
+<h2 id="org675e296">Introduction</h2>
+<div class="outline-text-2" id="text-org675e296">
 <p>
 <a href="https://spark.apache.org/">Apache Spark</a> is a is a fast and general engine for large-scale data processing (as in terabytes or larger data sets), and <a href="https://github.com/yieldbot/flambo">Flambo</a> is a Clojure DSL for working with Spark. Stack Exchange is a network of question and answer websites with a variety of topics (the most popular one being <a href="http://stackoverflow.com/">Stack Overflow</a>). They periodically provide a <a href="https://archive.org/details/stackexchange">creative commons licensed database dump</a>. We'll be using data from the <a href="http://gaming.stackexchange.com/">Stack Exchange Gaming Site</a> as a toy dataset to work with them.
 </p>
@@ -5453,9 +5453,9 @@ This post assumes you are using leiningen, some basic familiarity with either th
 </p>
 </div>
 </div>
-<div id="outline-container-orgafde850" class="outline-2">
-<h2 id="orgafde850">Leiningen Project</h2>
-<div class="outline-text-2" id="text-orgafde850">
+<div id="outline-container-orgcefe08d" class="outline-2">
+<h2 id="orgcefe08d">Leiningen Project</h2>
+<div class="outline-text-2" id="text-orgcefe08d">
 <p>
 Our project.clj looks like this:
 </p>
@@ -5477,9 +5477,9 @@ Our project.clj looks like this:
 </div>
 </div>
 </div>
-<div id="outline-container-org47c6413" class="outline-2">
-<h2 id="org47c6413">Step 1: ETL Users</h2>
-<div class="outline-text-2" id="text-org47c6413">
+<div id="outline-container-org083c4e5" class="outline-2">
+<h2 id="org083c4e5">Step 1: ETL Users</h2>
+<div class="outline-text-2" id="text-org083c4e5">
 <p>
 The Stack Exchange data is provided in XML format. While it would be possible to leave it as is and load the XML into one of Spark's <a href="https://spark.apache.org/docs/1.3.1/api/java/org/apache/spark/rdd/RDD.html">Resilient Distributed Dataset (RDD)</a> when we query (this might be desirable if you are building a <a href="http://martinfowler.com/bliki/DataLake.html">data lake</a>), here we will be building a <a href="https://en.wikipedia.org/wiki/Data_mart">data mart</a> with a subset of the data, stored in Parquet format, and queried using <a href="https://spark.apache.org/docs/1.3.1/api/java/org/apache/spark/sql/DataFrame.html">Spark DataFrames</a>.
 </p>
@@ -5501,7 +5501,7 @@ DownVotes="1" Age="38" AccountId="2" /&gt;
 And convert it into a DataFrame represented like this:
 </p>
 
-<pre class="example" id="orgb1fdbd9">
+<pre class="example" id="orgceae487">
 | id | name         | reputation|
 |----+--------------+-----------|
 | 2  | Geoff Dalgas | 101       |
@@ -5577,9 +5577,9 @@ You should now have a directory at ~/data/gaming-stack-exchange-warehouse/users.
 </p>
 </div>
 </div>
-<div id="outline-container-org4c82c35" class="outline-2">
-<h2 id="org4c82c35">Step 2: ETL Posts</h2>
-<div class="outline-text-2" id="text-org4c82c35">
+<div id="outline-container-org53bc9c2" class="outline-2">
+<h2 id="org53bc9c2">Step 2: ETL Posts</h2>
+<div class="outline-text-2" id="text-org53bc9c2">
 <p>
 Next we want to load posts. This is almost identical to loading users. I'll omit most of the code here, but it is <a href="https://github.com/wtfleming/clojure-examples/blob/master/apache-spark/flambo-gaming-stack-exchange/src/flambo_gaming_stack_exchange/etl_posts.clj">available on GitHub</a>. However I will include the schema here to make following along with the queries easier.
 </p>
@@ -5610,9 +5610,9 @@ Like with the users step, you should now have a directory at ~/data/gaming-stack
 </p>
 </div>
 </div>
-<div id="outline-container-org5ad1550" class="outline-2">
-<h2 id="org5ad1550">Step 3: Query the data</h2>
-<div class="outline-text-2" id="text-org5ad1550">
+<div id="outline-container-org14981b8" class="outline-2">
+<h2 id="org14981b8">Step 3: Query the data</h2>
+<div class="outline-text-2" id="text-org14981b8">
 <p>
 Now lets run some queries. The code here will be broken up and be pseudo-Clojure for demonstration purposes. The code this is derived from is <a href="https://github.com/wtfleming/clojure-examples/blob/master/apache-spark/flambo-gaming-stack-exchange/src/flambo_gaming_stack_exchange/core.clj">available here at GitHub</a>. And can be run like this:
 </p>
@@ -5628,9 +5628,9 @@ It's worth noting that the gaming site data is not particularly large, in all li
 </p>
 </div>
 </div>
-<div id="outline-container-orge4246b7" class="outline-2">
-<h2 id="orge4246b7">Query 1 - Top users</h2>
-<div class="outline-text-2" id="text-orge4246b7">
+<div id="outline-container-org9f0fe80" class="outline-2">
+<h2 id="org9f0fe80">Query 1 - Top users</h2>
+<div class="outline-text-2" id="text-org9f0fe80">
 <p>
 Lets find the top 10 users by reputation who have at least a 30,000 reputation score.
 </p>
@@ -5678,7 +5678,7 @@ Lets find the top 10 users by reputation who have at least a 30,000 reputation s
 Running either of the the above queries will output:
 </p>
 
-<pre class="example" id="orgb3feddb">
+<pre class="example" id="org229dc05">
 name             reputation
 Raven Dreamer    123648
 agent86          89947
@@ -5693,9 +5693,9 @@ fredley          35584
 </pre>
 </div>
 </div>
-<div id="outline-container-org0dd2b2a" class="outline-2">
-<h2 id="org0dd2b2a">Query 2 - Top users, names obfuscated</h2>
-<div class="outline-text-2" id="text-org0dd2b2a">
+<div id="outline-container-org4d968ce" class="outline-2">
+<h2 id="org4d968ce">Query 2 - Top users, names obfuscated</h2>
+<div class="outline-text-2" id="text-org4d968ce">
 <p>
 Next lets say we've been given the requirement that we need to obfuscate user names prior to displaying them. Here we will use a SHA-1 hash function and the <a href="https://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/binary/Hex.html">Apache Commons Hex encoder</a>.
 </p>
@@ -5745,7 +5745,7 @@ A few things to note:
 Running the above code will output:
 </p>
 
-<pre class="example" id="org46351a4">
+<pre class="example" id="org05a08a0">
 [74cfefcff37f81e278398e4de6ce6ada68e7c80e 123648]
 [e6eaf112ecf8020e9e1d389ca1e432488bfc7476 89947]
 [a8d6f6c81225d88c1797dfc0592935a879d3b626 54792]
@@ -5759,9 +5759,9 @@ Running the above code will output:
 </pre>
 </div>
 </div>
-<div id="outline-container-org7448a99" class="outline-2">
-<h2 id="org7448a99">Query 3 - People who like to play Dwarf Fortress</h2>
-<div class="outline-text-2" id="text-org7448a99">
+<div id="outline-container-org01e9493" class="outline-2">
+<h2 id="org01e9493">Query 3 - People who like to play Dwarf Fortress</h2>
+<div class="outline-text-2" id="text-org01e9493">
 <p>
 Finally lets run one more query to find out which users have created the most questions about the game <a href="https://en.wikipedia.org/wiki/Dwarf_Fortress">Dwarf Fortress</a>. In order to answer this we'll need to join users against posts and can do so like this:
 </p>
@@ -5785,7 +5785,7 @@ Finally lets run one more query to find out which users have created the most qu
 Running the query gives us these users and how many questions they have asked:
 </p>
 
-<pre class="example" id="orgc5483bf">
+<pre class="example" id="org877dd95">
 name           cnt
 antony.trupe   37
 aslum          32
@@ -5800,9 +5800,9 @@ Menno Gouw     9
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc1d29a8" class="outline-2">
-<h2 id="orgc1d29a8">Conclusion</h2>
-<div class="outline-text-2" id="text-orgc1d29a8">
+<div id="outline-container-orgaa9bc42" class="outline-2">
+<h2 id="orgaa9bc42">Conclusion</h2>
+<div class="outline-text-2" id="text-orgaa9bc42">
 <p>
 While this post looked mostly at Spark SQL and DataFrames, support for them in Flambo is currently a bit rudimentary. It still provides access to the underlying Java objects, and the examples above demonstrated this is not a problem. I suspect more of it may get wrapped in Clojure land in future releases.
 </p>
@@ -5822,9 +5822,9 @@ Flambo seems to be currently geared more towards working with Resilient Distribu
 <item>
   <title><![CDATA[Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!]]></title>
   <description><![CDATA[
-<div id="outline-container-org86efb56" class="outline-2">
-<h2 id="org86efb56">Introduction</h2>
-<div class="outline-text-2" id="text-org86efb56">
+<div id="outline-container-org578526e" class="outline-2">
+<h2 id="org578526e">Introduction</h2>
+<div class="outline-text-2" id="text-org578526e">
 <ul class="org-ul">
 <li>In <a href="/blog/adventures-with-core-async-part-one-channels-messages/">part 1</a> of this series we looked at the basics of core.async via channels and messages.</li>
 <li>In part 2 we will explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
@@ -5835,9 +5835,9 @@ We will be using the example of a web site that wants to display weather informa
 </p>
 </div>
 </div>
-<div id="outline-container-org760aca9" class="outline-2">
-<h2 id="org760aca9">Helper Function</h2>
-<div class="outline-text-2" id="text-org760aca9">
+<div id="outline-container-org1500894" class="outline-2">
+<h2 id="org1500894">Helper Function</h2>
+<div class="outline-text-2" id="text-org1500894">
 <p>
 First we define a function that will be used repeatedly in the examples.
 </p>
@@ -5855,9 +5855,9 @@ It modifies DOM elements using the Google Closure Library.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf54393" class="outline-2">
-<h2 id="orgdf54393">Working with Timeouts</h2>
-<div class="outline-text-2" id="text-orgdf54393">
+<div id="outline-container-org8dcc992" class="outline-2">
+<h2 id="org8dcc992">Working with Timeouts</h2>
+<div class="outline-text-2" id="text-org8dcc992">
 <p>
 Let say that when a button is clicked we want to wait a second before continuing. Click the button below to see it in action.
 </p>
@@ -5877,7 +5877,7 @@ The steps taken look like this:
 </p>
 
 
-<figure id="org117e919">
+<figure id="orge62c731">
 <img src="/images/core-async-part-two/timeout.png" alt="timeout.png">
 
 </figure>
@@ -5923,9 +5923,9 @@ When the button is clicked we can wait for 1 second and then make a DOM change l
 </p>
 </div>
 </div>
-<div id="outline-container-org98dd9d0" class="outline-2">
-<h2 id="org98dd9d0">Mock API Call Functions</h2>
-<div class="outline-text-2" id="text-org98dd9d0">
+<div id="outline-container-orgef8a4ea" class="outline-2">
+<h2 id="orgef8a4ea">Mock API Call Functions</h2>
+<div class="outline-text-2" id="text-orgef8a4ea">
 <p>
 The remaining examples will use these functions to simulate calling out to a couple APIs.
 </p>
@@ -5951,15 +5951,15 @@ They take a random amount of time (up to 1.5 seconds) to return results. Note th
 </p>
 </div>
 </div>
-<div id="outline-container-org20faef5" class="outline-2">
-<h2 id="org20faef5">Working with Multiple Channels via Parking</h2>
-<div class="outline-text-2" id="text-org20faef5">
+<div id="outline-container-org50efb8c" class="outline-2">
+<h2 id="org50efb8c">Working with Multiple Channels via Parking</h2>
+<div class="outline-text-2" id="text-org50efb8c">
 <p>
 In this example we will demonstrate calling out to two APIs, waiting for both to return results, and then display both of them.
 </p>
 
 
-<figure id="orgaf6da4e">
+<figure id="org08df76f">
 <img src="/images/core-async-part-two/parking.png" alt="parking.png">
 
 </figure>
@@ -5992,9 +5992,9 @@ Under the hood the go block will transform its body to a state machine and wait 
 </p>
 </div>
 </div>
-<div id="outline-container-orgedde67f" class="outline-2">
-<h2 id="orgedde67f">Working with Multiple Channels via alts!</h2>
-<div class="outline-text-2" id="text-orgedde67f">
+<div id="outline-container-orgd32241d" class="outline-2">
+<h2 id="orgd32241d">Working with Multiple Channels via alts!</h2>
+<div class="outline-text-2" id="text-orgd32241d">
 <p>
 In this example we will demonstrate calling out to two APIs, return results from the one that finishes the fastest, and then display it.
 </p>
@@ -6004,7 +6004,7 @@ Since these are both weather services, in all likelihood they will return simila
 </p>
 
 
-<figure id="orgf0ce57d">
+<figure id="orga903714">
 <img src="/images/core-async-part-two/alts.png" alt="alts.png">
 
 </figure>
@@ -6049,9 +6049,9 @@ Since these are both weather services, in all likelihood they will return simila
 <item>
   <title><![CDATA[Adventures in Clojure with core.async - Part 1 - Channels and Messages]]></title>
   <description><![CDATA[
-<div id="outline-container-org1aea7a4" class="outline-2">
-<h2 id="org1aea7a4">Introduction</h2>
-<div class="outline-text-2" id="text-org1aea7a4">
+<div id="outline-container-org3a82f3c" class="outline-2">
+<h2 id="org3a82f3c">Introduction</h2>
+<div class="outline-text-2" id="text-org3a82f3c">
 <ul class="org-ul">
 <li>In part 1 of this series we will look at the basics of core.async via channels and messages.</li>
 <li>In <a href="/blog/adventures-with-core-async-part-two-parking-timeouts-alt/">part 2</a> we explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
@@ -6070,9 +6070,9 @@ It builds upon the <a href="http://en.wikipedia.org/wiki/Communicating_sequentia
 </p>
 </div>
 </div>
-<div id="outline-container-org0d79ac8" class="outline-2">
-<h2 id="org0d79ac8">Sending Messages</h2>
-<div class="outline-text-2" id="text-org0d79ac8">
+<div id="outline-container-org730bd2b" class="outline-2">
+<h2 id="org730bd2b">Sending Messages</h2>
+<div class="outline-text-2" id="text-org730bd2b">
 <p>
 These are some of the functions available for writing to and reading from a channel.
 </p>
@@ -6129,9 +6129,9 @@ Note that &gt;!! and &lt;!! are not available in ClojureScript as the underlying
 </p>
 </div>
 </div>
-<div id="outline-container-orgc65df5b" class="outline-2">
-<h2 id="orgc65df5b">go Blocks</h2>
-<div class="outline-text-2" id="text-orgc65df5b">
+<div id="outline-container-org10fe272" class="outline-2">
+<h2 id="org10fe272">go Blocks</h2>
+<div class="outline-text-2" id="text-org10fe272">
 <p>
 We can use the <b>go</b> macro provided by core.async to create new processes. It will turn any channel operations within into a state machine, which parks on a blocking operation, and resumes when the blocking operation completes.
 </p>
@@ -6141,9 +6141,9 @@ The concept of parking will be covered in more depth in a future post.
 </p>
 </div>
 </div>
-<div id="outline-container-org2487f25" class="outline-2">
-<h2 id="org2487f25">Code</h2>
-<div class="outline-text-2" id="text-org2487f25">
+<div id="outline-container-orgb96854f" class="outline-2">
+<h2 id="orgb96854f">Code</h2>
+<div class="outline-text-2" id="text-orgb96854f">
 <p>
 For the sake of completeness here is a helper function to set DOM values in the browser using the <a href="https://developers.google.com/closure/library/">Google Closure Library</a>.
 </p>
@@ -6161,9 +6161,9 @@ We will use in the examples below.
 </p>
 </div>
 </div>
-<div id="outline-container-org10711a7" class="outline-2">
-<h2 id="org10711a7">Unbuffered Channels</h2>
-<div class="outline-text-2" id="text-org10711a7">
+<div id="outline-container-orge7b421c" class="outline-2">
+<h2 id="orge7b421c">Unbuffered Channels</h2>
+<div class="outline-text-2" id="text-orge7b421c">
 <p>
 The simplest channel is unbuffered and created using the <b>chan</b> function with no arguments.
 </p>
@@ -6196,9 +6196,9 @@ Writing to an unbuffered channel blocks further writes until the message is read
 <button id="example-zero-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-orgccde1db" class="outline-2">
-<h2 id="orgccde1db">Buffered Channels</h2>
-<div class="outline-text-2" id="text-orgccde1db">
+<div id="outline-container-org841d02b" class="outline-2">
+<h2 id="org841d02b">Buffered Channels</h2>
+<div class="outline-text-2" id="text-org841d02b">
 <p>
 Calling <b>chan</b> with a single argument that is a number creates a channel with a buffer. This allows us to write more than one message to the channel before it blocks. In the example below we create a channel with a buffer of 5.
 </p>
@@ -6227,9 +6227,9 @@ Note that since this is not an unbuffered channel (and we are not writing more m
 <button id="example-one-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-orga26bb80" class="outline-2">
-<h2 id="orga26bb80">Dropping Buffers</h2>
-<div class="outline-text-2" id="text-orga26bb80">
+<div id="outline-container-org13bae43" class="outline-2">
+<h2 id="org13bae43">Dropping Buffers</h2>
+<div class="outline-text-2" id="text-org13bae43">
 <p>
 We can also create a channel with a dropping-buffer. In this case writes will complete when the buffer is full, but the value will be dropped.
 </p>
@@ -6261,9 +6261,9 @@ We are also using the specialized into function provided by core.async, which re
 <button id="example-two-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-org6555cc2" class="outline-2">
-<h2 id="org6555cc2">Sliding Buffers</h2>
-<div class="outline-text-2" id="text-org6555cc2">
+<div id="outline-container-org39275b4" class="outline-2">
+<h2 id="org39275b4">Sliding Buffers</h2>
+<div class="outline-text-2" id="text-org39275b4">
 <p>
 A sliding-buffer is similar to a dropping-buffer, except that when the buffer is full, writes will continue to succeed but the oldest element in the buffer will be dropped.
 </p>
@@ -6287,9 +6287,9 @@ A sliding-buffer is similar to a dropping-buffer, except that when the buffer is
 <button id="example-three-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-orgae802ee" class="outline-2">
-<h2 id="orgae802ee">Conclusion</h2>
-<div class="outline-text-2" id="text-orgae802ee">
+<div id="outline-container-org61dca40" class="outline-2">
+<h2 id="org61dca40">Conclusion</h2>
+<div class="outline-text-2" id="text-org61dca40">
 <p>
 We've barely scratched the surface of core.async in this introductory post. In future posts we'll see more of what the library provides, show some practical examples (including some very neat things we can do with the state machine that go blocks provide).
 </p>
@@ -6312,9 +6312,9 @@ We've barely scratched the surface of core.async in this introductory post. In f
 <item>
   <title><![CDATA[Visualizing Twitter Connections with D3 and ClojureScript]]></title>
   <description><![CDATA[
-<div id="outline-container-org24519c4" class="outline-2">
-<h2 id="org24519c4">Introduction</h2>
-<div class="outline-text-2" id="text-org24519c4">
+<div id="outline-container-org500b0aa" class="outline-2">
+<h2 id="org500b0aa">Introduction</h2>
+<div class="outline-text-2" id="text-org500b0aa">
 <p>
 I was curious about the connections between some of the people I follow on Twitter and wanted to try visualizing it using <a href="http://d3js.org/">D3</a> and ClojureScript using a <a href="https://github.com/mbostock/d3/wiki/Force-Layout">force directed graph</a>. The end result looks like this:
 </p>
@@ -6330,9 +6330,9 @@ Not a lot of surprises, there are a few clusters around common interests: Emacs,
 </p>
 </div>
 </div>
-<div id="outline-container-org82f4ab0" class="outline-2">
-<h2 id="org82f4ab0">Code</h2>
-<div class="outline-text-2" id="text-org82f4ab0">
+<div id="outline-container-orgec65919" class="outline-2">
+<h2 id="orgec65919">Code</h2>
+<div class="outline-text-2" id="text-orgec65919">
 <p>
 In this post i'll just share a minimum of ClojureScript code, but a <a href="https://github.com/wtfleming/clojurescript-examples/tree/master/d3-force-directed-graph">code for a full example is available at Github</a>. I highly recommend checking out the code, running the commands in the README file, and then viewing the results in a browser.
 </p>
@@ -6417,9 +6417,9 @@ We are pulling in D3 via <a href="http://cljsjs.github.io/">CLJSJS</a> packages,
 </p>
 </div>
 </div>
-<div id="outline-container-orgbbe00ff" class="outline-2">
-<h2 id="orgbbe00ff">Sample input</h2>
-<div class="outline-text-2" id="text-orgbbe00ff">
+<div id="outline-container-org122f285" class="outline-2">
+<h2 id="org122f285">Sample input</h2>
+<div class="outline-text-2" id="text-org122f285">
 <p>
 The one thing to be aware of is how the JSON that will be passed in needs to be formatted. You will need to define nodes and links between the nodes.
 </p>
@@ -6477,9 +6477,9 @@ Here is a simple example with four nodes, in this case the node named A follows 
 <item>
   <title><![CDATA[Writing a Kafka Producer and High Level Consumer in Clojure]]></title>
   <description><![CDATA[
-<div id="outline-container-org89413c4" class="outline-2">
-<h2 id="org89413c4">Introduction</h2>
-<div class="outline-text-2" id="text-org89413c4">
+<div id="outline-container-orgf898e08" class="outline-2">
+<h2 id="orgf898e08">Introduction</h2>
+<div class="outline-text-2" id="text-orgf898e08">
 <p>
 Kafka is a platform for handling real-time data feeds. In some ways it is like a database that exposes semantics of a messaging system.
 </p>
@@ -6488,7 +6488,7 @@ Kafka is a platform for handling real-time data feeds. In some ways it is like a
 The <a href="https://kafka.apache.org/documentation.html">Kafka documentation</a> provides an excellent overview which I have provided an extract from:
 </p>
 
-<pre class="example" id="org2d6e904">
+<pre class="example" id="org4ae9ad5">
 Kafka is a distributed, partitioned, replicated commit log service. It provides the
 functionality of a messaging system, but with a unique design.
 
@@ -6509,9 +6509,9 @@ The source code for this project is <a href="https://github.com/wtfleming/clojur
 </p>
 </div>
 </div>
-<div id="outline-container-orgc3156c2" class="outline-2">
-<h2 id="orgc3156c2">Create a Project</h2>
-<div class="outline-text-2" id="text-orgc3156c2">
+<div id="outline-container-orgcf59b51" class="outline-2">
+<h2 id="orgcf59b51">Create a Project</h2>
+<div class="outline-text-2" id="text-orgcf59b51">
 <p>
 We'll be using <a href="http://leiningen.org/">Leiningen</a> to build and run our app.
 </p>
@@ -6550,9 +6550,9 @@ Next create a file /src/hello<sub>world</sub><sub>kafka</sub>/core.clj with thes
 </div>
 </div>
 </div>
-<div id="outline-container-org6170ce3" class="outline-2">
-<h2 id="org6170ce3">Producer Code</h2>
-<div class="outline-text-2" id="text-org6170ce3">
+<div id="outline-container-org9316909" class="outline-2">
+<h2 id="org9316909">Producer Code</h2>
+<div class="outline-text-2" id="text-org9316909">
 <div class="org-src-container">
 <pre class="src src-clojure">(defn- create-producer
   "Creates a producer that can be used to send a message to Kafka"
@@ -6577,9 +6577,9 @@ Creating a producer and sending a message is pretty straightforward. Call the cr
 </p>
 </div>
 </div>
-<div id="outline-container-org5597087" class="outline-2">
-<h2 id="org5597087">Consumer Code</h2>
-<div class="outline-text-2" id="text-org5597087">
+<div id="outline-container-org57a1d80" class="outline-2">
+<h2 id="org57a1d80">Consumer Code</h2>
+<div class="outline-text-2" id="text-org57a1d80">
 <div class="org-src-container">
 <pre class="src src-clojure">(defrecord KafkaMessage [topic offset partition key value-bytes])
 
@@ -6632,9 +6632,9 @@ A few things to take note of:
 </ul>
 </div>
 </div>
-<div id="outline-container-org160ffdd" class="outline-2">
-<h2 id="org160ffdd">Application code</h2>
-<div class="outline-text-2" id="text-org160ffdd">
+<div id="outline-container-org5c62581" class="outline-2">
+<h2 id="org5c62581">Application code</h2>
+<div class="outline-text-2" id="text-org5c62581">
 <div class="org-src-container">
 <pre class="src src-clojure">(defn -main
   "Pull messages from a Kafka topic using the High Level Consumer"
@@ -6671,7 +6671,7 @@ The above code sets up our thread pools, creates and starts some consumers, and 
 Running from the command line expects arguments like this:
 </p>
 
-<pre class="example" id="orgad647a8">
+<pre class="example" id="org697294a">
 $ lein trampoline run &lt;topic&gt; &lt;num consumer threads&gt;
 </pre>
 
@@ -6683,7 +6683,7 @@ We use lein trampoline so we can catch a SIGTERM or Control-C and clean up prior
 If we want to send and read messages from a topic called random<sub>numbers</sub> and use 2 threads for the consumers we can start the app like this:
 </p>
 
-<pre class="example" id="org1a71865">
+<pre class="example" id="org12a4c61">
 $ lein trampoline run random_numbers 2
 </pre>
 
@@ -6691,7 +6691,7 @@ $ lein trampoline run random_numbers 2
 You should see output that looks something like this:
 </p>
 
-<pre class="example" id="orgd2f2c3d">
+<pre class="example" id="orgb2c1c88">
 Starting thread 0
 Starting thread 1
 Sending to Kafka topic random_numbers: 753
@@ -6719,17 +6719,17 @@ Stopping thread 1
 <item>
   <title><![CDATA[Running a Dockerized Clojure Web App on CoreOS]]></title>
   <description><![CDATA[
-<div id="outline-container-orgdc22583" class="outline-2">
-<h2 id="orgdc22583">Introduction</h2>
-<div class="outline-text-2" id="text-orgdc22583">
+<div id="outline-container-org9fa4ac1" class="outline-2">
+<h2 id="org9fa4ac1">Introduction</h2>
+<div class="outline-text-2" id="text-org9fa4ac1">
 <p>
 In the <a href="/blog/dockerize-clojure-compojure-http-kit-web-application/">previous post</a> we created a Clojure web service and ran it in a Docker container. Here we will deploy that container on a 3 node CoreOS cluster running in <a href="https://www.vagrantup.com/">Vagrant</a> on a local development machine.
 </p>
 </div>
 </div>
-<div id="outline-container-org474a48a" class="outline-2">
-<h2 id="org474a48a">CoreOS</h2>
-<div class="outline-text-2" id="text-org474a48a">
+<div id="outline-container-org973d8f1" class="outline-2">
+<h2 id="org973d8f1">CoreOS</h2>
+<div class="outline-text-2" id="text-org973d8f1">
 <p>
 CoreOS is a minimal version of Linux meant for large scale server deployments.
 </p>
@@ -6742,7 +6742,7 @@ It has a very different model than a Debian/Red Hat/etc distribution. The OS run
 It's web page describes it as:
 </p>
 
-<pre class="example" id="org51c4b70">
+<pre class="example" id="org591ad4d">
 A new Linux distribution that has been rearchitected to provide features needed
 to run modern infrastructure stacks. The strategies and architectures that influence
 CoreOS allow companies like Google, Facebook and Twitter to run their services at
@@ -6769,9 +6769,9 @@ We won't be really be going into etcd in this post, but there are some interesti
 </p>
 </div>
 </div>
-<div id="outline-container-orgb119946" class="outline-2">
-<h2 id="orgb119946">Start Vagrant</h2>
-<div class="outline-text-2" id="text-orgb119946">
+<div id="outline-container-org7cdc835" class="outline-2">
+<h2 id="org7cdc835">Start Vagrant</h2>
+<div class="outline-text-2" id="text-org7cdc835">
 <p>
 I am assuming you are on either a Linux or OS X machine, if you are on Windows you will likely need to make a few changes.
 </p>
@@ -6784,7 +6784,7 @@ If you run into any problems there is also a guide to using Vagrant on the CoreO
 Ensure you have installed Vagrant on you development machine, then use git to clone the <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant repo</a>.
 </p>
 
-<pre class="example" id="org03743d0">
+<pre class="example" id="org5517ab7">
 $ git clone git@github.com:coreos/coreos-vagrant.git
 $ cd coreos-vagrant
 </pre>
@@ -6793,7 +6793,7 @@ $ cd coreos-vagrant
 Rename the file <i>config.rb.sample</i> to <i>config.rb</i> and change the lines:
 </p>
 
-<pre class="example" id="org1838dc3">
+<pre class="example" id="org7b926a7">
 #$num_instances=1
 #$update_channel='alpha'
 </pre>
@@ -6802,7 +6802,7 @@ Rename the file <i>config.rb.sample</i> to <i>config.rb</i> and change the lines
 to
 </p>
 
-<pre class="example" id="org13c4daf">
+<pre class="example" id="org6cbf91a">
 $num_instances=3
 $update_channel='stable'
 </pre>
@@ -6811,7 +6811,7 @@ $update_channel='stable'
 Next rename the file <i>user-data.sample</i> to <i>user-data</i> and then browse to <a href="https://discovery.etcd.io/new">[[https://discovery.etcd.io/new</a>]] and copy the what was on the page then uncomment and insert it on the the line that looks like this:
 </p>
 
-<pre class="example" id="org6da409f">
+<pre class="example" id="org431e642">
 #discovery: https://discovery.etcd.io/&lt;token&gt;
 </pre>
 
@@ -6823,7 +6823,7 @@ Every time you start a new cluster you will need a new token. If you do not want
 Now run this command:
 </p>
 
-<pre class="example" id="orgae34e22">
+<pre class="example" id="org769d5f6">
 $ vagrant up
 </pre>
 
@@ -6831,7 +6831,7 @@ $ vagrant up
 and Vagrant will launch 3 VirtualBox machines running CoreOS.
 </p>
 
-<pre class="example" id="orgd52d2b8">
+<pre class="example" id="org27d8212">
 $ vagrant status
 Current machine states:
 core-01                   running (virtualbox)
@@ -6844,14 +6844,14 @@ As you can see, there are 3 machines running.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd8176a9" class="outline-2">
-<h2 id="orgd8176a9">SSH to your cluster</h2>
-<div class="outline-text-2" id="text-orgd8176a9">
+<div id="outline-container-orgb3ee00a" class="outline-2">
+<h2 id="orgb3ee00a">SSH to your cluster</h2>
+<div class="outline-text-2" id="text-orgb3ee00a">
 <p>
 In order to forward your SSH session to other machines in the cluster you will need to use a key that is installed on all machines. In this case one from Vagrant will already be installed on the machines and we can add it like this:
 </p>
 
-<pre class="example" id="orge6b3717">
+<pre class="example" id="orgefa2b5c">
 $ ssh-add ~/.vagrant.d/insecure_private_key
 </pre>
 
@@ -6859,7 +6859,7 @@ $ ssh-add ~/.vagrant.d/insecure_private_key
 Now SSH into one of the boxes with agent forwarding:
 </p>
 
-<pre class="example" id="org1e36dd9">
+<pre class="example" id="org3efb013">
 $ vagrant ssh core-01 -- -A
 </pre>
 
@@ -6867,7 +6867,7 @@ $ vagrant ssh core-01 -- -A
 We'll use the fleetctl tool to control our cluster. First lets see that we can see all 3 machines:
 </p>
 
-<pre class="example" id="org5ed9c9d">
+<pre class="example" id="org3c43d65">
 $ fleetctl list-machines
 MACHINE         IP              METADATA
 c313e784...     172.17.8.102    -
@@ -6880,9 +6880,9 @@ You should see something like the above. We haven't defined any metadata, but yo
 </p>
 </div>
 </div>
-<div id="outline-container-org0c9739b" class="outline-2">
-<h2 id="org0c9739b">Create A Service File</h2>
-<div class="outline-text-2" id="text-org0c9739b">
+<div id="outline-container-orgede844f" class="outline-2">
+<h2 id="orgede844f">Create A Service File</h2>
+<div class="outline-text-2" id="text-orgede844f">
 <p>
 CoreOS runs applications as Docker containers. We will be running a simple web server written in Clojure that just displays the text "Hello World". The source code is <a href="https://github.com/wtfleming/docker-compojure-hello-world">available on GitHub</a> and the Docker container is also <a href="https://registry.hub.docker.com/u/wtfleming/docker-compojure-hello-world/">published at Docker Hub</a>.
 </p>
@@ -6891,7 +6891,7 @@ CoreOS runs applications as Docker containers. We will be running a simple web s
 Ensure that you are logged onto a machine in the cluster via SSH and create a file named <i>clojure-http@.service</i>. The file format is a <a href="http://freedesktop.org/wiki/Software/systemd/">systemd</a> service file.
 </p>
 
-<pre class="example" id="org5f94e64">
+<pre class="example" id="org46ca5eb">
 [Unit]
 Description=clojure-http
 
@@ -6918,7 +6918,7 @@ This file provides the instructions about how the service should run. There are 
 Now submit the service file and check that it registered:
 </p>
 
-<pre class="example" id="orgd357f4f">
+<pre class="example" id="org94bcecd">
 $ fleetctl submit clojure-http@.service
 
 $ fleetctl list-unit-files
@@ -6931,14 +6931,14 @@ If you see the file listed we are ready to move on.
 </p>
 </div>
 </div>
-<div id="outline-container-org872ee40" class="outline-2">
-<h2 id="org872ee40">Start the Web Services</h2>
-<div class="outline-text-2" id="text-org872ee40">
+<div id="outline-container-orga10d7ad" class="outline-2">
+<h2 id="orga10d7ad">Start the Web Services</h2>
+<div class="outline-text-2" id="text-orga10d7ad">
 <p>
 We will be running 2 copies of the service, lets start them:
 </p>
 
-<pre class="example" id="org33f5494">
+<pre class="example" id="orgd26c4c2">
 $ fleetctl start clojure-http@1.service
 Unit clojure-http@1.service launched on c313e784.../172.17.8.102
 
@@ -6950,7 +6950,7 @@ Unit clojure-http@2.service launched on c3ddc4fd.../172.17.8.101
 You can check the status of running units:
 </p>
 
-<pre class="example" id="orge9c31e5">
+<pre class="example" id="orgd690789">
 $ fleetctl list-units
 UNIT                    MACHINE                         ACTIVE  SUB
 clojure-http@1.service  c313e784.../172.17.8.102        active  running
@@ -6961,7 +6961,7 @@ clojure-http@2.service  c3ddc4fd.../172.17.8.101        active  running
 You can view logs like this:
 </p>
 
-<pre class="example" id="org80f1d95">
+<pre class="example" id="org6573899">
 $ fleetctl journal clojure-http@1.service
 Dec 03 04:44:48 core-02 systemd[1]: Starting clojure-http...
 Dec 03 04:44:48 core-02 systemd[1]: Started clojure-http.
@@ -6972,7 +6972,7 @@ Dec 03 04:44:52 core-02 docker[711]: Listening on port 5000
 Finally lets view each of the pages:
 </p>
 
-<pre class="example" id="orgb636eb8">
+<pre class="example" id="org952a1aa">
 $ curl http://172.17.8.101:5000
 Hello World
 
@@ -6985,14 +6985,14 @@ Hopefully you'll have gotten output similar to above.
 </p>
 </div>
 </div>
-<div id="outline-container-org2e4146e" class="outline-2">
-<h2 id="org2e4146e">Stop the Services and Clean Up</h2>
-<div class="outline-text-2" id="text-org2e4146e">
+<div id="outline-container-orga0eda19" class="outline-2">
+<h2 id="orga0eda19">Stop the Services and Clean Up</h2>
+<div class="outline-text-2" id="text-orga0eda19">
 <p>
 Lets stop the services:
 </p>
 
-<pre class="example" id="org33dc304">
+<pre class="example" id="org5c1f2ce">
 $ fleetctl stop clojure-http@1.service
 Unit clojure-http@1.service loaded on c313e784.../172.17.8.102
 
@@ -7004,7 +7004,7 @@ Unit clojure-http@2.service loaded on c3ddc4fd.../172.17.8.101
 Notice that they have now entered a failed state, but remain listed.
 </p>
 
-<pre class="example" id="org9e028b7">
+<pre class="example" id="orgafd609d">
 $ fleetctl list-units
 UNIT                    MACHINE                         ACTIVE  SUB
 clojure-http@1.service  c313e784.../172.17.8.102        failed  failed
@@ -7015,7 +7015,7 @@ clojure-http@2.service  c3ddc4fd.../172.17.8.101        failed  failed
 We could restart them, but instead we will remove them like this:
 </p>
 
-<pre class="example" id="org10ae878">
+<pre class="example" id="org8ebddc2">
 $ fleetctl destroy clojure-http@1.service
 Destroyed clojure-http@1.service
 
@@ -7030,7 +7030,7 @@ UNIT    MACHINE ACTIVE  SUB
 Now lets remove our service file.
 </p>
 
-<pre class="example" id="org1a519ce">
+<pre class="example" id="org2775a28">
 $ fleetctl destroy clojure-http@.service
 Destroyed clojure-http@.service
 
@@ -7042,7 +7042,7 @@ UNIT    HASH    DSTATE  STATE   TARGET
 Now exit the cluster, shut it down, and clean up Vagrant.
 </p>
 
-<pre class="example" id="org63d40f6">
+<pre class="example" id="org93f283a">
 $ exit
 
 $ vagrant halt
@@ -7059,9 +7059,9 @@ And we're done!
 </p>
 </div>
 </div>
-<div id="outline-container-orgfc64c2b" class="outline-2">
-<h2 id="orgfc64c2b">Next Steps</h2>
-<div class="outline-text-2" id="text-orgfc64c2b">
+<div id="outline-container-org0ea2a97" class="outline-2">
+<h2 id="org0ea2a97">Next Steps</h2>
+<div class="outline-text-2" id="text-org0ea2a97">
 <p>
 So far we created a CoreOS cluster and ran a web server on it, but we have just barely scratched the surface of what is possible.
 </p>
@@ -7097,9 +7097,9 @@ Marcel de Graaf has also <a href="http://marceldegraaf.net/2014/04/24/experiment
 <p>
 Here we will build a very simple web site using the Clojure <a href="https://github.com/weavejester/compojure">Compojure</a> and <a href="https://www.http-kit.org/">HTTP Kit</a> libraries. The source code for this article is also available <a href="https://github.com/wtfleming/docker-compojure-hello-world">here</a>.
 </p>
-<div id="outline-container-org321d445" class="outline-2">
-<h2 id="org321d445">Create a Compojure Application</h2>
-<div class="outline-text-2" id="text-org321d445">
+<div id="outline-container-org8ec3bf8" class="outline-2">
+<h2 id="org8ec3bf8">Create a Compojure Application</h2>
+<div class="outline-text-2" id="text-org8ec3bf8">
 <p>
 First create a file named <i>project.clj</i> with the following contents:
 </p>
@@ -7145,7 +7145,7 @@ This is a very basic Compojure/HTTP Kit app with a single route that displays a 
 Now build with <a href="http://leiningen.org/">Leiningen</a>.
 </p>
 
-<pre class="example" id="orgf43fa95">
+<pre class="example" id="orgbb64e2a">
 $ lein uberjar
 </pre>
 
@@ -7153,7 +7153,7 @@ $ lein uberjar
 You could now run locally like this
 </p>
 
-<pre class="example" id="org52c986c">
+<pre class="example" id="org6e550c4">
 $ java -jar target/hello-world-0.1.0-standalone.jar
 </pre>
 
@@ -7162,14 +7162,14 @@ Browse to <a href="http://localhost:8080">http://localhost:8080</a> and you shou
 </p>
 </div>
 </div>
-<div id="outline-container-org4f93c0a" class="outline-2">
-<h2 id="org4f93c0a">Create a Dockerfile</h2>
-<div class="outline-text-2" id="text-org4f93c0a">
+<div id="outline-container-orga51ea4d" class="outline-2">
+<h2 id="orga51ea4d">Create a Dockerfile</h2>
+<div class="outline-text-2" id="text-orga51ea4d">
 <p>
 Now create a file called <i>Dockerfile</i> with these contents
 </p>
 
-<pre class="example" id="orgacdc2ad">
+<pre class="example" id="orgc149e83">
 #
 # Dockerfile for a compojure hello world app
 #
@@ -7206,14 +7206,14 @@ There is much more you can do, the <a href="https://docs.docker.com/reference/bu
 </p>
 </div>
 </div>
-<div id="outline-container-org39731bc" class="outline-2">
-<h2 id="org39731bc">Build a Docker Image</h2>
-<div class="outline-text-2" id="text-org39731bc">
+<div id="outline-container-org9f8a0e6" class="outline-2">
+<h2 id="org9f8a0e6">Build a Docker Image</h2>
+<div class="outline-text-2" id="text-org9f8a0e6">
 <p>
 Now lets build a Docker image.
 </p>
 
-<pre class="example" id="org426a544">
+<pre class="example" id="org785ae70">
 $ docker build -t wtfleming/compojure-hello-world .
 </pre>
 
@@ -7221,7 +7221,7 @@ $ docker build -t wtfleming/compojure-hello-world .
 We can see that it was built:
 </p>
 
-<pre class="example" id="orge549fad">
+<pre class="example" id="org78cb16b">
 $ docker images
 REPOSITORY                        TAG     IMAGE ID       CREATED      VIRTUAL SIZE
 wtfleming/compojure-hello-world   latest  b1c798937b9d   6 days ago   351.1 MB
@@ -7232,10 +7232,10 @@ We can use an image as the basis to launch a container.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfa9b44d" class="outline-2">
-<h2 id="orgfa9b44d">Run a Docker container</h2>
-<div class="outline-text-2" id="text-orgfa9b44d">
-<pre class="example" id="org1ad5c73">
+<div id="outline-container-orgd17a576" class="outline-2">
+<h2 id="orgd17a576">Run a Docker container</h2>
+<div class="outline-text-2" id="text-orgd17a576">
+<pre class="example" id="org03849d8">
 $ docker run --rm -p 4000:4000 wtfleming/compojure-hello-world
 Listening on port 4000
 </pre>
@@ -7258,7 +7258,7 @@ Open a web browser to <a href="http://localhost:4000">http://localhost:4000</a> 
 Browse to <a href="http://localhost:4000">http://localhost:4000</a> or if you are on a Mac or Windows using boot2docker find the ip address like
 </p>
 
-<pre class="example" id="orgf7aa91a">
+<pre class="example" id="orgb86e9ce">
 $ boot2docker ip
 The VM's Host only interface IP address is: 192.168.59.103
 </pre>
@@ -7283,9 +7283,9 @@ Recently I was investigating the geospatial capabilities of <a href="http://www.
 </p>
 
 <hr>
-<div id="outline-container-orgdbdc8e5" class="outline-2">
-<h2 id="orgdbdc8e5">Create a mapping</h2>
-<div class="outline-text-2" id="text-orgdbdc8e5">
+<div id="outline-container-orgda05ef5" class="outline-2">
+<h2 id="orgda05ef5">Create a mapping</h2>
+<div class="outline-text-2" id="text-orgda05ef5">
 <p>
 First we need to create a mapping for the geotest index. A mapping allows us to tell elasticsearch how an index is structured. In this case we expect our documents to have two fields: a user identifier, and a location (in this case we are using a 2 dimensional point to represent lat/lon).
 </p>
@@ -7307,9 +7307,9 @@ First we need to create a mapping for the geotest index. A mapping allows us to 
 </div>
 </div>
 </div>
-<div id="outline-container-org7164254" class="outline-2">
-<h2 id="org7164254">Add users to the index</h2>
-<div class="outline-text-2" id="text-org7164254">
+<div id="outline-container-org05feb1f" class="outline-2">
+<h2 id="org05feb1f">Add users to the index</h2>
+<div class="outline-text-2" id="text-org05feb1f">
 <div class="org-src-container">
 <pre class="src src-sh">curl -XPOST 'http://localhost:9200/geotest/usergeo' -d '
 {
@@ -7327,9 +7327,9 @@ curl -XPOST 'http://localhost:9200/geotest/usergeo' -d '
 </div>
 </div>
 </div>
-<div id="outline-container-org25b8d7d" class="outline-2">
-<h2 id="org25b8d7d">Run a query</h2>
-<div class="outline-text-2" id="text-org25b8d7d">
+<div id="outline-container-org429aaea" class="outline-2">
+<h2 id="org429aaea">Run a query</h2>
+<div class="outline-text-2" id="text-org429aaea">
 <p>
 Find all users located within a polygon.
 </p>
@@ -7404,9 +7404,9 @@ You should see output similar to the following. As you can see, elasticsearch on
 <item>
   <title><![CDATA[Clojure on the BeagleBone part 4 - Digital Input with ClojureScript]]></title>
   <description><![CDATA[
-<div id="outline-container-org5b6c63a" class="outline-2">
-<h2 id="org5b6c63a">Intro</h2>
-<div class="outline-text-2" id="text-org5b6c63a">
+<div id="outline-container-org3d80d0d" class="outline-2">
+<h2 id="org3d80d0d">Intro</h2>
+<div class="outline-text-2" id="text-org3d80d0d">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In <a href="/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we used the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -7419,11 +7419,11 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 </p>
 </div>
 </div>
-<div id="outline-container-org8846032" class="outline-2">
-<h2 id="org8846032">Reading from digital input via polling</h2>
-<div class="outline-text-2" id="text-org8846032">
+<div id="outline-container-org7462e93" class="outline-2">
+<h2 id="org7462e93">Reading from digital input via polling</h2>
+<div class="outline-text-2" id="text-org7462e93">
 
-<figure id="orgf465766">
+<figure id="org028b2bc">
 <img src="/images/beaglebone-cljs-digital-input-fritzing.png" alt="beaglebone-cljs-digital-input-fritzing.png">
 
 </figure>
@@ -7431,9 +7431,9 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 <hr>
 </div>
 </div>
-<div id="outline-container-orgf2da00c" class="outline-2">
-<h2 id="orgf2da00c">Wire up the LED circuit</h2>
-<div class="outline-text-2" id="text-orgf2da00c">
+<div id="outline-container-org9eeb2f2" class="outline-2">
+<h2 id="org9eeb2f2">Wire up the LED circuit</h2>
+<div class="outline-text-2" id="text-org9eeb2f2">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 1 on Header P9 (ground) on the BeagleBone to the ground rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -7445,9 +7445,9 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 <hr>
 </div>
 </div>
-<div id="outline-container-orgfb6cc04" class="outline-2">
-<h2 id="orgfb6cc04">Wire up the push button circuit</h2>
-<div class="outline-text-2" id="text-orgfb6cc04">
+<div id="outline-container-org1dfe987" class="outline-2">
+<h2 id="org1dfe987">Wire up the push button circuit</h2>
+<div class="outline-text-2" id="text-org1dfe987">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 3 on Header P9 (3.3 volts) on the BeagleBone to the positive rail on the breadboard.</li>
 <li>Place a push button in the breadboard.</li>
@@ -7465,9 +7465,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-org49bb1f2" class="outline-2">
-<h2 id="org49bb1f2">ClojureScript code</h2>
-<div class="outline-text-2" id="text-org49bb1f2">
+<div id="outline-container-orgc41e00a" class="outline-2">
+<h2 id="orgc41e00a">ClojureScript code</h2>
+<div class="outline-text-2" id="text-orgc41e00a">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>
@@ -7542,9 +7542,9 @@ When you press the push button the LED should turn on, and when you release it w
 <hr>
 </div>
 </div>
-<div id="outline-container-org98bef09" class="outline-2">
-<h2 id="org98bef09">Reading from digital input via interrupts</h2>
-<div class="outline-text-2" id="text-org98bef09">
+<div id="outline-container-org0d08f8c" class="outline-2">
+<h2 id="org0d08f8c">Reading from digital input via interrupts</h2>
+<div class="outline-text-2" id="text-org0d08f8c">
 <p>
 In the previous example we polled a pin once a millisecond to determine whether or not the push button was being pushed, an alternative is to use interrupts. We will use the same circuit that we wired up in the previous example. We now can be notified and react to an event (a button being pressed in this case) rather than continually having to check to see if something has happened. We use the [attachInterupt()][attach-interrupt] function bonescript provides.
 </p>
@@ -7641,9 +7641,9 @@ Once again, when you press the push button the LED should turn on, and when you 
 <item>
   <title><![CDATA[Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript]]></title>
   <description><![CDATA[
-<div id="outline-container-orgd4415c2" class="outline-2">
-<h2 id="orgd4415c2">Intro</h2>
-<div class="outline-text-2" id="text-orgd4415c2">
+<div id="outline-container-org5dd0659" class="outline-2">
+<h2 id="org5dd0659">Intro</h2>
+<div class="outline-text-2" id="text-org5dd0659">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In <a href="/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we used the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -7656,9 +7656,9 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 </p>
 </div>
 </div>
-<div id="outline-container-orga601d09" class="outline-2">
-<h2 id="orga601d09">Hello World with Clojurescript and node.js</h2>
-<div class="outline-text-2" id="text-orga601d09">
+<div id="outline-container-org2901aa1" class="outline-2">
+<h2 id="org2901aa1">Hello World with Clojurescript and node.js</h2>
+<div class="outline-text-2" id="text-org2901aa1">
 <p>
 First we will ensure that ClojureScript and node.js are setup. Ensure you have followed the instructions in the first part of this series to install Leiningen.
 </p>
@@ -7719,15 +7719,15 @@ You should see hello world output.
 </p>
 </div>
 </div>
-<div id="outline-container-org7c23d6e" class="outline-2">
-<h2 id="org7c23d6e">Blinking an LED</h2>
-<div class="outline-text-2" id="text-org7c23d6e">
+<div id="outline-container-org2063a81" class="outline-2">
+<h2 id="org2063a81">Blinking an LED</h2>
+<div class="outline-text-2" id="text-org2063a81">
 <p>
 This is inspired by an example from the excellent book [Getting Started With BeagleBone][beaglebone-book] by [Matt Richardson][matt-richardson].
 </p>
 
 
-<figure id="orgbc5c55f">
+<figure id="org958a3a4">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -7745,9 +7745,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-orgc1d7a5e" class="outline-2">
-<h2 id="orgc1d7a5e">Wire up the LED</h2>
-<div class="outline-text-2" id="text-orgc1d7a5e">
+<div id="outline-container-orgf19c7b6" class="outline-2">
+<h2 id="orgf19c7b6">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgf19c7b6">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -7761,9 +7761,9 @@ Now we are ready to write the code.
 </p>
 </div>
 </div>
-<div id="outline-container-org51081ea" class="outline-2">
-<h2 id="org51081ea">ClojureScript code</h2>
-<div class="outline-text-2" id="text-org51081ea">
+<div id="outline-container-org2f0369f" class="outline-2">
+<h2 id="org2f0369f">ClojureScript code</h2>
+<div class="outline-text-2" id="text-org2f0369f">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>
@@ -7856,9 +7856,9 @@ Your LED should now blink on and off every second.
 <item>
   <title><![CDATA[Clojure on the BeagleBone part 2 - Blinking an LED with Clojure]]></title>
   <description><![CDATA[
-<div id="outline-container-org8c99629" class="outline-2">
-<h2 id="org8c99629">Intro</h2>
-<div class="outline-text-2" id="text-org8c99629">
+<div id="outline-container-orga0e9e36" class="outline-2">
+<h2 id="orga0e9e36">Intro</h2>
+<div class="outline-text-2" id="text-orga0e9e36">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In part 2 we use the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -7871,7 +7871,7 @@ This is inspired by an example from the excellent book <a href="https://www.amaz
 </p>
 
 
-<figure id="org5e4aa41">
+<figure id="orgdac0936">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -7889,9 +7889,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-org91abb0d" class="outline-2">
-<h2 id="org91abb0d">Wire up the LED</h2>
-<div class="outline-text-2" id="text-org91abb0d">
+<div id="outline-container-orgb96b218" class="outline-2">
+<h2 id="orgb96b218">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgb96b218">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -7901,9 +7901,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 </ol>
 </div>
 </div>
-<div id="outline-container-orgae4d295" class="outline-2">
-<h2 id="orgae4d295">Clojure code</h2>
-<div class="outline-text-2" id="text-orgae4d295">
+<div id="outline-container-orgd70b0d4" class="outline-2">
+<h2 id="orgd70b0d4">Clojure code</h2>
+<div class="outline-text-2" id="text-orgd70b0d4">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>
@@ -7983,9 +7983,9 @@ Your LED should now blink on and off every second.
 <item>
   <title><![CDATA[Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24]]></title>
   <description><![CDATA[
-<div id="outline-container-orgad93e88" class="outline-2">
-<h2 id="orgad93e88">Intro</h2>
-<div class="outline-text-2" id="text-orgad93e88">
+<div id="outline-container-org7cf3f95" class="outline-2">
+<h2 id="org7cf3f95">Intro</h2>
+<div class="outline-text-2" id="text-org7cf3f95">
 <ul class="org-ul">
 <li>In part 1 of this series we see how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In <a href="/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we use the BeagleBone to blink an LED on a breadboard using <a href="https://clojure.org/">Clojure</a>.</li>
@@ -7998,7 +7998,7 @@ The <a href="https://beagleboard.org/black">BeagleBone</a> is a small and low co
 </p>
 
 
-<figure id="org2ac1b0f">
+<figure id="orged82f7f">
 <img src="/images/beagleboneblack.jpg" alt="beagleboneblack.jpg">
 
 </figure>
@@ -8012,9 +8012,9 @@ If you are using a different operating system or version you may need to make so
 </p>
 </div>
 </div>
-<div id="outline-container-org69c71df" class="outline-2">
-<h2 id="org69c71df">Java</h2>
-<div class="outline-text-2" id="text-org69c71df">
+<div id="outline-container-org8087b74" class="outline-2">
+<h2 id="org8087b74">Java</h2>
+<div class="outline-text-2" id="text-org8087b74">
 <p>
 I started with the <a href="https://beagleboard.org/project/java/">BeagleBone Oracle JDK instructions</a>, but needed to make some changes (for instance because I am using Debian I can use "hard float" JDK - however if you are using Angstrom Linux you may need the "soft float" version - or you may want to use Java 8 instead).
 </p>
@@ -8044,9 +8044,9 @@ You will want to store all the exports from this post in your .bashrc so you do 
 </p>
 </div>
 </div>
-<div id="outline-container-org2083f4a" class="outline-2">
-<h2 id="org2083f4a">Leiningen</h2>
-<div class="outline-text-2" id="text-org2083f4a">
+<div id="outline-container-org3b3d7c8" class="outline-2">
+<h2 id="org3b3d7c8">Leiningen</h2>
+<div class="outline-text-2" id="text-org3b3d7c8">
 <p>
 Install following the <a href="https://github.com/technomancy/leiningen">installation instructions here</a>:
 </p>
@@ -8078,9 +8078,9 @@ nil
 </div>
 </div>
 </div>
-<div id="outline-container-org20be56d" class="outline-2">
-<h2 id="org20be56d">Emacs 24.4</h2>
-<div class="outline-text-2" id="text-org20be56d">
+<div id="outline-container-org85bde02" class="outline-2">
+<h2 id="org85bde02">Emacs 24.4</h2>
+<div class="outline-text-2" id="text-org85bde02">
 <p>
 The latest version of Emacs in the Debian package list is 23, here is how to download and install 24.4. Note that generally you will be happier running Emacs on you laptop/desktop and using tramp-mode to edit files from there.
 </p>
@@ -8118,7 +8118,7 @@ I recently bought a <a href="http://processors.wiki.ti.com/index.php/MSP430_Laun
 </p>
 
 
-<figure id="orgfd7edb0">
+<figure id="orgb389f3f">
 <img src="/images/msp430-led-blink.jpg" alt="msp430-led-blink.jpg">
 
 </figure>
@@ -8155,7 +8155,7 @@ int main(void) {
 Makefile
 </p>
 
-<pre class="example" id="orga1fd441">
+<pre class="example" id="org3726511">
 CC=msp430-gcc
 CFLAGS=-Os -Wall -g -mmcu=msp430g2553
 
@@ -8175,7 +8175,7 @@ clean:
 We build, then use <a href="http://mspdebug.sourceforge.net/">mspdebug</a> to load the program onto the chip from the command line.
 </p>
 
-<pre class="example" id="orgbb2fb2f">
+<pre class="example" id="orga309b1d">
 $ make
 $ mspdebug rf2500
 (mspdebug) prog main.elf
@@ -8214,9 +8214,9 @@ We will use Cascalog to run some basic queries on the <a href="http://gaming.sta
 <p>
 Every 3 months the team at <a href="http://stackexchange.com">Stack Exchange</a> provides an <a href="https://archive.org/details/stackexchange">data dump</a> of all creative commons licensed questions and answers from network of websites (the largest of which being <a href="http://stackoverflow.com">Stack Overflow</a>.
 </p>
-<div id="outline-container-org9c67990" class="outline-3">
-<h3 id="org9c67990">Getting Started</h3>
-<div class="outline-text-3" id="text-org9c67990">
+<div id="outline-container-org842d4fb" class="outline-3">
+<h3 id="org842d4fb">Getting Started</h3>
+<div class="outline-text-3" id="text-org842d4fb">
 <p>
 The code and data for this post is available <a href="https://github.com/wtfleming/wtfleming.github.io/tree/master/code/cascalog-stack-exchange">here</a>. The relevant file is <i>queries.clj</i>.
 </p>
@@ -8225,7 +8225,7 @@ The code and data for this post is available <a href="https://github.com/wtflemi
 I encourage you to follow along in a REPL. Run the commands that begin with:
 </p>
 
-<pre class="example" id="org827b4c5">
+<pre class="example" id="org024e039">
 user=&gt;
 </pre>
 
@@ -8233,7 +8233,7 @@ user=&gt;
 Fire up a <a href="https://github.com/technomancy/leiningen">leiningen</a> REPL in the project's directory and switch to the demo namespace:
 </p>
 
-<pre class="example" id="org7a27301">
+<pre class="example" id="orgded143e">
 user=&gt; (use 'cascalog_stack_exchange.queries)
 </pre>
 
@@ -8255,9 +8255,9 @@ This provides everything we will need to run the queries.
 </p>
 </div>
 </div>
-<div id="outline-container-orge5905f7" class="outline-2">
-<h2 id="orge5905f7">Parsing the XML</h2>
-<div class="outline-text-2" id="text-orge5905f7">
+<div id="outline-container-org4e9d449" class="outline-2">
+<h2 id="org4e9d449">Parsing the XML</h2>
+<div class="outline-text-2" id="text-org4e9d449">
 <p>
 In <i>queries.clj</i> we have defined a function that will parse a line of XML representing a user, and extract the user id, display name, and reputation.
 </p>
@@ -8297,9 +8297,9 @@ and returns
 </pre>
 </div>
 </div>
-<div id="outline-container-org2845ae6" class="outline-3">
-<h3 id="org2845ae6">Querying Users</h3>
-<div class="outline-text-3" id="text-org2845ae6">
+<div id="outline-container-orgb4a9727" class="outline-3">
+<h3 id="orgb4a9727">Querying Users</h3>
+<div class="outline-text-3" id="text-orgb4a9727">
 <p>
 Our first query will iterate over all lines in the file storing user information. Extract their id, reputation score. And finally output the results to standard out.
 </p>
@@ -8321,7 +8321,7 @@ Our first query will iterate over all lines in the file storing user information
 <li>Indicate that this is a Cascalog query which will run immediately.</li>
 </ol>
 
-<pre class="example" id="org771b373">
+<pre class="example" id="org196639f">
 ?&lt;-
 </pre>
 
@@ -8329,7 +8329,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="2">Specify that the results will written to standard out. It is possible to store the output in any format and wherever you want (HDFS, a relational database, Amazon S3, etc.). But for simplicity we will just be using stdout in these examples.</li>
 </ol>
 
-<pre class="example" id="orgcf35443">
+<pre class="example" id="org57a689b">
 (stdout)
 </pre>
 
@@ -8337,7 +8337,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="3">Tell Cascalog that we want to output the <i>?id</i> <i>?reputation?</i> and <i>?display-name</i> variables.</li>
 </ol>
 
-<pre class="example" id="org52c415d">
+<pre class="example" id="org434b9d8">
 [?id ?reputation ?display-name]
 </pre>
 
@@ -8345,7 +8345,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="4">We earlier defined <i>file-tap</i> as a generator for each line of text in the file <i>data/users.xml</i>. We put each of them in <i>?line</i> variable.</li>
 </ol>
 
-<pre class="example" id="org16a1c1c">
+<pre class="example" id="org612525c">
 (file-tap ?line)
 </pre>
 
@@ -8353,7 +8353,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="5">Parse each line and use the :&gt; keyword to bind them to the variables <i>?id</i>, <i>?display-name</i>, and <i>?reputation</i>.</li>
 </ol>
 
-<pre class="example" id="org8e58296">
+<pre class="example" id="orgf35d3a5">
 (user-xml-parser ?line :&gt; ?id ?display-name ?reputation)
 </pre>
 
@@ -8361,7 +8361,7 @@ Our first query will iterate over all lines in the file storing user information
 Now lets run the query, and look at the output:
 </p>
 
-<pre class="example" id="org69be1cb">
+<pre class="example" id="orgee91cf0">
 user=&gt; (user-query)
 RESULTS
 -----------------------
@@ -8372,9 +8372,9 @@ RESULTS
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd7381ee" class="outline-3">
-<h3 id="orgd7381ee">Query with a filter</h3>
-<div class="outline-text-3" id="text-orgd7381ee">
+<div id="outline-container-org1c44f54" class="outline-3">
+<h3 id="org1c44f54">Query with a filter</h3>
+<div class="outline-text-3" id="text-org1c44f54">
 <p>
 We will now run a similar query, but this time we want to only include users with more than 200 reputation.
 </p>
@@ -8397,7 +8397,7 @@ We will now run a similar query, but this time we want to only include users wit
 Running gives us:
 </p>
 
-<pre class="example" id="orge351d31">
+<pre class="example" id="org72af502">
 user=&gt; (user-minimum-reputation-query)
 RESULTS
 -----------------------
@@ -8407,9 +8407,9 @@ Jin     238
 </pre>
 </div>
 </div>
-<div id="outline-container-orga38cc32" class="outline-3">
-<h3 id="orga38cc32">Counting with built in operations</h3>
-<div class="outline-text-3" id="text-orga38cc32">
+<div id="outline-container-orgce787a0" class="outline-3">
+<h3 id="orgce787a0">Counting with built in operations</h3>
+<div class="outline-text-3" id="text-orgce787a0">
 <p>
 Cascalog provides a number of <a href="https://github.com/nathanmarz/cascalog/wiki/Built-in-operations">built in operations</a>. Here we want to know the total number of users with a reputation greater than 200.
 </p>
@@ -8433,7 +8433,7 @@ Cascalog provides a number of <a href="https://github.com/nathanmarz/cascalog/wi
 Everything looks good:
 </p>
 
-<pre class="example" id="orga188aa2">
+<pre class="example" id="orgb1474a8">
 user=&gt; (user-minimum-reputation-count-query)
 RESULTS
 -----------------------
@@ -8442,9 +8442,9 @@ RESULTS
 </pre>
 </div>
 </div>
-<div id="outline-container-org10c02e4" class="outline-3">
-<h3 id="org10c02e4">Querying Posts</h3>
-<div class="outline-text-3" id="text-org10c02e4">
+<div id="outline-container-orga4382cd" class="outline-3">
+<h3 id="orga4382cd">Querying Posts</h3>
+<div class="outline-text-3" id="text-orga4382cd">
 <p>
 Once again we need to define a function to parse XML, this time for a post (a question or answer).
 </p>
@@ -8485,7 +8485,7 @@ Variables beginning with ! are nullable and will not be filtered out. Here we ar
 Running the query this is what we should see:
 </p>
 
-<pre class="example" id="org7e5e493">
+<pre class="example" id="org894b95b">
 user=&gt; (post-query)
 RESULTS
 -----------------------
@@ -8498,9 +8498,9 @@ RESULTS
 -----------------------
 </pre>
 </div>
-<div id="outline-container-orgdcac820" class="outline-4">
-<h4 id="orgdcac820">Aggregating Tags</h4>
-<div class="outline-text-4" id="text-orgdcac820">
+<div id="outline-container-org52ccab1" class="outline-4">
+<h4 id="org52ccab1">Aggregating Tags</h4>
+<div class="outline-text-4" id="text-org52ccab1">
 <p>
 If we wanted to see all the tags used by each user we can run a query like this.
 </p>
@@ -8528,7 +8528,7 @@ If we wanted to see all the tags used by each user we can run a query like this.
 Which will output:
 </p>
 
-<pre class="example" id="orgdbc1b2d">
+<pre class="example" id="orgec2be1a">
 user=&gt; (post-aggregate-query)
 RESULTS
 -----------------------
@@ -8539,9 +8539,9 @@ RESULTS
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc7859af" class="outline-4">
-<h4 id="orgc7859af">Joining users and posts</h4>
-<div class="outline-text-4" id="text-orgc7859af">
+<div id="outline-container-orge8139a4" class="outline-4">
+<h4 id="orge8139a4">Joining users and posts</h4>
+<div class="outline-text-4" id="text-orge8139a4">
 <p>
 We will now combine what we have learnt to create a query that will output the display name and list of tags used by users with more than 200 reputation.
 </p>
@@ -8586,7 +8586,7 @@ In the following code posts-line and users-line are from two different sources o
 We can now run the query, and everything looks good:
 </p>
 
-<pre class="example" id="org2469f72">
+<pre class="example" id="org46d78d2">
 user=&gt; (user-tags-join-query)
 RESULTS
 -----------------------

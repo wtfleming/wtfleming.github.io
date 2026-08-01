@@ -20,9 +20,9 @@
 </div>
 <div id="content">
 <div class="post-date">27 May 2015</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/adventures-with-core-async-part-two-parking-timeouts-alt/">Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!</a></h1>
-<div id="outline-container-org86efb56" class="outline-2">
-<h2 id="org86efb56">Introduction</h2>
-<div class="outline-text-2" id="text-org86efb56">
+<div id="outline-container-org578526e" class="outline-2">
+<h2 id="org578526e">Introduction</h2>
+<div class="outline-text-2" id="text-org578526e">
 <ul class="org-ul">
 <li>In <a href="/blog/adventures-with-core-async-part-one-channels-messages/">part 1</a> of this series we looked at the basics of core.async via channels and messages.</li>
 <li>In part 2 we will explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
@@ -33,9 +33,9 @@ We will be using the example of a web site that wants to display weather informa
 </p>
 </div>
 </div>
-<div id="outline-container-org760aca9" class="outline-2">
-<h2 id="org760aca9">Helper Function</h2>
-<div class="outline-text-2" id="text-org760aca9">
+<div id="outline-container-org1500894" class="outline-2">
+<h2 id="org1500894">Helper Function</h2>
+<div class="outline-text-2" id="text-org1500894">
 <p>
 First we define a function that will be used repeatedly in the examples.
 </p>
@@ -53,9 +53,9 @@ It modifies DOM elements using the Google Closure Library.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf54393" class="outline-2">
-<h2 id="orgdf54393">Working with Timeouts</h2>
-<div class="outline-text-2" id="text-orgdf54393">
+<div id="outline-container-org8dcc992" class="outline-2">
+<h2 id="org8dcc992">Working with Timeouts</h2>
+<div class="outline-text-2" id="text-org8dcc992">
 <p>
 Let say that when a button is clicked we want to wait a second before continuing. Click the button below to see it in action.
 </p>
@@ -75,7 +75,7 @@ The steps taken look like this:
 </p>
 
 
-<figure id="org117e919">
+<figure id="orge62c731">
 <img src="/images/core-async-part-two/timeout.png" alt="timeout.png">
 
 </figure>
@@ -121,9 +121,9 @@ When the button is clicked we can wait for 1 second and then make a DOM change l
 </p>
 </div>
 </div>
-<div id="outline-container-org98dd9d0" class="outline-2">
-<h2 id="org98dd9d0">Mock API Call Functions</h2>
-<div class="outline-text-2" id="text-org98dd9d0">
+<div id="outline-container-orgef8a4ea" class="outline-2">
+<h2 id="orgef8a4ea">Mock API Call Functions</h2>
+<div class="outline-text-2" id="text-orgef8a4ea">
 <p>
 The remaining examples will use these functions to simulate calling out to a couple APIs.
 </p>
@@ -149,15 +149,15 @@ They take a random amount of time (up to 1.5 seconds) to return results. Note th
 </p>
 </div>
 </div>
-<div id="outline-container-org20faef5" class="outline-2">
-<h2 id="org20faef5">Working with Multiple Channels via Parking</h2>
-<div class="outline-text-2" id="text-org20faef5">
+<div id="outline-container-org50efb8c" class="outline-2">
+<h2 id="org50efb8c">Working with Multiple Channels via Parking</h2>
+<div class="outline-text-2" id="text-org50efb8c">
 <p>
 In this example we will demonstrate calling out to two APIs, waiting for both to return results, and then display both of them.
 </p>
 
 
-<figure id="orgaf6da4e">
+<figure id="org08df76f">
 <img src="/images/core-async-part-two/parking.png" alt="parking.png">
 
 </figure>
@@ -190,9 +190,9 @@ Under the hood the go block will transform its body to a state machine and wait 
 </p>
 </div>
 </div>
-<div id="outline-container-orgedde67f" class="outline-2">
-<h2 id="orgedde67f">Working with Multiple Channels via alts!</h2>
-<div class="outline-text-2" id="text-orgedde67f">
+<div id="outline-container-orgd32241d" class="outline-2">
+<h2 id="orgd32241d">Working with Multiple Channels via alts!</h2>
+<div class="outline-text-2" id="text-orgd32241d">
 <p>
 In this example we will demonstrate calling out to two APIs, return results from the one that finishes the fastest, and then display it.
 </p>
@@ -202,7 +202,7 @@ Since these are both weather services, in all likelihood they will return simila
 </p>
 
 
-<figure id="orgf0ce57d">
+<figure id="orga903714">
 <img src="/images/core-async-part-two/alts.png" alt="alts.png">
 
 </figure>

@@ -27,7 +27,7 @@ I recently bought a <a href="http://processors.wiki.ti.com/index.php/MSP430_Laun
 </p>
 
 
-<figure id="orgfd7edb0">
+<figure id="orgb389f3f">
 <img src="/images/msp430-led-blink.jpg" alt="msp430-led-blink.jpg">
 
 </figure>
@@ -64,7 +64,7 @@ int main(void) {
 Makefile
 </p>
 
-<pre class="example" id="orga1fd441">
+<pre class="example" id="org3726511">
 CC=msp430-gcc
 CFLAGS=-Os -Wall -g -mmcu=msp430g2553
 
@@ -84,7 +84,7 @@ clean:
 We build, then use <a href="http://mspdebug.sourceforge.net/">mspdebug</a> to load the program onto the chip from the command line.
 </p>
 
-<pre class="example" id="orgbb2fb2f">
+<pre class="example" id="orga309b1d">
 $ make
 $ mspdebug rf2500
 (mspdebug) prog main.elf

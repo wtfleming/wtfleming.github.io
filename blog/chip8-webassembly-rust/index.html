@@ -25,7 +25,7 @@ Lately I have been working on an emulator for the <a href="https://en.wikipedia.
 </p>
 
 
-<figure id="org72c2a5b">
+<figure id="org8cac553">
 <img src="/images/rust-chip8/chip8.png" alt="chip8.png">
 
 </figure>
@@ -45,9 +45,9 @@ I've always wanted to write an emulator for an older hardware like the Nintendo 
 <p>
 A few references I found useful to get started are this <a href="http://www.multigesture.net/articles/how-to-write-an-emulator-chip-8-interpreter/">post by Laurence Muller</a>, <a href="http://devernay.free.fr/hacks/chip8/C8TECH10.HTM">Cowgod's Chip-8 Technical Reference</a>, and this <a href="https://blog.scottlogic.com/2017/12/13/chip8-emulator-webassembly-rust.html">post by Colin Eberhardt</a>. If you want to create your own emulator I highly recommend taking a look at the above pages.
 </p>
-<div id="outline-container-orgc4d322c" class="outline-2">
-<h2 id="orgc4d322c">Implementation</h2>
-<div class="outline-text-2" id="text-orgc4d322c">
+<div id="outline-container-org3e0b9a3" class="outline-2">
+<h2 id="org3e0b9a3">Implementation</h2>
+<div class="outline-text-2" id="text-org3e0b9a3">
 <p>
 I won't go too deep into implementations details here, but if you want to know more the <a href="https://github.com/wtfleming/chip-8-rust-wasm">source code is available</a>. I represented the CPU in Rust like this:
 </p>
@@ -78,9 +78,9 @@ I won't go too deep into implementations details here, but if you want to know m
 </pre>
 </div>
 </div>
-<div id="outline-container-org8273c81" class="outline-3">
-<h3 id="org8273c81">Memory</h3>
-<div class="outline-text-3" id="text-org8273c81">
+<div id="outline-container-org1170da9" class="outline-3">
+<h3 id="org1170da9">Memory</h3>
+<div class="outline-text-3" id="text-org1170da9">
 <p>
 The system's memory map looks like:
 </p>
@@ -96,9 +96,9 @@ One of the first things you will need to do is load the program into memory star
 </p>
 </div>
 </div>
-<div id="outline-container-org25623ee" class="outline-3">
-<h3 id="org25623ee">Opcodes</h3>
-<div class="outline-text-3" id="text-org25623ee">
+<div id="outline-container-org10e0d32" class="outline-3">
+<h3 id="org10e0d32">Opcodes</h3>
+<div class="outline-text-3" id="text-org10e0d32">
 <p>
 The CHIP-8 has <a href="http://en.wikipedia.org/wiki/CHIP-8#Opcode_table">35 opcodes</a> you will need to handle, all of which are two bytes long. First you need to extract the opcode, since memory elements are 8 bits and an opcode is 16 bits, we need to fetch two locations from memory and do some bit shifting to get a <code>u16</code> opcode.
 </p>
@@ -150,9 +150,9 @@ Thanks to Rust's support for pattern matching over ranges, handling each opcode 
 </div>
 </div>
 </div>
-<div id="outline-container-org2c1e2f6" class="outline-3">
-<h3 id="org2c1e2f6">Handling keyboard input in JavaScript</h3>
-<div class="outline-text-3" id="text-org2c1e2f6">
+<div id="outline-container-org038faa1" class="outline-3">
+<h3 id="org038faa1">Handling keyboard input in JavaScript</h3>
+<div class="outline-text-3" id="text-org038faa1">
 <p>
 Running the emulator and communicating between JavaScript and WebAssembly is easy thanks to the Rust <a href="https://rustwasm.github.io/docs/wasm-pack/">wasm-pack</a> tool.
 </p>
@@ -228,9 +228,9 @@ const keyMap = {
 </div>
 </div>
 </div>
-<div id="outline-container-orgd78a560" class="outline-3">
-<h3 id="orgd78a560">Running the emulator</h3>
-<div class="outline-text-3" id="text-orgd78a560">
+<div id="outline-container-orgacfaed3" class="outline-3">
+<h3 id="orgacfaed3">Running the emulator</h3>
+<div class="outline-text-3" id="text-orgacfaed3">
 <p>
 We use <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame">window.requestAnimationFrame()</a> to run 9 cycles on the cpu 60 times per second, then update the HTML canvas display and the UI. We run 9 cycles because the CHIP-8 seems to run at about 500hz, and calling 9 cycles 60 times per second gets us to 540 hZ, which is close enough for this project.
 </p>
@@ -239,7 +239,7 @@ We use <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestA
 Note that with <code>window.requestAnimationFrame()</code>
 </p>
 
-<pre class="example" id="orgf1014bf">
+<pre class="example" id="org0281641">
 The number of callbacks is usually 60 times per second
 but will generally match the display refresh rate in most web
 browsers as per W3C recommendation.

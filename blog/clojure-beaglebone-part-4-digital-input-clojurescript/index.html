@@ -20,9 +20,9 @@
 </div>
 <div id="content">
 <div class="post-date">23 Oct 2014</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-4-digital-input-clojurescript/">Clojure on the BeagleBone part 4 - Digital Input with ClojureScript</a></h1>
-<div id="outline-container-org5b6c63a" class="outline-2">
-<h2 id="org5b6c63a">Intro</h2>
-<div class="outline-text-2" id="text-org5b6c63a">
+<div id="outline-container-org3d80d0d" class="outline-2">
+<h2 id="org3d80d0d">Intro</h2>
+<div class="outline-text-2" id="text-org3d80d0d">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In <a href="/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we used the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -35,11 +35,11 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 </p>
 </div>
 </div>
-<div id="outline-container-org8846032" class="outline-2">
-<h2 id="org8846032">Reading from digital input via polling</h2>
-<div class="outline-text-2" id="text-org8846032">
+<div id="outline-container-org7462e93" class="outline-2">
+<h2 id="org7462e93">Reading from digital input via polling</h2>
+<div class="outline-text-2" id="text-org7462e93">
 
-<figure id="orgf465766">
+<figure id="org028b2bc">
 <img src="/images/beaglebone-cljs-digital-input-fritzing.png" alt="beaglebone-cljs-digital-input-fritzing.png">
 
 </figure>
@@ -47,9 +47,9 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 <hr>
 </div>
 </div>
-<div id="outline-container-orgf2da00c" class="outline-2">
-<h2 id="orgf2da00c">Wire up the LED circuit</h2>
-<div class="outline-text-2" id="text-orgf2da00c">
+<div id="outline-container-org9eeb2f2" class="outline-2">
+<h2 id="org9eeb2f2">Wire up the LED circuit</h2>
+<div class="outline-text-2" id="text-org9eeb2f2">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 1 on Header P9 (ground) on the BeagleBone to the ground rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -61,9 +61,9 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 <hr>
 </div>
 </div>
-<div id="outline-container-orgfb6cc04" class="outline-2">
-<h2 id="orgfb6cc04">Wire up the push button circuit</h2>
-<div class="outline-text-2" id="text-orgfb6cc04">
+<div id="outline-container-org1dfe987" class="outline-2">
+<h2 id="org1dfe987">Wire up the push button circuit</h2>
+<div class="outline-text-2" id="text-org1dfe987">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 3 on Header P9 (3.3 volts) on the BeagleBone to the positive rail on the breadboard.</li>
 <li>Place a push button in the breadboard.</li>
@@ -81,9 +81,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-org49bb1f2" class="outline-2">
-<h2 id="org49bb1f2">ClojureScript code</h2>
-<div class="outline-text-2" id="text-org49bb1f2">
+<div id="outline-container-orgc41e00a" class="outline-2">
+<h2 id="orgc41e00a">ClojureScript code</h2>
+<div class="outline-text-2" id="text-orgc41e00a">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>
@@ -158,9 +158,9 @@ When you press the push button the LED should turn on, and when you release it w
 <hr>
 </div>
 </div>
-<div id="outline-container-org98bef09" class="outline-2">
-<h2 id="org98bef09">Reading from digital input via interrupts</h2>
-<div class="outline-text-2" id="text-org98bef09">
+<div id="outline-container-org0d08f8c" class="outline-2">
+<h2 id="org0d08f8c">Reading from digital input via interrupts</h2>
+<div class="outline-text-2" id="text-org0d08f8c">
 <p>
 In the previous example we polled a pin once a millisecond to determine whether or not the push button was being pushed, an alternative is to use interrupts. We will use the same circuit that we wired up in the previous example. We now can be notified and react to an event (a button being pressed in this case) rather than continually having to check to see if something has happened. We use the [attachInterupt()][attach-interrupt] function bonescript provides.
 </p>

@@ -20,9 +20,9 @@
 </div>
 <div id="content">
 <div class="post-date">14 Jan 2015</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/kafka-clojure-producer-consumer/">Writing a Kafka Producer and High Level Consumer in Clojure</a></h1>
-<div id="outline-container-org89413c4" class="outline-2">
-<h2 id="org89413c4">Introduction</h2>
-<div class="outline-text-2" id="text-org89413c4">
+<div id="outline-container-orgf898e08" class="outline-2">
+<h2 id="orgf898e08">Introduction</h2>
+<div class="outline-text-2" id="text-orgf898e08">
 <p>
 Kafka is a platform for handling real-time data feeds. In some ways it is like a database that exposes semantics of a messaging system.
 </p>
@@ -31,7 +31,7 @@ Kafka is a platform for handling real-time data feeds. In some ways it is like a
 The <a href="https://kafka.apache.org/documentation.html">Kafka documentation</a> provides an excellent overview which I have provided an extract from:
 </p>
 
-<pre class="example" id="org2d6e904">
+<pre class="example" id="org4ae9ad5">
 Kafka is a distributed, partitioned, replicated commit log service. It provides the
 functionality of a messaging system, but with a unique design.
 
@@ -52,9 +52,9 @@ The source code for this project is <a href="https://github.com/wtfleming/clojur
 </p>
 </div>
 </div>
-<div id="outline-container-orgc3156c2" class="outline-2">
-<h2 id="orgc3156c2">Create a Project</h2>
-<div class="outline-text-2" id="text-orgc3156c2">
+<div id="outline-container-orgcf59b51" class="outline-2">
+<h2 id="orgcf59b51">Create a Project</h2>
+<div class="outline-text-2" id="text-orgcf59b51">
 <p>
 We'll be using <a href="http://leiningen.org/">Leiningen</a> to build and run our app.
 </p>
@@ -93,9 +93,9 @@ Next create a file /src/hello<sub>world</sub><sub>kafka</sub>/core.clj with thes
 </div>
 </div>
 </div>
-<div id="outline-container-org6170ce3" class="outline-2">
-<h2 id="org6170ce3">Producer Code</h2>
-<div class="outline-text-2" id="text-org6170ce3">
+<div id="outline-container-org9316909" class="outline-2">
+<h2 id="org9316909">Producer Code</h2>
+<div class="outline-text-2" id="text-org9316909">
 <div class="org-src-container">
 <pre class="src src-clojure">(defn- create-producer
   "Creates a producer that can be used to send a message to Kafka"
@@ -120,9 +120,9 @@ Creating a producer and sending a message is pretty straightforward. Call the cr
 </p>
 </div>
 </div>
-<div id="outline-container-org5597087" class="outline-2">
-<h2 id="org5597087">Consumer Code</h2>
-<div class="outline-text-2" id="text-org5597087">
+<div id="outline-container-org57a1d80" class="outline-2">
+<h2 id="org57a1d80">Consumer Code</h2>
+<div class="outline-text-2" id="text-org57a1d80">
 <div class="org-src-container">
 <pre class="src src-clojure">(defrecord KafkaMessage [topic offset partition key value-bytes])
 
@@ -175,9 +175,9 @@ A few things to take note of:
 </ul>
 </div>
 </div>
-<div id="outline-container-org160ffdd" class="outline-2">
-<h2 id="org160ffdd">Application code</h2>
-<div class="outline-text-2" id="text-org160ffdd">
+<div id="outline-container-org5c62581" class="outline-2">
+<h2 id="org5c62581">Application code</h2>
+<div class="outline-text-2" id="text-org5c62581">
 <div class="org-src-container">
 <pre class="src src-clojure">(defn -main
   "Pull messages from a Kafka topic using the High Level Consumer"
@@ -214,7 +214,7 @@ The above code sets up our thread pools, creates and starts some consumers, and 
 Running from the command line expects arguments like this:
 </p>
 
-<pre class="example" id="orgad647a8">
+<pre class="example" id="org697294a">
 $ lein trampoline run &lt;topic&gt; &lt;num consumer threads&gt;
 </pre>
 
@@ -226,7 +226,7 @@ We use lein trampoline so we can catch a SIGTERM or Control-C and clean up prior
 If we want to send and read messages from a topic called random<sub>numbers</sub> and use 2 threads for the consumers we can start the app like this:
 </p>
 
-<pre class="example" id="org1a71865">
+<pre class="example" id="org12a4c61">
 $ lein trampoline run random_numbers 2
 </pre>
 
@@ -234,7 +234,7 @@ $ lein trampoline run random_numbers 2
 You should see output that looks something like this:
 </p>
 
-<pre class="example" id="orgd2f2c3d">
+<pre class="example" id="orgb2c1c88">
 Starting thread 0
 Starting thread 1
 Sending to Kafka topic random_numbers: 753

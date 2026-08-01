@@ -33,14 +33,14 @@ The final result will look like this:
 </p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QR_su_rn74A" frameborder="0" allowfullscreen></iframe>
-<div id="outline-container-orgc073175" class="outline-2">
-<h2 id="orgc073175">Elixir programming language</h2>
-<div class="outline-text-2" id="text-orgc073175">
+<div id="outline-container-orgc9dbb75" class="outline-2">
+<h2 id="orgc9dbb75">Elixir programming language</h2>
+<div class="outline-text-2" id="text-orgc9dbb75">
 <p>
 <a href="http://elixir-lang.org/">Elixir</a> describes itself:
 </p>
 
-<pre class="example" id="org4f0cf08">
+<pre class="example" id="org60c3bc1">
 Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications.
 
@@ -64,15 +64,15 @@ So far it has been an absolute joy to use.
 </p>
 </div>
 </div>
-<div id="outline-container-org8df1f1f" class="outline-2">
-<h2 id="org8df1f1f">BeagleBone Black</h2>
-<div class="outline-text-2" id="text-org8df1f1f">
+<div id="outline-container-org8bc95a0" class="outline-2">
+<h2 id="org8bc95a0">BeagleBone Black</h2>
+<div class="outline-text-2" id="text-org8bc95a0">
 <p>
 The <a href="http://beagleboard.org/Products/BeagleBone+Black">BeagleBone Black</a> is a small and relatively low cost 1Ghz ARM board with 512Mb of RAM capable of running Linux. It is similar to a Raspberry Pi (and most of the information here will be applicable to a Pi as well).
 </p>
 
 
-<figure id="orgb980eb4">
+<figure id="org2181eda">
 <img src="/images/beagleboneblack.jpg" alt="beagleboneblack.jpg">
 
 </figure>
@@ -96,9 +96,9 @@ Now lets install the software dependencies.
 </p>
 </div>
 </div>
-<div id="outline-container-org663f892" class="outline-2">
-<h2 id="org663f892">Install Erlang and Elixir</h2>
-<div class="outline-text-2" id="text-org663f892">
+<div id="outline-container-orgfc5af6a" class="outline-2">
+<h2 id="orgfc5af6a">Install Erlang and Elixir</h2>
+<div class="outline-text-2" id="text-orgfc5af6a">
 <p>
 Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.
 </p>
@@ -156,11 +156,11 @@ We're now ready to explore GPIO (general purpose I/O) on the BeagleBone.
 </p>
 </div>
 </div>
-<div id="outline-container-org7201d5f" class="outline-2">
-<h2 id="org7201d5f">Wire up the LED</h2>
-<div class="outline-text-2" id="text-org7201d5f">
+<div id="outline-container-orgeec6b23" class="outline-2">
+<h2 id="orgeec6b23">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgeec6b23">
 
-<figure id="org62a0db7">
+<figure id="orga4a926b">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -186,14 +186,14 @@ Once wired up we can proceed.
 </p>
 </div>
 </div>
-<div id="outline-container-org760d6dd" class="outline-2">
-<h2 id="org760d6dd">Turn an LED on and off on the command line</h2>
-<div class="outline-text-2" id="text-org760d6dd">
+<div id="outline-container-org1378a68" class="outline-2">
+<h2 id="org1378a68">Turn an LED on and off on the command line</h2>
+<div class="outline-text-2" id="text-org1378a68">
 <p>
 In this example we'll be using the built in <a href="https://en.wikipedia.org/wiki/Sysfs">sysfs</a> to control the GPIO pins. Wikipedia describes it:
 </p>
 
-<pre class="example" id="org1898c7e">
+<pre class="example" id="orgafd3423">
 sysfs is a virtual file system provided by the Linux kernel that exports information
 about various kernel subsystems, hardware devices, and associated device drivers
 from the kernel's device model to user space through virtual files. In addition to
@@ -248,9 +248,9 @@ Now lets make a module.
 </p>
 </div>
 </div>
-<div id="outline-container-org6d71b33" class="outline-2">
-<h2 id="org6d71b33">Elixir Code</h2>
-<div class="outline-text-2" id="text-org6d71b33">
+<div id="outline-container-org3605a41" class="outline-2">
+<h2 id="org3605a41">Elixir Code</h2>
+<div class="outline-text-2" id="text-org3605a41">
 <p>
 On your BeagleBone create a file called blink-led.ex with the following contents:
 </p>

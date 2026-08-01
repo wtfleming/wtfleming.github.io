@@ -39,9 +39,9 @@ In <a href="/blog/pytorch-cats-vs-dogs-part-3/">part 3</a> we'll switch gears an
 <p>
 The code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-1.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 </p>
-<div id="outline-container-orgdef38b4" class="outline-2">
-<h2 id="orgdef38b4">Build the first network</h2>
-<div class="outline-text-2" id="text-orgdef38b4">
+<div id="outline-container-orge85d4d4" class="outline-2">
+<h2 id="orge85d4d4">Build the first network</h2>
+<div class="outline-text-2" id="text-orge85d4d4">
 <p>
 We'll use the Keras sequential API to build a pretty straightforward network that consists of a number of Conv2D and pooling layers with a dense network at the end that makes the cat or dog prediction.
 </p>
@@ -94,7 +94,7 @@ validation_generator = test_datagen.flow_from_directory(
 </pre>
 </div>
 
-<pre class="example" id="orga479e17">
+<pre class="example" id="org8deb535">
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 </pre>
@@ -113,7 +113,7 @@ Now lets fit the network for 30 epochs.
 </pre>
 </div>
 
-<pre class="example" id="orgf8ad913">
+<pre class="example" id="org5ee29f7">
 Epoch 1/30
 320/320 [==============================] - 48s 150ms/step - loss: 0.6070 - acc: 0.6579 - val_loss: 0.5263 - val_acc: 0.7413
 Epoch 2/30
@@ -132,7 +132,7 @@ Plotting the results (code to generate the graphs is available in the <a href="h
 </p>
 
 
-<figure id="orga9366f7">
+<figure id="orgf9f3d5b">
 <img src="/images/dogs-vs-cats-part-one/first-model-accuracy-loss.png" alt="first-model-accuracy-loss.png">
 
 </figure>
@@ -153,7 +153,7 @@ print('test acc:', test_acc)
 </pre>
 </div>
 
-<pre class="example" id="org721bd9a">
+<pre class="example" id="org58f4bbf">
 Found 4500 images belonging to 2 classes.
 test acc: 0.8406666629844242
 </pre>
@@ -163,9 +163,9 @@ On one hand this isn't horrible, a baseline where we pick dog every time would h
 </p>
 </div>
 </div>
-<div id="outline-container-org255e518" class="outline-2">
-<h2 id="org255e518">Add Dropout</h2>
-<div class="outline-text-2" id="text-org255e518">
+<div id="outline-container-org5b547c0" class="outline-2">
+<h2 id="org5b547c0">Add Dropout</h2>
+<div class="outline-text-2" id="text-org5b547c0">
 <p>
 We can add dropout to regularize the model. Adding dropout randomly removes a percentage of neurons (sets their value to 0) at each update during training time, which helps prevent overfitting. By randomly throwing out data this will help to prevent the network from becoming too smart and essentially memorizing the training data, and thereby generalize to new data better.
 </p>
@@ -197,7 +197,7 @@ model.compile(loss='binary_crossentropy',
 How does this model perform?
 </p>
 
-<pre class="example" id="orgf5ceffe">
+<pre class="example" id="org9cfd866">
 Epoch 1/30
 320/320 [==============================] - 46s 145ms/step - loss: 0.6166 - acc: 0.6449 - val_loss: 0.5348 - val_acc: 0.7378
 Epoch 2/30
@@ -212,7 +212,7 @@ Epoch 30/30
 </pre>
 
 
-<figure id="orgf2b2f61">
+<figure id="org1928b8b">
 <img src="/images/dogs-vs-cats-part-one/first-model-accuracy-loss-add-dropout.png" alt="first-model-accuracy-loss-add-dropout.png">
 
 </figure>
@@ -222,9 +222,9 @@ We still seem to be overfitting, but not as badly. We've also increase validatio
 </p>
 </div>
 </div>
-<div id="outline-container-orgb411014" class="outline-2">
-<h2 id="orgb411014">Add Data Augmentation</h2>
-<div class="outline-text-2" id="text-orgb411014">
+<div id="outline-container-org38b5bfe" class="outline-2">
+<h2 id="org38b5bfe">Add Data Augmentation</h2>
+<div class="outline-text-2" id="text-org38b5bfe">
 <p>
 Keras includes an <a href="https://keras.io/preprocessing/image/">ImageDataGenerator</a> class which lets us generate a number of random transformations on an image. Since we're only training on 16,000 images, we can use this to create "new" images to help the network learn. There are limits to how much this can help, but in this case we will get a decent accuracy boost.
 </p>
@@ -270,7 +270,7 @@ plt.show()
 </div>
 
 
-<figure id="org86da9fc">
+<figure id="org47a62b4">
 <img src="/images/dogs-vs-cats-part-one/image-augmentation.png" alt="image-augmentation.png">
 
 </figure>
@@ -305,7 +305,7 @@ validation_generator = test_datagen.flow_from_directory(
 </pre>
 </div>
 
-<pre class="example" id="org027d0ab">
+<pre class="example" id="org25f94c1">
 Found 16000 images belonging to 2 classes.
 Found 4500 images belonging to 2 classes.
 </pre>
@@ -324,7 +324,7 @@ And then increase the steps per epoch 3x so that we are training on 48,000 image
 </pre>
 </div>
 
-<pre class="example" id="org3e7e363">
+<pre class="example" id="org440fe06">
 Epoch 1/30
 960/960 [==============================] - 411s 429ms/step - loss: 0.6202 - acc: 0.6428 - val_loss: 0.5285 - val_acc: 0.7413
 Epoch 2/30
@@ -339,7 +339,7 @@ Epoch 30/30
 </pre>
 
 
-<figure id="org622971f">
+<figure id="org8393ddd">
 <img src="/images/dogs-vs-cats-part-one/add-data-augmentation.png" alt="add-data-augmentation.png">
 
 </figure>
@@ -360,7 +360,7 @@ print('test acc:', test_acc)
 </pre>
 </div>
 
-<pre class="example" id="org5adef92">
+<pre class="example" id="org7b43325">
 Found 4500 images belonging to 2 classes.
 test acc: 0.928444442484114
 </pre>

@@ -25,9 +25,9 @@ Recently I was investigating the geospatial capabilities of <a href="http://www.
 </p>
 
 <hr>
-<div id="outline-container-orgdbdc8e5" class="outline-2">
-<h2 id="orgdbdc8e5">Create a mapping</h2>
-<div class="outline-text-2" id="text-orgdbdc8e5">
+<div id="outline-container-orgda05ef5" class="outline-2">
+<h2 id="orgda05ef5">Create a mapping</h2>
+<div class="outline-text-2" id="text-orgda05ef5">
 <p>
 First we need to create a mapping for the geotest index. A mapping allows us to tell elasticsearch how an index is structured. In this case we expect our documents to have two fields: a user identifier, and a location (in this case we are using a 2 dimensional point to represent lat/lon).
 </p>
@@ -49,9 +49,9 @@ First we need to create a mapping for the geotest index. A mapping allows us to 
 </div>
 </div>
 </div>
-<div id="outline-container-org7164254" class="outline-2">
-<h2 id="org7164254">Add users to the index</h2>
-<div class="outline-text-2" id="text-org7164254">
+<div id="outline-container-org05feb1f" class="outline-2">
+<h2 id="org05feb1f">Add users to the index</h2>
+<div class="outline-text-2" id="text-org05feb1f">
 <div class="org-src-container">
 <pre class="src src-sh">curl -XPOST 'http://localhost:9200/geotest/usergeo' -d '
 {
@@ -69,9 +69,9 @@ curl -XPOST 'http://localhost:9200/geotest/usergeo' -d '
 </div>
 </div>
 </div>
-<div id="outline-container-org25b8d7d" class="outline-2">
-<h2 id="org25b8d7d">Run a query</h2>
-<div class="outline-text-2" id="text-org25b8d7d">
+<div id="outline-container-org429aaea" class="outline-2">
+<h2 id="org429aaea">Run a query</h2>
+<div class="outline-text-2" id="text-org429aaea">
 <p>
 Find all users located within a polygon.
 </p>
