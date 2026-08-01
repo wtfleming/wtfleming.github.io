@@ -13,11 +13,14 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Actions are pinned to commit SHAs, not tags or branches: this job holds
+      # contents: write, so a mutable ref would let an upstream compromise push
+      # to this repository. Comments record the human-readable version.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
       - name: Install Emacs
-        uses: purcell/setup-emacs@master
+        uses: purcell/setup-emacs@1f1e9c315c2e3312705e920ae1ddd7e0e2b13c69 # master @ 2026-08-01
         with:
           version: '30.1'
 
@@ -25,7 +28,7 @@ jobs:
         run: emacs --batch -l publish.el
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
