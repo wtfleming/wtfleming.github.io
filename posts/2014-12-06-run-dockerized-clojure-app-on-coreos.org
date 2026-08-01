@@ -1,0 +1,255 @@
+#+TITLE: Running a Dockerized Clojure Web App on CoreOS
+#+DATE: <2014-12-06>
+#+FILETAGS: :clojure:docker:coreos:
+
+* Introduction
+In the [[/blog/dockerize-clojure-compojure-http-kit-web-application/][previous post]] we created a Clojure web service and ran it in a Docker container. Here we will deploy that container on a 3 node CoreOS cluster running in [[https://www.vagrantup.com/][Vagrant]] on a local development machine.
+
+* CoreOS
+CoreOS is a minimal version of Linux meant for large scale server deployments.
+
+It has a very different model than a Debian/Red Hat/etc distribution. The OS runs on a read-only partition, and applications/services run in Docker containers on a read-write filesystem.
+
+It's web page describes it as:
+
+#+begin_example
+A new Linux distribution that has been rearchitected to provide features needed
+to run modern infrastructure stacks. The strategies and architectures that influence
+CoreOS allow companies like Google, Facebook and Twitter to run their services at
+scale with high resilience.
+#+end_example
+
+The components to be aware of are:
+
+--------------
+
+- *[[https://coreos.com/][CoreOS]]* - The underlying operating system.
+- *[[https://www.docker.com/][Docker]]* - CoreOS applications run in containers. At this time only Docker is supported. However, the CoreOS team recently announced a new container runtime called [[https://github.com/coreos/rocket][Rocket]] they will also be adding support for.
+- *[[https://coreos.com/using-coreos/etcd/][etcd]]* - A highly-available key value store for shared configuration and service discovery. This fulfills a role similar to ZooKeeper.
+- *[[https://github.com/coreos/fleet][fleet]]* - You will use this to start/stop containers, define a cluster topology, etc. It ties together systemd and etcd into a distributed init system. Think of it as an extension of systemd that operates at the cluster level instead of the machine level.
+
+--------------
+
+We won't be really be going into etcd in this post, but there are some interesting things you can do with it. For instance, you could configure a trigger so that when a new web service comes online it can detect this and automatically change an nginx configuration to proxy traffic to it (or remove it from the rotation when the service is stopped).
+
+* Start Vagrant
+I am assuming you are on either a Linux or OS X machine, if you are on Windows you will likely need to make a few changes.
+
+If you run into any problems there is also a guide to using Vagrant on the CoreOS [[https://coreos.com/blog/coreos-clustering-with-vagrant/][blog]] and [[https://coreos.com/docs/running-coreos/platforms/vagrant/][documentation]] which may help you troubleshoot.
+
+Ensure you have installed Vagrant on you development machine, then use git to clone the [[https://github.com/coreos/coreos-vagrant][coreos-vagrant repo]].
+
+#+begin_example
+$ git clone git@github.com:coreos/coreos-vagrant.git
+$ cd coreos-vagrant
+#+end_example
+
+Rename the file /config.rb.sample/ to /config.rb/ and change the lines:
+
+#+begin_example
+#$num_instances=1
+#$update_channel='alpha'
+#+end_example
+
+to
+
+#+begin_example
+$num_instances=3
+$update_channel='stable'
+#+end_example
+
+Next rename the file /user-data.sample/ to /user-data/ and then browse to [[https://discovery.etcd.io/new][[[https://discovery.etcd.io/new]]]] and copy the what was on the page then uncomment and insert it on the the line that looks like this:
+
+#+begin_example
+#discovery: https://discovery.etcd.io/<token>
+#+end_example
+
+Every time you start a new cluster you will need a new token. If you do not want to use the discovery service you can instead include the network addresses of the machines that will be running etcd yourself. The CoreOS team provide the discovery.etcd.io service as a convenience to make it easier to bootstrap a cluster, but you are not required to use it.
+
+Now run this command:
+
+#+begin_example
+$ vagrant up
+#+end_example
+
+and Vagrant will launch 3 VirtualBox machines running CoreOS.
+
+#+begin_example
+$ vagrant status
+Current machine states:
+core-01                   running (virtualbox)
+core-02                   running (virtualbox)
+core-03                   running (virtualbox)
+#+end_example
+
+As you can see, there are 3 machines running.
+
+* SSH to your cluster
+In order to forward your SSH session to other machines in the cluster you will need to use a key that is installed on all machines. In this case one from Vagrant will already be installed on the machines and we can add it like this:
+
+#+begin_example
+$ ssh-add ~/.vagrant.d/insecure_private_key
+#+end_example
+
+Now SSH into one of the boxes with agent forwarding:
+
+#+begin_example
+$ vagrant ssh core-01 -- -A
+#+end_example
+
+We'll use the fleetctl tool to control our cluster. First lets see that we can see all 3 machines:
+
+#+begin_example
+$ fleetctl list-machines
+MACHINE         IP              METADATA
+c313e784...     172.17.8.102    -
+c3ddc4fd...     172.17.8.101    -
+d0f027da...     172.17.8.103    -
+#+end_example
+
+You should see something like the above. We haven't defined any metadata, but you could do something like tag a machine backed by a SSD drive, and then when you launch a service like PostgreSQL tell fleet that it should only run on a machine with that metadata.
+
+* Create A Service File
+CoreOS runs applications as Docker containers. We will be running a simple web server written in Clojure that just displays the text "Hello World". The source code is [[https://github.com/wtfleming/docker-compojure-hello-world][available on GitHub]] and the Docker container is also [[https://registry.hub.docker.com/u/wtfleming/docker-compojure-hello-world/][published at Docker Hub]].
+
+Ensure that you are logged onto a machine in the cluster via SSH and create a file named /clojure-http@.service/. The file format is a [[http://freedesktop.org/wiki/Software/systemd/][systemd]] service file.
+
+#+begin_example
+[Unit]
+Description=clojure-http
+
+[Service]
+ExecStart=/usr/bin/docker run --name clojure-http-%i --rm -p 5000:5000 -e PORT=5000 wtfleming/docker-compojure-hello-world
+ExecStop=/usr/bin/docker stop clojure-http-%i
+
+[X-Fleet]
+Conflicts=clojure-http@*.service
+#+end_example
+
+This file provides the instructions about how the service should run. There are a few things to note:
+
+- We are running a docker container and exposing port 5000.
+- The wtfleming/docker-compojure-hello-world container is publicly hosted on Docker Hub, it will be automatically downloaded to the CoreOS cluster.
+- The %i refers to the string between the @ and the suffix when we start the service (which we will do shortly, and should make sense then).
+- The X-Fleet directive indicates that this service should only one instance of the service on a machine. Since we've bound to port 5000 if we start up a second copy of this service we don't want it here, fleet will launch it on another machine in the cluster.
+
+Now submit the service file and check that it registered:
+
+#+begin_example
+$ fleetctl submit clojure-http@.service
+
+$ fleetctl list-unit-files
+UNIT                    HASH    DSTATE          STATE           TARGET
+clojure-http@.service   aab3979 inactive        inactive        -
+#+end_example
+
+If you see the file listed we are ready to move on.
+
+* Start the Web Services
+We will be running 2 copies of the service, lets start them:
+
+#+begin_example
+$ fleetctl start clojure-http@1.service
+Unit clojure-http@1.service launched on c313e784.../172.17.8.102
+
+$ fleetctl start clojure-http@2.service
+Unit clojure-http@2.service launched on c3ddc4fd.../172.17.8.101
+#+end_example
+
+You can check the status of running units:
+
+#+begin_example
+$ fleetctl list-units
+UNIT                    MACHINE                         ACTIVE  SUB
+clojure-http@1.service  c313e784.../172.17.8.102        active  running
+clojure-http@2.service  c3ddc4fd.../172.17.8.101        active  running
+#+end_example
+
+You can view logs like this:
+
+#+begin_example
+$ fleetctl journal clojure-http@1.service
+Dec 03 04:44:48 core-02 systemd[1]: Starting clojure-http...
+Dec 03 04:44:48 core-02 systemd[1]: Started clojure-http.
+Dec 03 04:44:52 core-02 docker[711]: Listening on port 5000
+#+end_example
+
+Finally lets view each of the pages:
+
+#+begin_example
+$ curl http://172.17.8.101:5000
+Hello World
+
+$ curl http://172.17.8.102:5000
+Hello World
+#+end_example
+
+Hopefully you'll have gotten output similar to above.
+
+* Stop the Services and Clean Up
+Lets stop the services:
+
+#+begin_example
+$ fleetctl stop clojure-http@1.service
+Unit clojure-http@1.service loaded on c313e784.../172.17.8.102
+
+$ fleetctl stop clojure-http@2.service
+Unit clojure-http@2.service loaded on c3ddc4fd.../172.17.8.101
+#+end_example
+
+Notice that they have now entered a failed state, but remain listed.
+
+#+begin_example
+$ fleetctl list-units
+UNIT                    MACHINE                         ACTIVE  SUB
+clojure-http@1.service  c313e784.../172.17.8.102        failed  failed
+clojure-http@2.service  c3ddc4fd.../172.17.8.101        failed  failed
+#+end_example
+
+We could restart them, but instead we will remove them like this:
+
+#+begin_example
+$ fleetctl destroy clojure-http@1.service
+Destroyed clojure-http@1.service
+
+$ fleetctl destroy clojure-http@2.service
+Destroyed clojure-http@2.service
+
+$ fleetctl list-units
+UNIT    MACHINE ACTIVE  SUB
+#+end_example
+
+Now lets remove our service file.
+
+#+begin_example
+$ fleetctl destroy clojure-http@.service
+Destroyed clojure-http@.service
+
+$ fleetctl list-unit-files
+UNIT    HASH    DSTATE  STATE   TARGET
+#+end_example
+
+Now exit the cluster, shut it down, and clean up Vagrant.
+
+#+begin_example
+$ exit
+
+$ vagrant halt
+==> core-03: Attempting graceful shutdown of VM...
+==> core-02: Attempting graceful shutdown of VM...
+==> core-01: Attempting graceful shutdown of VM...
+
+$ vagrant destroy
+...
+#+end_example
+
+And we're done!
+
+* Next Steps
+So far we created a CoreOS cluster and ran a web server on it, but we have just barely scratched the surface of what is possible.
+
+In a production environment you would want expose the web services to the world. If you are on EC2 you might want to register the services with an Elastic Load Balancer. One way to do that is with a [[https://coreos.com/docs/launching-containers/launching/launching-containers-fleet/#run-a-simple-sidekick]["sidekick" container]] for each web service.
+
+The CoreOS team provides [[https://github.com/coreos/elb-presence][code to create a container on github]] that will register a service with an ELB, and [[https://github.com/coreos/unit-examples/tree/master/blog-fleet-intro][example of how to use it]].
+
+Marcel de Graaf has also [[http://marceldegraaf.net/2014/04/24/experimenting-with-coreos-confd-etcd-fleet-and-cloudformation.html][written about running on EC2 and using nginx to proxy]]. If you want to know more, I highly recommend taking the time to read his post and the CoreOS documentation, they both go into much greater detail about what is possible and issues you should be aware of running a service in a production setting.
