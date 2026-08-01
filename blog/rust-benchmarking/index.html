@@ -35,14 +35,14 @@ Many times you don't need the exact distance. Say you have a point and a vector 
 <p>
 So how much faster would it be to use squared distance? Lets find out.
 </p>
-<div id="outline-container-orgbc4be4c" class="outline-2">
-<h2 id="orgbc4be4c">Create a library</h2>
-<div class="outline-text-2" id="text-orgbc4be4c">
+<div id="outline-container-orgcc2fc78" class="outline-2">
+<h2 id="orgcc2fc78">Create a library</h2>
+<div class="outline-text-2" id="text-orgcc2fc78">
 <p>
 Lets create a library and add criterion as a dependency.
 </p>
 
-<pre class="example" id="org63ce449">
+<pre class="example" id="org7010b85">
 $ cargo new --lib rust_benchmarking_example
 $ cd rust_benchmarking_example
 </pre>
@@ -51,7 +51,7 @@ $ cd rust_benchmarking_example
 Now lets add <code>criterion</code> as a dev-dependency
 </p>
 
-<pre class="example" id="org1b26767">
+<pre class="example" id="orgdc6a0b6">
 cargo add criterion --dev --features html_reports
 </pre>
 
@@ -59,7 +59,7 @@ cargo add criterion --dev --features html_reports
 Your <code>Cargo.toml</code> file should now look something like this
 </p>
 
-<pre class="example" id="org44f2135">
+<pre class="example" id="orga65fd0b">
 [package]
 name = "rust_benchmarking_example"
 version = "0.1.0"
@@ -72,9 +72,9 @@ criterion = { version = "0.5.1", features = ["html_reports"] }
 </pre>
 </div>
 </div>
-<div id="outline-container-org0b1bfaa" class="outline-2">
-<h2 id="org0b1bfaa">Code</h2>
-<div class="outline-text-2" id="text-org0b1bfaa">
+<div id="outline-container-orgccf76dd" class="outline-2">
+<h2 id="orgccf76dd">Code</h2>
+<div class="outline-text-2" id="text-orgccf76dd">
 <p>
 Open <code>src/lib.rs</code> and add the following code
 </p>
@@ -106,9 +106,9 @@ impl Vector2 {
 </div>
 </div>
 </div>
-<div id="outline-container-orged8f697" class="outline-2">
-<h2 id="orged8f697">Unit tests</h2>
-<div class="outline-text-2" id="text-orged8f697">
+<div id="outline-container-org4d4a114" class="outline-2">
+<h2 id="org4d4a114">Unit tests</h2>
+<div class="outline-text-2" id="text-org4d4a114">
 <p>
 Lets make sure everything is working as expected, add the following tests to <code>src/lib.rs</code>.
 </p>
@@ -156,9 +156,9 @@ mod tests {
 </div>
 </div>
 </div>
-<div id="outline-container-org953eae5" class="outline-2">
-<h2 id="org953eae5">Create a benchmark</h2>
-<div class="outline-text-2" id="text-org953eae5">
+<div id="outline-container-org9952420" class="outline-2">
+<h2 id="org9952420">Create a benchmark</h2>
+<div class="outline-text-2" id="text-org9952420">
 <p>
 Now lets create a benchmark with criterion, these files are put outside of the <code>src</code> directory in a directory called <code>benches</code> that you will need to create. Lets do that and also create a file in it called distance.rs
 </p>
@@ -252,15 +252,15 @@ And since we enabled the html<sub>reports</sub> feature we can see them by openi
 </p>
 
 
-<figure id="org41483f0">
+<figure id="orgf836daf">
 <img src="/images/rust-benchmarking-criterion/rust-criterion-distance.jpg" alt="rust-criterion-distance.jpg">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-orgc118c20" class="outline-2">
-<h2 id="orgc118c20">Benchmark squared distance implementation</h2>
-<div class="outline-text-2" id="text-orgc118c20">
+<div id="outline-container-org7def80c" class="outline-2">
+<h2 id="org7def80c">Benchmark squared distance implementation</h2>
+<div class="outline-text-2" id="text-org7def80c">
 <p>
 Now lets benchmark our distance squared code, change
 </p>
@@ -309,7 +309,7 @@ It appears that the <code>distance_squared()</code> implementation is so fast it
 If you really want to have this complete you could artificially make it slower by disabling compiler optimizations when benchmarking by adding this to your <code>Cargo.toml</code>
 </p>
 
-<pre class="example" id="orgc8052e2">
+<pre class="example" id="orgc176119">
 [profile.bench]
 opt-level = 0
 </pre>
@@ -318,7 +318,7 @@ opt-level = 0
 but you generally wouldn't want to do so since taking measurements on a dev build won't be very useful. If you were to do so, you would see output like
 </p>
 
-<pre class="example" id="org22949fd">
+<pre class="example" id="orgb63137c">
 distance                time:   [9.9843 ns 10.000 ns 10.017 ns]
 
 distance                time:   [9.3626 ns 9.3730 ns 9.3848 ns]

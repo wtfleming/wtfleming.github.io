@@ -35,9 +35,9 @@ We will use Cascalog to run some basic queries on the <a href="http://gaming.sta
 <p>
 Every 3 months the team at <a href="http://stackexchange.com">Stack Exchange</a> provides an <a href="https://archive.org/details/stackexchange">data dump</a> of all creative commons licensed questions and answers from network of websites (the largest of which being <a href="http://stackoverflow.com">Stack Overflow</a>.
 </p>
-<div id="outline-container-org6b5650b" class="outline-3">
-<h3 id="org6b5650b">Getting Started</h3>
-<div class="outline-text-3" id="text-org6b5650b">
+<div id="outline-container-org9c67990" class="outline-3">
+<h3 id="org9c67990">Getting Started</h3>
+<div class="outline-text-3" id="text-org9c67990">
 <p>
 The code and data for this post is available <a href="https://github.com/wtfleming/wtfleming.github.io/tree/master/code/cascalog-stack-exchange">here</a>. The relevant file is <i>queries.clj</i>.
 </p>
@@ -46,7 +46,7 @@ The code and data for this post is available <a href="https://github.com/wtflemi
 I encourage you to follow along in a REPL. Run the commands that begin with:
 </p>
 
-<pre class="example" id="org77a0fa5">
+<pre class="example" id="org827b4c5">
 user=&gt;
 </pre>
 
@@ -54,7 +54,7 @@ user=&gt;
 Fire up a <a href="https://github.com/technomancy/leiningen">leiningen</a> REPL in the project's directory and switch to the demo namespace:
 </p>
 
-<pre class="example" id="orge33cff8">
+<pre class="example" id="org7a27301">
 user=&gt; (use 'cascalog_stack_exchange.queries)
 </pre>
 
@@ -76,9 +76,9 @@ This provides everything we will need to run the queries.
 </p>
 </div>
 </div>
-<div id="outline-container-orgda0f843" class="outline-2">
-<h2 id="orgda0f843">Parsing the XML</h2>
-<div class="outline-text-2" id="text-orgda0f843">
+<div id="outline-container-orge5905f7" class="outline-2">
+<h2 id="orge5905f7">Parsing the XML</h2>
+<div class="outline-text-2" id="text-orge5905f7">
 <p>
 In <i>queries.clj</i> we have defined a function that will parse a line of XML representing a user, and extract the user id, display name, and reputation.
 </p>
@@ -118,9 +118,9 @@ and returns
 </pre>
 </div>
 </div>
-<div id="outline-container-org03acd9d" class="outline-3">
-<h3 id="org03acd9d">Querying Users</h3>
-<div class="outline-text-3" id="text-org03acd9d">
+<div id="outline-container-org2845ae6" class="outline-3">
+<h3 id="org2845ae6">Querying Users</h3>
+<div class="outline-text-3" id="text-org2845ae6">
 <p>
 Our first query will iterate over all lines in the file storing user information. Extract their id, reputation score. And finally output the results to standard out.
 </p>
@@ -142,7 +142,7 @@ Our first query will iterate over all lines in the file storing user information
 <li>Indicate that this is a Cascalog query which will run immediately.</li>
 </ol>
 
-<pre class="example" id="orgb02891f">
+<pre class="example" id="org771b373">
 ?&lt;-
 </pre>
 
@@ -150,7 +150,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="2">Specify that the results will written to standard out. It is possible to store the output in any format and wherever you want (HDFS, a relational database, Amazon S3, etc.). But for simplicity we will just be using stdout in these examples.</li>
 </ol>
 
-<pre class="example" id="org3521cb7">
+<pre class="example" id="orgcf35443">
 (stdout)
 </pre>
 
@@ -158,7 +158,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="3">Tell Cascalog that we want to output the <i>?id</i> <i>?reputation?</i> and <i>?display-name</i> variables.</li>
 </ol>
 
-<pre class="example" id="org783ee4b">
+<pre class="example" id="org52c415d">
 [?id ?reputation ?display-name]
 </pre>
 
@@ -166,7 +166,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="4">We earlier defined <i>file-tap</i> as a generator for each line of text in the file <i>data/users.xml</i>. We put each of them in <i>?line</i> variable.</li>
 </ol>
 
-<pre class="example" id="org6d338d6">
+<pre class="example" id="org16a1c1c">
 (file-tap ?line)
 </pre>
 
@@ -174,7 +174,7 @@ Our first query will iterate over all lines in the file storing user information
 <li value="5">Parse each line and use the :&gt; keyword to bind them to the variables <i>?id</i>, <i>?display-name</i>, and <i>?reputation</i>.</li>
 </ol>
 
-<pre class="example" id="org22b5c44">
+<pre class="example" id="org8e58296">
 (user-xml-parser ?line :&gt; ?id ?display-name ?reputation)
 </pre>
 
@@ -182,7 +182,7 @@ Our first query will iterate over all lines in the file storing user information
 Now lets run the query, and look at the output:
 </p>
 
-<pre class="example" id="orgb410297">
+<pre class="example" id="org69be1cb">
 user=&gt; (user-query)
 RESULTS
 -----------------------
@@ -193,9 +193,9 @@ RESULTS
 </pre>
 </div>
 </div>
-<div id="outline-container-org2d17634" class="outline-3">
-<h3 id="org2d17634">Query with a filter</h3>
-<div class="outline-text-3" id="text-org2d17634">
+<div id="outline-container-orgd7381ee" class="outline-3">
+<h3 id="orgd7381ee">Query with a filter</h3>
+<div class="outline-text-3" id="text-orgd7381ee">
 <p>
 We will now run a similar query, but this time we want to only include users with more than 200 reputation.
 </p>
@@ -218,7 +218,7 @@ We will now run a similar query, but this time we want to only include users wit
 Running gives us:
 </p>
 
-<pre class="example" id="orgbfb7df8">
+<pre class="example" id="orge351d31">
 user=&gt; (user-minimum-reputation-query)
 RESULTS
 -----------------------
@@ -228,9 +228,9 @@ Jin     238
 </pre>
 </div>
 </div>
-<div id="outline-container-orga7d0798" class="outline-3">
-<h3 id="orga7d0798">Counting with built in operations</h3>
-<div class="outline-text-3" id="text-orga7d0798">
+<div id="outline-container-orga38cc32" class="outline-3">
+<h3 id="orga38cc32">Counting with built in operations</h3>
+<div class="outline-text-3" id="text-orga38cc32">
 <p>
 Cascalog provides a number of <a href="https://github.com/nathanmarz/cascalog/wiki/Built-in-operations">built in operations</a>. Here we want to know the total number of users with a reputation greater than 200.
 </p>
@@ -254,7 +254,7 @@ Cascalog provides a number of <a href="https://github.com/nathanmarz/cascalog/wi
 Everything looks good:
 </p>
 
-<pre class="example" id="orgae3276a">
+<pre class="example" id="orga188aa2">
 user=&gt; (user-minimum-reputation-count-query)
 RESULTS
 -----------------------
@@ -263,9 +263,9 @@ RESULTS
 </pre>
 </div>
 </div>
-<div id="outline-container-org263ca68" class="outline-3">
-<h3 id="org263ca68">Querying Posts</h3>
-<div class="outline-text-3" id="text-org263ca68">
+<div id="outline-container-org10c02e4" class="outline-3">
+<h3 id="org10c02e4">Querying Posts</h3>
+<div class="outline-text-3" id="text-org10c02e4">
 <p>
 Once again we need to define a function to parse XML, this time for a post (a question or answer).
 </p>
@@ -306,7 +306,7 @@ Variables beginning with ! are nullable and will not be filtered out. Here we ar
 Running the query this is what we should see:
 </p>
 
-<pre class="example" id="org6856807">
+<pre class="example" id="org7e5e493">
 user=&gt; (post-query)
 RESULTS
 -----------------------
@@ -319,9 +319,9 @@ RESULTS
 -----------------------
 </pre>
 </div>
-<div id="outline-container-orgd154ffd" class="outline-4">
-<h4 id="orgd154ffd">Aggregating Tags</h4>
-<div class="outline-text-4" id="text-orgd154ffd">
+<div id="outline-container-orgdcac820" class="outline-4">
+<h4 id="orgdcac820">Aggregating Tags</h4>
+<div class="outline-text-4" id="text-orgdcac820">
 <p>
 If we wanted to see all the tags used by each user we can run a query like this.
 </p>
@@ -349,7 +349,7 @@ If we wanted to see all the tags used by each user we can run a query like this.
 Which will output:
 </p>
 
-<pre class="example" id="org70ee880">
+<pre class="example" id="orgdbc1b2d">
 user=&gt; (post-aggregate-query)
 RESULTS
 -----------------------
@@ -360,9 +360,9 @@ RESULTS
 </pre>
 </div>
 </div>
-<div id="outline-container-org1c99979" class="outline-4">
-<h4 id="org1c99979">Joining users and posts</h4>
-<div class="outline-text-4" id="text-org1c99979">
+<div id="outline-container-orgc7859af" class="outline-4">
+<h4 id="orgc7859af">Joining users and posts</h4>
+<div class="outline-text-4" id="text-orgc7859af">
 <p>
 We will now combine what we have learnt to create a query that will output the display name and list of tags used by users with more than 200 reputation.
 </p>
@@ -407,7 +407,7 @@ In the following code posts-line and users-line are from two different sources o
 We can now run the query, and everything looks good:
 </p>
 
-<pre class="example" id="orgaa45cd0">
+<pre class="example" id="org2469f72">
 user=&gt; (user-tags-join-query)
 RESULTS
 -----------------------

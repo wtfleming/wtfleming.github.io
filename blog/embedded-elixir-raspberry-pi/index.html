@@ -33,14 +33,14 @@ The final result will look like this:
 </p>
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/w6T2HXzHXRs" frameborder="0" allowfullscreen></iframe>
-<div id="outline-container-orga359b02" class="outline-2">
-<h2 id="orga359b02">Elixir programming language</h2>
-<div class="outline-text-2" id="text-orga359b02">
+<div id="outline-container-orgd403082" class="outline-2">
+<h2 id="orgd403082">Elixir programming language</h2>
+<div class="outline-text-2" id="text-orgd403082">
 <p>
 <a href="http://elixir-lang.org/">Elixir</a> describes itself:
 </p>
 
-<pre class="example" id="org9b86f54">
+<pre class="example" id="org7b1a81a">
 Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications.
 
@@ -64,15 +64,15 @@ So far it has been an absolute joy to use.
 </p>
 </div>
 </div>
-<div id="outline-container-org208159d" class="outline-2">
-<h2 id="org208159d">Raspberry Pi</h2>
-<div class="outline-text-2" id="text-org208159d">
+<div id="outline-container-org77675d0" class="outline-2">
+<h2 id="org77675d0">Raspberry Pi</h2>
+<div class="outline-text-2" id="text-org77675d0">
 <p>
 The <a href="https://www.raspberrypi.org/">Raspberry Pi</a> is a series of small (credit card sized) and relatively low cost computers capable of running Linux with a number of <a href="https://en.wikipedia.org/wiki/General-purpose_input/output">general-purpose input/output (GPIO)</a> pins which can interface with the outside world.
 </p>
 
 
-<figure id="org4798c40">
+<figure id="orge9a9bd1">
 <img src="/images/raspberry-pi.jpg" alt="raspberry-pi.jpg">
 
 </figure>
@@ -84,9 +84,9 @@ Now lets install the software dependencies.
 </p>
 </div>
 </div>
-<div id="outline-container-org297615b" class="outline-2">
-<h2 id="org297615b">Install Erlang and Elixir</h2>
-<div class="outline-text-2" id="text-org297615b">
+<div id="outline-container-orge52e97b" class="outline-2">
+<h2 id="orge52e97b">Install Erlang and Elixir</h2>
+<div class="outline-text-2" id="text-orge52e97b">
 <p>
 Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.
 </p>
@@ -144,11 +144,11 @@ We're now ready to explore GPIO (general purpose I/O) on the Pi.
 </p>
 </div>
 </div>
-<div id="outline-container-org8ecb63b" class="outline-2">
-<h2 id="org8ecb63b">Wire up the LED</h2>
-<div class="outline-text-2" id="text-org8ecb63b">
+<div id="outline-container-orgf65e607" class="outline-2">
+<h2 id="orgf65e607">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgf65e607">
 
-<figure id="org46990a4">
+<figure id="orga15a3e8">
 <img src="/images/raspberry-pi-led-fritzing.png" alt="raspberry-pi-led-fritzing.png">
 
 </figure>
@@ -174,14 +174,14 @@ Once wired up we can proceed.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfed818f" class="outline-2">
-<h2 id="orgfed818f">Turn an LED on and off on the command line</h2>
-<div class="outline-text-2" id="text-orgfed818f">
+<div id="outline-container-orgeec79da" class="outline-2">
+<h2 id="orgeec79da">Turn an LED on and off on the command line</h2>
+<div class="outline-text-2" id="text-orgeec79da">
 <p>
 In this example we'll be using the built in <a href="https://en.wikipedia.org/wiki/Sysfs">sysfs</a> to control the GPIO pins. Wikipedia describes it:
 </p>
 
-<pre class="example" id="org450a759">
+<pre class="example" id="org2f58c36">
 sysfs is a virtual file system provided by the Linux kernel that exports information
 about various kernel subsystems, hardware devices, and associated device drivers
 from the kernel's device model to user space through virtual files. In addition to
@@ -249,9 +249,9 @@ Now lets make a module.
 </p>
 </div>
 </div>
-<div id="outline-container-org84ee58d" class="outline-2">
-<h2 id="org84ee58d">Elixir Code</h2>
-<div class="outline-text-2" id="text-org84ee58d">
+<div id="outline-container-org8868163" class="outline-2">
+<h2 id="org8868163">Elixir Code</h2>
+<div class="outline-text-2" id="text-org8868163">
 <p>
 On your Raspberry Pi create a file called blink-led.ex with the following contents:
 </p>

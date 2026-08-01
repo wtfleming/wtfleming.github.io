@@ -20,9 +20,9 @@
 </div>
 <div id="content">
 <div class="post-date">25 May 2014</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-2-blink-led-clojure/">Clojure on the BeagleBone part 2 - Blinking an LED with Clojure</a></h1>
-<div id="outline-container-org327b81a" class="outline-2">
-<h2 id="org327b81a">Intro</h2>
-<div class="outline-text-2" id="text-org327b81a">
+<div id="outline-container-org8c99629" class="outline-2">
+<h2 id="org8c99629">Intro</h2>
+<div class="outline-text-2" id="text-org8c99629">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In part 2 we use the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -35,7 +35,7 @@ This is inspired by an example from the excellent book <a href="https://www.amaz
 </p>
 
 
-<figure id="orgb533a41">
+<figure id="org5e4aa41">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -53,9 +53,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-orgac188c7" class="outline-2">
-<h2 id="orgac188c7">Wire up the LED</h2>
-<div class="outline-text-2" id="text-orgac188c7">
+<div id="outline-container-org91abb0d" class="outline-2">
+<h2 id="org91abb0d">Wire up the LED</h2>
+<div class="outline-text-2" id="text-org91abb0d">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -65,9 +65,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 </ol>
 </div>
 </div>
-<div id="outline-container-org5b3f834" class="outline-2">
-<h2 id="org5b3f834">Clojure code</h2>
-<div class="outline-text-2" id="text-org5b3f834">
+<div id="outline-container-orgae4d295" class="outline-2">
+<h2 id="orgae4d295">Clojure code</h2>
+<div class="outline-text-2" id="text-orgae4d295">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>

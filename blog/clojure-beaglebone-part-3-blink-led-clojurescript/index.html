@@ -20,9 +20,9 @@
 </div>
 <div id="content">
 <div class="post-date">14 Jul 2014</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-3-blink-led-clojurescript/">Clojure on the BeagleBone part 3 - Blinking an LED with ClojureScript</a></h1>
-<div id="outline-container-orgaaa51a4" class="outline-2">
-<h2 id="orgaaa51a4">Intro</h2>
-<div class="outline-text-2" id="text-orgaaa51a4">
+<div id="outline-container-orgd4415c2" class="outline-2">
+<h2 id="orgd4415c2">Intro</h2>
+<div class="outline-text-2" id="text-orgd4415c2">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In <a href="/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we used the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -35,9 +35,9 @@ The BeagleBone is a 1GHz ARM board with 512Mb of RAM capable of running Linux. T
 </p>
 </div>
 </div>
-<div id="outline-container-orgdab5ca9" class="outline-2">
-<h2 id="orgdab5ca9">Hello World with Clojurescript and node.js</h2>
-<div class="outline-text-2" id="text-orgdab5ca9">
+<div id="outline-container-orga601d09" class="outline-2">
+<h2 id="orga601d09">Hello World with Clojurescript and node.js</h2>
+<div class="outline-text-2" id="text-orga601d09">
 <p>
 First we will ensure that ClojureScript and node.js are setup. Ensure you have followed the instructions in the first part of this series to install Leiningen.
 </p>
@@ -98,15 +98,15 @@ You should see hello world output.
 </p>
 </div>
 </div>
-<div id="outline-container-org8b01b63" class="outline-2">
-<h2 id="org8b01b63">Blinking an LED</h2>
-<div class="outline-text-2" id="text-org8b01b63">
+<div id="outline-container-org7c23d6e" class="outline-2">
+<h2 id="org7c23d6e">Blinking an LED</h2>
+<div class="outline-text-2" id="text-org7c23d6e">
 <p>
 This is inspired by an example from the excellent book [Getting Started With BeagleBone][beaglebone-book] by [Matt Richardson][matt-richardson].
 </p>
 
 
-<figure id="orgd67ae0c">
+<figure id="orgbc5c55f">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -124,9 +124,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-org55edce2" class="outline-2">
-<h2 id="org55edce2">Wire up the LED</h2>
-<div class="outline-text-2" id="text-org55edce2">
+<div id="outline-container-orgc1d7a5e" class="outline-2">
+<h2 id="orgc1d7a5e">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgc1d7a5e">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -140,9 +140,9 @@ Now we are ready to write the code.
 </p>
 </div>
 </div>
-<div id="outline-container-org979bc01" class="outline-2">
-<h2 id="org979bc01">ClojureScript code</h2>
-<div class="outline-text-2" id="text-org979bc01">
+<div id="outline-container-org51081ea" class="outline-2">
+<h2 id="org51081ea">ClojureScript code</h2>
+<div class="outline-text-2" id="text-org51081ea">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>

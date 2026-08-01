@@ -29,13 +29,13 @@ The final result draws a triangle on the screen and looks like this:
 </p>
 
 
-<figure id="org0d77748">
+<figure id="orgef09802">
 <img src="/images/elixir-opengl-01/triangle.png" alt="triangle.png">
 
 </figure>
-<div id="outline-container-org9d9e194" class="outline-2">
-<h2 id="org9d9e194">wxWidgets and Erlang</h2>
-<div class="outline-text-2" id="text-org9d9e194">
+<div id="outline-container-orga3b2d28" class="outline-2">
+<h2 id="orga3b2d28">wxWidgets and Erlang</h2>
+<div class="outline-text-2" id="text-orga3b2d28">
 <p>
 Erlang/OTP ships with a port of <a href="http://www.erlang.org/doc/man/wx.html">wxWidgets</a>, so creating a window and obtaining an OpenGL context is relatively easy.
 </p>
@@ -54,7 +54,7 @@ A window that looks something like this should appear.
 </p>
 
 
-<figure id="org22ca3c1">
+<figure id="org914de23">
 <img src="/images/elixir-opengl-01/wxerlang.png" alt="wxerlang.png">
 
 </figure>
@@ -64,9 +64,9 @@ Next we want to do something similar, but in Elixir instead.
 </p>
 </div>
 </div>
-<div id="outline-container-org3e72838" class="outline-2">
-<h2 id="org3e72838">Create an Elixir project</h2>
-<div class="outline-text-2" id="text-org3e72838">
+<div id="outline-container-orga1d6be8" class="outline-2">
+<h2 id="orga1d6be8">Create an Elixir project</h2>
+<div class="outline-text-2" id="text-orga1d6be8">
 <p>
 Run these commands in a shell
 </p>
@@ -81,9 +81,9 @@ $ mkdir src
 </div>
 </div>
 </div>
-<div id="outline-container-orgf8a06d6" class="outline-2">
-<h2 id="orgf8a06d6">Erlang modules</h2>
-<div class="outline-text-2" id="text-orgf8a06d6">
+<div id="outline-container-org191879b" class="outline-2">
+<h2 id="org191879b">Erlang modules</h2>
+<div class="outline-text-2" id="text-org191879b">
 <p>
 If you look inside your Erlang/OTP distribution directory at the file lib/wx/include/wx.hrl you will see a number of defines that look like:
 </p>
@@ -185,9 +185,9 @@ We're now done with Erlang.
 </p>
 </div>
 </div>
-<div id="outline-container-org3d6fe00" class="outline-2">
-<h2 id="org3d6fe00">Elixir Code</h2>
-<div class="outline-text-2" id="text-org3d6fe00">
+<div id="outline-container-orgaaba5c4" class="outline-2">
+<h2 id="orgaaba5c4">Elixir Code</h2>
+<div class="outline-text-2" id="text-orgaaba5c4">
 <p>
 Change lib/elixir<sub>opengl.ex</sub> to look like this:
 </p>
@@ -351,7 +351,7 @@ A window should appear that looks like this:
 </p>
 
 
-<figure id="orgb34451b">
+<figure id="orgf9bd360">
 <img src="/images/elixir-opengl-01/triangle.png" alt="triangle.png">
 
 </figure>

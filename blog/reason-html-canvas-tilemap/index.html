@@ -35,15 +35,15 @@ We will end up drawing this level of what could be a roguelike game, with an adv
 <p>
 A full project with the source code is <a href="https://github.com/wtfleming/reason-examples/tree/master/bs-canvas-tilemap">available here</a>.
 </p>
-<div id="outline-container-org747aacd" class="outline-2">
-<h2 id="org747aacd">Sprites</h2>
-<div class="outline-text-2" id="text-org747aacd">
+<div id="outline-container-orgcf68d0a" class="outline-2">
+<h2 id="orgcf68d0a">Sprites</h2>
+<div class="outline-text-2" id="text-orgcf68d0a">
 <p>
 We will be using a sprite atlas modified from <a href="http://files.sablab.net/Games/Angband/Angband/lib/xtra/graf/16x16.bmp">this Angband tileset</a> with a permissive <a href="http://angband.oook.cz/forum/showpost.php?p=316&amp;postcount=16">license</a>. It looks like this:
 </p>
 
 
-<figure id="org7484fb6">
+<figure id="org284f4df">
 <img src="/images/reason-canvas-tilemap-1/tiles16.png" alt="tiles16.png">
 
 </figure>
@@ -75,9 +75,9 @@ The level data is stored in a list, each number represents the index of the spri
 </div>
 </div>
 </div>
-<div id="outline-container-org20303ad" class="outline-2">
-<h2 id="org20303ad">Working with the DOM</h2>
-<div class="outline-text-2" id="text-org20303ad">
+<div id="outline-container-orgc7088d7" class="outline-2">
+<h2 id="orgc7088d7">Working with the DOM</h2>
+<div class="outline-text-2" id="text-orgc7088d7">
 <p>
 Reason (and <a href="https://bucklescript.github.io/">BuckleScript</a>) allows us to write type safe code to work with the browser DOM, but we will need to write some code for the interop. You could just use <code>bs.raw</code> and use <a href="https://reasonml.github.io/docs/en/interop.html">JavaScript directly</a>, but doing it this way will provide some type safety and let you catch some errors at compile time instead of runtime.
 </p>
@@ -163,15 +163,15 @@ module Context = {
 </div>
 </div>
 </div>
-<div id="outline-container-org0f6d6e8" class="outline-2">
-<h2 id="org0f6d6e8">SpriteAtlas</h2>
-<div class="outline-text-2" id="text-org0f6d6e8">
+<div id="outline-container-orga66bbf1" class="outline-2">
+<h2 id="orga66bbf1">SpriteAtlas</h2>
+<div class="outline-text-2" id="text-orga66bbf1">
 <p>
 The sprite atlas is an image with all the sprites in it, it looks like:
 </p>
 
 
-<figure id="org18242e9">
+<figure id="org86d65a3">
 <img src="/images/reason-canvas-tilemap-1/tiles16.png" alt="tiles16.png">
 
 </figure>
@@ -211,9 +211,9 @@ This code allows us to load the atlas into memory and draw one of the sprites in
 </div>
 </div>
 </div>
-<div id="outline-container-orgab49ce3" class="outline-2">
-<h2 id="orgab49ce3">Tilemap</h2>
-<div class="outline-text-2" id="text-orgab49ce3">
+<div id="outline-container-org5be5fe3" class="outline-2">
+<h2 id="org5be5fe3">Tilemap</h2>
+<div class="outline-text-2" id="text-org5be5fe3">
 <p>
 The tilemap describes what our level looks like, it has a reference to a sprite atlas and a number of rows and columns representing what to draw in the level.
 </p>
@@ -263,9 +263,9 @@ The tilemap describes what our level looks like, it has a reference to a sprite 
 </div>
 </div>
 </div>
-<div id="outline-container-org1adf725" class="outline-2">
-<h2 id="org1adf725">Drawing the tilemap</h2>
-<div class="outline-text-2" id="text-org1adf725">
+<div id="outline-container-org7b220e7" class="outline-2">
+<h2 id="org7b220e7">Drawing the tilemap</h2>
+<div class="outline-text-2" id="text-org7b220e7">
 <p>
 Here we do the actual work. Setup the canvas, load the sprites, create a tilemap, then render it in the browser.
 </p>
