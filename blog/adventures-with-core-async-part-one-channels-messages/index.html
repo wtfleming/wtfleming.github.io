@@ -1,315 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-
-    <style>
-     :root {
-       --accent-color: #05a081;
-       --accent-color-light: #82d0c0;
-     }
-    </style>
-
-    <meta name="theme-color" content="#05a081" />
-
-    
-    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
-
-    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
-    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
-    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
-    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
-    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
-    
-
-    
-
-      <meta property="og:type" content="website">
-
-      <meta name="twitter:card" content="summary">
-
-      
-
-      
-
-      
-      
-      <meta name="description" content="" />
-      <meta name="twitter:description" content="">
-      
-      
-
-      
-      <meta name="twitter:title" content="Adventures in Clojure with core.async - Part 1 - Channels and Messages">
-      
-
-      
-      <link rel="prerender" href="&#x2F;about&#x2F;" />
-      
-      <link rel="prerender" href="&#x2F;blog&#x2F;" />
-      
-
-
-      
-      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
-
-    <title>
-      
-        
-          Adventures in Clojure with core.async - Part 1 - Channels and Messages
-        
-      
-    </title>
-
-    
-    
-      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
-    
-    
-  
-
-  
-
-  
-    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
-  
-    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojurescript/">
-  
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://google.com/article"
-      },
-      "headline": "Adventures in Clojure with core.async - Part 1 - Channels and Messages",
-      "image": [],
-      "datePublished": "2015-04-15T00:00:00+00:00",
-      "dateModified": "2015-04-15T00:00:00+00:00"
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        
-
-        
-        {
-          
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Will&#x27;s Software Journal",
-          "item": "https://wtfleming.github.io/"
-        },
-        
-        {
-          
-          "@type": "ListItem",
-          "position": 2,
-          "name": "",
-          "item": "https://wtfleming.github.io/blog/"
-        },
-        
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Adventures in Clojure with core.async - Part 1 - Channels and Messages",
-          "item": "https://wtfleming.github.io/blog/adventures-with-core-async-part-one-channels-messages/"
-        }
-      ]
-    }
-  </script>
-
-  </head>
-  <body>
-    
-    <header>
-      
-        <a class="profile-icon" href="/">
-          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
-        </a>
-        <nav>
-          
-            <a href="&#x2F;about&#x2F;">About</a>
-          
-            <a href="&#x2F;blog&#x2F;">Blog</a>
-          
-        </nav>
-      </header>
-    
-    <main>
-    
-  <div class="post-title">
-    <h1>Adventures in Clojure with core.async - Part 1 - Channels and Messages</h1>
-    <small>
-      April 15, 2015
-      
-        - 
-        <span class="tags">
-          
-            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
-          
-            <a href="https://wtfleming.github.io/tags/clojurescript/">clojurescript</a>
-          
-        </span>
-      
-    </small>
-  </div>
-
-  <div>
-    <h1 id="introduction">Introduction</h1>
-<ul>
+<head>
+<meta charset="UTF-8">
+<link rel="alternate"
+      type="application/rss+xml"
+      href="https://wtfleming.github.io/rss.xml"
+      title="RSS feed for https://wtfleming.github.io/">
+<title>Adventures in Clojure with core.async - Part 1 - Channels and Messages</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05a081">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/icon.png">
+<script defer src="/js/highlight.min.js"></script>
+<script defer src="/js/hljs-init.js"></script>
+</head>
+<body>
+<div id="preamble" class="status"><a class="profile-icon" href="/"><img src="/icon.png" width="50" height="50" alt="profile picture"></a>
+<nav><a href="/about/">About</a><a href="/blog/">Blog</a></nav>
+</div>
+<div id="content">
+<div class="post-date">15 Apr 2015</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/adventures-with-core-async-part-one-channels-messages/">Adventures in Clojure with core.async - Part 1 - Channels and Messages</a></h1>
+<div id="outline-container-org9cb230e" class="outline-2">
+<h2 id="org9cb230e">Introduction</h2>
+<div class="outline-text-2" id="text-org9cb230e">
+<ul class="org-ul">
 <li>In part 1 of this series we will look at the basics of core.async via channels and messages.</li>
-<li>In <a href="https://wtfleming.github.io/blog/adventures-with-core-async-part-two-parking-timeouts-alt/">part 2</a> we explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
+<li>In <a href="/blog/adventures-with-core-async-part-two-parking-timeouts-alt/">part 2</a> we explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
 </ul>
-<p><a href="https://github.com/clojure/core.async">core.async</a> is a Clojure/ClojureScript library to facilitate asynchronous programming using channels.</p>
-<p>I wanted to show some simple examples with live demos in the browser using Clojurescript, but if you would like to read a more thorough overview there is a great <a href="http://clojure.com/blog/2013/06/28/clojure-core-async-channels.html">overview of core.async at the clojure.com blog</a>. Code related to this post is also available at <a href="https://github.com/wtfleming/clojurescript-examples/tree/master/core-async-examples">GitHub</a>.</p>
-<p>It builds upon the <a href="http://en.wikipedia.org/wiki/Communicating_sequential_processes">Communicating Sequential Processes (CSP) model</a> described by Tony Hoare in the late 1970's, but seems to have seen a resurgence in popularity due to its usage in the Go programming language.</p>
-<h1 id="sending-messages">Sending Messages</h1>
-<p>These are some of the functions available for writing to and reading from a channel.</p>
-<table><thead><tr><th>Function</th><th></th></tr></thead><tbody>
-<tr><td>put!</td><td>Write a message asynchronously to a channel.</td></tr>
-<tr><td>take!</td><td>Take a message asynchronously from a channel.</td></tr>
-<tr><td>&gt;!!</td><td>Write a message to a channel, blocks if no buffer space is available.</td></tr>
-<tr><td>&lt;!!</td><td>Read a message from a channel, blocks if nothing is available.</td></tr>
-<tr><td>&gt;!</td><td>Write a message to a channel, parks if no buffer space is available. Must be called in a go block.</td></tr>
-<tr><td>&lt;!</td><td>Read a message from a channel, parks if nothing is available. Must be called within a go block.</td></tr>
-</tbody></table>
-<p>Note that &gt;!! and &lt;!! are not available in ClojureScript as the underlying JavaScript runtime is single threaded, and blocking that thread would be undesirable.</p>
-<h1 id="go-blocks">go Blocks</h1>
-<p>We can use the <strong>go</strong> macro provided by core.async to create new processes. It will turn any channel operations within into a state machine, which parks on a blocking operation, and resumes when the blocking operation completes.</p>
-<p>The concept of parking will be covered in more depth in a future post.</p>
-<h1 id="code">Code</h1>
-<p>For the sake of completeness here is a helper function to set DOM values in the browser using the <a href="https://developers.google.com/closure/library/">Google Closure Library</a>.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">set-inner-html!
-</span><span>  &quot;</span><span style="color:#a3be8c;">Helper function to set contents of a DOM element.</span><span>&quot;
-</span><span>  [elem value]
-</span><span>  (</span><span style="color:#bf616a;">set! </span><span>(</span><span style="color:#bf616a;">.-innerHTML </span><span>(</span><span style="color:#bf616a;">goog.dom/getElement</span><span> elem)) value))
-</span></code></pre>
-<p>We will use in the examples below.</p>
-<h1 id="unbuffered-channels">Unbuffered Channels</h1>
-<p>The simplest channel is unbuffered and created using the <strong>chan</strong> function with no arguments.</p>
-<p>Writing to an unbuffered channel blocks further writes until the message is read by a consumer of the channel. So in this example we must read from and write to the channel in separate go blocks, which will allow them to appear to run concurrently.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-example-zero-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Write to and read from an unbuffered channel.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">let </span><span>[ch (</span><span style="color:#bf616a;">chan</span><span>)]
-</span><span>    </span><span style="color:#65737e;">;; Write to a channel
-</span><span>    (</span><span style="color:#bf616a;">go
-</span><span>      (</span><span style="color:#bf616a;">&gt;!</span><span> ch &quot;</span><span style="color:#a3be8c;">Hello from an unbuffered channel!</span><span>&quot;))
-</span><span>
-</span><span>    </span><span style="color:#65737e;">;; Read from the channel
-</span><span>    (</span><span style="color:#bf616a;">go
-</span><span>      (</span><span style="color:#bf616a;">let </span><span>[msg (</span><span style="color:#bf616a;">&lt;!</span><span> ch)]
-</span><span>        (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">example-zero-output</span><span>&quot; msg)
-</span><span>        (</span><span style="color:#bf616a;">close!</span><span> ch)))))
-</span></code></pre>
+
+<p>
+<a href="https://github.com/clojure/core.async">core.async</a> is a Clojure/ClojureScript library to facilitate asynchronous programming using channels.
+</p>
+
+<p>
+I wanted to show some simple examples with live demos in the browser using Clojurescript, but if you would like to read a more thorough overview there is a great <a href="http://clojure.com/blog/2013/06/28/clojure-core-async-channels.html">overview of core.async at the clojure.com blog</a>. Code related to this post is also available at <a href="https://github.com/wtfleming/clojurescript-examples/tree/master/core-async-examples">GitHub</a>.
+</p>
+
+<p>
+It builds upon the <a href="http://en.wikipedia.org/wiki/Communicating_sequential_processes">Communicating Sequential Processes (CSP) model</a> described by Tony Hoare in the late 1970's, but seems to have seen a resurgence in popularity due to its usage in the Go programming language.
+</p>
+</div>
+</div>
+<div id="outline-container-org37f39c9" class="outline-2">
+<h2 id="org37f39c9">Sending Messages</h2>
+<div class="outline-text-2" id="text-org37f39c9">
+<p>
+These are some of the functions available for writing to and reading from a channel.
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Function</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">put!</td>
+<td class="org-left">Write a message asynchronously to a channel.</td>
+</tr>
+
+<tr>
+<td class="org-left">take!</td>
+<td class="org-left">Take a message asynchronously from a channel.</td>
+</tr>
+
+<tr>
+<td class="org-left">&gt;!!</td>
+<td class="org-left">Write a message to a channel, blocks if no buffer space is available.</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;!!</td>
+<td class="org-left">Read a message from a channel, blocks if nothing is available.</td>
+</tr>
+
+<tr>
+<td class="org-left">&gt;!</td>
+<td class="org-left">Write a message to a channel, parks if no buffer space is available. Must be called in a go block.</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;!</td>
+<td class="org-left">Read a message from a channel, parks if nothing is available. Must be called within a go block.</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Note that &gt;!! and &lt;!! are not available in ClojureScript as the underlying JavaScript runtime is single threaded, and blocking that thread would be undesirable.
+</p>
+</div>
+</div>
+<div id="outline-container-org95f5b79" class="outline-2">
+<h2 id="org95f5b79">go Blocks</h2>
+<div class="outline-text-2" id="text-org95f5b79">
+<p>
+We can use the <b>go</b> macro provided by core.async to create new processes. It will turn any channel operations within into a state machine, which parks on a blocking operation, and resumes when the blocking operation completes.
+</p>
+
+<p>
+The concept of parking will be covered in more depth in a future post.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe9106f" class="outline-2">
+<h2 id="orgfe9106f">Code</h2>
+<div class="outline-text-2" id="text-orgfe9106f">
+<p>
+For the sake of completeness here is a helper function to set DOM values in the browser using the <a href="https://developers.google.com/closure/library/">Google Closure Library</a>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn set-inner-html!
+  "Helper function to set contents of a DOM element."
+  [elem value]
+  (set! (.-innerHTML (goog.dom/getElement elem)) value))
+</pre>
+</div>
+
+<p>
+We will use in the examples below.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf1e344" class="outline-2">
+<h2 id="orgbf1e344">Unbuffered Channels</h2>
+<div class="outline-text-2" id="text-orgbf1e344">
+<p>
+The simplest channel is unbuffered and created using the <b>chan</b> function with no arguments.
+</p>
+
+<p>
+Writing to an unbuffered channel blocks further writes until the message is read by a consumer of the channel. So in this example we must read from and write to the channel in separate go blocks, which will allow them to appear to run concurrently.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-example-zero-button-click
+  "Write to and read from an unbuffered channel."
+  [_]
+  (let [ch (chan)]
+    ;; Write to a channel
+    (go
+      (&gt;! ch "Hello from an unbuffered channel!"))
+
+    ;; Read from the channel
+    (go
+      (let [msg (&lt;! ch)]
+        (set-inner-html! "example-zero-output" msg)
+        (close! ch)))))
+</pre>
+</div>
+
 <section>
 <span>Unbuffered channel output: </span>
 <span id="example-zero-output"></span>
 </section>
 <button id="example-zero-button">Run Code</button>
-<h1 id="buffered-channels">Buffered Channels</h1>
-<p>Calling <strong>chan</strong> with a single argument that is a number creates a channel with a buffer. This allows us to write more than one message to the channel before it blocks. In the example below we create a channel with a buffer of 5.</p>
-<p>Note that since this is not an unbuffered channel (and we are not writing more messages than the size of the buffer) we do not need to run the reads and writes in separate go blocks.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-example-one-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Write to and read from a buffered channel.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">let </span><span>[ch (</span><span style="color:#bf616a;">chan </span><span style="color:#d08770;">5</span><span>)
-</span><span>          _ (</span><span style="color:#bf616a;">&gt;!</span><span> ch &quot;</span><span style="color:#a3be8c;">Hello from a buffered channel!</span><span>&quot;)
-</span><span>          msg (</span><span style="color:#bf616a;">&lt;!</span><span> ch)]
-</span><span>      (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">example-one-output</span><span>&quot; msg)
-</span><span>      (</span><span style="color:#bf616a;">close!</span><span> ch))))
-</span></code></pre>
+</div>
+</div>
+<div id="outline-container-org38af325" class="outline-2">
+<h2 id="org38af325">Buffered Channels</h2>
+<div class="outline-text-2" id="text-org38af325">
+<p>
+Calling <b>chan</b> with a single argument that is a number creates a channel with a buffer. This allows us to write more than one message to the channel before it blocks. In the example below we create a channel with a buffer of 5.
+</p>
+
+<p>
+Note that since this is not an unbuffered channel (and we are not writing more messages than the size of the buffer) we do not need to run the reads and writes in separate go blocks.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-example-one-button-click
+  "Write to and read from a buffered channel."
+  [_]
+  (go
+    (let [ch (chan 5)
+          _ (&gt;! ch "Hello from a buffered channel!")
+          msg (&lt;! ch)]
+      (set-inner-html! "example-one-output" msg)
+      (close! ch))))
+</pre>
+</div>
+
 <section>
 <span>Buffered channel output: </span>
 <span id="example-one-output"></span>
 </section>
 <button id="example-one-button">Run Code</button>
-<h1 id="dropping-buffers">Dropping Buffers</h1>
-<p>We can also create a channel with a dropping-buffer. In this case writes will complete when the buffer is full, but the value will be dropped.</p>
-<p>We are also using the onto-chan function here, which will write the contents of a collection onto a channel. In this case we are writing the elements of the list (0 1 2 3 4 5 6 7 8 9) to the channel. Note that onto-chan will also close the channel.</p>
-<p>We are also using the specialized into function provided by core.async, which returns a channel containing a message consisting of the items in the channel conjoined to the collection passed in.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-example-two-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Write to and read from a channel with a dropping buffer.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">let </span><span>[ch (</span><span style="color:#bf616a;">chan </span><span>(</span><span style="color:#bf616a;">dropping-buffer </span><span style="color:#d08770;">5</span><span>))
-</span><span>          _ (</span><span style="color:#bf616a;">onto-chan</span><span> ch (</span><span style="color:#bf616a;">range </span><span style="color:#d08770;">0 10</span><span>))
-</span><span>          msg (</span><span style="color:#bf616a;">&lt;! </span><span>(</span><span style="color:#bf616a;">async/into </span><span>[] ch))]
-</span><span>      (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">example-two-output</span><span>&quot; msg))))
-</span></code></pre>
+</div>
+</div>
+<div id="outline-container-orgdab35e7" class="outline-2">
+<h2 id="orgdab35e7">Dropping Buffers</h2>
+<div class="outline-text-2" id="text-orgdab35e7">
+<p>
+We can also create a channel with a dropping-buffer. In this case writes will complete when the buffer is full, but the value will be dropped.
+</p>
+
+<p>
+We are also using the onto-chan function here, which will write the contents of a collection onto a channel. In this case we are writing the elements of the list (0 1 2 3 4 5 6 7 8 9) to the channel. Note that onto-chan will also close the channel.
+</p>
+
+<p>
+We are also using the specialized into function provided by core.async, which returns a channel containing a message consisting of the items in the channel conjoined to the collection passed in.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-example-two-button-click
+  "Write to and read from a channel with a dropping buffer."
+  [_]
+  (go
+    (let [ch (chan (dropping-buffer 5))
+          _ (onto-chan ch (range 0 10))
+          msg (&lt;! (async/into [] ch))]
+      (set-inner-html! "example-two-output" msg))))
+</pre>
+</div>
+
 <section>
 <span>Dropping buffer output: </span>
 <span id="example-two-output"></span>
 </section>
 <button id="example-two-button">Run Code</button>
-<h1 id="sliding-buffers">Sliding Buffers</h1>
-<p>A sliding-buffer is similar to a dropping-buffer, except that when the buffer is full, writes will continue to succeed but the oldest element in the buffer will be dropped.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-example-three-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Write to and read from to a channel with a sliding buffer.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">let </span><span>[ch (</span><span style="color:#bf616a;">chan </span><span>(</span><span style="color:#bf616a;">sliding-buffer </span><span style="color:#d08770;">5</span><span>))
-</span><span>          _ (</span><span style="color:#bf616a;">onto-chan</span><span> ch (</span><span style="color:#bf616a;">range </span><span style="color:#d08770;">0 10</span><span>))
-</span><span>          msg (</span><span style="color:#bf616a;">&lt;! </span><span>(</span><span style="color:#bf616a;">async/into </span><span>[] ch))]
-</span><span>      (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">example-three-output</span><span>&quot; msg))))
-</span></code></pre>
+</div>
+</div>
+<div id="outline-container-org1e050a1" class="outline-2">
+<h2 id="org1e050a1">Sliding Buffers</h2>
+<div class="outline-text-2" id="text-org1e050a1">
+<p>
+A sliding-buffer is similar to a dropping-buffer, except that when the buffer is full, writes will continue to succeed but the oldest element in the buffer will be dropped.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-example-three-button-click
+  "Write to and read from to a channel with a sliding buffer."
+  [_]
+  (go
+    (let [ch (chan (sliding-buffer 5))
+          _ (onto-chan ch (range 0 10))
+          msg (&lt;! (async/into [] ch))]
+      (set-inner-html! "example-three-output" msg))))
+</pre>
+</div>
+
 <section>
 <span>Sliding buffer output: </span>
 <span id="example-three-output"></span>
 </section>
 <button id="example-three-button">Run Code</button>
-<h1 id="conclusion">Conclusion</h1>
-<p>We've barely scratched the surface of core.async in this introductory post. In future posts we'll see more of what the library provides, show some practical examples (including some very neat things we can do with the state machine that go blocks provide).</p>
-<ul>
+</div>
+</div>
+<div id="outline-container-org7b747c9" class="outline-2">
+<h2 id="org7b747c9">Conclusion</h2>
+<div class="outline-text-2" id="text-org7b747c9">
+<p>
+We've barely scratched the surface of core.async in this introductory post. In future posts we'll see more of what the library provides, show some practical examples (including some very neat things we can do with the state machine that go blocks provide).
+</p>
+
+<ul class="org-ul">
 <li>In part 1 of this series we looked at the basics of core.async via channels and messages.</li>
 <li>In [part 2][part-2] we will explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
 </ul>
-<p>[part-2]: {% post_url 2015-05-27-adventures-with-core-async-part-two-parking-timeouts-alt %}</p>
+
 <script src="/js/core-async-examples.js"> </script>
-
-  </div>
-
-  <hr class="footer-rule" />
-
-  
-
-  <div class="related-container">
-
-    
-
-    
-
-  </div>
-
-
-    </main>
-  </body>
+</div>
+</div>
+<div class="taglist"><a href="https://wtfleming.github.io/tags/"><span class="tag-label">Tags</span></a><span class="tag-separator">: </span><span class="taglist__tags"><a href="https://wtfleming.github.io/tags/clojure/" class="tag" data-tag="clojure" data-index="0">clojure</a> <a href="https://wtfleming.github.io/tags/clojurescript/" class="tag" data-tag="clojurescript" data-index="1">clojurescript</a> </span></div></div>
+<div id="postamble" class="status"><nav><a href="/blog/">Blog</a><a href="/tags/">Tags</a><a href="/rss.xml">RSS</a><a href="https://github.com/wtfleming">GitHub</a></nav>
+</div>
+</body>
 </html>

@@ -1,309 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-
-    <style>
-     :root {
-       --accent-color: #05a081;
-       --accent-color-light: #82d0c0;
-     }
-    </style>
-
-    <meta name="theme-color" content="#05a081" />
-
-    
-    <link rel="alternate" type="application/atom+xml" title="RSS" href="https://wtfleming.github.io/atom.xml">
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <link rel="icon" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
-
-    <link rel="apple-touch-icon" sizes="48x48" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.b722df128754d46d.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.6cc6de892c65b543.png" />
-    <link rel="apple-touch-icon" sizes="96x96" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.05bb94ecb36c25eb.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.f51b5e0bcc4516db.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.eae6a2274aff6419.png" />
-    <link rel="apple-touch-icon" sizes="256x256" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.2e54fa9ad4d11bdb.png" />
-    <link rel="apple-touch-icon" sizes="384x384" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.809ea1a0e3c3f3e0.png" />
-    <link rel="apple-touch-icon" sizes="512x512" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.7c64c06f3e2d7a67.png" />
-    
-
-    
-
-      <meta property="og:type" content="website">
-
-      <meta name="twitter:card" content="summary">
-
-      
-
-      
-
-      
-      
-      <meta name="description" content="" />
-      <meta name="twitter:description" content="">
-      
-      
-
-      
-      <meta name="twitter:title" content="Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!">
-      
-
-      
-      <link rel="prerender" href="&#x2F;about&#x2F;" />
-      
-      <link rel="prerender" href="&#x2F;blog&#x2F;" />
-      
-
-
-      
-      <link rel="prefetch" href="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" />
-
-    <title>
-      
-        
-          Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!
-        
-      
-    </title>
-
-    
-    
-      <link rel="stylesheet" href="https://wtfleming.github.io/main.css">
-    
-    
-  
-
-  
-
-  
-    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojure/">
-  
-    <link rel="prerender"  href="https://wtfleming.github.io/tags/clojurescript/">
-  
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://google.com/article"
-      },
-      "headline": "Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!",
-      "image": [],
-      "datePublished": "2015-05-27T00:00:00+00:00",
-      "dateModified": "2015-05-27T00:00:00+00:00"
-    }
-  </script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        
-
-        
-        {
-          
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Will&#x27;s Software Journal",
-          "item": "https://wtfleming.github.io/"
-        },
-        
-        {
-          
-          "@type": "ListItem",
-          "position": 2,
-          "name": "",
-          "item": "https://wtfleming.github.io/blog/"
-        },
-        
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!",
-          "item": "https://wtfleming.github.io/blog/adventures-with-core-async-part-two-parking-timeouts-alt/"
-        }
-      ]
-    }
-  </script>
-
-  </head>
-  <body>
-    
-    <header>
-      
-        <a class="profile-icon" href="/">
-          <img src="https:&#x2F;&#x2F;wtfleming.github.io&#x2F;processed_images&#x2F;icon.9401710308142458.png" alt="profile picture">
-        </a>
-        <nav>
-          
-            <a href="&#x2F;about&#x2F;">About</a>
-          
-            <a href="&#x2F;blog&#x2F;">Blog</a>
-          
-        </nav>
-      </header>
-    
-    <main>
-    
-  <div class="post-title">
-    <h1>Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!</h1>
-    <small>
-      May 27, 2015
-      
-        - 
-        <span class="tags">
-          
-            <a href="https://wtfleming.github.io/tags/clojure/">clojure</a>
-          
-            <a href="https://wtfleming.github.io/tags/clojurescript/">clojurescript</a>
-          
-        </span>
-      
-    </small>
-  </div>
-
-  <div>
-    <h1 id="introduction">Introduction</h1>
-<ul>
-<li>In <a href="https://wtfleming.github.io/blog/adventures-with-core-async-part-one-channels-messages/">part 1</a> of this series we looked at the basics of core.async via channels and messages.</li>
+<head>
+<meta charset="UTF-8">
+<link rel="alternate"
+      type="application/rss+xml"
+      href="https://wtfleming.github.io/rss.xml"
+      title="RSS feed for https://wtfleming.github.io/">
+<title>Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05a081">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/icon.png">
+<script defer src="/js/highlight.min.js"></script>
+<script defer src="/js/hljs-init.js"></script>
+</head>
+<body>
+<div id="preamble" class="status"><a class="profile-icon" href="/"><img src="/icon.png" width="50" height="50" alt="profile picture"></a>
+<nav><a href="/about/">About</a><a href="/blog/">Blog</a></nav>
+</div>
+<div id="content">
+<div class="post-date">27 May 2015</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/adventures-with-core-async-part-two-parking-timeouts-alt/">Adventures in Clojure with core.async - Part 2 - Timeouts and Working with Multiple Channels via Parking and alts!</a></h1>
+<div id="outline-container-org2e3a116" class="outline-2">
+<h2 id="org2e3a116">Introduction</h2>
+<div class="outline-text-2" id="text-org2e3a116">
+<ul class="org-ul">
+<li>In <a href="/blog/adventures-with-core-async-part-one-channels-messages/">part 1</a> of this series we looked at the basics of core.async via channels and messages.</li>
 <li>In part 2 we will explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
 </ul>
-<p>We will be using the example of a web site that wants to display weather information and will be making mock calls to the <a href="http://openweathermap.org/api">OpenWeatherMap API</a> and <a href="http://www.wunderground.com/weather/api">Weather Underground API</a> to demonstrate using multiple channels with core.async</p>
-<h1 id="helper-function">Helper Function</h1>
-<p>First we define a function that will be used repeatedly in the examples.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">set-inner-html!
-</span><span>  &quot;</span><span style="color:#a3be8c;">Helper function to set contents of a DOM element.</span><span>&quot;
-</span><span>  [elem value]
-</span><span>  (</span><span style="color:#bf616a;">set! </span><span>(</span><span style="color:#bf616a;">.-innerHTML </span><span>(</span><span style="color:#bf616a;">goog.dom/getElement</span><span> elem)) value))
-</span></code></pre>
-<p>It modifies DOM elements using the Google Closure Library.</p>
-<h1 id="working-with-timeouts">Working with Timeouts</h1>
-<p>Let say that when a button is clicked we want to wait a second before continuing. Click the button below to see it in action.</p>
-<hr />
+
+<p>
+We will be using the example of a web site that wants to display weather information and will be making mock calls to the <a href="http://openweathermap.org/api">OpenWeatherMap API</a> and <a href="http://www.wunderground.com/weather/api">Weather Underground API</a> to demonstrate using multiple channels with core.async
+</p>
+</div>
+</div>
+<div id="outline-container-org8d54761" class="outline-2">
+<h2 id="org8d54761">Helper Function</h2>
+<div class="outline-text-2" id="text-org8d54761">
+<p>
+First we define a function that will be used repeatedly in the examples.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn set-inner-html!
+  "Helper function to set contents of a DOM element."
+  [elem value]
+  (set! (.-innerHTML (goog.dom/getElement elem)) value))
+</pre>
+</div>
+
+<p>
+It modifies DOM elements using the Google Closure Library.
+</p>
+</div>
+</div>
+<div id="outline-container-org0ca60ae" class="outline-2">
+<h2 id="org0ca60ae">Working with Timeouts</h2>
+<div class="outline-text-2" id="text-org0ca60ae">
+<p>
+Let say that when a button is clicked we want to wait a second before continuing. Click the button below to see it in action.
+</p>
+
+<hr>
+
 <section>
 <span>Output: </span>
 <span id="timeout-output"></span>
 </section>
 <button id="timeout-button">Run Code</button>
-<hr />
-<p>The steps taken look like this:</p>
-<p><img src="/images/core-async-part-two/timeout.png" alt="timeout-diagram" /></p>
-<p>In Clojure we could run in a different thread and use the Thread/sleep method provided by the Java virtual machine. But since ClojureScript uses a JavaScript runtime (which is single threaded) we don't have as straightforward of a solution.</p>
-<p>One approach would be to call js/setTimeout and pass it a call back function. But here we will use the <a href="https://clojure.github.io/core.async/#clojure.core.async/timeout">timeout</a> function provided by core.async.</p>
-<p>Given a html fragment like:</p>
-<pre data-lang="html" style="background-color:#2b303b;color:#c0c5ce;" class="language-html "><code class="language-html" data-lang="html"><span>&lt;</span><span style="color:#bf616a;">section</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">span</span><span>&gt;Output: &lt;/</span><span style="color:#bf616a;">span</span><span>&gt;
-</span><span>  &lt;</span><span style="color:#bf616a;">span </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">timeout-output</span><span>&quot;&gt;&lt;/</span><span style="color:#bf616a;">span</span><span>&gt;
-</span><span>&lt;/</span><span style="color:#bf616a;">section</span><span>&gt;
-</span><span>&lt;</span><span style="color:#bf616a;">button </span><span style="color:#8fa1b3;">id</span><span>=&quot;</span><span style="color:#a3be8c;">timeout-button</span><span>&quot;&gt;Click me&lt;/</span><span style="color:#bf616a;">button</span><span>&gt;
-</span></code></pre>
-<p>When the button is clicked we can wait for 1 second and then make a DOM change like this:</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-timeout-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Example of timeouts.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">timeout-output</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Button clicked, waiting...</span><span>&quot;)
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">&lt;! </span><span>(</span><span style="color:#bf616a;">timeout </span><span style="color:#d08770;">1000</span><span>))
-</span><span>    (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">timeout-output</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Finished after waiting 1 second.</span><span>&quot;)))
-</span></code></pre>
-<p><strong>timeout</strong> returns a channel that will close and <strong>&lt;!</strong> will park until a value becomes available or the channel is closed.</p>
-<h1 id="mock-api-call-functions">Mock API Call Functions</h1>
-<p>The remaining examples will use these functions to simulate calling out to a couple APIs.</p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">mock-api-call
-</span><span>  &quot;</span><span style="color:#a3be8c;">Wait ms milliseconds. Returns a channel containing the message</span><span>&quot;
-</span><span>  [ms msg]
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">&lt;! </span><span>(</span><span style="color:#bf616a;">timeout</span><span> ms))
-</span><span>    msg))
-</span><span>
-</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">weather-underground-api-call </span><span>[]
-</span><span>  (</span><span style="color:#bf616a;">mock-api-call </span><span>(</span><span style="color:#bf616a;">rand-int </span><span style="color:#d08770;">1500</span><span>) &quot;</span><span style="color:#a3be8c;">Weather Underground responded.</span><span>&quot;))
-</span><span>
-</span><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">open-weather-map-api-call </span><span>[]
-</span><span>  (</span><span style="color:#bf616a;">mock-api-call </span><span>(</span><span style="color:#bf616a;">rand-int </span><span style="color:#d08770;">1500</span><span>) &quot;</span><span style="color:#a3be8c;">OpenWeatherMap responded.</span><span>&quot;))
-</span></code></pre>
-<p>They take a random amount of time (up to 1.5 seconds) to return results. Note that a go block returns a channel which in this case will contain the message from the API.</p>
-<h1 id="working-with-multiple-channels-via-parking">Working with Multiple Channels via Parking</h1>
-<p>In this example we will demonstrate calling out to two APIs, waiting for both to return results, and then display both of them.</p>
-<p><img src="/images/core-async-part-two/parking.png" alt="parking-diagram" /></p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-parking-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Call two APIs. Output results from both.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">parking-output</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Calling APIs, waiting for results.</span><span>&quot;)
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">let </span><span>[weather-underground-chan    (</span><span style="color:#bf616a;">weather-underground-api-call</span><span>)
-</span><span>          open-weather-map-chan       (</span><span style="color:#bf616a;">open-weather-map-api-call</span><span>)
-</span><span>          weather-underground-message (</span><span style="color:#bf616a;">&lt;!</span><span> weather-underground-chan)
-</span><span>          open-weather-map-message    (</span><span style="color:#bf616a;">&lt;!</span><span> open-weather-map-chan)
-</span><span>          msg (</span><span style="color:#bf616a;">str</span><span> weather-underground-message &quot; &quot; open-weather-map-message)]
-</span><span>      (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">parking-output</span><span>&quot; msg))))
-</span></code></pre>
+
+<hr>
+
+<p>
+The steps taken look like this:
+</p>
+
+
+<figure id="org1d7ea4f">
+<img src="/images/core-async-part-two/timeout.png" alt="timeout.png">
+
+</figure>
+
+<p>
+In Clojure we could run in a different thread and use the Thread/sleep method provided by the Java virtual machine. But since ClojureScript uses a JavaScript runtime (which is single threaded) we don't have as straightforward of a solution.
+</p>
+
+<p>
+One approach would be to call js/setTimeout and pass it a call back function. But here we will use the <a href="https://clojure.github.io/core.async/#clojure.core.async/timeout">timeout</a> function provided by core.async.
+</p>
+
+<p>
+Given a html fragment like:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-html">&lt;section&gt;
+  &lt;span&gt;Output: &lt;/span&gt;
+  &lt;span id="timeout-output"&gt;&lt;/span&gt;
+&lt;/section&gt;
+&lt;button id="timeout-button"&gt;Click me&lt;/button&gt;
+</pre>
+</div>
+
+<p>
+When the button is clicked we can wait for 1 second and then make a DOM change like this:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-timeout-button-click
+  "Example of timeouts."
+  [_]
+  (set-inner-html! "timeout-output" "Button clicked, waiting...")
+  (go
+    (&lt;! (timeout 1000))
+    (set-inner-html! "timeout-output" "Finished after waiting 1 second.")))
+</pre>
+</div>
+
+<p>
+<b>timeout</b> returns a channel that will close and <b>&lt;!</b> will park until a value becomes available or the channel is closed.
+</p>
+</div>
+</div>
+<div id="outline-container-org184073f" class="outline-2">
+<h2 id="org184073f">Mock API Call Functions</h2>
+<div class="outline-text-2" id="text-org184073f">
+<p>
+The remaining examples will use these functions to simulate calling out to a couple APIs.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn mock-api-call
+  "Wait ms milliseconds. Returns a channel containing the message"
+  [ms msg]
+  (go
+    (&lt;! (timeout ms))
+    msg))
+
+(defn weather-underground-api-call []
+  (mock-api-call (rand-int 1500) "Weather Underground responded."))
+
+(defn open-weather-map-api-call []
+  (mock-api-call (rand-int 1500) "OpenWeatherMap responded."))
+</pre>
+</div>
+
+<p>
+They take a random amount of time (up to 1.5 seconds) to return results. Note that a go block returns a channel which in this case will contain the message from the API.
+</p>
+</div>
+</div>
+<div id="outline-container-org60d6b50" class="outline-2">
+<h2 id="org60d6b50">Working with Multiple Channels via Parking</h2>
+<div class="outline-text-2" id="text-org60d6b50">
+<p>
+In this example we will demonstrate calling out to two APIs, waiting for both to return results, and then display both of them.
+</p>
+
+
+<figure id="org5a16c56">
+<img src="/images/core-async-part-two/parking.png" alt="parking.png">
+
+</figure>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-parking-button-click
+  "Call two APIs. Output results from both."
+  [_]
+  (set-inner-html! "parking-output" "Calling APIs, waiting for results.")
+  (go
+    (let [weather-underground-chan    (weather-underground-api-call)
+          open-weather-map-chan       (open-weather-map-api-call)
+          weather-underground-message (&lt;! weather-underground-chan)
+          open-weather-map-message    (&lt;! open-weather-map-chan)
+          msg (str weather-underground-message " " open-weather-map-message)]
+      (set-inner-html! "parking-output" msg))))
+</pre>
+</div>
+
 <section>
 <span>Output: </span>
 <span id="parking-output"></span>
 </section>
 <button id="parking-button">Run Code</button>
-<hr />
-<p>Under the hood the go block will transform its body to a state machine and wait until both of the calls to <a href="https://clojure.github.io/core.async/#clojure.core.async/%3C!">&lt;!</a> have received a value.</p>
-<h1 id="working-with-multiple-channels-via-alts">Working with Multiple Channels via alts!</h1>
-<p>In this example we will demonstrate calling out to two APIs, return results from the one that finishes the fastest, and then display it.</p>
-<p>Since these are both weather services, in all likelihood they will return similar values, so we might do this if all we care about is getting a result and displaying it as fast as possible.</p>
-<p><img src="/images/core-async-part-two/alts.png" alt="alts-diagram" /></p>
-<pre data-lang="clojure" style="background-color:#2b303b;color:#c0c5ce;" class="language-clojure "><code class="language-clojure" data-lang="clojure"><span>(</span><span style="color:#b48ead;">defn </span><span style="color:#8fa1b3;">handle-alts-button-click
-</span><span>  &quot;</span><span style="color:#a3be8c;">Call two APIs. Output results from the first to return.</span><span>&quot;
-</span><span>  [_]
-</span><span>  (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">alts-output</span><span>&quot; &quot;</span><span style="color:#a3be8c;">Calling APIs, waiting for results.</span><span>&quot;)
-</span><span>  (</span><span style="color:#bf616a;">go
-</span><span>    (</span><span style="color:#bf616a;">let </span><span>[weather-underground-chan (</span><span style="color:#bf616a;">weather-underground-api-call</span><span>)
-</span><span>          open-weather-map-chan    (</span><span style="color:#bf616a;">open-weather-map-api-call</span><span>)
-</span><span>          [msg]                    (</span><span style="color:#bf616a;">alts!
-</span><span>                                     [weather-underground-chan
-</span><span>                                     open-weather-map-chan])]
-</span><span>      (</span><span style="color:#bf616a;">set-inner-html! </span><span>&quot;</span><span style="color:#a3be8c;">alts-output</span><span>&quot; msg))))
-</span></code></pre>
+
+<hr>
+
+<p>
+Under the hood the go block will transform its body to a state machine and wait until both of the calls to <a href="https://clojure.github.io/core.async/#clojure.core.async/%3C!">&lt;!</a> have received a value.
+</p>
+</div>
+</div>
+<div id="outline-container-org29a3d1e" class="outline-2">
+<h2 id="org29a3d1e">Working with Multiple Channels via alts!</h2>
+<div class="outline-text-2" id="text-org29a3d1e">
+<p>
+In this example we will demonstrate calling out to two APIs, return results from the one that finishes the fastest, and then display it.
+</p>
+
+<p>
+Since these are both weather services, in all likelihood they will return similar values, so we might do this if all we care about is getting a result and displaying it as fast as possible.
+</p>
+
+
+<figure id="org4a6980c">
+<img src="/images/core-async-part-two/alts.png" alt="alts.png">
+
+</figure>
+
+<div class="org-src-container">
+<pre class="src src-clojure">(defn handle-alts-button-click
+  "Call two APIs. Output results from the first to return."
+  [_]
+  (set-inner-html! "alts-output" "Calling APIs, waiting for results.")
+  (go
+    (let [weather-underground-chan (weather-underground-api-call)
+          open-weather-map-chan    (open-weather-map-api-call)
+          [msg]                    (alts!
+                                     [weather-underground-chan
+                                     open-weather-map-chan])]
+      (set-inner-html! "alts-output" msg))))
+</pre>
+</div>
+
 <section>
 <span>First API to return results: </span>
 <span id="alts-output"></span>
 </section>
 <button id="alts-button">Run Code</button>
-<hr />
-<p><a href="https://clojure.github.io/core.async/#clojure.core.async/alts!">alts!</a> will park until the first channel has a result. Since there is some randomness in the amount of time each API takes to respond in this example, click the button above a few times and we will potentially get results from a different one on multiple runs.</p>
+
+<hr>
+
+<p>
+<a href="https://clojure.github.io/core.async/#clojure.core.async/alts!">alts!</a> will park until the first channel has a result. Since there is some randomness in the amount of time each API takes to respond in this example, click the button above a few times and we will potentially get results from a different one on multiple runs.
+</p>
+
 <script src="/js/core-async-examples-part-two.js"> </script>
-
-  </div>
-
-  <hr class="footer-rule" />
-
-  
-
-  <div class="related-container">
-
-    
-
-    
-
-  </div>
-
-
-    </main>
-  </body>
+</div>
+</div>
+<div class="taglist"><a href="https://wtfleming.github.io/tags/"><span class="tag-label">Tags</span></a><span class="tag-separator">: </span><span class="taglist__tags"><a href="https://wtfleming.github.io/tags/clojure/" class="tag" data-tag="clojure" data-index="0">clojure</a> <a href="https://wtfleming.github.io/tags/clojurescript/" class="tag" data-tag="clojurescript" data-index="1">clojurescript</a> </span></div></div>
+<div id="postamble" class="status"><nav><a href="/blog/">Blog</a><a href="/tags/">Tags</a><a href="/rss.xml">RSS</a><a href="https://github.com/wtfleming">GitHub</a></nav>
+</div>
+</body>
 </html>

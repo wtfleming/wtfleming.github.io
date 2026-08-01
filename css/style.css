@@ -1,0 +1,152 @@
+/* wtfleming.github.io */
+
+:root {
+  --accent: #05a081;
+  --accent-light: #82d0c0;
+  --text: #24292e;
+  --muted: #6a737d;
+  --rule: #e3e6e8;
+  --code-bg: #f6f8fa;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+  max-width: 44rem;
+  font: 1.05rem/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: #fff;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header and footer ------------------------------------------------------ */
+
+#preamble, #postamble {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+}
+#preamble { border-bottom: 1px solid var(--rule); margin-bottom: 2rem; }
+#postamble { border-top: 1px solid var(--rule); margin-top: 3rem; }
+
+#preamble nav, #postamble nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+#preamble nav a, #postamble nav a { color: var(--muted); }
+#preamble nav a:hover, #postamble nav a:hover { color: var(--accent); }
+
+.profile-icon img { display: block; border-radius: 50%; }
+
+/* Headings and post meta ------------------------------------------------- */
+
+h1, h2, h3, h4 { line-height: 1.25; margin: 2.25rem 0 0.75rem; }
+h1, .title { font-size: 1.9rem; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.2rem; }
+
+.title, .tags-title { margin-top: 0; }
+
+.post-title { margin: 0.15rem 0 1.25rem; }
+.post-title a { color: inherit; }
+.post-title a:hover { color: var(--accent); text-decoration: none; }
+
+.post-date {
+  margin-top: 2.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+#content > .post-date:first-child, .title + .post-date { margin-top: 0; }
+
+/* Body copy -------------------------------------------------------------- */
+
+p, ul, ol { margin: 0 0 1.15rem; }
+ul, ol { padding-left: 1.4rem; }
+li { margin-bottom: 0.35rem; }
+
+img { max-width: 100%; height: auto; }
+figure { margin: 1.5rem 0; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 3px solid var(--accent-light);
+  color: var(--muted);
+}
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+th, td { border: 1px solid var(--rule); padding: 0.4rem 0.6rem; text-align: left; }
+
+/* Code ------------------------------------------------------------------- */
+
+code, pre, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+code { font-size: 0.875em; background: var(--code-bg); padding: 0.15em 0.35em; border-radius: 3px; }
+
+pre {
+  /* Several posts carry long, unwrappable listings. */
+  overflow-x: auto;
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+
+.org-src-container { margin: 0; }
+
+/* Tags ------------------------------------------------------------------- */
+
+.taglist { margin: 2.5rem 0 0; font-size: 0.9rem; color: var(--muted); }
+.taglist a.tag {
+  display: inline-block;
+  margin-right: 0.35rem;
+  padding: 0.1rem 0.55rem;
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--muted);
+}
+.taglist a.tag:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.tag-label { color: var(--muted); }
+
+/* Index and archive ------------------------------------------------------ */
+
+#content > h2.post-title { margin-bottom: 0.5rem; }
+#archive { margin-top: 3rem; }
+
+.read-more { display: inline-block; margin-top: 0.25rem; font-size: 0.9rem; }
+
+/* Syntax highlighting -- highlight.js "GitHub" theme, BSD-3-Clause,
+   https://github.com/highlightjs/highlight.js */
+
+.hljs-doctag, .hljs-keyword, .hljs-meta .hljs-keyword, .hljs-template-tag,
+.hljs-template-variable, .hljs-type, .hljs-variable.language_ { color: #d73a49; }
+.hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__,
+.hljs-title.function_ { color: #6f42c1; }
+.hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number,
+.hljs-operator, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id,
+.hljs-variable { color: #005cc5; }
+.hljs-meta .hljs-string, .hljs-regexp, .hljs-string { color: #032f62; }
+.hljs-built_in, .hljs-symbol { color: #e36209; }
+.hljs-code, .hljs-comment, .hljs-formula { color: var(--muted); }
+.hljs-name, .hljs-quote, .hljs-selector-pseudo, .hljs-selector-tag { color: #22863a; }
+.hljs-section { color: #005cc5; font-weight: 700; }
+.hljs-bullet { color: #735c0f; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
+.hljs-addition { color: #22863a; background-color: #f0fff4; }
+.hljs-deletion { color: #b31d28; background-color: #ffeef0; }
