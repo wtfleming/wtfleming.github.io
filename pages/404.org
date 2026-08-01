@@ -1,0 +1,5 @@
+#+TITLE: Page not found
+
+Sorry, there is nothing here.
+
+Try the [[/blog/][blog archive]] or head back to the [[/][front page]].

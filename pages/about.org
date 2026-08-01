@@ -1,0 +1,7 @@
+#+TITLE: About
+
+I am a software engineer based out of New York.
+
+Places you can find me:
+
+- [[https://github.com/wtfleming][@wtfleming]] on GitHub

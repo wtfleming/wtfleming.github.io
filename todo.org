@@ -1,5 +1,7 @@
 
-* TODO Setup https://www.getzola.org/documentation/templates/feeds/
+* DONE Setup a feed
+Published at /rss.xml (RSS 2.0). Note the old /atom.xml is gone, so any
+existing subscribers need to resubscribe.
 
 * TODO Create and link to a projects page
 ** TODO Projects page should be in markdown - and have links to the blog and whatnot
@@ -11,7 +13,9 @@ just the JS, and a link to the blog post
  
 
 
-* Redirect links?
+* DONE Redirect links?
+These Jekyll-era URLs now serve a meta-refresh stub pointing at /blog/<slug>/.
+See ~wtf/redirects~ in publish.el to add more.
 https://wtfleming.github.io/2020/04/12/pytorch-cats-vs-dogs-part-3/
 https://wtfleming.github.io/2020/01/26/chip8-webassembly-rust/
 https://wtfleming.github.io/2020/01/17/raytracing-webassembly-rust/

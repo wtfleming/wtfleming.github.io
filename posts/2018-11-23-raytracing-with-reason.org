@@ -1,0 +1,21 @@
+#+TITLE: Ray Tracing in the Browser using ReasonML
+#+DATE: <2018-11-23>
+#+FILETAGS: :reasonml:
+
+[[/images/raytracing-reason/raytracing1.png]]
+
+I was reading Peter Shirley's little book [[http://in1weekend.blogspot.com/2016/01/ray-tracing-in-one-weekend.html][Ray Tracing in One Weekend]] which provides code in C and for fun wanted to try to implement it in [[https://reasonml.github.io/][Reason]]. Source code is [[https://github.com/wtfleming/reason-examples/tree/master/ray-tracer][available here]].
+
+Above is a pregenerated image, but you can click the button below to generate a smaller lower quality picture on demand (it takes about 5 seconds to generate on my laptop).
+
+#+begin_export html
+<button id="calculate">Click Me And Lets Do Some Ray Tracing In The Browser</button>
+<br />
+<canvas id="demo" width="200" height="100"></canvas>
+#+end_export
+
+I can't think of many reasons you'd want to do ray tracing in JavaScript, but for now this was a fun little weekend project.
+
+#+begin_export html
+<script src="/js/reason-raytracer/Main.bs.695be687.js" charset="utf-8"></script>
+#+end_export
