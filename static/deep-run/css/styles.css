@@ -1,0 +1,188 @@
+/* Light, print-like UI over a full-bleed canvas. Sized to sit in an iframe in
+   a blog post as happily as it does full screen. */
+
+/* These mirror the site palette in static/css/style.css so the embed reads as
+   part of the post; keep --ink/--text, --muted, --rule and --accent in sync
+   when the site's change. Kept self-contained so the page opens from disk. */
+:root {
+  --ink: #24292e;
+  --muted: #6a737d;
+  --rule: #e3e6e8;
+  --accent: #05a081;
+  --panel: rgba(255, 255, 255, 0.94);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #dfe6ea;
+  color: var(--ink);
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+#scene { display: block; width: 100vw; height: 100vh; }
+
+.hud {
+  position: absolute;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 0.6rem 0.75rem;
+  /* No backdrop-filter: the panel is already 94% opaque, and a backdrop blur
+     over a canvas that repaints every frame makes the compositor re-sample
+     the region under the panel each time — visible as a flicker at the panel
+     edges. */
+}
+
+/* controls + the run's own table of contents */
+.hud-top { top: 0.75rem; left: 0.75rem; }
+
+.bar { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.bar button {
+  font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+}
+.bar button:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Whichever control starts the run is the loud one. */
+.bar button.is-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(5, 160, 129, 0.4);
+}
+.bar button.is-primary:hover { background: #048d72; color: #fff; }
+
+/* Click-to-start. The scene is drawn underneath it, so the reader sees the
+   campus at rest and one obvious way to set it going. */
+.start {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 0;
+  padding: 0;
+  background: rgba(223, 230, 234, 0.55);
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+}
+.start[hidden] { display: none; }
+
+.start-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding-left: 0.35rem;          /* the glyph's own bearing is off-centre */
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.9rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  transition: transform 0.15s ease;
+}
+.start:hover .start-badge { transform: scale(1.06); }
+.start:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+.start-label { font-size: 1.05rem; font-weight: 600; }
+.start-note { font-size: 0.82rem; color: var(--muted); }
+
+.steps {
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  font: 11px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--muted);
+}
+.steps li { padding-left: 1rem; position: relative; }
+.steps li::before {
+  content: "○";
+  position: absolute;
+  left: 0;
+}
+.steps li.is-done { color: var(--ink); }
+.steps li.is-done::before { content: "●"; color: var(--accent); }
+.steps li.is-here { color: var(--accent); font-weight: 700; }
+.steps li.is-here::before { content: "▶"; color: var(--accent); }
+
+/* the write-up for the stop the van is at */
+.hud-copy {
+  left: 0.75rem;
+  bottom: 0.75rem;
+  width: min(30rem, calc(100vw - 1.5rem));
+}
+.hud-copy h1 { margin: 0 0 0.3rem; font-size: 0.95rem; letter-spacing: 0.02em; }
+.hud-copy p { margin: 0; font-size: 0.86rem; color: #3b444c; }
+
+/* the live numbers */
+.hud-counts { top: 0.75rem; right: 0.75rem; width: 17.5rem; }
+.hud-counts h2 {
+  margin: 0 0 0.4rem;
+  font: 700 10px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  padding: 0.15rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.row .k { font-size: 0.8rem; }
+.row .v {
+  font: 700 0.85rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--accent);
+}
+.row .n {
+  grid-column: 1 / -1;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+/* Narrow embeds: the numbers panel drops under the controls rather than
+   fighting them for the top-right corner. */
+@media (max-width: 46rem) {
+  /* In a blog iframe the panels are competing with the campus for room. The
+     station list goes horizontal so the top-left panel stops covering the
+     first two buildings, and the write-up is capped and scrolls. */
+  .hud { padding: 0.45rem 0.55rem; }
+  .hud-top { right: 0.75rem; }
+  .steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.7rem;
+    margin-top: 0.45rem;
+    font-size: 10px;
+  }
+  .steps li { padding-left: 0.85rem; }
+  .hud-counts {
+    top: auto;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    width: 11.5rem;
+  }
+  .row .n { display: none; }
+  .hud-copy {
+    width: calc(100% - 13.5rem);
+    max-height: 8.5rem;
+    overflow: auto;
+  }
+  .hud-copy p { font-size: 0.78rem; }
+}
