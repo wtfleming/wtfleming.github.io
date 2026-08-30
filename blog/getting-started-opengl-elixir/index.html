@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Getting started with OpenGL in Elixir</title>
+<meta property="og:title" content="Getting started with OpenGL in Elixir">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/getting-started-opengl-elixir/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -29,13 +34,13 @@ The final result draws a triangle on the screen and looks like this:
 </p>
 
 
-<figure id="org350fe60">
+<figure id="org6ae4523">
 <img src="/images/elixir-opengl-01/triangle.png" alt="triangle.png">
 
 </figure>
-<div id="outline-container-orgc52a911" class="outline-2">
-<h2 id="orgc52a911">wxWidgets and Erlang</h2>
-<div class="outline-text-2" id="text-orgc52a911">
+<div id="outline-container-org746f4de" class="outline-2">
+<h2 id="org746f4de">wxWidgets and Erlang</h2>
+<div class="outline-text-2" id="text-org746f4de">
 <p>
 Erlang/OTP ships with a port of <a href="http://www.erlang.org/doc/man/wx.html">wxWidgets</a>, so creating a window and obtaining an OpenGL context is relatively easy.
 </p>
@@ -54,7 +59,7 @@ A window that looks something like this should appear.
 </p>
 
 
-<figure id="org21632a2">
+<figure id="org30876d6">
 <img src="/images/elixir-opengl-01/wxerlang.png" alt="wxerlang.png">
 
 </figure>
@@ -64,9 +69,9 @@ Next we want to do something similar, but in Elixir instead.
 </p>
 </div>
 </div>
-<div id="outline-container-org5df99e6" class="outline-2">
-<h2 id="org5df99e6">Create an Elixir project</h2>
-<div class="outline-text-2" id="text-org5df99e6">
+<div id="outline-container-org114d988" class="outline-2">
+<h2 id="org114d988">Create an Elixir project</h2>
+<div class="outline-text-2" id="text-org114d988">
 <p>
 Run these commands in a shell
 </p>
@@ -81,9 +86,9 @@ $ mkdir src
 </div>
 </div>
 </div>
-<div id="outline-container-org7b2e9d0" class="outline-2">
-<h2 id="org7b2e9d0">Erlang modules</h2>
-<div class="outline-text-2" id="text-org7b2e9d0">
+<div id="outline-container-orgd6626b7" class="outline-2">
+<h2 id="orgd6626b7">Erlang modules</h2>
+<div class="outline-text-2" id="text-orgd6626b7">
 <p>
 If you look inside your Erlang/OTP distribution directory at the file lib/wx/include/wx.hrl you will see a number of defines that look like:
 </p>
@@ -185,9 +190,9 @@ We're now done with Erlang.
 </p>
 </div>
 </div>
-<div id="outline-container-org6c95029" class="outline-2">
-<h2 id="org6c95029">Elixir Code</h2>
-<div class="outline-text-2" id="text-org6c95029">
+<div id="outline-container-org7746e57" class="outline-2">
+<h2 id="org7746e57">Elixir Code</h2>
+<div class="outline-text-2" id="text-org7746e57">
 <p>
 Change lib/elixir<sub>opengl.ex</sub> to look like this:
 </p>
@@ -351,7 +356,7 @@ A window should appear that looks like this:
 </p>
 
 
-<figure id="orgd58d34b">
+<figure id="orge32f52a">
 <img src="/images/elixir-opengl-01/triangle.png" alt="triangle.png">
 
 </figure>

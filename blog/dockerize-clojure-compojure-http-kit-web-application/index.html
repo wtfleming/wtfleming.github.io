@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Dockerizing a Clojure, Compojure, and HTTP Kit Web Application</title>
+<meta property="og:title" content="Dockerizing a Clojure, Compojure, and HTTP Kit Web Application">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/dockerize-clojure-compojure-http-kit-web-application/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -27,9 +32,9 @@
 <p>
 Here we will build a very simple web site using the Clojure <a href="https://github.com/weavejester/compojure">Compojure</a> and <a href="https://www.http-kit.org/">HTTP Kit</a> libraries. The source code for this article is also available <a href="https://github.com/wtfleming/docker-compojure-hello-world">here</a>.
 </p>
-<div id="outline-container-org8ec3bf8" class="outline-2">
-<h2 id="org8ec3bf8">Create a Compojure Application</h2>
-<div class="outline-text-2" id="text-org8ec3bf8">
+<div id="outline-container-org840abd4" class="outline-2">
+<h2 id="org840abd4">Create a Compojure Application</h2>
+<div class="outline-text-2" id="text-org840abd4">
 <p>
 First create a file named <i>project.clj</i> with the following contents:
 </p>
@@ -75,7 +80,7 @@ This is a very basic Compojure/HTTP Kit app with a single route that displays a 
 Now build with <a href="http://leiningen.org/">Leiningen</a>.
 </p>
 
-<pre class="example" id="orgbb64e2a">
+<pre class="example" id="org25f04d1">
 $ lein uberjar
 </pre>
 
@@ -83,7 +88,7 @@ $ lein uberjar
 You could now run locally like this
 </p>
 
-<pre class="example" id="org6e550c4">
+<pre class="example" id="org64dfd46">
 $ java -jar target/hello-world-0.1.0-standalone.jar
 </pre>
 
@@ -92,14 +97,14 @@ Browse to <a href="http://localhost:8080">http://localhost:8080</a> and you shou
 </p>
 </div>
 </div>
-<div id="outline-container-orga51ea4d" class="outline-2">
-<h2 id="orga51ea4d">Create a Dockerfile</h2>
-<div class="outline-text-2" id="text-orga51ea4d">
+<div id="outline-container-org1af8a79" class="outline-2">
+<h2 id="org1af8a79">Create a Dockerfile</h2>
+<div class="outline-text-2" id="text-org1af8a79">
 <p>
 Now create a file called <i>Dockerfile</i> with these contents
 </p>
 
-<pre class="example" id="orgc149e83">
+<pre class="example" id="orgc44a692">
 #
 # Dockerfile for a compojure hello world app
 #
@@ -136,14 +141,14 @@ There is much more you can do, the <a href="https://docs.docker.com/reference/bu
 </p>
 </div>
 </div>
-<div id="outline-container-org9f8a0e6" class="outline-2">
-<h2 id="org9f8a0e6">Build a Docker Image</h2>
-<div class="outline-text-2" id="text-org9f8a0e6">
+<div id="outline-container-org2373da0" class="outline-2">
+<h2 id="org2373da0">Build a Docker Image</h2>
+<div class="outline-text-2" id="text-org2373da0">
 <p>
 Now lets build a Docker image.
 </p>
 
-<pre class="example" id="org785ae70">
+<pre class="example" id="orge0d2d6b">
 $ docker build -t wtfleming/compojure-hello-world .
 </pre>
 
@@ -151,7 +156,7 @@ $ docker build -t wtfleming/compojure-hello-world .
 We can see that it was built:
 </p>
 
-<pre class="example" id="org78cb16b">
+<pre class="example" id="org735ed5e">
 $ docker images
 REPOSITORY                        TAG     IMAGE ID       CREATED      VIRTUAL SIZE
 wtfleming/compojure-hello-world   latest  b1c798937b9d   6 days ago   351.1 MB
@@ -162,10 +167,10 @@ We can use an image as the basis to launch a container.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd17a576" class="outline-2">
-<h2 id="orgd17a576">Run a Docker container</h2>
-<div class="outline-text-2" id="text-orgd17a576">
-<pre class="example" id="org03849d8">
+<div id="outline-container-org19641cb" class="outline-2">
+<h2 id="org19641cb">Run a Docker container</h2>
+<div class="outline-text-2" id="text-org19641cb">
+<pre class="example" id="org5819463">
 $ docker run --rm -p 4000:4000 wtfleming/compojure-hello-world
 Listening on port 4000
 </pre>
@@ -188,7 +193,7 @@ Open a web browser to <a href="http://localhost:4000">http://localhost:4000</a> 
 Browse to <a href="http://localhost:4000">http://localhost:4000</a> or if you are on a Mac or Windows using boot2docker find the ip address like
 </p>
 
-<pre class="example" id="orgb86e9ce">
+<pre class="example" id="org5a485eb">
 $ boot2docker ip
 The VM's Host only interface IP address is: 192.168.59.103
 </pre>

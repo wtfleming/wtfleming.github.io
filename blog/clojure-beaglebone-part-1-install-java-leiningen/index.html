@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24</title>
+<meta property="og:title" content="Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/clojure-beaglebone-part-1-install-java-leiningen/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -20,9 +25,9 @@
 </div>
 <div id="content">
 <div class="post-date">24 May 2014</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-1-install-java-leiningen/">Clojure on the BeagleBone part 1 - Installing Java, Leiningen, and Emacs 24</a></h1>
-<div id="outline-container-org7cf3f95" class="outline-2">
-<h2 id="org7cf3f95">Intro</h2>
-<div class="outline-text-2" id="text-org7cf3f95">
+<div id="outline-container-org45b624b" class="outline-2">
+<h2 id="org45b624b">Intro</h2>
+<div class="outline-text-2" id="text-org45b624b">
 <ul class="org-ul">
 <li>In part 1 of this series we see how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In <a href="/blog/clojure-beaglebone-part-2-blink-led-clojure/">part 2</a> we use the BeagleBone to blink an LED on a breadboard using <a href="https://clojure.org/">Clojure</a>.</li>
@@ -35,7 +40,7 @@ The <a href="https://beagleboard.org/black">BeagleBone</a> is a small and low co
 </p>
 
 
-<figure id="orged82f7f">
+<figure id="org6ea817b">
 <img src="/images/beagleboneblack.jpg" alt="beagleboneblack.jpg">
 
 </figure>
@@ -49,9 +54,9 @@ If you are using a different operating system or version you may need to make so
 </p>
 </div>
 </div>
-<div id="outline-container-org8087b74" class="outline-2">
-<h2 id="org8087b74">Java</h2>
-<div class="outline-text-2" id="text-org8087b74">
+<div id="outline-container-org90bb116" class="outline-2">
+<h2 id="org90bb116">Java</h2>
+<div class="outline-text-2" id="text-org90bb116">
 <p>
 I started with the <a href="https://beagleboard.org/project/java/">BeagleBone Oracle JDK instructions</a>, but needed to make some changes (for instance because I am using Debian I can use "hard float" JDK - however if you are using Angstrom Linux you may need the "soft float" version - or you may want to use Java 8 instead).
 </p>
@@ -81,9 +86,9 @@ You will want to store all the exports from this post in your .bashrc so you do 
 </p>
 </div>
 </div>
-<div id="outline-container-org3b3d7c8" class="outline-2">
-<h2 id="org3b3d7c8">Leiningen</h2>
-<div class="outline-text-2" id="text-org3b3d7c8">
+<div id="outline-container-org8a929a0" class="outline-2">
+<h2 id="org8a929a0">Leiningen</h2>
+<div class="outline-text-2" id="text-org8a929a0">
 <p>
 Install following the <a href="https://github.com/technomancy/leiningen">installation instructions here</a>:
 </p>
@@ -115,9 +120,9 @@ nil
 </div>
 </div>
 </div>
-<div id="outline-container-org85bde02" class="outline-2">
-<h2 id="org85bde02">Emacs 24.4</h2>
-<div class="outline-text-2" id="text-org85bde02">
+<div id="outline-container-org4a07246" class="outline-2">
+<h2 id="org4a07246">Emacs 24.4</h2>
+<div class="outline-text-2" id="text-org4a07246">
 <p>
 The latest version of Emacs in the Debian package list is 23, here is how to download and install 24.4. Note that generally you will be happier running Emacs on you laptop/desktop and using tramp-mode to edit files from there.
 </p>

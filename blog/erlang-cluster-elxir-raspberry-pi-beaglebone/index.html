@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Erlang clustering on the Raspberry Pi and BeagleBone with Elixir</title>
+<meta property="og:title" content="Erlang clustering on the Raspberry Pi and BeagleBone with Elixir">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/erlang-cluster-elxir-raspberry-pi-beaglebone/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -39,21 +44,21 @@ A process written in Elixir on the PC periodically communicates with the Raspber
 </p>
 
 
-<figure id="orgae0bc31">
+<figure id="org6993ed9">
 <img src="/images/embedded-elixir-cluster.dot.png" alt="embedded-elixir-cluster.dot.png">
 
 </figure>
-<div id="outline-container-orgff00296" class="outline-2">
-<h2 id="orgff00296">Android code</h2>
-<div class="outline-text-2" id="text-orgff00296">
+<div id="outline-container-orge536990" class="outline-2">
+<h2 id="orge536990">Android code</h2>
+<div class="outline-text-2" id="text-orge536990">
 <p>
 I simply took this <a href="https://github.com/bryanjos/AndroidPhoenixDemo">Android Phoenix Demo on GitHub</a>, followed the instructions to update the host value, and installed in on a Nexus 7.
 </p>
 </div>
 </div>
-<div id="outline-container-org18cf86e" class="outline-2">
-<h2 id="org18cf86e">Raspberry Pi and BeagleBone Code</h2>
-<div class="outline-text-2" id="text-org18cf86e">
+<div id="outline-container-orgf56b3b7" class="outline-2">
+<h2 id="orgf56b3b7">Raspberry Pi and BeagleBone Code</h2>
+<div class="outline-text-2" id="text-orgf56b3b7">
 <p>
 On both your Pi and BeagleBone create a file called gpio-led.ex with the following contents:
 </p>
@@ -103,9 +108,9 @@ If you are curious about what is happening with the GPIO and want to learn more 
 </p>
 </div>
 </div>
-<div id="outline-container-orgca707e3" class="outline-2">
-<h2 id="orgca707e3">Web server code</h2>
-<div class="outline-text-2" id="text-orgca707e3">
+<div id="outline-container-org90132ca" class="outline-2">
+<h2 id="org90132ca">Web server code</h2>
+<div class="outline-text-2" id="text-org90132ca">
 <p>
 I started with the <a href="https://github.com/chrismccord/phoenix_chat_example">Phoenix chat example on GitHub</a>. Clone the repo to your desktop or laptop.
 </p>
@@ -164,9 +169,9 @@ Once started the code will recursively loop forever.
 </p>
 </div>
 </div>
-<div id="outline-container-org8f9ca8b" class="outline-2">
-<h2 id="org8f9ca8b">Run the code</h2>
-<div class="outline-text-2" id="text-org8f9ca8b">
+<div id="outline-container-org36f543d" class="outline-2">
+<h2 id="org36f543d">Run the code</h2>
+<div class="outline-text-2" id="text-org36f543d">
 <p>
 ssh to the Raspberry Pi as the root user
 </p>

@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Blinking an LED with the MSP430</title>
+<meta property="og:title" content="Blinking an LED with the MSP430">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/msp430-blink/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -27,7 +32,7 @@ I recently bought a <a href="http://processors.wiki.ti.com/index.php/MSP430_Laun
 </p>
 
 
-<figure id="orgb389f3f">
+<figure id="org09dd1de">
 <img src="/images/msp430-led-blink.jpg" alt="msp430-led-blink.jpg">
 
 </figure>
@@ -64,7 +69,7 @@ int main(void) {
 Makefile
 </p>
 
-<pre class="example" id="org3726511">
+<pre class="example" id="orgcab509d">
 CC=msp430-gcc
 CFLAGS=-Os -Wall -g -mmcu=msp430g2553
 
@@ -84,7 +89,7 @@ clean:
 We build, then use <a href="http://mspdebug.sourceforge.net/">mspdebug</a> to load the program onto the chip from the command line.
 </p>
 
-<pre class="example" id="orga309b1d">
+<pre class="example" id="org6008acf">
 $ make
 $ mspdebug rf2500
 (mspdebug) prog main.elf

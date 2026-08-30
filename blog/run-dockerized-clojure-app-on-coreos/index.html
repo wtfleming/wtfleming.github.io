@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Running a Dockerized Clojure Web App on CoreOS</title>
+<meta property="og:title" content="Running a Dockerized Clojure Web App on CoreOS">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/run-dockerized-clojure-app-on-coreos/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -20,17 +25,17 @@
 </div>
 <div id="content">
 <div class="post-date">06 Dec 2014</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/run-dockerized-clojure-app-on-coreos/">Running a Dockerized Clojure Web App on CoreOS</a></h1>
-<div id="outline-container-org9fa4ac1" class="outline-2">
-<h2 id="org9fa4ac1">Introduction</h2>
-<div class="outline-text-2" id="text-org9fa4ac1">
+<div id="outline-container-orgda12a3d" class="outline-2">
+<h2 id="orgda12a3d">Introduction</h2>
+<div class="outline-text-2" id="text-orgda12a3d">
 <p>
 In the <a href="/blog/dockerize-clojure-compojure-http-kit-web-application/">previous post</a> we created a Clojure web service and ran it in a Docker container. Here we will deploy that container on a 3 node CoreOS cluster running in <a href="https://www.vagrantup.com/">Vagrant</a> on a local development machine.
 </p>
 </div>
 </div>
-<div id="outline-container-org973d8f1" class="outline-2">
-<h2 id="org973d8f1">CoreOS</h2>
-<div class="outline-text-2" id="text-org973d8f1">
+<div id="outline-container-orgdf2eb35" class="outline-2">
+<h2 id="orgdf2eb35">CoreOS</h2>
+<div class="outline-text-2" id="text-orgdf2eb35">
 <p>
 CoreOS is a minimal version of Linux meant for large scale server deployments.
 </p>
@@ -43,7 +48,7 @@ It has a very different model than a Debian/Red Hat/etc distribution. The OS run
 It's web page describes it as:
 </p>
 
-<pre class="example" id="org591ad4d">
+<pre class="example" id="org9efd3f5">
 A new Linux distribution that has been rearchitected to provide features needed
 to run modern infrastructure stacks. The strategies and architectures that influence
 CoreOS allow companies like Google, Facebook and Twitter to run their services at
@@ -70,9 +75,9 @@ We won't be really be going into etcd in this post, but there are some interesti
 </p>
 </div>
 </div>
-<div id="outline-container-org7cdc835" class="outline-2">
-<h2 id="org7cdc835">Start Vagrant</h2>
-<div class="outline-text-2" id="text-org7cdc835">
+<div id="outline-container-org294894f" class="outline-2">
+<h2 id="org294894f">Start Vagrant</h2>
+<div class="outline-text-2" id="text-org294894f">
 <p>
 I am assuming you are on either a Linux or OS X machine, if you are on Windows you will likely need to make a few changes.
 </p>
@@ -85,7 +90,7 @@ If you run into any problems there is also a guide to using Vagrant on the CoreO
 Ensure you have installed Vagrant on you development machine, then use git to clone the <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant repo</a>.
 </p>
 
-<pre class="example" id="org5517ab7">
+<pre class="example" id="org340f81d">
 $ git clone git@github.com:coreos/coreos-vagrant.git
 $ cd coreos-vagrant
 </pre>
@@ -94,7 +99,7 @@ $ cd coreos-vagrant
 Rename the file <i>config.rb.sample</i> to <i>config.rb</i> and change the lines:
 </p>
 
-<pre class="example" id="org7b926a7">
+<pre class="example" id="org65a91cf">
 #$num_instances=1
 #$update_channel='alpha'
 </pre>
@@ -103,7 +108,7 @@ Rename the file <i>config.rb.sample</i> to <i>config.rb</i> and change the lines
 to
 </p>
 
-<pre class="example" id="org6cbf91a">
+<pre class="example" id="org4758394">
 $num_instances=3
 $update_channel='stable'
 </pre>
@@ -112,7 +117,7 @@ $update_channel='stable'
 Next rename the file <i>user-data.sample</i> to <i>user-data</i> and then browse to <a href="https://discovery.etcd.io/new">[[https://discovery.etcd.io/new</a>]] and copy the what was on the page then uncomment and insert it on the the line that looks like this:
 </p>
 
-<pre class="example" id="org431e642">
+<pre class="example" id="orgffc53a0">
 #discovery: https://discovery.etcd.io/&lt;token&gt;
 </pre>
 
@@ -124,7 +129,7 @@ Every time you start a new cluster you will need a new token. If you do not want
 Now run this command:
 </p>
 
-<pre class="example" id="org769d5f6">
+<pre class="example" id="org89c3b89">
 $ vagrant up
 </pre>
 
@@ -132,7 +137,7 @@ $ vagrant up
 and Vagrant will launch 3 VirtualBox machines running CoreOS.
 </p>
 
-<pre class="example" id="org27d8212">
+<pre class="example" id="orgd8f1ee0">
 $ vagrant status
 Current machine states:
 core-01                   running (virtualbox)
@@ -145,14 +150,14 @@ As you can see, there are 3 machines running.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb3ee00a" class="outline-2">
-<h2 id="orgb3ee00a">SSH to your cluster</h2>
-<div class="outline-text-2" id="text-orgb3ee00a">
+<div id="outline-container-org53b070c" class="outline-2">
+<h2 id="org53b070c">SSH to your cluster</h2>
+<div class="outline-text-2" id="text-org53b070c">
 <p>
 In order to forward your SSH session to other machines in the cluster you will need to use a key that is installed on all machines. In this case one from Vagrant will already be installed on the machines and we can add it like this:
 </p>
 
-<pre class="example" id="orgefa2b5c">
+<pre class="example" id="org121f194">
 $ ssh-add ~/.vagrant.d/insecure_private_key
 </pre>
 
@@ -160,7 +165,7 @@ $ ssh-add ~/.vagrant.d/insecure_private_key
 Now SSH into one of the boxes with agent forwarding:
 </p>
 
-<pre class="example" id="org3efb013">
+<pre class="example" id="org504fa4a">
 $ vagrant ssh core-01 -- -A
 </pre>
 
@@ -168,7 +173,7 @@ $ vagrant ssh core-01 -- -A
 We'll use the fleetctl tool to control our cluster. First lets see that we can see all 3 machines:
 </p>
 
-<pre class="example" id="org3c43d65">
+<pre class="example" id="org09d3fc7">
 $ fleetctl list-machines
 MACHINE         IP              METADATA
 c313e784...     172.17.8.102    -
@@ -181,9 +186,9 @@ You should see something like the above. We haven't defined any metadata, but yo
 </p>
 </div>
 </div>
-<div id="outline-container-orgede844f" class="outline-2">
-<h2 id="orgede844f">Create A Service File</h2>
-<div class="outline-text-2" id="text-orgede844f">
+<div id="outline-container-org5fb5163" class="outline-2">
+<h2 id="org5fb5163">Create A Service File</h2>
+<div class="outline-text-2" id="text-org5fb5163">
 <p>
 CoreOS runs applications as Docker containers. We will be running a simple web server written in Clojure that just displays the text "Hello World". The source code is <a href="https://github.com/wtfleming/docker-compojure-hello-world">available on GitHub</a> and the Docker container is also <a href="https://registry.hub.docker.com/u/wtfleming/docker-compojure-hello-world/">published at Docker Hub</a>.
 </p>
@@ -192,7 +197,7 @@ CoreOS runs applications as Docker containers. We will be running a simple web s
 Ensure that you are logged onto a machine in the cluster via SSH and create a file named <i>clojure-http@.service</i>. The file format is a <a href="http://freedesktop.org/wiki/Software/systemd/">systemd</a> service file.
 </p>
 
-<pre class="example" id="org46ca5eb">
+<pre class="example" id="org8f654f3">
 [Unit]
 Description=clojure-http
 
@@ -219,7 +224,7 @@ This file provides the instructions about how the service should run. There are 
 Now submit the service file and check that it registered:
 </p>
 
-<pre class="example" id="org94bcecd">
+<pre class="example" id="org1ae9724">
 $ fleetctl submit clojure-http@.service
 
 $ fleetctl list-unit-files
@@ -232,14 +237,14 @@ If you see the file listed we are ready to move on.
 </p>
 </div>
 </div>
-<div id="outline-container-orga10d7ad" class="outline-2">
-<h2 id="orga10d7ad">Start the Web Services</h2>
-<div class="outline-text-2" id="text-orga10d7ad">
+<div id="outline-container-org5036c5f" class="outline-2">
+<h2 id="org5036c5f">Start the Web Services</h2>
+<div class="outline-text-2" id="text-org5036c5f">
 <p>
 We will be running 2 copies of the service, lets start them:
 </p>
 
-<pre class="example" id="orgd26c4c2">
+<pre class="example" id="org513fd0f">
 $ fleetctl start clojure-http@1.service
 Unit clojure-http@1.service launched on c313e784.../172.17.8.102
 
@@ -251,7 +256,7 @@ Unit clojure-http@2.service launched on c3ddc4fd.../172.17.8.101
 You can check the status of running units:
 </p>
 
-<pre class="example" id="orgd690789">
+<pre class="example" id="orgefa3651">
 $ fleetctl list-units
 UNIT                    MACHINE                         ACTIVE  SUB
 clojure-http@1.service  c313e784.../172.17.8.102        active  running
@@ -262,7 +267,7 @@ clojure-http@2.service  c3ddc4fd.../172.17.8.101        active  running
 You can view logs like this:
 </p>
 
-<pre class="example" id="org6573899">
+<pre class="example" id="orge43af3b">
 $ fleetctl journal clojure-http@1.service
 Dec 03 04:44:48 core-02 systemd[1]: Starting clojure-http...
 Dec 03 04:44:48 core-02 systemd[1]: Started clojure-http.
@@ -273,7 +278,7 @@ Dec 03 04:44:52 core-02 docker[711]: Listening on port 5000
 Finally lets view each of the pages:
 </p>
 
-<pre class="example" id="org952a1aa">
+<pre class="example" id="orgcc6481a">
 $ curl http://172.17.8.101:5000
 Hello World
 
@@ -286,14 +291,14 @@ Hopefully you'll have gotten output similar to above.
 </p>
 </div>
 </div>
-<div id="outline-container-orga0eda19" class="outline-2">
-<h2 id="orga0eda19">Stop the Services and Clean Up</h2>
-<div class="outline-text-2" id="text-orga0eda19">
+<div id="outline-container-orge4e7843" class="outline-2">
+<h2 id="orge4e7843">Stop the Services and Clean Up</h2>
+<div class="outline-text-2" id="text-orge4e7843">
 <p>
 Lets stop the services:
 </p>
 
-<pre class="example" id="org5c1f2ce">
+<pre class="example" id="org8793c4c">
 $ fleetctl stop clojure-http@1.service
 Unit clojure-http@1.service loaded on c313e784.../172.17.8.102
 
@@ -305,7 +310,7 @@ Unit clojure-http@2.service loaded on c3ddc4fd.../172.17.8.101
 Notice that they have now entered a failed state, but remain listed.
 </p>
 
-<pre class="example" id="orgafd609d">
+<pre class="example" id="orga8d599b">
 $ fleetctl list-units
 UNIT                    MACHINE                         ACTIVE  SUB
 clojure-http@1.service  c313e784.../172.17.8.102        failed  failed
@@ -316,7 +321,7 @@ clojure-http@2.service  c3ddc4fd.../172.17.8.101        failed  failed
 We could restart them, but instead we will remove them like this:
 </p>
 
-<pre class="example" id="org8ebddc2">
+<pre class="example" id="org2448ab2">
 $ fleetctl destroy clojure-http@1.service
 Destroyed clojure-http@1.service
 
@@ -331,7 +336,7 @@ UNIT    MACHINE ACTIVE  SUB
 Now lets remove our service file.
 </p>
 
-<pre class="example" id="org2775a28">
+<pre class="example" id="org9b544a8">
 $ fleetctl destroy clojure-http@.service
 Destroyed clojure-http@.service
 
@@ -343,7 +348,7 @@ UNIT    HASH    DSTATE  STATE   TARGET
 Now exit the cluster, shut it down, and clean up Vagrant.
 </p>
 
-<pre class="example" id="org93f283a">
+<pre class="example" id="orgc42fbbb">
 $ exit
 
 $ vagrant halt
@@ -360,9 +365,9 @@ And we're done!
 </p>
 </div>
 </div>
-<div id="outline-container-org0ea2a97" class="outline-2">
-<h2 id="org0ea2a97">Next Steps</h2>
-<div class="outline-text-2" id="text-org0ea2a97">
+<div id="outline-container-org0e26cf7" class="outline-2">
+<h2 id="org0e26cf7">Next Steps</h2>
+<div class="outline-text-2" id="text-org0e26cf7">
 <p>
 So far we created a CoreOS cluster and ran a web server on it, but we have just barely scratched the surface of what is possible.
 </p>

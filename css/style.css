@@ -7,6 +7,7 @@
   --muted: #6a737d;
   --rule: #e3e6e8;
   --code-bg: #f6f8fa;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -88,7 +89,7 @@ th, td { border: 1px solid var(--rule); padding: 0.4rem 0.6rem; text-align: left
 /* Code ------------------------------------------------------------------- */
 
 code, pre, kbd, samp {
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--mono);
 }
 
 code { font-size: 0.875em; background: var(--code-bg); padding: 0.15em 0.35em; border-radius: 3px; }
@@ -107,6 +108,233 @@ pre {
 pre code { background: none; padding: 0; font-size: inherit; }
 
 .org-src-container { margin: 0; }
+
+/* Review flow diagram ---------------------------------------------------- */
+
+/* A static chart. Stages every run performs are solid; the two only a
+   --deep run adds are dashed, so both modes are one picture. */
+
+.rf {
+  margin: 2rem 0 2.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: #fcfcfd;
+}
+
+.rf-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-bottom: 1rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.rf-key b {
+  display: inline-block;
+  width: 1.1rem;
+  height: 0;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+.rf-solid { border-top: 3px solid var(--accent); }
+.rf-dash { border-top: 3px dashed var(--accent-light); }
+.rf-key code { font-size: 0.85em; }
+
+.rf-stages { list-style: none; margin: 0; padding: 0; }
+
+.rf-stage {
+  display: flex;
+  gap: 0.85rem;
+  padding: 0.6rem 0.7rem;
+  margin: 0 0 0.35rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 3px 3px 0;
+  background: #f7faf9;
+}
+.rf-stage[data-deep] {
+  border-left-style: dashed;
+  border-left-color: var(--accent-light);
+  background: #fbfbfc;
+}
+
+.rf-num {
+  flex: none;
+  width: 1.5rem; height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: #fff;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.4rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+.rf-name { font-weight: 600; }
+.rf-name .rf-deep {
+  margin-left: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+.rf-what { margin: 0.1rem 0 0; font-size: 0.9rem; color: var(--muted); }
+
+.rf-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.45rem; }
+.rf-chip {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--muted);
+}
+
+.rf-tally {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+@media (max-width: 30rem) {
+  .rf-stage { padding: 0.5rem 0.4rem; gap: 0.6rem; }
+}
+
+/* Embedded simulation ---------------------------------------------------- */
+
+.sim-embed { margin: 2rem 0 2.5rem; }
+.sim-embed iframe {
+  display: block;
+  width: 100%;
+  height: 34rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: #dfe6ea;
+}
+.sim-embed figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+@media (max-width: 40rem) {
+  .sim-embed iframe { height: 26rem; }
+}
+
+/* Command transcript ----------------------------------------------------- */
+
+/* The reviewer's own report, reproduced verbatim. Set apart from the prose so
+   it never reads as something I wrote for the post. */
+
+.transcript {
+  margin: 2.5rem 0;
+  padding: 1.25rem 1.25rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent-light);
+  border-radius: 5px;
+  background: #fcfcfd;
+  font-size: 0.95rem;
+}
+
+.transcript h3, .transcript h4 {
+  font-family: var(--mono);
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.transcript-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+.transcript-prompt { color: var(--accent); }
+.transcript-cmd { color: var(--text); overflow-wrap: anywhere; }
+.transcript-note {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.transcript-foot {
+  margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Magazine callouts ------------------------------------------------------ */
+
+/* Three devices for readers who scan: pull quotes lifted verbatim from the
+   prose, a rules box compressing the design, and a stat strip for the run. */
+
+.pullquote {
+  margin: 2.25rem 0;
+  padding: 0.35rem 0 0.35rem 1.15rem;
+  border-left: 4px solid var(--accent);
+  font-size: 1.28rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+.pullquote p { margin: 0; }
+
+.rulebox, .numbox {
+  margin: 2rem 0 2.5rem;
+  padding: 1.1rem 1.25rem 1.15rem;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  border-radius: 5px;
+  background: #fcfcfd;
+}
+
+.callout-kicker {
+  margin: 0 0 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rulebox ol, .rulebox ul { margin: 0; padding-left: 1.3rem; }
+.rulebox li { margin-bottom: 0.45rem; font-size: 0.93rem; }
+.rulebox li:last-child { margin-bottom: 0; }
+.rulebox li::marker { color: var(--accent); font-weight: 700; }
+
+.numbox dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem 1.1rem;
+  margin: 0;
+}
+.numbox dt {
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+}
+.numbox dd { margin: 0.1rem 0 0; font-size: 0.82rem; line-height: 1.35; color: var(--muted); }
+
+@media (max-width: 30rem) {
+  .numbox dl { grid-template-columns: repeat(2, 1fr); }
+  .pullquote { font-size: 1.15rem; }
+}
 
 /* Tags ------------------------------------------------------------------- */
 
@@ -150,3 +378,49 @@ pre code { background: none; padding: 0; font-size: inherit; }
 .hljs-strong { font-weight: 700; }
 .hljs-addition { color: #22863a; background-color: #f0fff4; }
 .hljs-deletion { color: #b31d28; background-color: #ffeef0; }
+
+/* Collapsible list tail -------------------------------------------------- */
+
+/* Wraps the back half of a long list. The visible items above it are a
+   normal org list, so the two <ul>s must read as one. */
+
+.more { margin: 0 0 1.25rem; }
+.more > ul { margin-top: 0.35rem; }
+
+.more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--accent);
+  list-style: none;
+  user-select: none;
+}
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary:hover { border-color: var(--accent-light); background: var(--code-bg); }
+.more > summary:focus-visible { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+
+.more > summary::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform 0.15s ease;
+}
+.more[open] > summary::before { transform: rotate(90deg); }
+
+.more > summary [data-close] { display: none; }
+.more[open] > summary [data-open] { display: none; }
+.more[open] > summary [data-close] { display: inline; }
+
+/* The TL;DR reuses the rulebox frame, but it opens the post, so it loses the
+   top margin and its paragraph carries no trailing space. */
+.tldr { margin-top: 0.5rem; }
+.tldr > :last-child { margin-bottom: 0; }

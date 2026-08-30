@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="A Claude Code slash command that reviews code in a fresh context: a cold reviewer, eight parallel lenses, and a refuter told to kill every finding.">
+<link rel="alternate"
+      type="application/rss+xml"
+      href="https://wtfleming.github.io/rss.xml"
+      title="RSS feed for https://wtfleming.github.io/">
+<title>An agentic code review command that attacks its own findings</title>
+<meta property="og:title" content="An agentic code review command that attacks its own findings">
+<meta property="og:type" content="article" />
+<meta property="og:description" content="A Claude Code slash command that reviews code in a fresh context: a cold reviewer, eight parallel lenses, and a refuter told to kill every finding.">
+<meta property="og:url" content="https://wtfleming.github.io/blog/claude-code-review-command/">
+<meta property="og:image" content="https://wtfleming.github.io/images/claude-code-review-command/og.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/icon.png">
+<script defer src="/js/highlight.min.js"></script>
+<script defer src="/js/hljs-init.js"></script>
+</head>
+<body>
+<div id="preamble" class="status"><a class="profile-icon" href="/"><img src="/icon.png" width="50" height="50" alt="profile picture"></a>
+<nav><a href="/about/">About</a><a href="/blog/">Blog</a></nav>
+</div>
+<div id="content">
+<div class="post-date">29 Aug 2026</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/claude-code-review-command/">An agentic code review command that attacks its own findings</a></h1>
+<aside class="rulebox tldr">
+  <p class="callout-kicker">TL;DR</p>
+  <ul>
+    <li><code>/wtf-code-review</code> is a Claude Code slash command that reviews code from a fresh
+    context, so the conversation that wrote the change is not the one judging it. A cold reviewer
+    reads the diff and runs the tests.</li>
+    <li>A <code>--deep</code> flag adds eight additional subagents in parallel, one per dimension.</li>
+    <li>Every finding that claims something breaks then faces a refuter told to kill it, so only
+    the survivors print.</li>
+    <li>Every agent is read-only. They run tests, start containers and make requests to settle a
+    claim, but nothing they do edits or mutates your code; acting on the report is your call.</li>
+    <li><b>On the pull request at the end of this post it printed 21 findings to CodeRabbit's 2,
+    including an XSS vulnerability CodeRabbit did not find.</b></li>
+  </ul>
+</aside>
+
+<p>
+Over the past few weeks I have been hacking on a custom slash command for <a href="https://code.claude.com/">Claude Code</a> that reviews code using a team of agents and subagents. The command is named <code>/wtf-code-review</code> (if you are wondering about the prefix, my initials are wtf). I've been very impressed with the results, In my experience, it finds many problems that tools like <a href="https://www.coderabbit.ai/">CodeRabbit</a> do not.
+</p>
+
+<p>
+In <a href="#raw-output">the run reproduced at the end of this post</a> to upgrade htmx from 2.0.8 to 4.0.0 in a Rust server with htmx and Alpine driving the front end. That PR included a critical XSS vulnerability found in a file both tools had open, but only mine found.
+</p>
+
+<p>
+The work is split across a mix of agents and subagents: the command itself runs in my session, and every piece of reviewing happens in a subagent that starts with a fresh context - a cold reviewer, eight parallel lenses under <code>--deep</code>, and one adversarial refuter per finding.
+</p>
+
+<p>
+<i>None of this is specific to Claude Code. As an experiment I asked an LLM to port the command to <a href="https://pi.dev/">pi</a>, a terminal coding agent of its own, and the port worked. Any harness that can dispatch a subagent and hand it a scope can run the same design.</i>
+</p>
+
+<p>
+If you're interested in running it yourself, all the files are available in my <a href="#the-files">dotfiles repository</a>.
+</p>
+<div id="outline-container-org3df63b6" class="outline-2">
+<h2 id="org3df63b6">Simulate one run</h2>
+<div class="outline-text-2" id="text-org3df63b6">
+<p>
+Below is a simulation of a real run with the <code>--deep</code> flag. The findings, the tiers and the twelve verdicts are the actual output of one run - the whole report it produced is <a href="#raw-output">at the end of this post</a>.
+</p>
+
+<figure class="sim-embed">
+  <iframe src="/deep-run/" title="A --deep review run, as an isometric simulation" loading="lazy"></iframe>
+  <figcaption>About a minute at the default 2×; the speed button steps 1×, 2×, 4×.
+  <a href="/deep-run/">Open it full screen</a>. Ground tiles by
+  <a href="https://kenney.nl/assets/isometric-tiles-city">Kenney</a> (CC0).</figcaption>
+</figure>
+
+<p>
+The rest of this post is what each stop is for, and why the command is built this way.
+</p>
+</div>
+</div>
+<div id="outline-container-org0fa9b08" class="outline-2">
+<h2 id="org0fa9b08">The problem</h2>
+<div class="outline-text-2" id="text-org0fa9b08">
+<p>
+A session with an LLM can review its own work, but that review has a bias. The same conversation wrote the code. The model knows the intent of each change. It sees the code that it tried to write, not the code that it wrote. This bias hides bugs.
+</p>
+
+<div class="pullquote" id="org2d54aea">
+<p>
+The author of a thing should not judge that thing - not the code, not the findings, not the fixes.
+</p>
+
+</div>
+
+<p>
+A good review must start cold. The reviewer must have no memory of the work. Subagents make this possible. A subagent starts with a fresh context. It knows only the text that the command sends to it.
+</p>
+
+<aside class="rulebox">
+  <p class="callout-kicker">The design in eight rules</p>
+  <ol>
+    <li>The reviewer is the one agent every run has: it reads the diff, runs the test suite and the linter, and reports what it finds. It starts cold - a fresh subagent handed the scope and nothing else, because the conversation that wrote the code is the bias.</li>
+    <li>When started with the <code>--deep</code> flag it adds eight lenses: correctness, security, tests, maintainability, resilience, reuse, performance, dependencies. Each is a fresh agent reading the same scope through one dimension only, dropping whatever belongs to another - eight passes, not eight copies of one.</li>
+    <li>No agent commands another. Your session dispatches all of them - the reviewer, the eight lenses, one refuter per finding - merges what they return, and collapses the duplicates by the defect described.</li>
+    <li>Every finding names a file, a line, and what breaks, or it is dropped before it prints.</li>
+    <li>A claim that something breaks faces an adversary: one refuter, told to kill it, default verdict <em>refuted</em> - or it prints marked <em>(unverified)</em>.</li>
+    <li>Nothing prints until the refuters return.</li>
+    <li>Fixes are findings too: each one gets a fresh refuter against the fixed tree.</li>
+    <li>No agent edits anything. They run tests, start containers, make requests - all to settle a claim, never to change the tree. What to do about the report is yours.</li>
+  </ol>
+</aside>
+</div>
+</div>
+<div id="outline-container-org5515ba2" class="outline-2">
+<h2 id="org5515ba2">What the agents did in an actual run</h2>
+<div class="outline-text-2" id="text-org5515ba2">
+<p>
+From <a href="#raw-output">the run at the end of this post</a>, a few highlights - a subset of what the agents did to verify findings.
+</p>
+
+<ul class="org-ul">
+<li><b>Fetched the htmx build the page actually loads</b>, checked it against the integrity hash in the script tag, and read that release's own parsing code. This is what killed the loudest claim in the run: the configuration had been right all along.</li>
+<li><b>Opened a browser and made the request fail</b>, then watched the tab title change while the content underneath it stayed put. Confirmed by seeing it, not by predicting it.</li>
+<li><b>Read the template escaper's table alongside the site's own content-security policy</b> to work out how far an injected script could actually reach, and which directive would and would not stop it.</li>
+<li><b>Worked out that a passing test asserts on a class every element on the page already carries</b>, so it would go on passing with the feature deleted.</li>
+</ul>
+
+<details class="more">
+  <summary><span data-open>Show the other 3</span><span data-close>Show fewer</span></summary>
+
+<ul class="org-ul">
+<li><b>Traced when an event fires relative to the status check</b>, and found the logging path only speaks when an error object is set. That is what turned "the form closes early" into "the admin cannot tell it failed".</li>
+<li><b>Read the request-queueing code in both the old and the new version of the library.</b> The finding claimed a behaviour change, and the only proof of a change is the two versions side by side.</li>
+<li><b>Asked the package registry</b>, and found the new major had been published the day before the pull request and was still tagged <code>next</code>, with <code>latest</code> on the old line.</li>
+</ul>
+
+</details>
+
+<p>
+Underneath all of it, the reviewer ran the real test suite and the real linter before writing a word - 463 tests, a clean clippy - so the behavioral claims sit on a green tree rather than an assumption about one.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb1273ee" class="outline-2">
+<h2 id="orgb1273ee">What it has caught on other projects</h2>
+<div class="outline-text-2" id="text-orgb1273ee">
+<p>
+The bullets above are one run on one small codebase. Some highlights from other codebases I tested it on while developing it follow.
+</p>
+
+<p>
+Nobody told any of them to start databases or make HTTP requests. They have a shell, and they decided the evidence required it.
+</p>
+
+<ul class="org-ul">
+<li><b>Caught an evil merge.</b> Reviewing a merge commit, the reviewer diffed its tree against <i>both</i> parents rather than reading the pull request diff, and found an empty file at the repository root that is in neither parent and nowhere in history, three of the branch's own commits to one document silently discarded, and four more wording edits dropped from another - both files still listed under "What changed" in the pull request body. The pull request diff shows none of it. It was the review's only Critical.</li>
+<li><b>Curled a staging GraphQL router's CORS preflight.</b> A lens claimed a new Sentry configuration would attach a <code>sentry-trace</code> header the router does not allow, breaking every GraphQL call in the only environments where a DSN is baked. Three pieces of evidence, all gathered rather than argued: the preflight's allow-list, which lists <code>Baggage</code> and <code>Traceparent</code> but not <code>Sentry-Trace</code>; a bogus header name sent to prove that list is static rather than reflected; and Sentry itself run under jsdom with the pull request's exact options, showing the header ships even on a dropped trace, while a control request to another origin got nothing. Both halves held - the header is sent, the router refuses it - so the finding survived as a Critical, and the agent widened it: because the tracing integration patches the global <code>fetch</code>, the breakage is the whole page rather than the one microfrontend the pull request touched.</li>
+<li><b>Started <code>postgres:16</code> in Docker and ran two overlapping transactions</b>, and the locked select came back with zero rows - a branch the service treats as a no-op, so the caller gets a 200 and a row that still has its old name.</li>
+<li><b>Curled the real CDN origin</b> and got a <code>403</code> in 117ms, not the <code>200</code> with an HTML body the finding predicted. It kept the wasted round trip and deleted the parse failure.</li>
+</ul>
+<details class="more">
+  <summary><span data-open>Show the other 13</span><span data-close>Show fewer</span></summary>
+
+<ul class="org-ul">
+<li><b>Dropped in a type probe carrying a deliberate error as its control</b>, ran <code>tsc --noEmit</code>, and got exactly one diagnostic - on the control. The silence on the line under test therefore meant something.</li>
+<li><b>Mutated the source in a scratch copy rather than the tree</b>, to prove tests fail when they should: a CI guard's annotation line deleted, <code>cedar</code> changed to <code>ceder</code> in a fixture. Several reports end with a clean <code>git status</code>.</li>
+<li><b>Ran the deployed Flyway image against a throwaway Postgres</b> with a mistyped file extension seeded in, and got exit 0, no warning, and two migrations that silently never ran.</li>
+<li><b>Opened a private library's own source in <code>node_modules</code></b>, and found that a deleted config line had left the new offset mechanism depending on a librdkafka default that nothing asserts.</li>
+<li><b>Built a throwaway pnpm workspace to test a supply-chain claim</b>, and showed that <code>--use-gitignore=false</code> is exactly what carries a gitignored secrets file into the image. Without the flag it does not.</li>
+<li><b>Read kafkajs's runner to find the <code>catch</code> that never rethrows</b>, then drove the real consumer with only the network faked: nothing processed, no failures file, exit 0.</li>
+<li><b>Opened the real TypeBox build a shim was accused of diverging from</b>, found upstream uses the same operator, and ran both on the finding's own input. Identical output; the premise was wrong.</li>
+<li><b>Downloaded the CI run's artifact instead of trusting the log</b>, cross-checked all five line numbers against <code>git diff -U0</code>, and confirmed from the repository ruleset that the check really is required.</li>
+<li><b>Traced a failing spec to a dependency's <code>dist</code></b> built five days before the commit that changed the values it asserts on. Rebuilt it, the spec passed, the finding was refuted.</li>
+<li><b>Ran the repo's own Apollo version with the production <code>formatError</code></b>, and pasted the response body showing the internal message reaching the client intact.</li>
+<li><b>HEAD-requested every candidate tarball on Maven Central</b> - one <code>200</code>, five <code>404</code> - then found in the GitHub API that the credentials to fix the resulting finding were already available to the repository.</li>
+<li><b>Symlinked <code>node_modules</code> into a detached worktree</b> to get a build out of a tree that had none, without running an install that would mutate anything.</li>
+<li><b>Grepped vitest's shipped <code>dist</code> chunks</b> to find out what a <code>--compare</code> flag actually does, rather than the documentation about it.</li>
+</ul>
+</details>
+</div>
+</div>
+<div id="outline-container-org5f977e9" class="outline-2">
+<h2 id="org5f977e9">The standard review</h2>
+<div class="outline-text-2" id="text-org5f977e9">
+<p>
+What you type is one line, and the only argument that matters is the scope:
+</p>
+
+<pre class="example" id="org684a5cc">
+/wtf-code-review                      # whatever is uncommitted
+/wtf-code-review src/web/handlers/    # only this directory
+/wtf-code-review main..HEAD           # every commit on the branch
+/wtf-code-review PR 105               # fetch the pull request, review that
+/wtf-code-review PR 105 --deep        # same, but with eight additional lenses
+</pre>
+
+<p>
+The scope <b>does not have to be a ref</b>, these work too:
+</p>
+
+<pre class="example" id="org3c12240">
+/wtf-code-review how we connect to the database
+/wtf-code-review the auth middleware
+</pre>
+
+<p>
+In a standard review the command starts one subagent: <b>the reviewer</b>.
+</p>
+<ul class="org-ul">
+<li>The command sends only the scope to the reviewer.</li>
+<li>The command does not send a summary of the change.</li>
+<li>It does not send opinions about which parts are safe. Those opinions likely come from the conversation that wrote the code. They are bias that the command must remove.</li>
+</ul>
+
+<p>
+The whole pipeline, in both modes. The five solid stages are every run; the two dashed ones are what the next section adds.
+</p>
+
+<figure class="rf">
+  <div class="rf-key">
+    <span><b class="rf-solid"></b>every run</span>
+    <span><b class="rf-dash"></b>only with <code>--deep</code></span>
+  </div>
+
+  <ol class="rf-stages">
+    <li class="rf-stage">
+      <span class="rf-num">1</span>
+      <div>
+        <div class="rf-name">The scope</div>
+        <p class="rf-what">A ref, a branch, a path - or nothing, and the reviewer settles it. No summary of the change travels with it.</p>
+      </div>
+    </li>
+
+    <li class="rf-stage">
+      <span class="rf-num">2</span>
+      <div>
+        <div class="rf-name">The reviewer</div>
+        <p class="rf-what">One agent, fresh context. Runs the test suite and the linter, reads the diff and the full files, tries to refute each finding before writing it.</p>
+        <div class="rf-chips"><span class="rf-chip">reviewer</span></div>
+      </div>
+    </li>
+
+    <li class="rf-stage" data-deep>
+      <span class="rf-num">3</span>
+      <div>
+        <div class="rf-name">The lenses <span class="rf-deep">--deep</span></div>
+        <p class="rf-what">Eight agents in parallel, one dimension each, same scope. Each stays in its lane and drops what belongs to another.</p>
+        <div class="rf-chips"><span class="rf-chip">correctness</span><span class="rf-chip">security</span><span class="rf-chip">tests</span><span class="rf-chip">maintainability</span><span class="rf-chip">resilience</span><span class="rf-chip">reuse</span><span class="rf-chip">performance</span><span class="rf-chip">dependencies</span></div>
+      </div>
+    </li>
+
+    <li class="rf-stage" data-deep>
+      <span class="rf-num">4</span>
+      <div>
+        <div class="rf-name">The merge <span class="rf-deep">--deep</span></div>
+        <p class="rf-what">Nine reports collapse into one, deduplicated by the defect rather than the line. A Suggestion that states a concrete failure is promoted to Warning here, so that it gets a refuter.</p>
+      </div>
+    </li>
+
+    <li class="rf-stage">
+      <span class="rf-num">5</span>
+      <div>
+        <div class="rf-name">The refuters</div>
+        <p class="rf-what">One agent per finding being verified, each told to kill the finding it was given. Default verdict <em>refuted</em>; a finding survives only when the attack fails, and nothing prints until they all return. Every run verifies its Criticals this way. <code>--deep</code> extends it to every Warning as well.</p>
+      </div>
+    </li>
+
+    <li class="rf-stage">
+      <span class="rf-num">6</span>
+      <div>
+        <div class="rf-name">The report</div>
+        <p class="rf-what">Critical, Warning, Suggestion, then Pre-existing for what the change did not cause. The Suggestion triage follows it, and the refutation and promotion counts are printed with it.</p>
+      </div>
+    </li>
+
+    <li class="rf-stage">
+      <span class="rf-num">7</span>
+      <div>
+        <div class="rf-name">You</div>
+        <p class="rf-what">Nothing has been edited. Fixes happen only when you ask, and each fixed Critical or Warning gets a fresh refuter against the fixed tree.</p>
+      </div>
+    </li>
+  </ol>
+
+  <p class="rf-tally">A standard run is one subagent, plus one refuter for each Critical it finds - usually none. A <code>--deep</code> run is nine, plus one refuter per Critical and Warning: twenty-one end to end on <a href="#raw-output">the run reproduced at the end of this post</a>.</p>
+</figure>
+</div>
+<div id="outline-container-org39d3489" class="outline-3">
+<h3 id="org39d3489">The Report</h3>
+<div class="outline-text-3" id="text-org39d3489">
+<p>
+The report has three tiers: <i>Critical</i>, <i>Warning</i>, and <i>Suggestion</i>. Each finding has a file and line, a description of what breaks, and a proposed fix.
+</p>
+
+<p>
+A fourth section, <i>Pre-existing</i>, holds the problems that the changes in the PR did not cause. Typically a user would want to create a GitHub Issue, Linear ticket, etc. for these to keep unrelated changes out of the PR, but it is up to them to decide what to do once the final report has been created.
+</p>
+
+<p>
+A run will produce a report that looks like this:
+</p>
+
+<pre class="example" id="org66f6d6d">
+# Change Review
+
+**Scope:** uncommitted changes - 3 files, +120/-14
+**Tests:** cargo test → pass
+**Lint:** cargo clippy → clean
+
+## Critical
+
+- **`src/auth.rs:42`** - Token expiry compared with `&gt;` instead of `&gt;=`,
+  so a token that expires exactly now is accepted. Use `&gt;=`.
+
+## Warning
+
+- **`src/api.rs:88`** - `fetch_user` called per row inside the
+  loop. Batch the fetch before the loop.
+
+## Suggestion
+
+- **`src/api.rs:12`** *(unverified)* - `parse_config` and `parse_settings`
+  differ only in the key they read. One function, with the key as a parameter.
+
+## Pre-existing
+
+- **Critical** · **`src/db.rs:17`** - Query string built with the caller's
+  `name` unescaped; a quoted value runs as SQL. Parameterise it.
+</pre>
+
+<p>
+The command prints the report and stops. <b>It does not change the code</b>. You decide which findings to act on. When you ask for fixes - "fix all of the criticals" - the fixes get a verification pass of their own.
+</p>
+
+<p>
+Personally, I often ask it to fix the issues at this point, but when reviewing someone else's PR a prompt I manually run right after report generation is:
+</p>
+
+<pre class="example" id="orgb60cd40">
+&gt; Start a codereview for the PR on GitHub with these findings as
+  inline comments. Also create a GitHub issue for any pre-existing items.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1b78f5d" class="outline-2">
+<h2 id="org1b78f5d">The deep mode</h2>
+<div class="outline-text-2" id="text-org1b78f5d">
+<p>
+One <i>standard</i> reviewer covers six dimensions: correctness, security, maintainability, performance, tests and dependencies. Some of them get a shallower pass than the others. The <code>--deep</code> flag adds a dedicated pass for each, plus two the reviewer's checklist does not cover at all: <i>reuse</i> and <i>resilience</i>.
+</p>
+
+<pre class="example" id="org2159c16">
+/wtf-code-review --deep           # uncommitted changes, nine agents
+/wtf-code-review PR 105 --deep    # fetch the pull request, then review it
+</pre>
+
+<p>
+<code>PR 105</code> is a scope like any other: the command fetches the pull request and reviews it as a ref. The flag is the only thing that adds the lens and refuter passes.
+</p>
+
+<div class="pullquote" id="org94fcebf">
+<p>
+I typically run with the <i>&#x2013;deep</i> flag as it is very thorough and catches much more, at the expense of using many more tokens.
+</p>
+
+</div>
+
+<p>
+The command starts <b>eight subagents</b> in parallel. Each subagent gets one lens and the same scope.
+</p>
+
+<p>
+The lenses:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lens</th>
+<th scope="col" class="org-left">Looks for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>correctness</b></td>
+<td class="org-left">logic errors, off-by-one errors, bad edge cases, race conditions</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>security</b></td>
+<td class="org-left">unvalidated input, hardcoded secrets, injection, data leaks in logs</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>tests</b></td>
+<td class="org-left">new branches with no test, tests that cannot fail, flaky tests</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>maintainability</b></td>
+<td class="org-left">unclear names, functions that do too much, error messages that tell the reader nothing</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>resilience</b></td>
+<td class="org-left">calls with no timeout, retries with no cap, a failure swallowed into a default that reads as success, work that leaves inconsistent state when it fails halfway</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>reuse</b></td>
+<td class="org-left">logic that the repository already implements, a hand-rolled version of what a dependency provides, and code that the change orphaned but did not remove</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>performance</b></td>
+<td class="org-left">N+1 queries, resource leaks, blocking calls in async paths</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>dependencies</b></td>
+<td class="org-left">new dependencies, breaking changes to public interfaces, migrations that cannot be reversed</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A lens can also decline once it has read the scope. A lens whose dimension has no surface here answers <i>not applicable</i> and names what it went looking for. That is a different answer from finding nothing, and the report keeps the two apart. If there is any doubt the lens runs anyway.
+</p>
+
+<div class="pullquote" id="org220ffa7">
+<p>
+There is no linter lens. The reviewer already ran the real linter. A model that imitates static analysis is worse than a tool that does it exactly.
+</p>
+
+</div>
+
+<p>
+The command then <b>merges the nine reports</b>. It <b>removes duplicates</b> by the defect they describe, not by the exact line. Two agents that report the same problem often anchor it a few lines apart, so a match on file and line misses them.
+</p>
+</div>
+<div id="outline-container-orgf47939c" class="outline-3">
+<h3 id="orgf47939c">The reuse lens</h3>
+<div class="outline-text-3" id="text-orgf47939c">
+<p>
+Every other lens reads the diff. This one has to look outside it. A duplicate often lives in code that the change did not touch.
+</p>
+
+<p>
+The lens must cite the existing implementation by file and line. The search must count re-exports, string-keyed lookups, and dynamic dispatch as callers.
+</p>
+
+<pre class="example" id="org9f19343">
+not a valid finding:  nothing uses this any more
+
+a finding:            src/lib/date.ts:12 already does this, and the copy at
+                      src/api/format.ts:40 has to change with it
+</pre>
+
+<p>
+The lens judges duplication by whether the two copies have to change together, not by how much they look alike. Without that rule it turns into a lens that wants to extract everything.
+</p>
+</div>
+</div>
+<div id="outline-container-org4b6561b" class="outline-3">
+<h3 id="org4b6561b">Correctness vs Resilience</h3>
+<div class="outline-text-3" id="text-org4b6561b">
+<p>
+Some lenses sit close enough to report one problem twice. The command draws the line for them.
+</p>
+
+<ul class="org-ul">
+<li><b>Correctness</b> asks whether the code computes the right answer from the inputs it was handed.</li>
+
+<li><b>Resilience</b> asks what happens when something the code <i>calls</i> fails, hangs, or half succeeds.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js">const user = getUser(id);      // correctness: getUser is async, so `user`
+                               // is a Promise and every field below is
+                               // undefined.
+
+const res = await fetch(url);  // resilience: correct until the server stops
+                               // answering, and then it waits forever.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf280414" class="outline-3">
+<h3 id="orgf280414">Performance vs Resilience</h3>
+<div class="outline-text-3" id="text-orgf280414">
+<ul class="org-ul">
+<li><b>Performance</b> owns the happy path: what the code costs when it works and the input is large.</li>
+
+<li><b>Resilience</b> owns the failure path.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js">for (const row of rows) {      // performance: a connection per row, and none
+  const c = await pool.get();  // released until the loop ends. Fine on ten
+  await write(c, row);         // rows; on ten thousand the pool is empty and
+}                              // every other request waits for it.
+
+const c = await pool.get();    // resilience: if write() throws, the release
+await write(c, rows);          // never runs, and one connection is lost on
+c.release();                   // every failed request.
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaeee892" class="outline-2">
+<h2 id="orgaeee892">Triaging the Suggestions</h2>
+<div class="outline-text-2" id="text-orgaeee892">
+<p>
+Suggestions are the most numerous tier and the least sorted. A rename worth two minutes sits next to a style nit that nobody should spend time on.
+</p>
+
+<p>
+So after the report, the command prints one more section. It is the one place where it adds an opinion of its own.
+</p>
+
+<pre class="example" id="org0e1e1cb">
+## Suggestion triage
+
+**Definitely worth doing**
+- `src/api.ts:12` - the public name says the opposite of what it does,
+  and every new caller will inherit the confusion
+
+**Worth doing**
+- `src/api.ts:40` - the helper already exists in `lib/`; reuse it
+
+**Not worth doing**
+- `src/util.ts:30` - style matches the rest of the file; churn outweighs
+  the gain
+
+Triage is a judgement, not a verification. Nothing was dispatched to check it.
+</pre>
+
+<p>
+Every Suggestion lands in exactly one list, cited by the same file and line as the report, with a one-line reason.
+</p>
+
+<p>
+Pre-existing findings are not sorted into these lists, whatever tier they carry. They are tickets, not work for this change. The <i>Definitely worth doing</i> list stays short.
+</p>
+
+<div class="pullquote" id="org710f778">
+<p>
+I am still unsure about the value suggestions provide. There tend to be many of them and a short report that I trust catches more bugs than a complete report that I have learned to skim.
+</p>
+
+</div>
+
+
+<p>
+Promotion from <i>suggestion</i> to <i>warning</i> can also happen at this stage but is narrow. A finding moves only when it states a concrete failure. "Could be cleaner" does not move.
+</p>
+</div>
+</div>
+<div id="outline-container-org3534eb1" class="outline-2">
+<h2 id="org3534eb1">Verification</h2>
+<div class="outline-text-2" id="text-org3534eb1">
+<p>
+Each finding came from the agent that wrote it, and the author of a thing is in the worst position to judge that thing.
+</p>
+
+<p>
+Eight parallel agents also feel a quiet pressure to justify their dispatch, and that pressure produces findings that sound plausible but are not real.
+</p>
+
+<p>
+So the command verifies the merged findings. Then the command <b>starts one more refuter subagent for each Critical and Warning finding</b>.
+</p>
+
+<p>
+The refuter gets the finding verbatim, plus the scope. Nothing else rides along - not a reason the finding might be wrong, not a hint about where to look first. Its instructions tell it to kill the finding:
+</p>
+
+<ul class="org-ul">
+<li>It argues that the code is correct.</li>
+<li>It reads the full file and traces the callers.</li>
+<li>If the finding cites a test result, it runs that test itself.</li>
+<li>Its default verdict is <code>refuted</code>. A finding only <code>stands</code> when the refuter cannot make the problem go away.</li>
+</ul>
+
+<p>
+Here is an example refutation from an actual run, in the shape the refuter sees it and answers it:
+</p>
+
+<pre class="example" id="org996857f">
+Finding, as the maintainability lens filed it
+  Warning · templates/show-game.html:218 - `:inherited` is on three elements
+  and left off three structurally identical siblings.
+
+Scope
+  branch upgrade-htmx-4, the author's own work.
+
+Verdict: refuted
+  The split follows a rule. The marker is on exactly the three elements that
+  contain a descendant carrying its own hx verb. The siblings contain no htmx
+  descendant at all: the log modal form has only Alpine @click buttons, the
+  report form only a plain submit, and the delete button is a leaf.
+</pre>
+
+<p>
+A <code>stands</code> verdict reads the same way and ends with the attack that failed.
+</p>
+
+<p>
+The Suggestions that remain are not verified. They are the most numerous tier and the least important one. One agent per naming nit is a bad trade. The report marks them as unverified instead.
+</p>
+
+<p>
+The <code>refuted</code> default cuts both ways. A refuter told to kill findings will sometimes kill a real one.
+</p>
+
+<p>
+The final report shows only the findings that survived. It also shows:
+</p>
+
+<ul class="org-ul">
+<li>how many findings were refuted, and why</li>
+<li>which findings were promoted from Suggestion to Warning, and how each fared</li>
+<li>which lenses found nothing, which returned <i>not applicable</i>, and which returned no usable report at all</li>
+<li>a warning when everything was refuted, because a gate that never bites deserves doubt</li>
+</ul>
+
+<p>
+The Suggestion triage comes after that, over the Suggestions that remain. A promoted finding sits under Warning, marked <code>(promoted from Suggestion)</code>, and does not reappear in the triage.
+</p>
+</div>
+</div>
+<div id="outline-container-org243ec1e" class="outline-2">
+<h2 id="org243ec1e">Verifying the fixes</h2>
+<div class="outline-text-2" id="text-org243ec1e">
+<p>
+The <b>review never edits</b>. Any edits happen in the main conversation - often the same conversation that wrote the original code.
+</p>
+
+<p>
+So the command checks the fixes the same way it checked the findings. <b>It starts one fresh refuter for each fixed issue</b>, against the tree the fixes landed in.
+</p>
+
+<p>
+The refuter gets the finding as the review wrote it - not the fix, not the lines the fix touched, not even the fact that a fix exists.
+</p>
+
+<p>
+The verdicts read inverted here. Against the fixed tree, <code>refuted</code> means the problem is gone, and <code>stands</code> means the fix did not take. The command reports them in fix terms: <i>resolved</i> and <i>fix did not take</i> - to make the results easier for a human reader to understand.
+</p>
+
+<pre class="example" id="org52bdf0e">
+# Fix Verification
+
+**Tests:** cargo test → pass
+
+- **resolved** - `src/auth.rs:42` token expiry comparison
+- **fix did not take** - `src/api.rs:88` - the batch fetch was added,
+  but the error path still calls `fetch_user` once per row.
+</pre>
+
+<p>
+A fix that fails its check goes back to you with the refuter's reasoning verbatim. The command does not take another swing and re-verify. A fix that failed its check once is a fix a human should look at.
+</p>
+</div>
+</div>
+<div id="outline-container-org02a5879" class="outline-2">
+<h2 id="org02a5879">Posting to a pull request</h2>
+<div class="outline-text-2" id="text-org02a5879">
+<p>
+The report is not always the last stop. Sometimes you also explicitly ask for the findings to go onto a GitHub pull request.
+</p>
+
+<p>
+A comment on GitHub arrives without the report around it. So a posted finding carries its tier, whether or not you asked for severities:
+</p>
+
+<pre class="example" id="org1d70acb">
+**Critical** - Token expiry compared with `&gt;` instead of `&gt;=`, so a token
+expiring exactly now is accepted. Use `&gt;=`.
+</pre>
+
+<p>
+The qualifiers travel too. <code>(unverified)</code> and <code>(promoted from Suggestion)</code> change what the reader should do about a finding as much as the tier does, and a pre-existing finding posts as its tier followed by <code>(pre-existing)</code>, though you typically would want to open a new ticket for a pre-existing issue rather than include it in the review.
+</p>
+
+<p>
+The default shape is <b>one inline review comment per finding</b>, anchored at its file and line. That puts each finding where the reader is already looking. The comments go up as a single pull request review, so they land together.
+</p>
+
+<p>
+Inline anchoring has a limit. GitHub rejects a comment on a line that the diff does not touch. So the command fetches the pull request's actual hunks and checks each finding's line against them before it posts. Findings that fall outside a hunk cannot anchor, so they go into the review body instead, grouped under the same Critical, Warning, Suggestion and Pre-existing headings the report used.
+</p>
+</div>
+</div>
+<div id="outline-container-org60c4b90" class="outline-2">
+<h2 id="org60c4b90">Cost</h2>
+<div class="outline-text-2" id="text-org60c4b90">
+<p>
+The default path is cheap and stays cheap: one agent, and a refuter only if a Critical turns up, which most runs do not.
+</p>
+
+<div class="pullquote" id="orgccd1c76">
+<p>
+It is not unusual on a decent sized PR for a &#x2013;deep review to take 20 minutes to run and launch over 30 agents in total. The default path is significantly cheaper, at the expense of not finding as many issues.
+</p>
+
+</div>
+
+<p>
+Deep mode is significantly more expensive. A run starts <b>one reviewer</b>, <b>eight lenses</b>, and <b>one refuter per Critical and Warning finding</b> (each their own subagent).
+</p>
+</div>
+</div>
+<div id="outline-container-the-files" class="outline-2">
+<h2 id="the-files">The files</h2>
+<div class="outline-text-2" id="text-the-files">
+<p>
+If you want to run this yourself, these files make the command work. Install them under <code>~/.claude/</code>:
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">File</th>
+<th scope="col" class="org-left">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><a href="https://github.com/wtfleming/dotfiles/blob/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude/commands/wtf-code-review.md">commands/wtf-code-review.md</a></td>
+<td class="org-left">the slash command</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/wtfleming/dotfiles/blob/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude/agents/wtf-change-reviewer.md">agents/wtf-change-reviewer.md</a></td>
+<td class="org-left">the reviewer</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/wtfleming/dotfiles/blob/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude/agents/wtf-lens.md">agents/wtf-lens.md</a></td>
+<td class="org-left">one lens, dispatched eight times</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/wtfleming/dotfiles/blob/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude/agents/wtf-refuter.md">agents/wtf-refuter.md</a></td>
+<td class="org-left">the adversarial verifier</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/wtfleming/dotfiles/blob/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude/reference/code-review-checklist.md">reference/code-review-checklist.md</a></td>
+<td class="org-left">the checklist the reviewer reads</td>
+</tr>
+
+<tr>
+<td class="org-left"><a href="https://github.com/wtfleming/dotfiles/blob/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude/reference/slop-patterns.md">reference/slop-patterns.md</a></td>
+<td class="org-left">patterns of machine-written code</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Every link in that table points into one commit, <a href="https://github.com/wtfleming/dotfiles/tree/23cd5871a1a0c66ddffb6f4f768d41a9bdfe76ea/Dotfiles/claude"><code>23cd587</code></a>, so what it opens is the version this post describes. The files I run live on <code>main</code>, and may have moved on since.
+</p>
+</div>
+</div>
+<div id="outline-container-org43ce553" class="outline-2">
+<h2 id="org43ce553">A real run, next to CodeRabbit</h2>
+<div class="outline-text-2" id="text-org43ce553">
+<p>
+The rest of this post is what two reviewers said about one pull request. CodeRabbit's two comments come first, then the full report from <code>/wtf-code-review PR 105 --deep</code>, on the same commit.
+</p>
+
+<p>
+The pull request upgrades htmx from 2.0.8 to 4.0.0 in a Rust server that renders Askama templates, with htmx and Alpine driving the front end. htmx 4 landed on 2026-08-28, so <b>the LLM would not have much (if any) info about it in its training data</b>. The PR is 12 files and +43/−44, in one commit.
+</p>
+
+<aside class="numbox">
+  <p class="callout-kicker">The run, by the numbers</p>
+  <dl>
+    <div><dt>21</dt><dd>subagents end to end</dd></div>
+    <div><dt>8</dt><dd>lenses reading the same diff in parallel</dd></div>
+    <div><dt>463</dt><dd>tests run before the first word was written</dd></div>
+    <div><dt>12</dt><dd>findings attacked by refuters - 11 stood, 1 died</dd></div>
+    <div><dt>21 vs 2</dt><dd>findings printed, next to CodeRabbit's two comments</dd></div>
+    <div><dt>1</dt><dd>stored XSS, on a line the diff never touched</dd></div>
+  </dl>
+</aside>
+
+<p>
+htmx ships its own <code>upgrade-check</code> CLI tool that scans your template and JavaScript files for legacy htmx code, removed attributes, old event names, and outdated inheritance patterns, etc. But <b>three breaking changes that the checker does not catch are what the diff is really about</b>:
+</p>
+
+<ul class="org-ul">
+<li><b>Non-200 responses now swap.</b> htmx 2 never swapped 4xx or 5xx; htmx 4 swaps everything but 204 and 304. Every <code>AppError</code> in this application renders a <i>full-page</i> error document, so any of them would be injected into whatever small fragment made the request. The fix is a <code>htmx-config</code> meta tag setting <code>noSwap</code>.</li>
+<li><b><code>event.detail.xhr</code> is gone</b>, because htmx 4 uses <code>fetch()</code>. The toast bridge that read the <code>HX-Trigger</code> header off the XHR was rewritten to listen for the event htmx dispatches itself.</li>
+<li><b><code>HX-Target</code> changed format</b>, from <code>users-list</code> to <code>tbody#users-list</code>. Two handlers branched on the bare id and would have silently returned the whole dashboard into a <code>&lt;tbody&gt;</code>. A new <code>hx_target_id</code> helper accepts both spellings.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-coderabbit-found" class="outline-2">
+<h2 id="coderabbit-found">What CodeRabbit found</h2>
+<div class="outline-text-2" id="text-coderabbit-found">
+<p>
+CodeRabbit reviewed commit <code>2cf6b1a</code> and posted two inline comments. Both are filed <i>Minor</i>, and its walkthrough put the merge risk at <i>Low</i>.
+</p>
+
+<ul class="org-ul">
+<li><b><code>templates/admin/user-detail.html:75</code></b> - <i>Guard Alpine resets by the HTMX response status.</i> <code>htmx:after:request</code> also runs for error responses, and <code>templates/base.html</code> now stops those responses swapping into the page, so the form closes and loses its input on a failure. The comment names all four sites: <code>user-detail.html:75</code>, <code>:101</code>, <code>:136</code> and <code>show-list.html:191</code>.</li>
+<li><b><code>templates/show-game.html:220</code></b> - <i>Filter global HTMX swap handlers by their source element.</i> The <code>.window</code> listeners receive unrelated successful swaps and can close an open modal, discarding unsaved input. It asks for <code>$event.detail.ctx.sourceElement === $el</code> before the modal state changes.</li>
+</ul>
+
+<p>
+The <b>first is the same defect my run filed as a pre-existing warning</b>, at the same four lines. The <b>second is a real finding that my run did not report at all</b>: my report reached those same three handlers, but only to say that nothing tests them.
+</p>
+</div>
+</div>
+<div id="outline-container-my-run-found" class="outline-2">
+<h2 id="my-run-found">What <code>/wtf-code-review</code> found</h2>
+<div class="outline-text-2" id="text-my-run-found">
+<p>
+My run printed <b>twenty-one findings</b> on that same diff, <b>one of which is a stored XSS on public list pages</b>.
+</p>
+
+<p>
+The XSS sat in <code>templates/show-list.html</code>, <b>one of the twelve files CodeRabbit listed as reviewed</b>, on a line the diff does not touch.
+</p>
+
+<div class="pullquote" id="orgb69fcb4">
+<p>
+CodeRabbit found 2 issues.
+</p>
+
+<p>
+My command found 21 issues - one Critical, seven Warnings, six Suggestions, and seven Pre-existing.
+</p>
+
+</div>
+
+
+<p>
+<b>One pull request is not a benchmark, and the two tools are not doing the same job</b>: CodeRabbit runs on every push without being asked, and mine runs when I ask for it and costs a few dozen subagents. <b>But a stored XSS in a file that was open in front of both reviewers, and a Back button that breaks on every page of the app, are what a reviewer exists to catch</b>.
+</p>
+
+<p>
+<i>A note on that XSS, since this post reproduces the exploit in full: this app is not deployed on the public internet - so there was never anything for an outside attacker to reach, and I have since applied the <code>data-note</code> fix the review describes.</i>
+</p>
+</div>
+</div>
+<div id="outline-container-raw-output" class="outline-2 transcript">
+<h2 id="raw-output">The raw output</h2>
+<div class="outline-text-2" id="text-raw-output">
+<div class="transcript-head">
+  <span class="transcript-prompt">$</span><span class="transcript-cmd">/wtf-code-review PR 105 --deep</span>
+  <span class="transcript-note">unedited output</span>
+</div>
+
+<p>
+All 12 verified: <b>11 stand, 1 refuted.</b>
+</p>
+
+<hr>
+</div>
+<div id="outline-container-org27c38f5" class="outline-3">
+<h3 id="org27c38f5">Change Review - PR #105</h3>
+<div class="outline-text-3" id="text-org27c38f5">
+<p>
+<b>Scope:</b> <code>git diff main...HEAD</code> (branch <code>upgrade-htmx-4</code>, single commit <code>2cf6b1a</code>) - 12 files, +43/−44 <br>
+<b>Tests:</b> <code>cargo nextest run</code> → <b>463 passed, 0 failed</b>. Playwright E2E <b>not run</b> by the reviewer (needs a live server plus a migrated <code>one_c_c_e2e_test</code> DB). <i>Separately: CI on #105 has since reported E2E (Playwright) pass, Lint &amp; Test pass.</i> <br>
+<b>Lint:</b> <code>cargo clippy --all-targets --all-features -- -D warnings</code> → clean. <code>cargo fmt --check</code> → clean.
+</p>
+</div>
+<div id="outline-container-org61fecf5" class="outline-4">
+<h4 id="org61fecf5">Critical</h4>
+<div class="outline-text-4" id="text-org61fecf5">
+<ul class="org-ul">
+<li><b><code>templates/base.html:68</code></b> - The htmx 4 docs list <b>three</b> major behavioral changes from 2.x. The PR addresses two (explicit inheritance, 4xx/5xx swapping) and leaves the third - history - at its new default. This is not a no-op for an app that never used <code>hx-push-url</code> or <code>hx-boost</code>. htmx 4's <code>initialize()</code> runs <code>if (!history.state) history.replaceState({htmx: true}, '', location.href)</code> on <b>every</b> page load, then registers a Navigation API <code>navigate</code> listener that calls <code>event.intercept()</code> on every same-origin <code>traverse</code>. htmx 2 only stamped <code>{htmx:true}</code> when a history update was actually pending, so <code>history.state</code> stayed <code>null</code> here and its <code>popstate</code> handler fell through to the browser. Net effect: browser Back/Forward on every page of the app is now hijacked into a <code>GET</code> + <code>outerSync</code> swap of <code>document.body</code>, instead of a native (often bfcached) restore. Concrete breakage: <code>#makeFragment</code> strips the entire <code>&lt;head&gt;</code>, keeping only <code>&lt;title&gt;</code>. <code>templates/admin/platforms.html:5-8</code> is the only template that puts anything in <code>{% block head %}</code> - the SortableJS CDN script. Navigate <code>/admin/platforms</code> → <code>/admin</code> → browser Back, and the body is swapped in and <code>platformSorter()</code> re-executed, but <code>Sortable.min.js</code> was never loaded into the surviving head, so <code>Sortable.create()</code> throws <code>ReferenceError: Sortable is not defined</code> and drag-to-reorder is dead until a hard reload. Secondary cost: every Back/Forward is now a full server-side render consuming the <code>public_api_rate_limit_layer</code> 60/60s bucket. Fix is one word in the meta tag you already added: <code>content='{"noSwap": [204, 304, "4xx", "5xx"], "history": false}'</code>. <br>
+<i>Refuter: stands. Verified against the SRI-matched bundle; the hard failure is confined to the one admin page with a head asset, the Back/Forward round-trip cost is app-wide.</i></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbc53ee0" class="outline-4">
+<h4 id="orgbc53ee0">Warning</h4>
+<div class="outline-text-4" id="text-orgbc53ee0">
+<ul class="org-ul">
+<li><p>
+<b><code>templates/base.html:68</code></b> - <code>noSwap</code> stops the <i>body</i> of an error response being injected, but not its <code>&lt;title&gt;</code>. htmx 4 extracts the title in <code>#makeFragment</code> and assigns <code>document.title = ctx.title</code> after the swap tasks, unconditionally of the <code>none</code> swap style. Every <code>AppError</code> renders a full page extending <code>base.html</code>, so a failed <code>/hx/*</code> request rewrites the browser tab. On <code>/game/&lt;slug&gt;</code>, an expired session turning a play-status POST into a 401 leaves the tab reading "Unauthorized" over unchanged content, and that title lands in browser history. htmx 2 returned before any title handling when <code>shouldSwap</code> was false, so this is new with this PR. Fix:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">document.addEventListener('htmx:before:swap', e =&gt; {
+  if (e.detail.ctx.response?.status &gt;= 400) e.detail.ctx.title = null;
+});
+</pre>
+</div>
+
+<p>
+<i>Reported by the reviewer and <code>correctness</code>. Refuter: stands - independently reproduced in Chromium ("title after: Not found!", target unchanged). Rated low severity: cosmetic plus a misleading history entry.</i>
+</p></li>
+
+<li><b><code>templates/admin/platforms.html:93</code></b> - <b>drag-reorders are now silently dropped.</b> htmx 2 queued a same-element request arriving mid-flight with strategy <code>last</code>, so the most recent order always won. htmx 4's <code>#determineSyncStrategy</code> returns <code>"queue first"</code> without <code>hx-sync</code>, and <code>RequestQueue.admit</code> returns <code>"dropped"</code> once one request is queued - no event, no console output. <code>htmx.ajax('POST', '/hx/admin/platforms/order', …)</code> passes no <code>source</code>, so every reorder shares <code>document.body</code>'s queue. Three drags inside one round-trip persist drag #2 and discard drag #3, while <code>onEnd</code> has already renumbered the <code>.order-number</code> cells to drag #3's state. The admin sees the new order, the DB has a different one. Fix: pass a real <code>source</code> with <code>hx-sync="this:replace"</code>. <br>
+<i>Refuter: stands - verified in both htmx 2.0.8 and 4.0.0 source; a genuine behaviour change from this commit. Qualifications: it takes three drags inside one round trip, and a missing "order saved" toast is a faint signal.</i></li>
+
+<li><b><code>src/web/handlers/common.rs:300</code></b> - <code>hx_target_id</code> is new header-parsing logic encoding a load-bearing dual-format contract, with no test at any level. Nothing in <code>tests/</code> or <code>e2e/</code> sends an <code>HX-Target</code> header, so both call-site branches (<code>admin_users.rs:300</code>, <code>sync_stats.rs:273</code>) are entirely uncovered. The failure is silent: a wrong parse returns the full dashboard document into a <code>&lt;tbody&gt;</code>. If htmx 4 ever emits a fuller selector, e.g. <code>tbody#users-list.divide-y</code>, <code>rsplit('#').next()</code> yields <code>users-list.divide-y</code> and the equality fails. <code>src/web/cookies.rs</code> already carries unit tests for the analogous cookie-header parser. <br>
+<i>Reported by the reviewer and <code>tests</code>. Refuter: stands - greps confirm zero coverage. Notes severity is low (the helper is six lines and correct for the observed form).</i></li>
+
+<li><b><code>templates/base.html:69</code></b> - htmx 4.0.0 is not the released version of htmx. npm dist-tags are <code>latest: 2.0.10</code>, <code>next: 4.0.0</code>; 4.0.0 was published 2026-08-28, one day before this PR, off a beta line. Every interactive surface runs through htmx, and the two handler paths this PR touched have no test. Pinning production to a <code>next</code>-tagged, one-day-old major buys nothing this PR needs. The low-risk move is 2.0.8 → 2.0.10 (patch-only, still <code>latest</code>), deferring 4.x until it is promoted. <br>
+<i>Refuter: stands - registry state confirmed live. Explicitly flagged as a risk/judgment finding, not a demonstrated bug.</i></li>
+
+<li><b><code>templates/base.html:65</code></b> - the <code>noSwap</code> meta is the only thing standing between a 4xx and a full-page error document injected into a fragment, and no test exercises an htmx request that fails. Cheap e2e: <code>authenticatedPage</code> on a game page, <code>context.clearCookies()</code>, click the wishlist button, assert the target did not gain a <code>nav</code> / <code>h1</code>. <br>
+<i>Refuter: stands, narrowed. The alarming half is dead - the refuter fetched the SRI-matched bundle and confirmed <code>noSwap</code> genuinely supports the <code>"4xx"</code> / <code>"5xx"</code> spelling and the array cleanly replaces the default. Only the regression-coverage gap survives; "not a bug".</i></li>
+
+<li><b><code>templates/admin/user-detail.html:75,101,136</code>, <code>templates/show-list.html:191</code>, <code>templates/admin/platforms.html:111</code></b> - the renames to <code>htmx:after:request</code> and <code>htmx:after:settle</code> have no coverage, and fail silently (panels never close, note editor never closes, SortableJS never re-initialised after a move-to-top swap). The convention is pinned by exactly one path: <code>@htmx:after:swap="onSearchResults($event)"</code>, which the autocomplete spec genuinely covers. Same gap for the three <code>@htmx:after:swap.window</code> handlers in <code>show-game.html</code> - the <code>?.</code> makes a wrong shape evaluate falsy, so a mistake shows up only as "the modal stopped closing". <br>
+<i>Refuter: stands - full e2e inventory enumerated; no test references these event names at all.</i></li>
+
+<li><b><code>templates/base.html:178</code></b> <i>(promoted from Suggestion)</i> - htmx 4's <code>queue first</code> default applies to the nav search input. If <code>/hx/search/games</code> runs slower than the 300 ms debounce pause, the second query queues and every later one is dropped with no event; the dropdown then shows results for an older query and no further request fires until the next keystroke. htmx 2's <code>queue last</code> converged on the latest. Fix: <code>hx-sync="this:replace"</code> on the input. <br>
+<i>Refuter: stands. Severity note: only bites when latency exceeds the debounce, and one more keystroke recovers it.</i></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org884795c" class="outline-4">
+<h4 id="org884795c">Suggestion</h4>
+<div class="outline-text-4" id="text-org884795c">
+<p>
+All carried through <b>(unverified)</b> - no refuter was spawned for these.
+</p>
+
+<ul class="org-ul">
+<li><b><code>src/web/handlers/common.rs:304</code></b> - <code>.and_then(|v| v.rsplit('#').next())</code> chains <code>and_then</code> onto an iterator step that can never yield <code>None</code> (<code>rsplit</code> always produces at least one item). <code>.map(...)</code> says what is actually happening.</li>
+<li><b><code>CLAUDE.md:534</code> / <code>ARCHITECTURE.md:256</code></b> - both docs only bump the version string. The upgrade changes three conventions that template authors write by hand and that fail <i>silently</i>: event names are now colon-delimited (an <code>@htmx:after-request</code> handler simply never fires), <code>hx-target</code> / <code>hx-swap</code> need <code>:inherited</code> to reach descendants, and non-swapping of 4xx/5xx now depends on the <code>htmx-config</code> meta tag staying ahead of the <code>&lt;script&gt;</code>. Handlers reading <code>HX-Target</code> must also go through <code>hx_target_id</code>. CLAUDE.md's "Key Patterns" / "Frontend Interactivity" sections are where someone would look.</li>
+<li><b><code>templates/show-game.html:220</code></b> - <code>if ($event.detail.ctx.response?.status &lt; 400)</code> is duplicated verbatim at 220, 302 and 497, replacing the self-documenting <code>$event.detail.successful</code>. It hard-codes a reach into htmx's internal event-detail shape in three places, and the optional chain means a missing <code>ctx.response</code> silently leaves the modal open. Add a named helper next to <code>window.showToast</code>, e.g. <code>window.htmxSucceeded = e =&gt; (e.detail?.ctx?.response?.status ?? 0) &lt; 400;</code>.</li>
+<li><b><code>templates/base.html:339</code></b> - the rewritten toast listener is untested and must satisfy two payload shapes the server actually emits: an object (<code>admin_platforms.rs:159</code>, <code>admin_reviews.rs:237</code>) and a bare string (<code>reviews.rs:209,:223</code>). If the <code>{value}</code> assumption is wrong the user gets a toast reading <code>undefined</code> and nothing fails. <code>e2e/pages/base.page.ts:46</code> already has a <code>waitForToast()</code> helper called by zero specs.</li>
+<li><b><code>package.json</code></b> - htmx is the only runtime frontend dependency with no entry (Alpine likewise). <code>dependabot.yml</code> has no npm ecosystem entry, so 2.0.9 and 2.0.10 went unnoticed for four months and this bump had to be driven by hand across three files. <code>todo.org:329</code> already tracks "serve htmx ourselves".</li>
+<li><b>Before merging a 2→4 jump, run htmx's own scanner:</b> <code>npx htmx.org@4.0.0 upgrade-check -- .</code> - authoritative in a way a grep pass isn't.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5413e03" class="outline-4">
+<h4 id="org5413e03">Pre-existing</h4>
+<div class="outline-text-4" id="text-org5413e03">
+<ul class="org-ul">
+<li><b>Critical</b> · <b><code>templates/show-list.html:103</code></b> - Stored XSS on public list pages. The per-game card interpolates a user-authored note into an Alpine expression: <code>x-data="{ … noteText: '{{ n }}' }"</code>. Askama escapes <code>'</code> to <code>&amp;#39;</code>, but that only protects the <i>HTML attribute</i> boundary - the parser decodes it and Alpine evaluates the result as JavaScript. Exploit: set a note of <code>'+alert(document.domain)+'</code> via <code>POST /hx/lists/{id}/games/{id}/note</code> (<code>lists.rs:409</code> validates only trim/non-empty/≤500 chars), mark the list public, and every visitor to <code>/{username}/list/{slug}</code> executes it - unauthenticated viewers included, since the <code>x-data</code> div sits outside the <code>{% if is_owner %}</code> guard. Cookies are <code>HttpOnly</code>, but the payload runs same-origin with the victim's session, including admin mutations. <code>connect-src 'self'</code> blocks fetch exfiltration, but no <code>form-action</code> is set and top-level navigation is unrestricted. Fix: move it to a plain data attribute - <code>data-note="{{ n }}"</code> and <code>noteText: $el.dataset.note</code>. <br>
+<i>Refuter: stands. Confirmed the askama escaper table, the CSP, and that the only diff in this file is the line-191 event rename.</i></li>
+
+<li><b>Warning</b> · <b><code>templates/admin/user-detail.html:75,101,136</code> and <code>templates/show-list.html:191</code></b> - <code>@htmx:after:request="showSuspendForm = false"</code> closes the form on <b>every</b> response. Combined with the new <code>noSwap</code>, a suspend/ban/restore returning 500 or 429 produces no swap, no toast, and no console output - the form closes and the admin cannot tell it failed. Same for the note editor, where the typed note is discarded. The unconditional close predates this change, but the diff hardened the three equivalent handlers in <code>show-game.html</code> and left these four. <br>
+<i>Refuter: stands - traced through htmx 4 source: <code>htmx:after:request</code> fires before the status check, and <code>#trigger</code> logs only when <code>detail.error</code> is set.</i></li>
+
+<li><b>Warning (promoted from Suggestion)</b> · <b><code>e2e/pages/search.page.ts:105</code></b> - <code>isResultHighlighted</code> returns true if the class list <code>includes('bg-')</code>, but every autocomplete anchor renders with <code>bg-surface-raised</code>, so <code>should navigate results with arrow keys</code> passes whether or not <code>updateSelection()</code> ever ran. Worth fixing now because this PR rewires the very handler that populates <code>this.results</code>. <br>
+<i>Refuter: stands - the only classes <code>updateSelection()</code> toggles are <code>bg-slate-700</code> / <code>bg-slate-200</code>, neither distinguished.</i></li>
+
+<li><b>Suggestion</b> · <b><code>templates/base.html:182</code></b> - the search-box spinner never appears and never has. The <code>.htmx-indicator</code> div is a <i>sibling</i> of the requesting <code>&lt;input&gt;</code>, which carries no <code>hx-indicator</code>, so htmx puts <code>htmx-request</code> on the input itself and neither of htmx's two reveal selectors can match. htmx 2 had identical semantics. Fix: <code>hx-indicator="#search-spinner"</code> on the input.</li>
+<li><b>Suggestion</b> · <b><code>templates/base.html:347</code></b> - <code>window.confirmAction</code> is a hand-rolled promise wrapper around <code>confirm()</code> with zero callers repo-wide; the real flows use htmx's <code>hx-confirm</code>. This PR rewrites the sibling block seven lines above, so it is a cheap moment to delete it.</li>
+<li><b>Suggestion</b> · <b><code>templates/show-game.html:218</code></b> - the review UI exists twice and this PR paid the tax: the same <code>:inherited</code> edit at <code>show-game.html:218-219</code> and <code>review-form.html:4-5</code>, and the same status one-liner at three places. The copies have drifted - the partial supports half-stars while the modal sets whole stars, and the partial renders a Report control the modal omits, so the page shows different controls before and after the first review write.</li>
+<li><b>Suggestion</b> · <b><code>templates/base.html:69</code></b> - the htmx <code>&lt;script&gt;</code> sits in <code>&lt;head&gt;</code> with no <code>defer</code>, blocking the parser for a full round trip; Alpine and its plugin are already deferred. htmx 4 is safe to defer, and the meta-ordering constraint is unaffected.</li>
+</ul>
+
+<hr>
+
+<p>
+<b>Refuted: 1 of 12.</b> The <code>:inherited</code> inconsistency (<code>show-game.html:218</code>, filed Warning by <code>maintainability</code> and Suggestion by <code>correctness</code>, <code>dependencies</code> and the reviewer). The refuter found the split <i>does</i> follow an inferrable rule: the marker appears on exactly the three elements that contain a descendant carrying its own hx verb, and the "structurally identical siblings" contain no htmx descendant at all - the log modal form has only Alpine <code>@click</code> buttons, the report form only a plain submit, and the delete button is a leaf.
+</p>
+
+<p>
+<b>Promotions: 2</b>, both stood (<code>base.html:178</code>, <code>search.page.ts:105</code>).
+</p>
+
+<p>
+<b>Silent lenses: none.</b> All eight returned at least one finding.
+</p>
+
+<p>
+Worth noting the refuters did real narrowing work beyond the one refutation: they killed the alarming half of the <code>noSwap</code> finding (config verified correct against the SRI-matched bundle) and downgraded severity on four others.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4a72be9" class="outline-3">
+<h3 id="org4a72be9">Suggestion triage</h3>
+<div class="outline-text-3" id="text-org4a72be9">
+<p>
+<b>Definitely worth doing</b>
+</p>
+
+<ul class="org-ul">
+<li><code>CLAUDE.md:534</code> / <code>ARCHITECTURE.md:256</code> - three conventions now fail <i>silently</i> when written the old way; a handler with the htmx 2 spelling is dead on arrival with no error. Small edit, and the cost of omitting it compounds with every future template.</li>
+</ul>
+
+<p>
+<b>Worth doing</b>
+</p>
+
+<ul class="org-ul">
+<li><code>src/web/handlers/common.rs:304</code> - <code>.and_then</code> → <code>.map</code>; one word, and it stops implying a <code>None</code> case that cannot occur.</li>
+<li><code>templates/show-game.html:220</code> - a named helper turns three copies of a reach into htmx internals into one, so the next detail-shape change is one edit.</li>
+<li><code>templates/base.html:339</code> - a toast e2e would pin both payload shapes; the <code>waitForToast()</code> helper already exists and is unused.</li>
+<li><code>package.json</code> - tracking htmx would let dependabot open these PRs and collapse three hand-edited version strings into one.</li>
+</ul>
+
+<p>
+<b>Not worth doing</b>
+</p>
+
+<ul class="org-ul">
+<li><code>npx htmx.org@4.0.0 upgrade-check</code> - already run against <code>templates/</code>; it reports 0 issues. Re-running over the repo root adds nothing the lenses did not sweep.</li>
+</ul>
+
+<p>
+This triage is my judgement, not verification - no agent was dispatched to check any Suggestion, and all six remain in the report above as written.
+</p>
+
+<p>
+These are yours to triage; I've not changed anything. Tell me which you want acted on and I'll take them from there.
+</p>
+
+<div class="transcript-foot">end of output</div>
+</div>
+</div>
+</div>
+<div class="taglist"><a href="https://wtfleming.github.io/tags/"><span class="tag-label">Tags</span></a><span class="tag-separator">: </span><span class="taglist__tags"><a href="https://wtfleming.github.io/tags/claude-code/" class="tag" data-tag="claude-code" data-index="0">claude-code</a> </span></div></div>
+<div id="postamble" class="status"><nav><a href="/blog/">Blog</a><a href="/tags/">Tags</a><a href="/rss.xml">RSS</a><a href="https://github.com/wtfleming">GitHub</a></nav>
+</div>
+</body>
+</html>

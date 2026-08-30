@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Elixir on the Raspberry Pi - Blinking an LED</title>
+<meta property="og:title" content="Elixir on the Raspberry Pi - Blinking an LED">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/embedded-elixir-raspberry-pi/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -33,14 +38,14 @@ The final result will look like this:
 </p>
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/w6T2HXzHXRs" frameborder="0" allowfullscreen></iframe>
-<div id="outline-container-org12d7463" class="outline-2">
-<h2 id="org12d7463">Elixir programming language</h2>
-<div class="outline-text-2" id="text-org12d7463">
+<div id="outline-container-org0ac30b5" class="outline-2">
+<h2 id="org0ac30b5">Elixir programming language</h2>
+<div class="outline-text-2" id="text-org0ac30b5">
 <p>
 <a href="http://elixir-lang.org/">Elixir</a> describes itself:
 </p>
 
-<pre class="example" id="orgfa59d62">
+<pre class="example" id="org059048c">
 Elixir is a dynamic, functional language designed for building scalable and
 maintainable applications.
 
@@ -64,15 +69,15 @@ So far it has been an absolute joy to use.
 </p>
 </div>
 </div>
-<div id="outline-container-org88601de" class="outline-2">
-<h2 id="org88601de">Raspberry Pi</h2>
-<div class="outline-text-2" id="text-org88601de">
+<div id="outline-container-orgd1b698d" class="outline-2">
+<h2 id="orgd1b698d">Raspberry Pi</h2>
+<div class="outline-text-2" id="text-orgd1b698d">
 <p>
 The <a href="https://www.raspberrypi.org/">Raspberry Pi</a> is a series of small (credit card sized) and relatively low cost computers capable of running Linux with a number of <a href="https://en.wikipedia.org/wiki/General-purpose_input/output">general-purpose input/output (GPIO)</a> pins which can interface with the outside world.
 </p>
 
 
-<figure id="orge7a3028">
+<figure id="orgadab439">
 <img src="/images/raspberry-pi.jpg" alt="raspberry-pi.jpg">
 
 </figure>
@@ -84,9 +89,9 @@ Now lets install the software dependencies.
 </p>
 </div>
 </div>
-<div id="outline-container-org45e65cb" class="outline-2">
-<h2 id="org45e65cb">Install Erlang and Elixir</h2>
-<div class="outline-text-2" id="text-org45e65cb">
+<div id="outline-container-orgefbd8d5" class="outline-2">
+<h2 id="orgefbd8d5">Install Erlang and Elixir</h2>
+<div class="outline-text-2" id="text-orgefbd8d5">
 <p>
 Elixir currently requires Erlang 17.0 or later, the debian packages in the default repositories are too old so we will need an alternative installation method.
 </p>
@@ -144,11 +149,11 @@ We're now ready to explore GPIO (general purpose I/O) on the Pi.
 </p>
 </div>
 </div>
-<div id="outline-container-org6e78735" class="outline-2">
-<h2 id="org6e78735">Wire up the LED</h2>
-<div class="outline-text-2" id="text-org6e78735">
+<div id="outline-container-orgadc7456" class="outline-2">
+<h2 id="orgadc7456">Wire up the LED</h2>
+<div class="outline-text-2" id="text-orgadc7456">
 
-<figure id="org79ee2a0">
+<figure id="org8fe427a">
 <img src="/images/raspberry-pi-led-fritzing.png" alt="raspberry-pi-led-fritzing.png">
 
 </figure>
@@ -174,14 +179,14 @@ Once wired up we can proceed.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbea6602" class="outline-2">
-<h2 id="orgbea6602">Turn an LED on and off on the command line</h2>
-<div class="outline-text-2" id="text-orgbea6602">
+<div id="outline-container-orgebb4a27" class="outline-2">
+<h2 id="orgebb4a27">Turn an LED on and off on the command line</h2>
+<div class="outline-text-2" id="text-orgebb4a27">
 <p>
 In this example we'll be using the built in <a href="https://en.wikipedia.org/wiki/Sysfs">sysfs</a> to control the GPIO pins. Wikipedia describes it:
 </p>
 
-<pre class="example" id="orgb8ad17e">
+<pre class="example" id="orgfd5c74e">
 sysfs is a virtual file system provided by the Linux kernel that exports information
 about various kernel subsystems, hardware devices, and associated device drivers
 from the kernel's device model to user space through virtual files. In addition to
@@ -249,9 +254,9 @@ Now lets make a module.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb3d29c9" class="outline-2">
-<h2 id="orgb3d29c9">Elixir Code</h2>
-<div class="outline-text-2" id="text-orgb3d29c9">
+<div id="outline-container-org7c9229d" class="outline-2">
+<h2 id="org7c9229d">Elixir Code</h2>
+<div class="outline-text-2" id="text-org7c9229d">
 <p>
 On your Raspberry Pi create a file called blink-led.ex with the following contents:
 </p>

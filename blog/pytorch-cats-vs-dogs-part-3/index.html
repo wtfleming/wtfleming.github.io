@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models</title>
+<meta property="og:title" content="Cats vs Dogs - Part 3 - 99.1% Accuracy - Binary Image Classification with PyTorch and an Ensemble of ResNet Models">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/pytorch-cats-vs-dogs-part-3/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -45,9 +50,9 @@ This post was inspired by the book <a href="https://www.oreilly.com/library/view
 <p>
 Code is available in a <a href="https://github.com/wtfleming/jupyter-notebooks-public/blob/master/dogs-vs-cats/dogs-vs-cats-part-3.ipynb">jupyter notebook here</a>. You will need to download the data from the <a href="https://www.kaggle.com/c/dogs-vs-cats/data">Kaggle competition</a>. The dataset contains 25,000 images of dogs and cats (12,500 from each class). We will create a new dataset containing 3 subsets, a training set with 16,000 images, a validation dataset with 4,500 images and a test set with 4,500 images.
 </p>
-<div id="outline-container-org78c6c87" class="outline-2">
-<h2 id="org78c6c87">Build the networks</h2>
-<div class="outline-text-2" id="text-org78c6c87">
+<div id="outline-container-orgdb24cb4" class="outline-2">
+<h2 id="orgdb24cb4">Build the networks</h2>
+<div class="outline-text-2" id="text-orgdb24cb4">
 <div class="org-src-container">
 <pre class="src src-python">import torch
 import torch.nn as nn
@@ -107,9 +112,9 @@ model_resnet34.fc = nn.Sequential(nn.Linear(model_resnet34.fc.in_features,512),
 </div>
 </div>
 </div>
-<div id="outline-container-org1ed84e2" class="outline-2">
-<h2 id="org1ed84e2">Functions for training and loading data</h2>
-<div class="outline-text-2" id="text-org1ed84e2">
+<div id="outline-container-orgbcf5a18" class="outline-2">
+<h2 id="orgbcf5a18">Functions for training and loading data</h2>
+<div class="outline-text-2" id="text-orgbcf5a18">
 <p>
 Create a function we can use to train the model.
 </p>
@@ -219,16 +224,16 @@ print(f'Num test images: {len(test_data_loader.dataset)}')
 Which should output:
 </p>
 
-<pre class="example" id="org87bd8c4">
+<pre class="example" id="org984ac40">
 Num training images: 16000
 Num validation images: 4500
 Num test images: 4500
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc658e95" class="outline-2">
-<h2 id="orgc658e95">Train and test the models</h2>
-<div class="outline-text-2" id="text-orgc658e95">
+<div id="outline-container-org0420253" class="outline-2">
+<h2 id="org0420253">Train and test the models</h2>
+<div class="outline-text-2" id="text-org0420253">
 <div class="org-src-container">
 <pre class="src src-python">def test_model(model):
     correct = 0
@@ -256,7 +261,7 @@ train(model_resnet18, optimizer, torch.nn.CrossEntropyLoss(), train_data_loader,
 </pre>
 </div>
 
-<pre class="example" id="org282a794">
+<pre class="example" id="org464fc03">
 Epoch: 0, Training Loss: 0.0855, Validation Loss: 0.0358, accuracy = 0.9878
 Epoch: 1, Training Loss: 0.0498, Validation Loss: 0.0309, accuracy = 0.9873
 </pre>
@@ -270,7 +275,7 @@ Now check against our holdout test set
 </pre>
 </div>
 
-<pre class="example" id="org63b1cc1">
+<pre class="example" id="orgbdbd2aa">
 correct: 4456  total: 4500
 accuracy = 0.990222
 </pre>
@@ -286,7 +291,7 @@ train(model_resnet34, optimizer, torch.nn.CrossEntropyLoss(), train_data_loader,
 </pre>
 </div>
 
-<pre class="example" id="orgaf58143">
+<pre class="example" id="org90bf1e9">
 Epoch: 0, Training Loss: 0.0678, Validation Loss: 0.0239, accuracy = 0.9907
 Epoch: 1, Training Loss: 0.0354, Validation Loss: 0.0317, accuracy = 0.9887
 </pre>
@@ -300,7 +305,7 @@ And test
 </pre>
 </div>
 
-<pre class="example" id="org4804017">
+<pre class="example" id="org17ddac4">
 correct: 4450  total: 4500
 accuracy = 0.988889
 </pre>
@@ -310,9 +315,9 @@ This gives us two models, one with 99.0% accuracy on our test set and 98.9% on t
 </p>
 </div>
 </div>
-<div id="outline-container-org2986506" class="outline-2">
-<h2 id="org2986506">Make some predictions</h2>
-<div class="outline-text-2" id="text-org2986506">
+<div id="outline-container-orgc78c2dd" class="outline-2">
+<h2 id="orgc78c2dd">Make some predictions</h2>
+<div class="outline-text-2" id="text-orgc78c2dd">
 <p>
 Lets check a couple individual images from the test set.
 </p>
@@ -343,7 +348,7 @@ make_prediction(model_resnet34, '/home/wtf/dogs-vs-cats/test/cats/cat.12262.jpg'
 Which outputs:
 </p>
 
-<pre class="example" id="orga49dc48">
+<pre class="example" id="orgebeb9f4">
 dogs
 cats
 </pre>
@@ -353,9 +358,9 @@ Seems reasonable.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc812be1" class="outline-2">
-<h2 id="orgc812be1">Save and load models</h2>
-<div class="outline-text-2" id="text-orgc812be1">
+<div id="outline-container-org12ae626" class="outline-2">
+<h2 id="org12ae626">Save and load models</h2>
+<div class="outline-text-2" id="text-org12ae626">
 <p>
 Since we don't want to have to train the models again every time we start up a jupyter notebook, lets see how we can save them to disk and then reload them.
 </p>
@@ -380,9 +385,9 @@ resnet34.eval()
 </div>
 </div>
 </div>
-<div id="outline-container-orgbd5f2b2" class="outline-2">
-<h2 id="orgbd5f2b2">Test with an ensemble</h2>
-<div class="outline-text-2" id="text-orgbd5f2b2">
+<div id="outline-container-org59e2689" class="outline-2">
+<h2 id="org59e2689">Test with an ensemble</h2>
+<div class="outline-text-2" id="text-org59e2689">
 <p>
 We'll use a very simple ensemble here. Take the prediction for each image from each model, average them to generate a new prediction for the image.
 </p>
@@ -411,7 +416,7 @@ print('correct: {:d}  total: {:d}'.format(correct, total))
 Which results in
 </p>
 
-<pre class="example" id="org41e92cb">
+<pre class="example" id="org2d6a18c">
 accuracy = 0.990889
 correct: 4459  total: 4500
 </pre>
@@ -425,9 +430,9 @@ In this case we aren't seeing a dramatic increase, but ensembles can be very use
 </p>
 </div>
 </div>
-<div id="outline-container-org90db5d6" class="outline-2">
-<h2 id="org90db5d6">Next steps</h2>
-<div class="outline-text-2" id="text-org90db5d6">
+<div id="outline-container-org7265e3a" class="outline-2">
+<h2 id="org7265e3a">Next steps</h2>
+<div class="outline-text-2" id="text-org7265e3a">
 <p>
 There is a lot we didn't do here. You could try <a href="https://pytorch.org/docs/stable/torchvision/transforms.html">augmenting the training images with TorchVision</a>, try different ways of creating the ensemble, add a model using a different network like <a href="https://github.com/pytorch/vision/blob/master/torchvision/models/vgg.py">VGG</a> from TorchHub to the ensemble, etc.
 </p>

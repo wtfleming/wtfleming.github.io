@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Rust benchmarking with Criterion</title>
+<meta property="og:title" content="Rust benchmarking with Criterion">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/rust-benchmarking/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -35,14 +40,14 @@ Many times you don't need the exact distance. Say you have a point and a vector 
 <p>
 So how much faster would it be to use squared distance? Lets find out.
 </p>
-<div id="outline-container-orgde0efac" class="outline-2">
-<h2 id="orgde0efac">Create a library</h2>
-<div class="outline-text-2" id="text-orgde0efac">
+<div id="outline-container-orga43da11" class="outline-2">
+<h2 id="orga43da11">Create a library</h2>
+<div class="outline-text-2" id="text-orga43da11">
 <p>
 Lets create a library and add criterion as a dependency.
 </p>
 
-<pre class="example" id="org73769c4">
+<pre class="example" id="org1d77dbd">
 $ cargo new --lib rust_benchmarking_example
 $ cd rust_benchmarking_example
 </pre>
@@ -51,7 +56,7 @@ $ cd rust_benchmarking_example
 Now lets add <code>criterion</code> as a dev-dependency
 </p>
 
-<pre class="example" id="org59400af">
+<pre class="example" id="org478712b">
 cargo add criterion --dev --features html_reports
 </pre>
 
@@ -59,7 +64,7 @@ cargo add criterion --dev --features html_reports
 Your <code>Cargo.toml</code> file should now look something like this
 </p>
 
-<pre class="example" id="org791ebba">
+<pre class="example" id="org2b8d5a1">
 [package]
 name = "rust_benchmarking_example"
 version = "0.1.0"
@@ -72,9 +77,9 @@ criterion = { version = "0.5.1", features = ["html_reports"] }
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb8dce8d" class="outline-2">
-<h2 id="orgb8dce8d">Code</h2>
-<div class="outline-text-2" id="text-orgb8dce8d">
+<div id="outline-container-org735c957" class="outline-2">
+<h2 id="org735c957">Code</h2>
+<div class="outline-text-2" id="text-org735c957">
 <p>
 Open <code>src/lib.rs</code> and add the following code
 </p>
@@ -106,9 +111,9 @@ impl Vector2 {
 </div>
 </div>
 </div>
-<div id="outline-container-orgc732ed1" class="outline-2">
-<h2 id="orgc732ed1">Unit tests</h2>
-<div class="outline-text-2" id="text-orgc732ed1">
+<div id="outline-container-org015057f" class="outline-2">
+<h2 id="org015057f">Unit tests</h2>
+<div class="outline-text-2" id="text-org015057f">
 <p>
 Lets make sure everything is working as expected, add the following tests to <code>src/lib.rs</code>.
 </p>
@@ -156,9 +161,9 @@ mod tests {
 </div>
 </div>
 </div>
-<div id="outline-container-org6af2f02" class="outline-2">
-<h2 id="org6af2f02">Create a benchmark</h2>
-<div class="outline-text-2" id="text-org6af2f02">
+<div id="outline-container-org74a2ef2" class="outline-2">
+<h2 id="org74a2ef2">Create a benchmark</h2>
+<div class="outline-text-2" id="text-org74a2ef2">
 <p>
 Now lets create a benchmark with criterion, these files are put outside of the <code>src</code> directory in a directory called <code>benches</code> that you will need to create. Lets do that and also create a file in it called distance.rs
 </p>
@@ -252,15 +257,15 @@ And since we enabled the html<sub>reports</sub> feature we can see them by openi
 </p>
 
 
-<figure id="orged4e28c">
+<figure id="orgcbbe95f">
 <img src="/images/rust-benchmarking-criterion/rust-criterion-distance.jpg" alt="rust-criterion-distance.jpg">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-orgc15d247" class="outline-2">
-<h2 id="orgc15d247">Benchmark squared distance implementation</h2>
-<div class="outline-text-2" id="text-orgc15d247">
+<div id="outline-container-org1b1b553" class="outline-2">
+<h2 id="org1b1b553">Benchmark squared distance implementation</h2>
+<div class="outline-text-2" id="text-org1b1b553">
 <p>
 Now lets benchmark our distance squared code, change
 </p>
@@ -309,7 +314,7 @@ It appears that the <code>distance_squared()</code> implementation is so fast it
 If you really want to have this complete you could artificially make it slower by disabling compiler optimizations when benchmarking by adding this to your <code>Cargo.toml</code>
 </p>
 
-<pre class="example" id="org55a60f9">
+<pre class="example" id="org16794a2">
 [profile.bench]
 opt-level = 0
 </pre>
@@ -318,7 +323,7 @@ opt-level = 0
 but you generally wouldn't want to do so since taking measurements on a dev build won't be very useful. If you were to do so, you would see output like
 </p>
 
-<pre class="example" id="org90befe2">
+<pre class="example" id="org18897ca">
 distance                time:   [9.9843 ns 10.000 ns 10.017 ns]
 
 distance                time:   [9.3626 ns 9.3730 ns 9.3848 ns]

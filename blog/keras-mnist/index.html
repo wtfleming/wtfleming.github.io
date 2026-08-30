@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>MNIST Image Classification using Deep Learning and Keras</title>
+<meta property="og:title" content="MNIST Image Classification using Deep Learning and Keras">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/keras-mnist/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -63,7 +68,7 @@ The training set consists of 60,000 28x28 pixel images, and the test set 10,000.
 </pre>
 </div>
 
-<pre class="example" id="orgcfe4f32">
+<pre class="example" id="orga934953">
 ((60000, 28, 28), (10000, 28, 28))
 </pre>
 
@@ -81,7 +86,7 @@ for i in range(0, 10):
 </div>
 
 
-<figure id="orgdd419f6">
+<figure id="orgfef31f7">
 <img src="/images/mnist-keras/mnist-example-images.png" alt="mnist-example-images.png">
 
 </figure>
@@ -95,12 +100,12 @@ And the labels representing which class the image represents.
 </pre>
 </div>
 
-<pre class="example" id="orgcce067c">
+<pre class="example" id="orgd97c3b3">
 array([5, 0, 4, 1, 9, 2, 1, 3, 1, 4], dtype=uint8)
 </pre>
-<div id="outline-container-orga5ef684" class="outline-2">
-<h2 id="orga5ef684">Build the neural network</h2>
-<div class="outline-text-2" id="text-orga5ef684">
+<div id="outline-container-org502affa" class="outline-2">
+<h2 id="org502affa">Build the neural network</h2>
+<div class="outline-text-2" id="text-org502affa">
 <p>
 Now build the neural network. We'll be using a number of convolutional layers. Note that we only have to specify the input shape in the first layer. The last layer provides the output. It has 10 units (one for each digit 0 to 9) and uses a softmax activation to map the output of a network to a probability distribution over the predicted output classes.
 </p>
@@ -129,7 +134,7 @@ One way to see what the network looks like is to use the summary() function:
 </pre>
 </div>
 
-<pre class="example" id="orgd0b3004">
+<pre class="example" id="orgc060e1e">
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -184,7 +189,7 @@ history = model.fit(train_images, train_labels, epochs=5, batch_size=64, validat
 </pre>
 </div>
 
-<pre class="example" id="org1cad03c">
+<pre class="example" id="org5ab74b5">
 Train on 50000 samples, validate on 10000 samples
 Epoch 1/5
 50000/50000 [==============================] - 20s 391us/step - loss: 0.1959 - acc: 0.9387 - val_loss: 0.0798 - val_acc: 0.9760
@@ -205,7 +210,7 @@ print('Loss: ', test_loss)
 </pre>
 </div>
 
-<pre class="example" id="org439ebdc">
+<pre class="example" id="org8459215">
 10000/10000 [==============================] - 1s 122us/step
 Accuracy: 0.992
 Loss:  0.027386048025220953
@@ -216,9 +221,9 @@ Looks pretty good we're seeing ~99% accuracy on the test set.
 </p>
 </div>
 </div>
-<div id="outline-container-org8ae6237" class="outline-2">
-<h2 id="org8ae6237">Visualize training</h2>
-<div class="outline-text-2" id="text-org8ae6237">
+<div id="outline-container-org8f3ea51" class="outline-2">
+<h2 id="org8f3ea51">Visualize training</h2>
+<div class="outline-text-2" id="text-org8f3ea51">
 <p>
 Now lets create a function that lets us graph the accuracy and loss values during training.
 </p>
@@ -249,7 +254,7 @@ plot_accuracy_and_loss(history)
 </div>
 
 
-<figure id="org34284fc">
+<figure id="orgff2ed00">
 <img src="/images/mnist-keras/plot-accuracy-loss.png" alt="plot-accuracy-loss.png">
 
 </figure>
@@ -280,7 +285,7 @@ plt.imshow(test_images[0], cmap=plt.cm.binary)
 </div>
 
 
-<figure id="org1c59f8f">
+<figure id="org05661b5">
 <img src="/images/mnist-keras/test-prediction.png" alt="test-prediction.png">
 
 </figure>
@@ -294,7 +299,7 @@ Since the output of the network was a layer with 10 units and a softmax activati
 </pre>
 </div>
 
-<pre class="example" id="org9e515b2">
+<pre class="example" id="org46fed4a">
 [2.6081236e-12 1.8943378e-09 1.0174886e-08 6.8640638e-08 2.3309353e-11
  1.9539477e-10 7.4824168e-19 9.9999988e-01 4.3342949e-10 8.6599723e-09]
 </pre>
@@ -308,7 +313,7 @@ We can also find the class with the highest prediction score with a numpy functi
 </pre>
 </div>
 
-<pre class="example" id="org6cbd0b2">
+<pre class="example" id="org263957b">
 7
 </pre>
 

@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Clojure Performace and the Billion Row Challenge</title>
+<meta property="og:title" content="Clojure Performace and the Billion Row Challenge">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/billion-row-challenge-clojure/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -38,7 +43,7 @@ The text file has a simple structure with one measurement value per row:
 </p>
 </blockquote>
 
-<pre class="example" id="orgf182783">
+<pre class="example" id="org52b39f0">
 Hamburg;12.0
 Bulawayo;8.9
 Palembang;38.8
@@ -60,7 +65,7 @@ For most of this post i'll be using measurements against 100 million rows becaus
 When I run the provided Java baseline on my machine (a Mac mini with a 6 core Intel Core i5 and 16GB of RAM) to establish a baseline I get:
 </p>
 
-<pre class="example" id="orga018452">
+<pre class="example" id="orgf4a7884">
 $ time ./calculate_average_baseline.sh
 20.80s user 0.65s system 102% cpu 20.948 total
 </pre>
@@ -72,9 +77,9 @@ So we are trying to beat roughly <code>21 seconds</code>.
 <p>
 To simplify the examples, I'm not actually calculating the average, but the data is there to do so, and it would be relatively straightforward/fast as there are only 413 weather stations in the resulting data set.
 </p>
-<div id="outline-container-orgc883c79" class="outline-2">
-<h2 id="orgc883c79">Attempt 1: 1 minute 57 seconds</h2>
-<div class="outline-text-2" id="text-orgc883c79">
+<div id="outline-container-orgde10a7a" class="outline-2">
+<h2 id="orgde10a7a">Attempt 1: 1 minute 57 seconds</h2>
+<div class="outline-text-2" id="text-orgde10a7a">
 <p>
 This is a relatively straightforward Clojure implementation. But with a 1:57 runtime, not at all competitive with the 21 second baseline.
 </p>
@@ -105,7 +110,7 @@ Lets profile the code with <a href="https://github.com/clojure-goes-fast/clj-asy
 </p>
 
 
-<figure id="org49a6dbb">
+<figure id="org181bd8c">
 <img src="/images/billion-row-challenge/attempt1.png" alt="attempt1.png">
 
 </figure>
@@ -115,9 +120,9 @@ It looks like a lot of time was spent in Clojure functions like <code>clojure.co
 </p>
 </div>
 </div>
-<div id="outline-container-orgd01a1d9" class="outline-2">
-<h2 id="orgd01a1d9">Attempt 2 - 1 minute 37 seconds</h2>
-<div class="outline-text-2" id="text-orgd01a1d9">
+<div id="outline-container-orga8ab119" class="outline-2">
+<h2 id="orga8ab119">Attempt 2 - 1 minute 37 seconds</h2>
+<div class="outline-text-2" id="text-orga8ab119">
 <p>
 Lets try using a <a href="https://clojure.org/reference/transients">transient map</a> for the accumulator in the reduce function
 </p>
@@ -153,15 +158,15 @@ We could try using a transient map with transient maps as keys, but given how tr
 </p>
 
 
-<figure id="orge31ec46">
+<figure id="org263c4f6">
 <img src="/images/billion-row-challenge/attempt2.png" alt="attempt2.png">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-orge2abee5" class="outline-2">
-<h2 id="orge2abee5">Attempt 3 - Did not finish</h2>
-<div class="outline-text-2" id="text-orge2abee5">
+<div id="outline-container-org896f0a4" class="outline-2">
+<h2 id="org896f0a4">Attempt 3 - Did not finish</h2>
+<div class="outline-text-2" id="text-org896f0a4">
 <p>
 Lets try using a Java array to store results instead of a Clojure persistent hash map.
 </p>
@@ -210,7 +215,7 @@ If we add the expression
 and rerun, we see a number of lines on stdout that look like:
 </p>
 
-<pre class="example" id="orgfec182a">
+<pre class="example" id="org1249c31">
 Reflection warning, attempt3.clj:9:25 - call to static method aget on clojure.lang.RT can't be resolved (argument types: java.lang.Object, int).
 </pre>
 
@@ -219,9 +224,9 @@ Reflection in the Java interop is incredibly slow! Let fix that.
 </p>
 </div>
 </div>
-<div id="outline-container-org3b62e2f" class="outline-2">
-<h2 id="org3b62e2f">Attempt 4 - 1 minute 6 seconds</h2>
-<div class="outline-text-2" id="text-org3b62e2f">
+<div id="outline-container-org22060a4" class="outline-2">
+<h2 id="org22060a4">Attempt 4 - 1 minute 6 seconds</h2>
+<div class="outline-text-2" id="text-org22060a4">
 <p>
 We can add type hints to the previous solution like so:
 </p>
@@ -259,9 +264,9 @@ This one is about 30 seconds better than attempt 2, but still significantly slow
 </p>
 </div>
 </div>
-<div id="outline-container-orgd94a6fd" class="outline-2">
-<h2 id="orgd94a6fd">Attempt 5 - 45 Seconds</h2>
-<div class="outline-text-2" id="text-orgd94a6fd">
+<div id="outline-container-org2535a18" class="outline-2">
+<h2 id="org2535a18">Attempt 5 - 45 Seconds</h2>
+<div class="outline-text-2" id="text-org2535a18">
 <p>
 Lets try some optimizations: manually loop instead of reduce, use Java's String split instead of <code>clojure.string/split</code> and don't destructure the results.
 </p>
@@ -306,15 +311,15 @@ Looking at a flamegraph we seem to be spending a lot of time in calls to <code>c
 </p>
 
 
-<figure id="orga12e829">
+<figure id="org086409e">
 <img src="/images/billion-row-challenge/attempt5.png" alt="attempt5.png">
 
 </figure>
 </div>
 </div>
-<div id="outline-container-org290cdad" class="outline-2">
-<h2 id="org290cdad">Attempt 6 - 30 seconds</h2>
-<div class="outline-text-2" id="text-org290cdad">
+<div id="outline-container-orgb3b8f95" class="outline-2">
+<h2 id="orgb3b8f95">Attempt 6 - 30 seconds</h2>
+<div class="outline-text-2" id="text-orgb3b8f95">
 <p>
 Lets try replacing the transient Clojure hash map in the accumulator with a <code>java.util.HashMap</code>
 </p>
@@ -360,9 +365,9 @@ Also, maybe we should next try a solution that isn't effectively single threaded
 </p>
 </div>
 </div>
-<div id="outline-container-org04a364b" class="outline-2">
-<h2 id="org04a364b">Attempt 7: core.async</h2>
-<div class="outline-text-2" id="text-org04a364b">
+<div id="outline-container-org3f93ed2" class="outline-2">
+<h2 id="org3f93ed2">Attempt 7: core.async</h2>
+<div class="outline-text-2" id="text-org3f93ed2">
 <p>
 Taking the code from attempt 6, but using core.async to fanout to multiple channels ultimately did not go anywhere, we're largely CPU bound and core.async seemed to just add overhead.
 </p>
@@ -372,9 +377,9 @@ I'm tempted to try this again in the future to see if I can make it faster. Not 
 </p>
 </div>
 </div>
-<div id="outline-container-org7f8400e" class="outline-2">
-<h2 id="org7f8400e">Attempt 8: Reducers - 27 seconds</h2>
-<div class="outline-text-2" id="text-org7f8400e">
+<div id="outline-container-orgdad5465" class="outline-2">
+<h2 id="orgdad5465">Attempt 8: Reducers - 27 seconds</h2>
+<div class="outline-text-2" id="text-orgdad5465">
 <p>
 This time we'll go back to using code that looks more like typical Clojure and leverage <a href="https://clojure.org/reference/reducers">reducers</a>. The <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core.reducers/fold">fold</a> function reduces a collection using a (potentially parallel) reduce-combine strategy. Meaning I can easily use all 6 cores on my machine!
 </p>
@@ -416,9 +421,9 @@ One problem with <code>fold</code> is that it should be used when source data ca
 </p>
 </div>
 </div>
-<div id="outline-container-orga2e0a9d" class="outline-2">
-<h2 id="orga2e0a9d">Attempt 9: Reducers with optimizations - 9.6 seconds</h2>
-<div class="outline-text-2" id="text-orga2e0a9d">
+<div id="outline-container-orga6f0f21" class="outline-2">
+<h2 id="orga6f0f21">Attempt 9: Reducers with optimizations - 9.6 seconds</h2>
+<div class="outline-text-2" id="text-orga6f0f21">
 <p>
 Lets try the previous attempt but with optimizations used in previous attempts.
 </p>
@@ -467,9 +472,9 @@ Lets try the previous attempt but with optimizations used in previous attempts.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaff751c" class="outline-2">
-<h2 id="orgaff751c">Results with 1 Billion rows</h2>
-<div class="outline-text-2" id="text-orgaff751c">
+<div id="outline-container-org31a91c3" class="outline-2">
+<h2 id="org31a91c3">Results with 1 Billion rows</h2>
+<div class="outline-text-2" id="text-org31a91c3">
 <p>
 Instead of using 100 million rows, we'll finally run against the full 1 billion row dataset:
 </p>
@@ -529,9 +534,9 @@ Though there are some other interesting entries that are fast and don't use <cod
 </p>
 </div>
 </div>
-<div id="outline-container-org23f97be" class="outline-2">
-<h2 id="org23f97be">Next steps</h2>
-<div class="outline-text-2" id="text-org23f97be">
+<div id="outline-container-orgaf9779e" class="outline-2">
+<h2 id="orgaf9779e">Next steps</h2>
+<div class="outline-text-2" id="text-orgaf9779e">
 <p>
 There are a number of optimizations I could look at to try to get a better time. Looking at a flame graph I think there is a good amount of overhead in the iota code that could be bypassed with a custom solution memory mapping the file into a number of chunks equivalent to the number of processors, but ultimately i'm pretty happy with what I came up with over the course of a Saturday afternoon and probably will call it here.
 </p>

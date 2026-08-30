@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Exploring Geospatial data in Elixir with Phoenix, D3, and PostGIS</title>
+<meta property="og:title" content="Exploring Geospatial data in Elixir with Phoenix, D3, and PostGIS">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/geospatial-app-elixir-postgis-phoenix/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -27,9 +32,9 @@ I noticed that Kaggle has started hosting some publicly available datasets. One 
 <p>
 Source code is available at <a href="https://github.com/wtfleming/phoenix-postgis-example">this GitHub repo</a>.
 </p>
-<div id="outline-container-orgca1a713" class="outline-2">
-<h2 id="orgca1a713">Captain Cook's Journeys on the Endeavor</h2>
-<div class="outline-text-2" id="text-orgca1a713">
+<div id="outline-container-org36e5b7f" class="outline-2">
+<h2 id="org36e5b7f">Captain Cook's Journeys on the Endeavor</h2>
+<div class="outline-text-2" id="text-org36e5b7f">
 <div id="d3_map"></div>
 
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -116,9 +121,9 @@ makeRequest("/js/phoenix-captain-cook/ship_data.json");
 </script>
 </div>
 </div>
-<div id="outline-container-org5c5c301" class="outline-2">
-<h2 id="org5c5c301">Docker</h2>
-<div class="outline-text-2" id="text-org5c5c301">
+<div id="outline-container-orge7f5d74" class="outline-2">
+<h2 id="orge7f5d74">Docker</h2>
+<div class="outline-text-2" id="text-orge7f5d74">
 <p>
 For simplicity in this example we'll be using the <a href="https://hub.docker.com/r/mdillon/postgis/">mdillon/postgis</a> Docker image. If you already have PostGIS installed or do not want to use Docker feel free to skip this section.
 </p>
@@ -169,9 +174,9 @@ $ sudo docker stop postgres-ocean-ships
 </div>
 </div>
 </div>
-<div id="outline-container-org080acda" class="outline-2">
-<h2 id="org080acda">Phoenix</h2>
-<div class="outline-text-2" id="text-org080acda">
+<div id="outline-container-org144fae9" class="outline-2">
+<h2 id="org144fae9">Phoenix</h2>
+<div class="outline-text-2" id="text-org144fae9">
 <p>
 Create the Phoenix app:
 </p>
@@ -187,7 +192,7 @@ $ mix ecto.create
 Add these Elixir <a href="https://github.com/beatrichartz/csv">CSV</a> and <a href="https://github.com/bryanjos/geo">Geo</a> libraries to your mix.exs dependencies.
 </p>
 
-<pre class="example" id="orgebf6db4">
+<pre class="example" id="org9d7817a">
 {:csv, "~&gt; 1.2.3"}
 {:geo, "~&gt; 1.0"}
 </pre>
@@ -228,9 +233,9 @@ config :ocean_ship_logbooks, OceanShipLogbooks.Repo,
 </div>
 </div>
 </div>
-<div id="outline-container-org70d04fa" class="outline-2">
-<h2 id="org70d04fa">Create database migrations</h2>
-<div class="outline-text-2" id="text-org70d04fa">
+<div id="outline-container-org569fa8d" class="outline-2">
+<h2 id="org569fa8d">Create database migrations</h2>
+<div class="outline-text-2" id="text-org569fa8d">
 <p>
 First we will want to enable the PostGIS extension in Postgres for our database. Lets generate a migration.
 </p>
@@ -308,9 +313,9 @@ Run the migrations:
 </div>
 </div>
 </div>
-<div id="outline-container-orgac93ad0" class="outline-2">
-<h2 id="orgac93ad0">ShipData Model</h2>
-<div class="outline-text-2" id="text-orgac93ad0">
+<div id="outline-container-org542dc39" class="outline-2">
+<h2 id="org542dc39">ShipData Model</h2>
+<div class="outline-text-2" id="text-org542dc39">
 <p>
 Create a file at web/models/ship<sub>data.ex</sub> with these contents:
 </p>
@@ -332,9 +337,9 @@ This is a pretty straightforward model. We are using the Geo library so we can u
 </p>
 </div>
 </div>
-<div id="outline-container-orgca7c867" class="outline-2">
-<h2 id="orgca7c867">ShipData View</h2>
-<div class="outline-text-2" id="text-orgca7c867">
+<div id="outline-container-orga25d7fb" class="outline-2">
+<h2 id="orga25d7fb">ShipData View</h2>
+<div class="outline-text-2" id="text-orga25d7fb">
 <p>
 Create a file web/views/ship<sub>data</sub><sub>view.ex</sub> with these contents:
 </p>
@@ -361,9 +366,9 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org5225df9" class="outline-2">
-<h2 id="org5225df9">Router</h2>
-<div class="outline-text-2" id="text-org5225df9">
+<div id="outline-container-org0f4deac" class="outline-2">
+<h2 id="org0f4deac">Router</h2>
+<div class="outline-text-2" id="text-org0f4deac">
 <p>
 Look in web/router.ex for the api block. Uncomment it and change to look like this:
 </p>
@@ -378,9 +383,9 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7ffa35" class="outline-2">
-<h2 id="orgc7ffa35">Ship Data Controller</h2>
-<div class="outline-text-2" id="text-orgc7ffa35">
+<div id="outline-container-org47a2a2a" class="outline-2">
+<h2 id="org47a2a2a">Ship Data Controller</h2>
+<div class="outline-text-2" id="text-org47a2a2a">
 <p>
 Create a file web/controllers/ship<sub>data</sub><sub>controller.ex</sub> with these contents:
 </p>
@@ -426,9 +431,9 @@ end
 </div>
 </div>
 </div>
-<div id="outline-container-org33fa08c" class="outline-2">
-<h2 id="org33fa08c">Download and clean the data.</h2>
-<div class="outline-text-2" id="text-org33fa08c">
+<div id="outline-container-org9bdd53d" class="outline-2">
+<h2 id="org9bdd53d">Download and clean the data.</h2>
+<div class="outline-text-2" id="text-org9bdd53d">
 <p>
 Ensure you have downloaded the data the <a href="https://www.kaggle.com/kaggle/climate-data-from-ocean-ships">ship data from Kaggle</a>. Extract the file CLIWOC15.csv into the root directory of your project (this file should be about 200 megabytes in size).
 </p>
@@ -459,9 +464,9 @@ Run the script to remove extraneous newlines:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7071c9" class="outline-2">
-<h2 id="orgc7071c9">Load the data into PostGIS</h2>
-<div class="outline-text-2" id="text-orgc7071c9">
+<div id="outline-container-org7a68d80" class="outline-2">
+<h2 id="org7a68d80">Load the data into PostGIS</h2>
+<div class="outline-text-2" id="text-org7a68d80">
 <p>
 Run the app inside IEx (Interactive Elixir):
 </p>
@@ -529,9 +534,9 @@ Feel free to delete the CSV files to clear up a few hundred megs of disk space.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcc87ad5" class="outline-2">
-<h2 id="orgcc87ad5">Download Countries GeoJSON</h2>
-<div class="outline-text-2" id="text-orgcc87ad5">
+<div id="outline-container-orgafbbc5e" class="outline-2">
+<h2 id="orgafbbc5e">Download Countries GeoJSON</h2>
+<div class="outline-text-2" id="text-orgafbbc5e">
 <p>
 Get the GeoGSON data from <a href="http://emeeks.github.io/d3ia/world.geojson">this GitHub repo</a> and put the geojson file at priv/static/js/world.geojson
 </p>
@@ -541,9 +546,9 @@ This will let us draw a map of the world in D3.
 </p>
 </div>
 </div>
-<div id="outline-container-org66b0f40" class="outline-2">
-<h2 id="org66b0f40">HTML and Javascript code</h2>
-<div class="outline-text-2" id="text-org66b0f40">
+<div id="outline-container-orgb844180" class="outline-2">
+<h2 id="orgb844180">HTML and Javascript code</h2>
+<div class="outline-text-2" id="text-orgb844180">
 <p>
 Edit web/templates/page/index.html.eex to look like this:
 </p>
@@ -644,7 +649,7 @@ Open a web browser to <a href="http://localhost:4000">http://localhost:4000</a> 
 </p>
 
 
-<figure id="orgff44aab">
+<figure id="org3840df7">
 <img src="/images/phoenix-postgis-captain-cook/cooks-travels.jpg" alt="cooks-travels.jpg">
 
 </figure>

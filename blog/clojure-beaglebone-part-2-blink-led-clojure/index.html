@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Clojure on the BeagleBone part 2 - Blinking an LED with Clojure</title>
+<meta property="og:title" content="Clojure on the BeagleBone part 2 - Blinking an LED with Clojure">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/clojure-beaglebone-part-2-blink-led-clojure/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -20,9 +25,9 @@
 </div>
 <div id="content">
 <div class="post-date">25 May 2014</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/clojure-beaglebone-part-2-blink-led-clojure/">Clojure on the BeagleBone part 2 - Blinking an LED with Clojure</a></h1>
-<div id="outline-container-orga0e9e36" class="outline-2">
-<h2 id="orga0e9e36">Intro</h2>
-<div class="outline-text-2" id="text-orga0e9e36">
+<div id="outline-container-org504a8b0" class="outline-2">
+<h2 id="org504a8b0">Intro</h2>
+<div class="outline-text-2" id="text-org504a8b0">
 <ul class="org-ul">
 <li>In <a href="/blog/clojure-beaglebone-part-1-install-java-leiningen/">part 1</a> of this series we saw how to install Java and <a href="https://github.com/technomancy/leiningen">Leiningen</a> on a <a href="https://beagleboard.org/black">BeagleBone</a>.</li>
 <li>In part 2 we use the BeagleBone to blink an LED on a breadboard using Clojure.</li>
@@ -35,7 +40,7 @@ This is inspired by an example from the excellent book <a href="https://www.amaz
 </p>
 
 
-<figure id="orgdac0936">
+<figure id="orgd8a0dc2">
 <img src="/images/beaglebone-clojure-blink-led-fritzing.png" alt="beaglebone-clojure-blink-led-fritzing.png">
 
 </figure>
@@ -53,9 +58,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 <hr>
 </div>
 </div>
-<div id="outline-container-orgb96b218" class="outline-2">
-<h2 id="orgb96b218">Wire up the LED</h2>
-<div class="outline-text-2" id="text-orgb96b218">
+<div id="outline-container-org411aa7e" class="outline-2">
+<h2 id="org411aa7e">Wire up the LED</h2>
+<div class="outline-text-2" id="text-org411aa7e">
 <ol class="org-ol">
 <li>Using a jumper wire connect Pin 2 on Header P9 (ground) on the BeagleBone to the negative rail on the breadboard.</li>
 <li>Place an LED in the breadboard.</li>
@@ -65,9 +70,9 @@ Note: The GPIO pins can only handle 3.3 volts, so be very careful that you do no
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd70b0d4" class="outline-2">
-<h2 id="orgd70b0d4">Clojure code</h2>
-<div class="outline-text-2" id="text-orgd70b0d4">
+<div id="outline-container-org6caa2ca" class="outline-2">
+<h2 id="org6caa2ca">Clojure code</h2>
+<div class="outline-text-2" id="text-org6caa2ca">
 <p>
 SSH into your BeagleBone and create a file named <i>project.clj</i> with the following contents:
 </p>

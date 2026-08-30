@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Adventures in Clojure with core.async - Part 1 - Channels and Messages</title>
+<meta property="og:title" content="Adventures in Clojure with core.async - Part 1 - Channels and Messages">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/adventures-with-core-async-part-one-channels-messages/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -20,9 +25,9 @@
 </div>
 <div id="content">
 <div class="post-date">15 Apr 2015</div><h1 class="post-title"><a href="https://wtfleming.github.io/blog/adventures-with-core-async-part-one-channels-messages/">Adventures in Clojure with core.async - Part 1 - Channels and Messages</a></h1>
-<div id="outline-container-org3a82f3c" class="outline-2">
-<h2 id="org3a82f3c">Introduction</h2>
-<div class="outline-text-2" id="text-org3a82f3c">
+<div id="outline-container-org37bf88e" class="outline-2">
+<h2 id="org37bf88e">Introduction</h2>
+<div class="outline-text-2" id="text-org37bf88e">
 <ul class="org-ul">
 <li>In part 1 of this series we will look at the basics of core.async via channels and messages.</li>
 <li>In <a href="/blog/adventures-with-core-async-part-two-parking-timeouts-alt/">part 2</a> we explore timeouts and working with multiple channels using examples of calling out to web APIs.</li>
@@ -41,9 +46,9 @@ It builds upon the <a href="http://en.wikipedia.org/wiki/Communicating_sequentia
 </p>
 </div>
 </div>
-<div id="outline-container-org730bd2b" class="outline-2">
-<h2 id="org730bd2b">Sending Messages</h2>
-<div class="outline-text-2" id="text-org730bd2b">
+<div id="outline-container-orgfde9240" class="outline-2">
+<h2 id="orgfde9240">Sending Messages</h2>
+<div class="outline-text-2" id="text-orgfde9240">
 <p>
 These are some of the functions available for writing to and reading from a channel.
 </p>
@@ -100,9 +105,9 @@ Note that &gt;!! and &lt;!! are not available in ClojureScript as the underlying
 </p>
 </div>
 </div>
-<div id="outline-container-org10fe272" class="outline-2">
-<h2 id="org10fe272">go Blocks</h2>
-<div class="outline-text-2" id="text-org10fe272">
+<div id="outline-container-org9d19b35" class="outline-2">
+<h2 id="org9d19b35">go Blocks</h2>
+<div class="outline-text-2" id="text-org9d19b35">
 <p>
 We can use the <b>go</b> macro provided by core.async to create new processes. It will turn any channel operations within into a state machine, which parks on a blocking operation, and resumes when the blocking operation completes.
 </p>
@@ -112,9 +117,9 @@ The concept of parking will be covered in more depth in a future post.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb96854f" class="outline-2">
-<h2 id="orgb96854f">Code</h2>
-<div class="outline-text-2" id="text-orgb96854f">
+<div id="outline-container-orgc67e006" class="outline-2">
+<h2 id="orgc67e006">Code</h2>
+<div class="outline-text-2" id="text-orgc67e006">
 <p>
 For the sake of completeness here is a helper function to set DOM values in the browser using the <a href="https://developers.google.com/closure/library/">Google Closure Library</a>.
 </p>
@@ -132,9 +137,9 @@ We will use in the examples below.
 </p>
 </div>
 </div>
-<div id="outline-container-orge7b421c" class="outline-2">
-<h2 id="orge7b421c">Unbuffered Channels</h2>
-<div class="outline-text-2" id="text-orge7b421c">
+<div id="outline-container-orgcbb8993" class="outline-2">
+<h2 id="orgcbb8993">Unbuffered Channels</h2>
+<div class="outline-text-2" id="text-orgcbb8993">
 <p>
 The simplest channel is unbuffered and created using the <b>chan</b> function with no arguments.
 </p>
@@ -167,9 +172,9 @@ Writing to an unbuffered channel blocks further writes until the message is read
 <button id="example-zero-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-org841d02b" class="outline-2">
-<h2 id="org841d02b">Buffered Channels</h2>
-<div class="outline-text-2" id="text-org841d02b">
+<div id="outline-container-orgd11bf7f" class="outline-2">
+<h2 id="orgd11bf7f">Buffered Channels</h2>
+<div class="outline-text-2" id="text-orgd11bf7f">
 <p>
 Calling <b>chan</b> with a single argument that is a number creates a channel with a buffer. This allows us to write more than one message to the channel before it blocks. In the example below we create a channel with a buffer of 5.
 </p>
@@ -198,9 +203,9 @@ Note that since this is not an unbuffered channel (and we are not writing more m
 <button id="example-one-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-org13bae43" class="outline-2">
-<h2 id="org13bae43">Dropping Buffers</h2>
-<div class="outline-text-2" id="text-org13bae43">
+<div id="outline-container-org3073bee" class="outline-2">
+<h2 id="org3073bee">Dropping Buffers</h2>
+<div class="outline-text-2" id="text-org3073bee">
 <p>
 We can also create a channel with a dropping-buffer. In this case writes will complete when the buffer is full, but the value will be dropped.
 </p>
@@ -232,9 +237,9 @@ We are also using the specialized into function provided by core.async, which re
 <button id="example-two-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-org39275b4" class="outline-2">
-<h2 id="org39275b4">Sliding Buffers</h2>
-<div class="outline-text-2" id="text-org39275b4">
+<div id="outline-container-orgb92ee9b" class="outline-2">
+<h2 id="orgb92ee9b">Sliding Buffers</h2>
+<div class="outline-text-2" id="text-orgb92ee9b">
 <p>
 A sliding-buffer is similar to a dropping-buffer, except that when the buffer is full, writes will continue to succeed but the oldest element in the buffer will be dropped.
 </p>
@@ -258,9 +263,9 @@ A sliding-buffer is similar to a dropping-buffer, except that when the buffer is
 <button id="example-three-button">Run Code</button>
 </div>
 </div>
-<div id="outline-container-org61dca40" class="outline-2">
-<h2 id="org61dca40">Conclusion</h2>
-<div class="outline-text-2" id="text-org61dca40">
+<div id="outline-container-org6bb109f" class="outline-2">
+<h2 id="org6bb109f">Conclusion</h2>
+<div class="outline-text-2" id="text-org6bb109f">
 <p>
 We've barely scratched the surface of core.async in this introductory post. In future posts we'll see more of what the library provides, show some practical examples (including some very neat things we can do with the state machine that go blocks provide).
 </p>

@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Geospatial queries with elasticsearch</title>
+<meta property="og:title" content="Geospatial queries with elasticsearch">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/elasticsearch-polygon/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -25,9 +30,9 @@ Recently I was investigating the geospatial capabilities of <a href="http://www.
 </p>
 
 <hr>
-<div id="outline-container-orgda05ef5" class="outline-2">
-<h2 id="orgda05ef5">Create a mapping</h2>
-<div class="outline-text-2" id="text-orgda05ef5">
+<div id="outline-container-org2aab2c5" class="outline-2">
+<h2 id="org2aab2c5">Create a mapping</h2>
+<div class="outline-text-2" id="text-org2aab2c5">
 <p>
 First we need to create a mapping for the geotest index. A mapping allows us to tell elasticsearch how an index is structured. In this case we expect our documents to have two fields: a user identifier, and a location (in this case we are using a 2 dimensional point to represent lat/lon).
 </p>
@@ -49,9 +54,9 @@ First we need to create a mapping for the geotest index. A mapping allows us to 
 </div>
 </div>
 </div>
-<div id="outline-container-org05feb1f" class="outline-2">
-<h2 id="org05feb1f">Add users to the index</h2>
-<div class="outline-text-2" id="text-org05feb1f">
+<div id="outline-container-orge31cf6a" class="outline-2">
+<h2 id="orge31cf6a">Add users to the index</h2>
+<div class="outline-text-2" id="text-orge31cf6a">
 <div class="org-src-container">
 <pre class="src src-sh">curl -XPOST 'http://localhost:9200/geotest/usergeo' -d '
 {
@@ -69,9 +74,9 @@ curl -XPOST 'http://localhost:9200/geotest/usergeo' -d '
 </div>
 </div>
 </div>
-<div id="outline-container-org429aaea" class="outline-2">
-<h2 id="org429aaea">Run a query</h2>
-<div class="outline-text-2" id="text-org429aaea">
+<div id="outline-container-org35317f4" class="outline-2">
+<h2 id="org35317f4">Run a query</h2>
+<div class="outline-text-2" id="text-org35317f4">
 <p>
 Find all users located within a polygon.
 </p>

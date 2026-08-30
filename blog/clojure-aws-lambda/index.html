@@ -7,8 +7,13 @@
       href="https://wtfleming.github.io/rss.xml"
       title="RSS feed for https://wtfleming.github.io/">
 <title>Create a Clojure AWS Lambda function in Docker and deployed via AWS SAM</title>
+<meta property="og:title" content="Create a Clojure AWS Lambda function in Docker and deployed via AWS SAM">
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://wtfleming.github.io/blog/clojure-aws-lambda/">
+<meta property="og:image" content="https://wtfleming.github.io/images/og-default.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#05a081">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="icon" href="/icon.png">
 <script defer src="/js/highlight.min.js"></script>
@@ -41,9 +46,9 @@ Note that even though Lambda supports Java as a runtime, we'll be running this f
 While everything works great in the cloud, I ran into some compilation issues running the jar file locally with the sam invoke local command. I think the SAM CLI tool may be doing something unexpected with the java classpath, and could only get it to run without errors using the specific combination of Clojure 1.9 and Java 8. However by using Docker we can easily avoid issues like this.
 </p>
 </blockquote>
-<div id="outline-container-org76a9821" class="outline-2">
-<h2 id="org76a9821">Project Code</h2>
-<div class="outline-text-2" id="text-org76a9821">
+<div id="outline-container-orgc249884" class="outline-2">
+<h2 id="orgc249884">Project Code</h2>
+<div class="outline-text-2" id="text-orgc249884">
 <p>
 I am using Leiningin for this project, so create a <code>project.clj</code> file with these contents:
 </p>
@@ -117,9 +122,9 @@ Now lets write our lambda function Create a file called <code>src/clojure_aws_la
 </div>
 </div>
 </div>
-<div id="outline-container-org71eb91e" class="outline-2">
-<h2 id="org71eb91e">Testing</h2>
-<div class="outline-text-2" id="text-org71eb91e">
+<div id="outline-container-org643b3f5" class="outline-2">
+<h2 id="org643b3f5">Testing</h2>
+<div class="outline-text-2" id="text-org643b3f5">
 <p>
 Lets create a simple unit test. Create a file named <code>test/eventbridge-scheduled-event.json</code> with these contents.
 </p>
@@ -176,9 +181,9 @@ Note that rather than relying on a single json event, there is a much more we co
 <hr>
 </div>
 </div>
-<div id="outline-container-org9a7712e" class="outline-2">
-<h2 id="org9a7712e">Dockerfile</h2>
-<div class="outline-text-2" id="text-org9a7712e">
+<div id="outline-container-org072fbb4" class="outline-2">
+<h2 id="org072fbb4">Dockerfile</h2>
+<div class="outline-text-2" id="text-org072fbb4">
 <p>
 We will also need a Dockerfile. We will use a <code>clojure:openjdk-11-slim-buster</code> image to build the Java jar, and then run the function inside a <code>eclipse-temurin:11-focal</code> container. By using a separate image to build our app, we can use a final image that doesn't have to ship Clojure build tools like lein with it.
 </p>
@@ -218,9 +223,9 @@ CMD ["clojure_aws_lambda_example.core::handleRequest"]
 <hr>
 </div>
 </div>
-<div id="outline-container-orgcf15aad" class="outline-2">
-<h2 id="orgcf15aad">SAM Configuration</h2>
-<div class="outline-text-2" id="text-orgcf15aad">
+<div id="outline-container-org35406a2" class="outline-2">
+<h2 id="org35406a2">SAM Configuration</h2>
+<div class="outline-text-2" id="text-org35406a2">
 <p>
 Finally we will need a SAM template that will have all the information the SAM CLI tool needs to generate a CloudFormation template. We want to create a Lambda function and a CloudWatch event that fires every minute to trigger a run of the function.
 </p>
@@ -277,9 +282,9 @@ Outputs:
 </div>
 </div>
 </div>
-<div id="outline-container-org424af5a" class="outline-2">
-<h2 id="org424af5a">Run the app locally</h2>
-<div class="outline-text-2" id="text-org424af5a">
+<div id="outline-container-org397353f" class="outline-2">
+<h2 id="org397353f">Run the app locally</h2>
+<div class="outline-text-2" id="text-org397353f">
 <p>
 Prior to deploying to the cloud we'll want to run and test on our local machine.
 </p>
@@ -306,7 +311,7 @@ Run it with
 You should see output similar to
 </p>
 
-<pre class="example" id="org90aa69f">
+<pre class="example" id="org3ae74fc">
 Invoking Container created from clojureawslambdaexamplefunction:clojure-aws-lambda-example-v1
 Building image.................
 Skip pulling image and use local one: clojureawslambdaexamplefunction:rapid-1.33.0-x86_64.
@@ -318,9 +323,9 @@ REPORT RequestId: 7dfdf5e7-7580-466b-b3da-c24935837cf0  Init Duration: 0.26 ms  
 </pre>
 </div>
 </div>
-<div id="outline-container-org0d8ca70" class="outline-2">
-<h2 id="org0d8ca70">Deploy to the Cloud</h2>
-<div class="outline-text-2" id="text-org0d8ca70">
+<div id="outline-container-org6ea931b" class="outline-2">
+<h2 id="org6ea931b">Deploy to the Cloud</h2>
+<div class="outline-text-2" id="text-org6ea931b">
 <p>
 The first time you deploy run this command to generate a local <code>samconfig.toml</code> file, an S3 bucket, and an ECR repository. When prompted for configuration info you can use the defaults the tool suggests
 </p>
@@ -349,7 +354,7 @@ Use the stack-name you choose when you ran sam deploy &#x2013;guided
 </p>
 </blockquote>
 
-<pre class="example" id="org9716717">
+<pre class="example" id="orgc0133f0">
 $ sam logs -n ClojureAwsLambdaExampleFunction --stack-name sam-app --tail
 </pre>
 
@@ -357,7 +362,7 @@ $ sam logs -n ClojureAwsLambdaExampleFunction --stack-name sam-app --tail
 After a few minutes of running you should see output similar to
 </p>
 
-<pre class="example" id="orgfcab532">
+<pre class="example" id="org36c8eac">
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.729000 START RequestId: cc9f8cfd-04bf-44af-9b88-8d0349adf74e Version
 : $LATEST
 2021/10/17/[$LATEST]e4f5879df90c4d2f90bf036dfc1773c7 2021-10-17T16:00:14.734000 -handleRequest called! with event:  {:detail-type Scheduled Event, :time 2015-10-08T16:53:06Z, :source aws.events, :account 123456789012, :region us-east-1, :id 53dc4d37-cffa-4f76-80c9-8b7d4a4d2eaa, :version 0, :resources [arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule], :detail {}}
@@ -381,9 +386,9 @@ ion: 1.06 ms    Billed Duration: 2 ms   Memory Size: 256 MB     Max Memory Used:
 </pre>
 </div>
 </div>
-<div id="outline-container-org341962f" class="outline-2">
-<h2 id="org341962f">Clean up</h2>
-<div class="outline-text-2" id="text-org341962f">
+<div id="outline-container-org69d992c" class="outline-2">
+<h2 id="org69d992c">Clean up</h2>
+<div class="outline-text-2" id="text-org69d992c">
 <p>
 When you are finished, you can delete the resources associated with the stack
 </p>
@@ -394,7 +399,7 @@ Use the stack-name you choose when you ran sam deploy &#x2013;guided
 </p>
 </blockquote>
 
-<pre class="example" id="org844d6fb">
+<pre class="example" id="org9587fde">
 $ sam delete --stack-name sam-app
 </pre>
 </div>
